@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Nieuwe gebruiker</div>
+				<div class="panel-heading">Nieuw artikel</div>
 				<div class="panel-body">
 
 					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
@@ -40,18 +40,20 @@
 </div>
 <script>
 	$(function () {
-		CKEDITOR.replace('textarea-content', {
-			"extraPlugins" : 'image',
-		});
-		// $('#form').submit(function (event) { event.preventDefault(); alert('test'); });
-		// $('#btn-send').click(function () {
-		// 	var request = $.post('/users', {
-		// 		_method: 'POST',
-		// 		_token: '{{ csrf_token() }}',
-		// 		form: $('#form').serialize()
-		// 	});
+		CKEDITOR.replace('textarea-content');
+		$('#form').submit(function (event) { 
+			event.preventDefault(); 
+			
+			var request = $.post('/users', {
+				_method: 'POST',
+				_token: '{{ csrf_token() }}',
+				form: $('#form').serialize()
+			});
 
-		// 	console.log(request)
+			console.log(request);
+
+		});
+		// 	
 
 		// 	request.success(function () {
 		// 		alert('gl');

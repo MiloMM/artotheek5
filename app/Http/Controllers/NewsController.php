@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use View;
 
 class NewsController extends Controller {
 
@@ -24,7 +25,7 @@ class NewsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return View::make('news/create');
 	}
 
 	/**
