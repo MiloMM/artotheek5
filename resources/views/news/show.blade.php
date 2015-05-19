@@ -3,7 +3,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">{{ $article->title }}</div>
 	<div class="panel-body">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading"></div>
 			<div class="panel-body">
 				<a href="/news/{{ $article->slug }}/edit" class="btn btn-primary">Wijzig</a>
@@ -65,7 +65,7 @@
 					_method: 'DELETE'
 				});
 				request.success(function (response) {
-					functions.showSuccessBanner('Artikel verwijdert.', 800);
+					functions.showSuccessBanner('Artikel verwijderd.', 800);
 					setTimeout(function () {
 						window.location.assign('/news');
 					}, 2300);

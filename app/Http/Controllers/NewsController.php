@@ -105,26 +105,34 @@ class NewsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(NewsRequest $request, $id)
 	{
 		$input = Input::all();
-		$tags = explode(',', $input['tags']);
 
-		$slug = strtolower(implode('-', explode(' ', $input['title'])));
+		if (isset($input['state'])) {
+			$article = News::findOrFail($id);
+			$article->update($input);
+			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200);
+		} else {
+			
+			$tags = explode(',', $input['tags']);
 
-		if (News::where('slug', $slug)->first() && News::where('slug', $slug)->first()->id != $id) {
-			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
+			$slug = strtolower(implode('-', explode(' ', $input['title'])));
+
+			if (News::where('slug', $slug)->first() && News::where('slug', $slug)->first()->id != $id) {
+				return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
+			}
+
+			$input['slug'] = $slug;
+
+			$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
+			$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
+
+			$article = News::findOrFail($id);
+			$article->update($input);
+
+			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200); // 200 = OK
 		}
-
-		$input['slug'] = $slug;
-
-		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
-		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
-
-		$article = News::findOrFail($id);
-		$article->update($input);
-
-		return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200); // 200 = OK
 	}
 
 	/**
