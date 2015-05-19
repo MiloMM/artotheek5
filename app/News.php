@@ -4,11 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model {
 
-	use \Conner\Tagging\TaggableTrait; // Tags
+	//use \Conner\Tagging\TaggableTrait; // Tags
 
 	protected $table = 'news';
 
-	protected $fillable = ['title', 'content', 'slug'];
+	protected $fillable = ['title', 'content', 'slug', 'state'];
 
 	public static function allWithoutArchived()
 	{
