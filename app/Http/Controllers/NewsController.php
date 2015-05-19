@@ -50,7 +50,8 @@ class NewsController extends Controller {
 		}
 
 		$input['slug'] = $slug;
-		$input['content'] = str_replace(PHP_EOL, '', $input['content']); // remove line endings
+		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
+		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
 		$article = News::create($input);
 
