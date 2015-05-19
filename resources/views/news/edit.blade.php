@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 <div class="panel panel-default">
-	<div class="panel-heading">{{ $article->title }}</div>
+	<div class="panel-heading">Wijzig artikel</div>
 	<div class="panel-body">
 		{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
 			<div class="form-group">
@@ -38,7 +38,7 @@
 			var request = $.post('/news/{{ $article->id }}', {
 				_token: '{{ csrf_token() }}',
 				_method: 'PUT',
-				title: $('tbx-title').val(),
+				title: $('#tbx-title').val(),
 				content: editor.getData(),
 				tags: $('#tbx-tags').val()
 			});
@@ -72,7 +72,7 @@
 				errorMsg += '</ul>';
 				functions.showErrorBanner(errorMsg, 5000);
 			});
-			
+
 		});
 	});
 </script>

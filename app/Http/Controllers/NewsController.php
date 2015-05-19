@@ -105,15 +105,26 @@ class NewsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(NewsRequest $request, $id)
+	public function update($id)
 	{
 		$input = Input::all();
+		$tags = explode(',', $input['tags']);
 
-		$input['content'] = str_replace(PHP_EOL, '', $input['content']);
+		$slug = strtolower(implode('-', explode(' ', $input['title'])));
+
+		if (News::where('slug', $slug)->first() && News::where('slug', $slug)->first()->id != $id) {
+			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
+		}
+
+		$input['slug'] = $slug;
+
+		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
+		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
 		$article = News::findOrFail($id);
-		$article->update(Input::all());
-		return Response::json([], 200); // 200 = OK
+		$article->update($input);
+
+		return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200); // 200 = OK
 	}
 
 	/**
