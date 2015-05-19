@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration {
 			$table->string('title');
 			$table->string('content');
 			$table->integer('state')->unsigned();
+			$table->string('slug')->unique();
 			$table->timestamps();
 		});
 	}

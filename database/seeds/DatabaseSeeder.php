@@ -95,11 +95,13 @@ class NewsSeeder extends Seeder {
 		DB::table('news')->delete();
 		News::create([
 			'title' => 'Test Artikel1',
-			'content' => 'Dit is een test artikel dat geen gebruik maakt van html tags! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat vitae, quibusdam eius deserunt, consequuntur possimus hic voluptatum incidunt soluta temporibus quam architecto sint ad animi vel aperiam assumenda debitis. Quae.'
+			'content' => 'Dit is een test artikel dat geen gebruik maakt van html tags! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat vitae, quibusdam eius deserunt, consequuntur possimus hic voluptatum incidunt soluta temporibus quam architecto sint ad animi vel aperiam assumenda debitis. Quae.',
+			'slug' => 'test-artikel1'
 		]);
 		News::create([
 			'title' => 'Test Artikel2',
-			'content' => '<span style="color: red;">Dit artikel</span> maakt gebruikt van <h3>tags.</h3>'
+			'content' => '<span style="color: red;">Dit artikel</span> maakt gebruikt van <h3>tags.</h3>',
+			'slug' => 'test-artikel2'
 		]);
 	}
 
