@@ -8,6 +8,7 @@ use View;
 use Input;
 use App\News;
 use App\Http\Requests\NewsRequest;
+use Response;
 
 class NewsController extends Controller {
 
@@ -40,12 +41,27 @@ class NewsController extends Controller {
 	public function store(NewsRequest $request)
 	{
 		$input = Input::all();
+		$tags = explode(',', $input['tags']);
 
+		$slug = strtolower(implode('-', explode(' ', $input['title'])));
 
-		//$news = News::create($data);
+		if (News::where('slug', $slug)->first()) {
+			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
+		}
+
+		$input['slug'] = $slug;
+
+		$article = News::create($input);
+
+		/**
+		 * @todo Tagging is not working
+		 */
+		// foreach ($tags as $tag) {
+		// 	$article->tag($tag);
+		// }
 
 		return [
-			0 => 'Nieuws artikel aangemaakt, klik <a href="#">hier</a> om het te bekijken.'
+			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
 		];
 	}
 

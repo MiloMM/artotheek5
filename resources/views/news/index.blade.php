@@ -6,7 +6,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Nieuws Artikelen</div>
 				<div class="panel-body">
-
+					<a href="{{ action('NewsController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Artikel</a>
 					@foreach ($articles as $article)
 						<div class="panel panel-default">
 							<div class="panel-heading">{{ $article->title }}</div>
@@ -14,7 +14,6 @@
 							<a href="/news/{{ $article->slug }}" style="margin: 10px;" class="btn btn-success">Volledig Artikel</a>
 						</div>
 					@endforeach
-
 				</div>
 			</div>
 		</div>

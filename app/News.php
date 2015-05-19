@@ -8,7 +8,7 @@ class News extends Model {
 
 	protected $table = 'news';
 
-	protected $fillable = ['title', 'content'];
+	protected $fillable = ['title', 'content', 'slug'];
 
 	public static function allWithoutArchived()
 	{
