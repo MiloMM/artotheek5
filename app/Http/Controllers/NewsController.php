@@ -50,6 +50,7 @@ class NewsController extends Controller {
 		}
 
 		$input['slug'] = $slug;
+		$input['content'] = str_replace(PHP_EOL, '', $input['content']); // remove line endings
 
 		$article = News::create($input);
 
@@ -89,29 +90,42 @@ class NewsController extends Controller {
 	 */
 	public function edit($slug)
 	{
-		//
+		$article = News::where('slug', $slug)->first();
+		if ($article) {
+			return View::make('news/edit', compact('article'));
+		} else {
+			throw new \Exception('Article was not found in the database.');
+		}
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  string  $slug
+	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($slug)
+	public function update(NewsRequest $request, $id)
 	{
-		//
+		$input = Input::all();
+
+		$input['content'] = str_replace(PHP_EOL, '', $input['content']);
+
+		$article = News::findOrFail($id);
+		$article->update(Input::all());
+		return Response::json([], 200); // 200 = OK
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  string  $slug
+	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($slug)
+	public function destroy($id)
 	{
-		//
+		$article = News::findOrFail($id);
+		$article->delete();
+		return Response::json([], 200);
 	}
 
 }
