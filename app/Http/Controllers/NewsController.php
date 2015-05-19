@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use View;
+use Input;
+use App\News;
+use App\Http\Requests\NewsRequest;
 
 class NewsController extends Controller {
 
@@ -15,7 +18,8 @@ class NewsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$articles = News::all();
+		return View::make('news/index', compact('articles'));
 	}
 
 	/**
@@ -33,29 +37,41 @@ class NewsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(NewsRequest $request)
 	{
-		//
+		$input = Input::all();
+
+
+		//$news = News::create($data);
+
+		return [
+			0 => 'Nieuws artikel aangemaakt, klik <a href="#">hier</a> om het te bekijken.'
+		];
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		//
+		$article = News::where('slug', $slug)->first();
+		if ($article) {
+			return View::make('news/show', compact('article'));
+		} else {
+			throw new \Exception('Article was not found in the database.');
+		}
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($slug)
 	{
 		//
 	}
@@ -63,10 +79,10 @@ class NewsController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($slug)
 	{
 		//
 	}
@@ -74,10 +90,10 @@ class NewsController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($slug)
 	{
 		//
 	}

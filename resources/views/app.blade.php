@@ -24,10 +24,11 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
 	<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+	<script src="{{ asset('functions.js') }}"></script>
 	{{-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> --}}
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" id="page-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -41,7 +42,8 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Homepagina</a></li>
+					<li><a href="{{ action('PagesController@index') }}">Homepagina</a></li>
+					<li><a href="{{ action('NewsController@index') }}">Nieuws</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
