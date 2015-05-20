@@ -45,7 +45,7 @@
 					<li><a href="{{ action('PagesController@index') }}">Homepagina</a></li>
 					<li><a href="{{ action('NewsController@index') }}">Nieuws</a></li>
 					<li><a href="{{action('EventController@index')}}">Evenementen</a></li>
-					<li><a href="{{action('PagesController@gallery')}}">Gallerij</a></li>
+					{{-- <li><a href="{{action('PagesController@gallery')}}">Gallerij</a></li> --}}
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
