@@ -16,6 +16,7 @@ Route::get('/', 'PagesController@index');
 Route::resource('users', 'UserController');
 Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');
+Route::resource('artworks', 'ArtworkController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
