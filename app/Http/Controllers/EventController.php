@@ -8,7 +8,7 @@ use App\Event;
 
 use View;
 use Input;
-use App\Http\Requests\NewsRequest;
+use App\Http\Requests\EventRequest;
 use Response;
 
 
@@ -40,7 +40,7 @@ class EventController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(EventRequest $request)
 	{
 		$input = Input::all();
 		$tags = explode(',',$input['tags']);
@@ -48,19 +48,19 @@ class EventController extends Controller {
 
 		$slug = strtolower(implode('-',explode(' ',$input)));
 
-		if(Events::where('slug',$slug)->first())
+		if(Event::where('slug',$slug)->first())
 		{
-			return Response::json([0=>'Dit Evenement is al aangemakt.'],409);
+			return Response::json([0=>'Dit Evenement is al aangemaakt.'],409);
 		}
 
 		$input['slug'] = $slug;
 		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
-		$event = Events::create($input);
+		$event = Event::create($input);
 
 		return [
-			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
+			0 => 'Evenement aangemaakt, klik <a href="/events/' . $slug . '">hier</a> om het te bekijken.'
 		];
 	}
 
@@ -72,7 +72,7 @@ class EventController extends Controller {
 	 */
 	public function show($id)
 	{
-		$event = Events::where('slug',$slug)->first();
+		$event = Event::where('slug',$slug)->first();
 		if($event)
 		{
 			return View::make('events/show',compact('event'));
@@ -110,14 +110,14 @@ class EventController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(EventRequest $request, $id)
 	{
 		$input = Input::all();
 
 		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
-		$event = Events::findOrFail($id);
+		$event = Event::findOrFail($id);
 		$event->update(Input::all());
 		return Response::json([],200);
 	/**
@@ -129,7 +129,7 @@ class EventController extends Controller {
 	}
 	public function destroy($id)
 	{
-		$event = Events::findOrFail($id);
+		$event = Event::findOrFail($id);
 		$event->delete();
 		return Response::json([],200);
 	}
