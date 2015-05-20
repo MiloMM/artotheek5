@@ -46,7 +46,7 @@ class EventController extends Controller {
 		$tags = explode(',',$input['tags']);
 
 
-		$slug = strtolower(implode('-',explode(' ',$input)));
+		$slug = strtolower(implode('-',explode(' ',$input['title'])));
 
 		if(Event::where('slug',$slug)->first())
 		{
@@ -67,10 +67,10 @@ class EventController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
 		$event = Event::where('slug',$slug)->first();
 		if($event)
@@ -79,7 +79,7 @@ class EventController extends Controller {
 		}
 		else
 		{
-			throw new \Exeption('Evenement is niet gevonden in de database.');
+			throw new \Exception('Evenement is niet gevonden in de database.');
 		}
 	}
 
