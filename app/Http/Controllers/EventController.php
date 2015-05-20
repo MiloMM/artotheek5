@@ -4,6 +4,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Event;
+
+use View;
+use Input;
+use App\Http\Requests\NewsRequest;
+use Response;
+
 
 class EventController extends Controller {
 
@@ -15,7 +22,7 @@ class EventController extends Controller {
 	public function index()
 	{
 		$events = Event::all();
-		return view::make('events/index',compact($events));
+		return View::make('events/index',compact('events'));
 	}
 
 	/**
@@ -25,7 +32,7 @@ class EventController extends Controller {
 	 */
 	public function create()
 	{
-		return view::make('events/create');
+		return View::make('events/create');
 	}
 
 	/**
@@ -65,10 +72,10 @@ class EventController extends Controller {
 	 */
 	public function show($id)
 	{
-		$events = Events::where('slug',$slug)->first();
-		if($events)
+		$event = Events::where('slug',$slug)->first();
+		if($event)
 		{
-			return view::make('events/show',compact($events));
+			return View::make('events/show',compact('event'));
 		}
 		else
 		{
@@ -87,7 +94,7 @@ class EventController extends Controller {
 		$event = Event::where('slug',$slug)->first();
 		if($event)
 		{
-			return view::make('events/edit',compact($event));
+			return View::make('events/edit',compact('event'));
 		}
 		else
 		{

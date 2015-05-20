@@ -114,6 +114,7 @@ class NewsController extends Controller {
 		
 		$article = News::findOrFail($id);
 		$article->update(Input::all());
+		
 		return Response::json([], 200); // 200 = OK
 
 		if (isset($input['state'])) {
