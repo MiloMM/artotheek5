@@ -109,14 +109,14 @@ class NewsController extends Controller {
 	{
 		$input = Input::all();
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 		
 		$article = News::findOrFail($id);
 		$article->update(Input::all());
 		return Response::json([], 200); // 200 = OK
-=======
+//=======
 		if (isset($input['state'])) {
 			$article = News::findOrFail($id);
 			$article->update($input);
@@ -141,7 +141,7 @@ class NewsController extends Controller {
 
 			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200); // 200 = OK
 		}
->>>>>>> origin/master
+//>>>>>>> origin/master
 	}
 
 	/**
