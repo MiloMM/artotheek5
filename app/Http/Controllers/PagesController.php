@@ -14,4 +14,9 @@ class PagesController extends Controller {
 		return View::make('index');
 	}
 
+	public function gallery()
+	{
+		
+	}
+
 }

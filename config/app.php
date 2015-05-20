@@ -147,6 +147,7 @@ return [
 
 		'Conner\Tagging\TaggingServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 	],
 
@@ -197,7 +198,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		 	
 		'Form'      => 'Illuminate\Html\FormFacade',
-		'HTML'      => 'Illuminate\Html\HtmlFacade'
+		'HTML'      => 'Illuminate\Html\HtmlFacade',
+		'Image' => 'Intervention\Image\Facades\Image'
 	],
 
 ];
