@@ -44,7 +44,7 @@
 		$('#form').submit(function (event) { 
 			event.preventDefault(); 
 			
-			var request = $.post('/news', {
+			var request = $.post('/events', {
 				_method: 'POST',
 				_token: '{{ csrf_token() }}',
 				title: $('#tbx-title').val(),

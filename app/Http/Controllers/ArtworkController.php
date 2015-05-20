@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use View;
+
 class ArtworkController extends Controller {
 
 	/**
@@ -14,7 +16,7 @@ class ArtworkController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return 'Nothing to see here!';
 	}
 
 	/**
@@ -24,7 +26,7 @@ class ArtworkController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return View::make('artworks/create');
 	}
 
 	/**
