@@ -4,6 +4,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
+use View;
+use Redirect;
 
 class UserController extends Controller {
 
@@ -40,21 +44,31 @@ class UserController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		//
+		// Does this user exist?
+		if (User::where('slug', $slug)->first()) {
+			// Am i this user?
+			if (User::where('slug', $slug)->first()->id == Auth::user()->id) {
+				return View::make('users/showself');
+			} else {
+				return View::make('users/show');
+			}
+		} else {
+			return Redirect::to('/');
+		}
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($slug)
 	{
 		//
 	}

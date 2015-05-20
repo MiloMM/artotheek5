@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/gallery', 'PagesController@gallery');
+
+Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
 
 Route::resource('users', 'UserController');
 Route::resource('events', 'EventController');

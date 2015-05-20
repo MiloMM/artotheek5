@@ -44,8 +44,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ action('PagesController@index') }}">Homepagina</a></li>
 					<li><a href="{{ action('NewsController@index') }}">Nieuws</a></li>
-					<li><a href="{{action('EventController@index')}}">Evenementen</a></li>
-					{{-- <li><a href="{{action('PagesController@gallery')}}">Gallerij</a></li> --}}
+					<li><a href="{{ action('EventController@index') }}">Evenementen</a></li>
+					<li><a href="{{ action('PagesController@gallery') }}">Gallerij</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -56,6 +56,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{ url('/users/' . Auth::user()->slug) }}">Mijn Profiel</a></li>
 								<li><a href="{{ url('/auth/logout') }}">Log uit</a></li>
 							</ul>
 						</li>

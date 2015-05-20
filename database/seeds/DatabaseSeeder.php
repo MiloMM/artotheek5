@@ -45,6 +45,20 @@ class UserTableSeeder extends Seeder {
         	'password' => Hash::make('qwerty12'),
         	'slug' => 'dennis-kievits'
         ]);  
+
+        User::create([
+        	'name' => 'Vincent van Wijk',
+        	'email' => 'vincentvanwijk@hotmail.nl',
+        	'password' => Hash::make('qwerty12'),
+        	'slug' => 'vincent-van-wijk'
+        ]);
+
+        User::create([
+        	'name' => 'Dummy Student',
+        	'email' => 'dummystudent@example.com',
+        	'password' => Hash::make('dummy'),
+        	'slug' => 'dummy-student'
+        ]);
     }
 }
 
@@ -78,6 +92,8 @@ class UserPrivelegePivotTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('user_privelege')->delete();
+
+		// Dennis Kievits
 		$user = User::where('name', 'Dennis Kievits')->first();
 		$id = Privelege::where('name', 'Administrator')->first()->id;
         if (!$id) {
@@ -85,6 +101,27 @@ class UserPrivelegePivotTableSeeder extends Seeder {
         } else {
         	$user->priveleges()->attach($id);
         }
+
+        // Vincent van Wijk
+        $user = User::where('name', 'Vincent van Wijk')->first();
+        $id = Privelege::where('name', 'Administrator')->first()->id;
+
+        if (!$id) {
+        	$this->command->info('Administrator privelege can\'t be found.');
+        } else {
+        	$user->priveleges()->attach($id);
+        }
+
+        // Dummy Student
+        $user = User::where('name', 'Dummy Student')->first();
+        $id = Privelege::where('name', 'Student')->first()->id;
+
+        if (!$id) {
+        	$this->command->info('Student privelege can\'t be found.');
+        } else {
+        	$user->priveleges()->attach($id);
+        }
+
 	}
 
 }

@@ -4,6 +4,8 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
 
+use Redirect;
+
 class RedirectIfAuthenticated {
 
 	/**
@@ -35,7 +37,7 @@ class RedirectIfAuthenticated {
 	{
 		if ($this->auth->check())
 		{
-			return new RedirectResponse(url('/users/' + Auth::user()->slug));
+			return new RedirectResponse(url('/'));
 		}
 
 		return $next($request);
