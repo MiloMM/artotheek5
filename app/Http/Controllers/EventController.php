@@ -35,7 +35,26 @@ class EventController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+		$tags = explode(',',$input['tags']);
+
+
+		$slug = strtolower(implode('-',explode(' ',$input)));
+
+		if(Events::where('slug',$slug)->first())
+		{
+			return Response::json([0=>'Dit Evenement is al aangemakt.'],409);
+		}
+
+		$input['slug'] = $slug;
+		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
+		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
+
+		$event = Events::create($input);
+
+		return [
+			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
+		];
 	}
 
 	/**
@@ -46,7 +65,15 @@ class EventController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$events = Events::where('slug',$slug)->first();
+		if($events)
+		{
+			return view::make('events/show',compact($events));
+		}
+		else
+		{
+			throw new \Exeption('Evenement is niet gevonden in de database.');
+		}
 	}
 
 	/**
@@ -57,7 +84,17 @@ class EventController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$event = Event::where('slug',$slug)->first();
+		if($event)
+		{
+			return view::make('events/edit',compact($event));
+		}
+		else
+		{
+			throw new \Exception('Evenement is niet gevonden in de datbase');
+		}
+
+
 	}
 
 	/**
@@ -68,18 +105,26 @@ class EventController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
-	}
+		$input = Input::all();
 
+		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
+		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
+
+		$event = Events::findOrFail($id);
+		$event->update(Input::all());
+		return Response::json([],200);
 	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
+	}
 	public function destroy($id)
 	{
-		//
+		$event = Events::findOrFail($id);
+		$event->delete();
+		return Response::json([],200);
 	}
 
 }
