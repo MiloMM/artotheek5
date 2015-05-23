@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use View;
+use Input;
+use  App\Http\Requests\ArtworkRequest;
 
 class ArtworkController extends Controller {
 
@@ -34,9 +36,11 @@ class ArtworkController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(ArtworkRequest $request)
 	{
-		//
+		$image = Input::file('image');
+		$image->move('images/artworks', 'test.jpg');
+
 	}
 
 	/**
