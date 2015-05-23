@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::get('test','JsonController@artworks');
 Route::get('/', 'PagesController@index');
 Route::get('/gallery', 'PagesController@gallery');
 
