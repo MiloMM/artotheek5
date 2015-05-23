@@ -4,22 +4,27 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
+use App\Artwork;
 use View;
-use Input;
-use  App\Http\Requests\ArtworkRequest;
 
-
-class ArtworkController extends Controller {
+class JsonController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+
+	public function artworks()
+	{
+		$artworks = Artwork::all()->toJson();
+
+		return View::make('index',compact('artworks'));
+	}
+
 	public function index()
 	{
-		return 'Nothing to see here!';
+		//
 	}
 
 	/**
@@ -29,7 +34,7 @@ class ArtworkController extends Controller {
 	 */
 	public function create()
 	{
-		return View::make('artworks/create');
+		//
 	}
 
 	/**
@@ -37,11 +42,9 @@ class ArtworkController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(ArtworkRequest $request)
+	public function store()
 	{
-		$image = Input::file('image');
-		$image->move('images/artworks', 'test.jpg');
-
+		//
 	}
 
 	/**

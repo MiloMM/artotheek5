@@ -4,6 +4,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artwork extends Model {
 
-	//
-
+	protected $table = 'artworks';
 }
