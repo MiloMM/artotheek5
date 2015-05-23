@@ -93,7 +93,7 @@
 			form.append('_token', '{{ csrf_token() }}');
 			form.append('_method', 'POST');
 			form.append('title', $('#tbx-title').val());
-			form.append('content', editor.getData());
+			form.append('description', editor.getData());
 			form.append('image', file.files[0]);
 			form.append('tags', $('#tbx-tags').val());
 

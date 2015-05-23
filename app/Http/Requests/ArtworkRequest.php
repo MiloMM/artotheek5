@@ -22,8 +22,6 @@ class ArtworkRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title' => 'min:5',
-			'description' => 'min:5',
 		];
 	}
 

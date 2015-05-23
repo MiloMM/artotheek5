@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 use View;
 use Input;
-use  App\Http\Requests\ArtworkRequest;
+use App\Http\Requests\ArtworkRequest;
+use Image;
+use App\Artwork;
+use Auth;
 
 class ArtworkController extends Controller {
 
@@ -36,11 +39,27 @@ class ArtworkController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(ArtworkRequest $request)
+	public function store()
 	{
-		$image = Input::file('image');
-		$image->move('images/artworks', 'test.jpg');
+		$artwork = new Artwork();
+		$artwork->id = Artwork::count() + 1;
+		$artwork->title = Input::get('title');
+		$artwork->description = trim(Input::get('description'));
+		$artwork->state = 0;
 
+
+		$image = Image::make(Input::file('image'));
+		$imageExtension = substr($image->mime(), 6);
+
+		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
+		/**
+		 * @todo add middleware to check if logged in.
+		 */
+		$artwork->user_id = Auth::user()->id;
+
+		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
+		
+		$artwork->save();
 	}
 
 	/**
