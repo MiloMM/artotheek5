@@ -17,9 +17,9 @@ class JsonController extends Controller {
 
 	public function artworks()
 	{
-		$artworks = Artwork::all()->toJson();
+		$artworks = Artwork::all();
 
-		return View::make('index',compact('artworks'));
+		return View::make('gallery/index',compact('artworks'));
 	}
 
 	public function index()

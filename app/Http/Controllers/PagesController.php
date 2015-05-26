@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use View;
 use Redirect;
 use Auth;
+use App\Artwork;
 
 class PagesController extends Controller {
 
@@ -18,7 +19,8 @@ class PagesController extends Controller {
 
 	public function gallery()
 	{
-		return View::make('gallery/index');
+		$artworks = Artwork::all();
+		return View::make('gallery/index',compact('artworks'));
 	}
 
 	public function myprofile()
