@@ -8,3 +8,4 @@ class Artwork extends Model {
 	protected $table = 'artworks';
 
 }
+	
