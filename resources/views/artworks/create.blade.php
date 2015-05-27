@@ -79,9 +79,6 @@
 						}
 						$('#image-editor img').attr('src', fr.result);
 						var darkroom = new Darkroom('#image-editor img', {
-							init: function () {
-								
-							},
 							plugins: {
 								save: false
 							}

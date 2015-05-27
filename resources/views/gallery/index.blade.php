@@ -28,14 +28,11 @@
 					<div class="panel">
 					    <input type="text" ng-model="eventQuery" placeholder="Zoek..." class="form-control">
 					</div>
-					<?php echo($artworks) ?>
-					 <?php $count = 1; ?>
                     @foreach ($artworks as $artwork)
-					<?php $count++; ?>
                     <div class="artwork-img col-md-4">
-						    <img src="images/artworks/<?=$count?>.jpeg" class="img-responsive">
-						    <p>{{ $artwork->title }}</p>
-						</div>
+					    <img src="{{ $artwork->file }}" class="img-responsive">
+					    <p>{{ $artwork->title }}</p>
+					</div>
 					@endforeach
 				</div>
 			</div>
