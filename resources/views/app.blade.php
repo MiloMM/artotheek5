@@ -7,6 +7,8 @@
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('/css/darkroom.min.css') }}">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -24,6 +26,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+	<script src="{{ asset('js/darkroom.min.js') }}"></script>
 	<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 	<script src="{{ asset('functions.js') }}"></script>
 	{{-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> --}}

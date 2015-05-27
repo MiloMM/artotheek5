@@ -11,6 +11,7 @@ use App\Http\Requests\ArtworkRequest;
 use Image;
 use App\Artwork;
 use Auth;
+use Response;
 
 
 class ArtworkController extends Controller {
@@ -48,8 +49,8 @@ class ArtworkController extends Controller {
 		$artwork->description = trim(Input::get('description'));
 		$artwork->state = 0;
 
-
-		$image = Image::make(Input::file('image'));
+		$image = Image::make(Input::get('image-data-url'));
+		
 		$imageExtension = substr($image->mime(), 6);
 
 		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
@@ -61,6 +62,10 @@ class ArtworkController extends Controller {
 		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
 		
 		$artwork->save();
+
+		return Response::json([
+			
+		], 200);
 	}
 
 	/**
