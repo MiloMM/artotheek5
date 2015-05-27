@@ -8,7 +8,7 @@ functions.showErrorBanner = function (msg, timeout) {
 		$('.alert-danger').remove();
 		clearTimeout(functions._showErrorBannerTimeout);
 	} 
-	$('#page-top').before('<div class="alert alert-danger">' + msg + '</div>');
+	$('#page-top').before('<div class="alert alert-danger" style="position: fixed; top: 0px; left: 0px; z-index: 9001; width: 100%;">' + msg + '</div>');
 	$('.alert-danger').hide().slideDown(600).delay(timeout).slideUp(600);
 	functions._showErrorBannerTimeout = setTimeout(function () {
 		$('.alert-danger').remove();
@@ -24,7 +24,7 @@ functions.showSuccessBanner = function (msg, timeout) {
 		$('.alert-success').remove();
 		clearTimeout(functions._showSuccessBannerTimeout);
 	} 
-	$('#page-top').before('<div class="alert alert-success">' + msg + '</div>');
+	$('#page-top').before('<div class="alert alert-success" style="position: fixed; top: 0px; left: 0px;  z-index: 9001; width: 100%;">' + msg + '</div>');
 	$('.alert-success').hide().slideDown(600).delay(timeout).slideUp(600);
 	functions._showSuccessBannerTimeout = setTimeout(function () {
 		$('.alert-success').remove();
