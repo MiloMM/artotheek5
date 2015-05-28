@@ -40,6 +40,14 @@
 								<input id="tbx-tags" type="text" class="form-control" value="" placeholder="Voeg tags toe..." data-role="tagsinput">
 							</div>
 						</div>
+						@if (Auth::check() && Auth::user()->hasPriveleges(['Moderator', 'Administrator']))
+						<div class="form-group">
+							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-6">
+								{!! Form::checkbox('publish', true, ['class' => 'col-md-4 form-control']) !!}
+							</div>
+						</div>
+						@endif
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
 								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
