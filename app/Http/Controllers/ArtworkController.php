@@ -12,6 +12,7 @@ use Image;
 use App\Artwork;
 use Auth;
 use Response;
+use Redirect;
 
 
 class ArtworkController extends Controller {
@@ -23,7 +24,7 @@ class ArtworkController extends Controller {
 	 */
 	public function index()
 	{
-		return 'Nothing to see here!';
+		return Redirect::action('PagesController@gallery');
 	}
 
 	/**
@@ -33,7 +34,11 @@ class ArtworkController extends Controller {
 	 */
 	public function create()
 	{
-		return View::make('artworks/create');
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			return View::make('artworks/create');
+		} else {
+			return View::make('errors/401'); // Unauthorized
+		}
 	}
 
 	/**
@@ -48,6 +53,14 @@ class ArtworkController extends Controller {
 		$artwork->title = Input::get('title');
 		$artwork->description = trim(Input::get('description'));
 		$artwork->state = 0;
+
+		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
+
+		if (Artwork::where('slug', $slug)->first()) {
+			return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
+		}
+
+		$artwork->slug = $slug;
 
 		$image = Image::make(Input::get('image-data-url'));
 		
@@ -64,19 +77,24 @@ class ArtworkController extends Controller {
 		$artwork->save();
 
 		return Response::json([
-			
+			0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken'
 		], 200);
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		//
+		$artwork = Artwork::whereSlug($slug)->first();
+		if ($artwork) {
+			return View::make('artworks/show')->with(compact('artwork'));
+		} else {
+			return View::make('errors/404');
+		}
 	}
 
 	/**

@@ -6,7 +6,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Nieuws Artikelen</div>
 				<div class="panel-body">
-					<a href="{{ action('NewsController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Artikel</a>
+					@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
+						<a href="{{ action('NewsController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Artikel</a>
+					@endif
 					@foreach ($articles as $article)
 						<div class="panel panel-default">
 							<div class="panel-heading">{{ $article->title }}</div>

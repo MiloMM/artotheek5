@@ -9,8 +9,11 @@ use Input;
 use App\News;
 use App\Http\Requests\NewsRequest;
 use Response;
+use Auth;
 
 class NewsController extends Controller {
+
+	use \Conner\Tagging\TaggableTrait;
 
 	/**
 	 * Display a listing of the resource.
@@ -30,7 +33,11 @@ class NewsController extends Controller {
 	 */
 	public function create()
 	{
-		return View::make('news/create');
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			return View::make('news/create');
+		} else {
+			return View::make('errors/401');
+		}
 	}
 
 	/**
@@ -58,9 +65,9 @@ class NewsController extends Controller {
 		/**
 		 * @todo Tagging is not working
 		 */
-		// foreach ($tags as $tag) {
-		// 	$article->tag($tag);
-		// }
+		foreach ($tags as $tag) {
+			$article->tag($tag);
+		}
 
 		return [
 			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'

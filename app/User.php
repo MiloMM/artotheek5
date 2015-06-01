@@ -41,24 +41,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @param $allRequired bool Needs all priveleges to be on the user
 	 * @return bool user has the following priveleges
 	 */
-	public function hasPriveleges($priveleges, $allRequired = false) {
-		$hasIt = false;
+	public function hasOnePrivelege($reqPriveleges) {
+		// when filter returns true then it adds to the collection, then we count the collection to see
+		// if we match one of the required priveleges
+		return $this->priveleges->filter(function ($privelege) use ($reqPriveleges) {
+			return in_array($privelege->name, $reqPriveleges);
+		})->count() > 0;
+	}
 
-		$this->priveleges->each(function ($privelege) {
-			if ($allRequired) {
-				if (!in_array($privelege, $priveleges)) {
-					return;
-				}
-				$hasIt = true;
-			} else {
-				if (in_array($privelege, $priveleges)) {
-					$hasIt = true;
-					return;
-				}
-			}
-		});
-
-		return $hasIt;
+	public function hasAllPriveleges($reqPriveleges) {
+		// when filter returns true then it adds to the collection, then we count the collection to see
+		// if we have all of the required priveleges given
+		return $this->priveleges->filter(function ($privelege) use ($reqPriveleges) {
+			return in_array($privelege->name, $reqPriveleges);
+		})->count() == count($reqPriveleges);
 	}
 
 }

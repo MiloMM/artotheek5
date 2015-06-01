@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model {
 
-	// use \Conner\Tagging\TaggableTrait; // Tags
+	use \Conner\Tagging\TaggableTrait; // Tags
 
 	protected $table = 'news';
 

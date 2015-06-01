@@ -40,7 +40,7 @@
 								<input id="tbx-tags" type="text" class="form-control" value="" placeholder="Voeg tags toe..." data-role="tagsinput">
 							</div>
 						</div>
-						@if (Auth::check() && Auth::user()->hasPriveleges(['Moderator', 'Administrator']))
+						@if (Auth::check() && Auth::user()->hasAllPriveleges(['Moderator', 'Administrator']))
 						<div class="form-group">
 							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
@@ -62,6 +62,7 @@
 </div>
 <script>
 	var editor = CKEDITOR.replace('textarea-description');
+	var isEditingImage = false;
 
 	$(function () {
 
@@ -94,6 +95,28 @@
 					}
 					fr.readAsDataURL($(this)[0].files[0]);
 					$(this).hide();
+					// Check if photo is in an editing
+					setTimeout(function () {
+						$('.darkroom-icon-crop').parent().click(function () {
+							isEditingImage = !isEditingImage;
+						});
+						$('.darkroom-icon-accept').parent().click(function () {
+							var btnAccept = $(this);
+							setTimeout(function () {
+								btnAccept.parent().find('button').each(function (i, btn) {
+									if (i == 0) {
+										if (!$(btn).hasClass('darkroom-button-active')) {
+											isEditingImage = false;
+										}
+									}
+								});
+								
+							}, 500);
+						});
+						$('.darkroom-icon-cancel').parent().click(function () {
+							isEditingImage = false;
+						});
+					}, 1000)
 				} else {
 					// File isnt a photo
 					functions.showErrorBanner('Het bestand moet een foto zijn.');
@@ -108,6 +131,12 @@
 		});
 
 		$('#btn-send').click(function () {
+
+			if (isEditingImage) {
+				functions.showErrorBanner('Uw afbeelding is nog niet opgeslagen!');
+				return;
+			}
+
 			var progressbar = $('#progressbar-upload');
 			progressbar.attr('aria-valuenow', 0);
 			progressbar.attr('style', 'width: ' + 0 + '%; margin-top: 50px;');
@@ -136,10 +165,26 @@
 					var progressbar = $('#progressbar-upload');
 					progressbar.html('geupload');
 
-					functions.showSuccessBanner('Nieuw kunstwerk geupload');
+					response = JSON.parse(xhr.response);
+					var msg = "<ul>";
+					$(response).each(function (k, v) {
+						msg += "<li>" + v + "</li>";
+					});
+					msg += "</ul>";
+
+					functions.showSuccessBanner(msg, 5000);
 
 				} else {
-					functions.showErrorBanner('Er was een fout bij het aanmaken van een nieuw kunstwerk.');
+
+					response = JSON.parse(xhr.response);
+					var msg = "<ul>";
+					$(response).each(function (k, v) {
+						msg += "<li>" + v + "</li>";
+					});
+					msg += "</ul>";
+
+					functions.showErrorBanner(msg);
+
 				}
 			}
 			

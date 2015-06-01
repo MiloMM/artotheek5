@@ -18,6 +18,7 @@ class CreateArtworksTable extends Migration {
 			$table->string('title', 255);
 			$table->string('description', 5000);
 			$table->string('file', 255);
+			$table->string('slug');
 			$table->integer('state')->unsigned();
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
