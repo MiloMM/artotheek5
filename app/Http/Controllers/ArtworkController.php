@@ -13,6 +13,7 @@ use App\Artwork;
 use Auth;
 use Response;
 use Redirect;
+use Illuminate\Http\RedirectResponse;
 
 
 class ArtworkController extends Controller {
@@ -79,6 +80,8 @@ class ArtworkController extends Controller {
 		return Response::json([
 			0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken'
 		], 200);
+
+
 	}
 
 	/**
@@ -100,21 +103,26 @@ class ArtworkController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($slug)
 	{
-		//
+		$artwork = Artwork::where('slug',$slug);
+		
+		if($artwork)
+		{
+			return View::make('artworks/edit/'.$slug);
+		}
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($slug)
 	{
 		//
 	}
@@ -122,10 +130,10 @@ class ArtworkController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($slug)
 	{
 		//
 	}

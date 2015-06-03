@@ -8,7 +8,7 @@
 				<div class="panel-heading">Evenementen</div>
 				<div class="panel-body">
 					<a href="{{ action('EventController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Evenement</a>
-					@foreach ($events as $event)
+					@foreach ($events->reverse() as $event)
 						<div class="panel panel-default">
 							<div class="panel-heading">{{ $event->title }}</div>
 							<div class="panel-body">{!! $event->content !!}</div>

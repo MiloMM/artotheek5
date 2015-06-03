@@ -24,7 +24,7 @@
 	                    @foreach ($artworks as $artwork)
 	                   		 <div class="col-lg-3 col-md-4 col-xs-6 thumb artwork-container">
 	                   		 	<span class="artwork-container-helper"></span>
-							    <img src="{{ $artwork->file }}" class="img-responsive artwork-image">
+							    <a href="/artworks/{{ $artwork->title }}"><img src="{{ $artwork->file }}" class="img-responsive artwork-image">
 							    <p class="artwork-label">{{ $artwork->title }}</p>
 							</div>
 						@endforeach

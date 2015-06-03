@@ -9,7 +9,7 @@
 					@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 						<a href="{{ action('NewsController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Artikel</a>
 					@endif
-					@foreach ($articles as $article)
+					@foreach ($articles->reverse() as $article)
 						<div class="panel panel-default">
 							<div class="panel-heading">{{ $article->title }}</div>
 							<div class="panel-body">{!! $article->content !!}</div>

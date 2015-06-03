@@ -22,10 +22,12 @@
     
     text-align: center; 
     margin: 1em 0;
+    vertical-align: middle;
 }
 
 .artwork-container-helper {
 	display: inline-block;
     vertical-align: middle;
+
     /*height: 100%;*/
 }
