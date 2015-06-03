@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Artwork;
 use View;
+use App\News;
+use Response;
 
 class JsonController extends Controller {
 
@@ -20,6 +22,14 @@ class JsonController extends Controller {
 		$artworks = Artwork::all();
 
 		return View::make('gallery/index',compact('artworks'));
+	}
+
+	public function news() {
+		$articles = News::all();
+		for ($i = 0; $i < $articles->count(); $i++) {
+			$articles[$i]{"tags"} = $articles[$i]->tagged;
+		}
+		return Response::json($articles->reverse(), 200);
 	}
 
 	public function index()

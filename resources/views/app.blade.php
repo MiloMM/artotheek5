@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,9 +30,11 @@
 	<script src="{{ asset('js/darkroom.min.js') }}"></script>
 	<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 	<script src="{{ asset('functions.js') }}"></script>
-	{{-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> --}}
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
 </head>
-<body>
+<body ng-app="application">
 	<nav class="navbar navbar-default" id="page-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -71,7 +73,7 @@
 		</div>
 	</nav>
 	<script>
-		//var app = angular.module('app', ['ngSanatize']);
+		var app = angular.module('application', ['ngSanitize']);
 	</script>
 	@yield('content')
 </body>

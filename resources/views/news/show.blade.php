@@ -18,6 +18,8 @@
 			</div>
 		</div>
 		{!! $article->content !!}
+		<hr>
+		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>: {{ $article->tagsToHumanReadableString() }}</p>
 	</div>
 </div>
 <script>

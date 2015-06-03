@@ -49,39 +49,43 @@ class ArtworkController extends Controller {
 	 */
 	public function store()
 	{
-		$artwork = new Artwork();
-		$artwork->id = Artwork::count() + 1;
-		$artwork->title = Input::get('title');
-		$artwork->description = trim(Input::get('description'));
-		$artwork->state = 0;
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			$artwork = new Artwork();
+			$artwork->id = Artwork::count() + 1;
+			$artwork->title = Input::get('title');
+			$artwork->description = trim(Input::get('description'));
+			$artwork->state = 0;
 
-		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
+			$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
 
-		if (Artwork::where('slug', $slug)->first()) {
-			return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
+			if (Artwork::where('slug', $slug)->first()) {
+				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
+			}
+
+			$artwork->slug = $slug;
+
+			$image = Image::make(Input::get('image-data-url'));
+			
+			$imageExtension = substr($image->mime(), 6);
+
+			$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
+			/**
+			 * @todo add middleware to check if logged in.
+			 */
+			$artwork->user_id = Auth::user()->id;
+
+			$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
+			
+			$artwork->save();
+
+			return Response::json([
+				0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken'
+			], 200);
+		} else {
+			return Response::json([
+				0 => 'Je bent niet geautoriseerd.'
+			], 401);
 		}
-
-		$artwork->slug = $slug;
-
-		$image = Image::make(Input::get('image-data-url'));
-		
-		$imageExtension = substr($image->mime(), 6);
-
-		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
-		/**
-		 * @todo add middleware to check if logged in.
-		 */
-		$artwork->user_id = Auth::user()->id;
-
-		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
-		
-		$artwork->save();
-
-		return Response::json([
-			0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken'
-		], 200);
-
-
 	}
 
 	/**

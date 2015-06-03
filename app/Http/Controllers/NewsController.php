@@ -13,8 +13,6 @@ use Auth;
 
 class NewsController extends Controller {
 
-	use \Conner\Tagging\TaggableTrait;
-
 	/**
 	 * Display a listing of the resource.
 	 *

@@ -21,6 +21,8 @@ Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');
 Route::resource('artworks', 'ArtworkController');
 
+Route::get('json/news', 'JsonController@news');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
