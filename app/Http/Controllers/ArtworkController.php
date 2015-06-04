@@ -47,8 +47,9 @@ class ArtworkController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(ArtworkRequest $request)
 	{
+
 		$artwork = new Artwork();
 		$artwork->id = Artwork::count() + 1;
 		$artwork->title = Input::get('title');
@@ -108,12 +109,13 @@ class ArtworkController extends Controller {
 	 */
 	public function edit($slug)
 	{
-		$artwork = Artwork::where('slug',$slug);
-		
-		if($artwork)
-		{
-			return View::make('artworks/edit/'.$slug);
+		$artwork = Artwork::where('slug', $slug)->first();
+		if ($artwork) {
+			return View::make('artworks/edit', compact('artwork'));
+		} else {
+			throw new \Exception('Kunstwerk is niet gevonden in de database.');
 		}
+
 	}
 
 	/**
@@ -122,17 +124,50 @@ class ArtworkController extends Controller {
 	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function update($slug)
+	public function update(ArtworkRequest $request, $slug)
 	{
-		//
-	}
+		$input = Input::all();
 
+		$input['description'] = str_replace("\n", '', $input['description']); // remove line endings
+		$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
+		
+		$artwork = Artwork::findOrFail($slug);
+		$artwork->update(Input::all());
+		
+		return Response::json([], 200); // 200 = OK
+
+		if (isset($input['state'])) {
+			$artwork = Artwork::findOrFail($slug);
+			$artwork->update($input);
+			return Response::json([ 0 => 'Dit kunstwerk is gewijzigd!'], 200);
+		} else {
+			
+			$tags = explode(',', $input['tags']);
+
+			$slug = strtolower(implode('-', explode(' ', $input['title'])));
+
+			if (Artwork::where('slug', $slug)->first() && Artwork::where('slug', $slug)->first()->slug != $slug) {
+				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
+			}
+
+			$input['slug'] = $slug;
+
+			$input['description'] = str_replace("\n", '', $input['description']); // remove line endings
+			$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
+
+			$artwork = Artwork::findOrFail($slug);
+			$artwork->update($input);
+
+			return Response::json([ 0 => 'Dit kunstwerk is gewijzigd!'], 200); // 200 = OK
+		}
+	}
 	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  string  $slug
 	 * @return Response
 	 */
+
 	public function destroy($slug)
 	{
 		//

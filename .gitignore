@@ -3,3 +3,6 @@
 .env
 composer.lock
 *.jpeg
+composer.lock
+*.lock
+*.jpeg
