@@ -44,12 +44,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Artotheek</a>
+				<a class="navbar-brand" href="{{ action('PagesController@index') }}">Artotheek</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ action('PagesController@index') }}">Homepagina</a></li>
 					<li><a href="{{ action('NewsController@index') }}">Nieuws</a></li>
 					<li><a href="{{ action('EventController@index') }}">Evenementen</a></li>
 					<li><a href="{{ action('PagesController@gallery') }}">Gallerij</a></li>

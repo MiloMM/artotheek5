@@ -8,6 +8,7 @@
 				<div class="panel-body" ng-controller="newsController">
 					@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 						<a href="{{ action('NewsController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Artikel</a>
+						<hr>
 					@endif
 					<input type="text" class="form-control" placeholder="Zoek..." ng-model="newsQuery">
 					<hr>
@@ -23,14 +24,10 @@
 </div>
 <script>
 	app.controller('newsController', function ($scope, $http) {
-        $scope.articles = [{}];
         var request = $http.get('{{ url("/json/news") }}');
         request.then(function (response) {
             $scope.articles = response.data;
         });
-        
-        $scope.events = [{}];
-        
     });
 </script>
 @stop

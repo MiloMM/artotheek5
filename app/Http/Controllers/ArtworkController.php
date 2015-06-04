@@ -37,6 +37,8 @@ class ArtworkController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
 			return View::make('artworks/create');
+		} else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) {
+			return View::make('artworks/studentCreate');
 		} else {
 			return View::make('errors/401'); // Unauthorized
 		}
@@ -49,12 +51,16 @@ class ArtworkController extends Controller {
 	 */
 	public function store()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator'])) {
 			$artwork = new Artwork();
 			$artwork->id = Artwork::count() + 1;
 			$artwork->title = Input::get('title');
 			$artwork->description = trim(Input::get('description'));
-			$artwork->state = 0;
+			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+				$artwork->state = Input::get('publish') == "true" ? 0 : 1;
+			} else {
+				$artwork->state = 1;
+			}
 
 			$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
 

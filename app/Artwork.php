@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artwork extends Model {
 
-	protected $fillable = ['title', 'description', 'file', 'state'];
+	use \Conner\Tagging\TaggableTrait; // Tags
+
+	protected $fillable = ['title', 'description', 'file', 'state', 'slug'];
 	protected $table = 'artworks';
 
 }
