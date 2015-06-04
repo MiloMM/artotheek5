@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Artwork;
 use View;
+use App\News;
+use Response;
+use App\Services\TagsHelper;
 
 class JsonController extends Controller {
 
@@ -17,9 +20,21 @@ class JsonController extends Controller {
 
 	public function artworks()
 	{
-		$artworks = Artwork::all();
+		$artworks = Artwork::whereState(0)->get();
+		TagsHelper::addTagsToCollection($artworks);
+		return Response::json($artworks->reverse(), 200);
+	}
 
-		return View::make('gallery/index',compact('artworks'));
+	public function archivedArtworks() {
+		$artworks = Artwork::whereState(1)->get();
+		TagsHelper::addTagsToCollection($artworks);
+		return Response::json($artworks->reverse(), 200);
+	}
+
+	public function news() {
+		$articles = News::whereState(0)->get();
+		TagsHelper::addTagsToCollection($articles);
+		return Response::json($articles->reverse(), 200);
 	}
 
 	public function index()

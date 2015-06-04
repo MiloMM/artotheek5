@@ -29,11 +29,27 @@ class Registrar implements RegistrarContract {
 	 */
 	public function create(array $data)
 	{
-		return User::create([
+
+		$slug = strtolower(implode('-', explode(' ', $data['name'])));
+
+		if (User::where('slug', $slug)->first()) {
+			$i = 1;
+			while (User::where('slug', $slug . $i)->first()) {
+				$i++;
+			}
+			$slug .= $i;
+		}
+
+		$user = User::create([
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
+			'slug' => $slug
 		]);
+
+		$user->priveleges()->attach(1);
+
+		return $user;
 	}
 
 }
