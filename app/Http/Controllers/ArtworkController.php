@@ -49,7 +49,7 @@ class ArtworkController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(ArtworkRequest $request)
+	public function store()
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator'])) {
 			$artwork = new Artwork();
@@ -133,7 +133,7 @@ class ArtworkController extends Controller {
 	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function update(ArtworkRequest $request, $slug)
+	public function update($slug)
 	{
 		$input = Input::all();
 
@@ -141,8 +141,8 @@ class ArtworkController extends Controller {
 		$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
 		
 		$artwork = Artwork::findOrFail($slug);
-		$artwork->update(Input::all());
-		
+		$artwork->update(Input::all());		
+
 		return Response::json([], 200); // 200 = OK
 
 		if (isset($input['state'])) {
@@ -155,9 +155,9 @@ class ArtworkController extends Controller {
 
 			$slug = strtolower(implode('-', explode(' ', $input['title'])));
 
-			if (Artwork::where('slug', $slug)->first() && Artwork::where('slug', $slug)->first()->slug != $slug) {
+			/*if (Artwork::where('slug', $slug)->first() && Artwork::where('')) {
 				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
-			}
+			}*/
 
 			$input['slug'] = $slug;
 

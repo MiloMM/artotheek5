@@ -53,7 +53,6 @@
 								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
 							</div>
 						</div>
-
 					{!! Form::close() !!}
 				</div>
 			</div>
@@ -66,24 +65,32 @@
 
 	$(function () {
 
-		$('#btn-select-img').click(function () {
+		$('#btn-select-img').click(function () 
+		{
 			$('#form input[type=file]').click();
 		});
 
 		// User changed file
-		$('#form input[type=file]').on('change', function () {
+		$('#form input[type=file]').on('change', function () 
+		{
 			// Is it more than 1 file?
-			if ($(this)[0].files.length > 1) {
+			if ($(this)[0].files.length > 1) 
+			{
 				// Tell user to upload only 1 file
 				functions.showErrorBanner('Je mag maar een foto uploaden per kunstwerk.');
-			} else {
+			} 
+			else 
+			{
 				// Check if file is an image.
-				if ($(this)[0].files[0] != undefined && $(this)[0].files[0].type.match('image/*')) {
+				if ($(this)[0].files[0] != undefined && $(this)[0].files[0].type.match('image/*')) 
+				{
 					// Load img src from local machine, for darkroom
 					var fr = new FileReader();
-					fr.onload = function () {
+					fr.onload = function () 
+					{
 						$('#image-editor').append('<img class="img-responsive">');
-						if ($('.darkroom-container')) {
+						if ($('.darkroom-container')) 
+						{
 							$('.darkroom-container').remove();
 						}
 						$('#image-editor img').attr('src', fr.result);
@@ -97,15 +104,20 @@
 					$(this).hide();
 					// Check if photo is in an editing
 					setTimeout(function () {
-						$('.darkroom-icon-crop').parent().click(function () {
+						$('.darkroom-icon-crop').parent().click(function () 
+						{
 							isEditingImage = !isEditingImage;
 						});
-						$('.darkroom-icon-accept').parent().click(function () {
+						$('.darkroom-icon-accept').parent().click(function () 
+						{
 							var btnAccept = $(this);
 							setTimeout(function () {
-								btnAccept.parent().find('button').each(function (i, btn) {
-									if (i == 0) {
-										if (!$(btn).hasClass('darkroom-button-active')) {
+								btnAccept.parent().find('button').each(function (i, btn) 
+								{
+									if (i == 0) 
+									{
+										if (!$(btn).hasClass('darkroom-button-active')) 
+										{
 											isEditingImage = false;
 										}
 									}
@@ -113,11 +125,14 @@
 								
 							}, 500);
 						});
-						$('.darkroom-icon-cancel').parent().click(function () {
+						$('.darkroom-icon-cancel').parent().click(function () 
+						{
 							isEditingImage = false;
 						});
 					}, 1000)
-				} else {
+				} 
+				else
+				{
 					// File isnt a photo
 					functions.showErrorBanner('Het bestand moet een foto zijn.');
 					$(this).replaceWith($(this).val('').clone(true));
@@ -149,7 +164,7 @@
 			}
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/artworks');
+			xhr.open('PUT', '/artworks/{{$artwork->slug}}');
 
 			xhr.upload.onprogress = function (e) {
 				var percentage = (e.loaded / e.total * 100);
@@ -195,7 +210,7 @@
 
 			var form = new FormData();
 			form.append('_token', '{{ csrf_token() }}');
-			form.append('_method', 'POST');
+			form.append('_method', 'PUT');
 			form.append('title', $('#tbx-title').val());
 			form.append('description', editor.getData());
 			form.append('image-data-url', dataURL);

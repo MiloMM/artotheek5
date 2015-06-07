@@ -22,9 +22,6 @@
 						    <p class="artwork-label">@{{ artwork.title }}</p>
 						</div>
 						@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-							<hr class="col-md-12">
-							<input type="text" ng-model="archivedArtworkQuery" placeholder="Zoek gearchiveerde kunstwerken..." class="form-control">
-					    	<hr>
 							<div class="col-lg-3 col-md-4 col-xs-6 thumb artwork-container" ng-repeat="archivedArtwork in archivedArtworks | filter:archivedArtworkQuery">
 	                   		 	<span class="artwork-container-helper"></span>
 							    <a href="/artworks/@{{ archivedArtwork.slug }}">
