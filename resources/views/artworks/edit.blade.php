@@ -20,6 +20,11 @@
 								{!! Form::textarea('description', $artwork->description, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
 							</div>
 						</div>
+						<div class="progress">
+						  <div id="progressbar-upload" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; margin-top: 50px;">
+						    0%
+						  </div>
+						</div>
 						<div class="form-group" id="form-group-preview-img">
 							<div class="col-md-12">
 								<input type="file" name="image" class="form-control" style="display: none;">
@@ -29,25 +34,18 @@
 								</div>
 							</div>
 						</div>
-						<div class="progress">
-						  <div id="progressbar-upload" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; margin-top: 50px;">
-						    0%
-						  </div>
-						</div>
 						<div class="form-group">
 							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
 								<input id="tbx-tags" type="text" class="form-control" value="" placeholder="Voeg tags toe..." data-role="tagsinput">
 							</div>
 						</div>
-						@if (Auth::check() && Auth::user()->hasAllPriveleges(['Moderator', 'Administrator']))
 						<div class="form-group">
 							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
 								{!! Form::checkbox('publish', true, ['class' => 'col-md-4 form-control']) !!}
 							</div>
 						</div>
-						@endif
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
 								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
@@ -164,7 +162,7 @@
 			}
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('PUT', '/artworks/{{$artwork->slug}}');
+			xhr.open('POST', '/artworks/{{$artwork->id}}');
 
 			xhr.upload.onprogress = function (e) {
 				var percentage = (e.loaded / e.total * 100);
@@ -214,6 +212,7 @@
 			form.append('title', $('#tbx-title').val());
 			form.append('description', editor.getData());
 			form.append('image-data-url', dataURL);
+			form.append('publish', $('input[name=publish]')[0].checked);
 			form.append('tags', $('#tbx-tags').val());
 
 			xhr.send(form);

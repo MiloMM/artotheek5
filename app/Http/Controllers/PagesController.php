@@ -20,7 +20,8 @@ class PagesController extends Controller {
 	public function gallery()
 	{
 		$artworks = Artwork::all();
-		return View::make('gallery/index',compact('artworks'));
+		$artCount = Artwork::where('state',0)->count();
+		return View::make('gallery/index',compact('artworks','artCount'));
 	}
 
 	public function myprofile()

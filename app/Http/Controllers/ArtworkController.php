@@ -27,6 +27,7 @@ class ArtworkController extends Controller {
 	{
 		return Redirect::action('PagesController@gallery');
 	}
+	
 
 	/**
 	 * Show the form for creating a new resource.
@@ -133,51 +134,45 @@ class ArtworkController extends Controller {
 	 * @param  string  $slug
 	 * @return Response
 	 */
-	public function update($slug)
+	public function update($id)
 	{
 		$input = Input::all();
 
 		$input['description'] = str_replace("\n", '', $input['description']); // remove line endings
 		$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
 		
-		$artwork = Artwork::findOrFail($slug);
-		$artwork->update(Input::all());		
-
-		return Response::json([], 200); // 200 = OK
-
-		if (isset($input['state'])) {
-			$artwork = Artwork::findOrFail($slug);
-			$artwork->update($input);
-			return Response::json([ 0 => 'Dit kunstwerk is gewijzigd!'], 200);
-		} else {
-			
-			$tags = explode(',', $input['tags']);
-
-			$slug = strtolower(implode('-', explode(' ', $input['title'])));
-
-			/*if (Artwork::where('slug', $slug)->first() && Artwork::where('')) {
-				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
-			}*/
-
-			$input['slug'] = $slug;
-
-			$input['description'] = str_replace("\n", '', $input['description']); // remove line endings
-			$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
-
-			$artwork = Artwork::findOrFail($slug);
-			$artwork->update($input);
-
-			return Response::json([ 0 => 'Dit kunstwerk is gewijzigd!'], 200); // 200 = OK
+		$artwork = Artwork::findOrFail($id);
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$artwork->state = Input::get('publish') == "true" ? 0 : 1;
 		}
+
+		$image = Image::make(Input::get('image-data-url'));
+			
+		$imageExtension = substr($image->mime(), 6);
+
+		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
+		$artwork->user_id = Auth::user()->id;
+
+		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
+			
+		$artwork->save();
+		$artwork->update(Input::all());	
+
+			
+
+		return Response::json(['Het kunstwerk is gewijzigd.klik <a href="/gallery">hier</a> om terug te keren naar de gallerij'], 200); // 200 = OK
+
+		
 	}
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  string  $slug
+	 * @param  string  $id
 	 * @return Response
 	 */
 
-	public function destroy($slug)
+	public function destroy($id)
 	{
 		//
 	}

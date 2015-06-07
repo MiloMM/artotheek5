@@ -1,5 +1,4 @@
 @extends('app')
-
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -13,16 +12,52 @@
 					@endif
 				    <input type="text" ng-model="artworkQuery" placeholder="Zoek..." class="form-control">
 				    <hr>
+
 					<div class="row">
-                   		 <div class="col-lg-3 col-md-4 col-xs-6 thumb artwork-container" ng-repeat="artwork in artworks | filter:artworkQuery">
+					   	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
+				    		<h1>Gepubliceerd</h1>
+				    		<hr>
+						@endif
+						<!-- <div class="col-lg-3 col-md-4 col-xs-6 thumb artwork-container"> -->
+                   		 <div class="col-md-4 col-xs-6 thumb artwork-container" ng-repeat="artwork in artworks | filter:artworkQuery">                   		 	
                    		 	<span class="artwork-container-helper"></span>
 						    <a href="/artworks/@{{ artwork.slug }}">
 						    	<img src="@{{ artwork.file }}" class="img-responsive artwork-image">
 						    </a>
 						    <p class="artwork-label">@{{ artwork.title }}</p>
-						</div>
+						 </div>
+
+						    @if($artCount % 3 == 1)
+						   	<div class="col-md-4 col-xs-6 thumb artwork-container">
+							    <span class="artwork-container-helper"></span>
+							    <a href="">
+							    	<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img-responsive artwork-image">
+							    </a>
+							    <p class="artwork-label"></p>
+							</div>
+							 <div class="col-md-4 col-xs-6 thumb artwork-container"`>
+							    <span class="artwork-container-helper"></span>
+							    <a href="">
+							    	<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img-responsive artwork-image">
+							    </a>
+							    <p class="artwork-label"></p>
+						    </div>
+							@endif
+
+							 @if($artCount % 3 == 2)
+							 <div class="col-md-4 col-xs-6 thumb artwork-container">
+							    <span class="artwork-container-helper"></span>
+							    <a href="">
+							    	<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img-responsive artwork-image">
+							    </a>
+							    <p class="artwork-label"></p>
+						    </div>
+							@endif
+						
 						@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-							<div class="col-lg-3 col-md-4 col-xs-6 thumb artwork-container" ng-repeat="archivedArtwork in archivedArtworks | filter:archivedArtworkQuery">
+							<h1>Gearchiveerd</h1>
+							<hr>
+							<div class="col-md-4 col-xs-6 thumb artwork-container" ng-repeat="archivedArtwork in archivedArtworks | filter:archivedArtworkQuery">      			
 	                   		 	<span class="artwork-container-helper"></span>
 							    <a href="/artworks/@{{ archivedArtwork.slug }}">
 							    	<img src="@{{ archivedArtwork.file }}" class="img-responsive artwork-image">
