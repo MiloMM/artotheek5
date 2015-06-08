@@ -30,7 +30,8 @@
 								<input type="file" name="image" class="form-control" style="display: none;">
 								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-default', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
 								<div id="image-editor">
-									
+									// Load images instantly
+									<img src="{{ asset($artwork->file) }}" alt="" class="img-responsive">
 								</div>
 							</div>
 						</div>
@@ -58,8 +59,47 @@
 	</div>
 </div>
 <script>
+	var allowSend = false;
 	var editor = CKEDITOR.replace('textarea-description');
 	var isEditingImage = false;
+
+	$(function () {
+
+		var darkroom = new Darkroom('#image-editor img', {
+			plugins: {
+				save: false
+			}
+		});
+
+		setTimeout(function () {
+			$('.darkroom-icon-crop').parent().click(function () 
+			{
+				isEditingImage = !isEditingImage;
+			});
+			$('.darkroom-icon-accept').parent().click(function () 
+			{
+				var btnAccept = $(this);
+				setTimeout(function () {
+					btnAccept.parent().find('button').each(function (i, btn) 
+					{
+						if (i == 0) 
+						{
+							if (!$(btn).hasClass('darkroom-button-active')) 
+							{
+								isEditingImage = false;
+							}
+						}
+					});
+					
+				}, 500);
+			});
+			$('.darkroom-icon-cancel').parent().click(function () 
+			{
+				isEditingImage = false;
+			});
+		}, 1000);
+		allowSend = true;
+	});
 
 	$(function () {
 
@@ -155,10 +195,13 @@
 			progressbar.attr('style', 'width: ' + 0 + '%; margin-top: 50px;');
 
 			var file = document.querySelector('#form input[type=file]');
-			// Check if file is a photo
-			if (file.files[0] == undefined || !file.files[0].type.match('image/*')) {
-				functions.showErrorBanner('Het bestand moet een foto zijn.');
-				return;
+			
+			if (!allowSend) {
+				// Check if file is a photo
+				if (file.files[0] == undefined || !file.files[0].type.match('image/*')) {
+					functions.showErrorBanner('Het bestand moet een foto zijn.');
+					return;
+				}
 			}
 
 			var xhr = new XMLHttpRequest();

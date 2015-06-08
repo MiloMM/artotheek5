@@ -142,9 +142,11 @@ class ArtworkController extends Controller {
 		$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
 		
 		$artwork = Artwork::findOrFail($id);
-		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
-		{
-			$artwork->state = Input::get('publish') == "true" ? 0 : 1;
+
+		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
+
+		if (Artwork::where('slug', $slug)->first()) {
+			return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
 		}
 
 		$image = Image::make(Input::get('image-data-url'));
@@ -153,15 +155,16 @@ class ArtworkController extends Controller {
 
 		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
 		$artwork->user_id = Auth::user()->id;
+		$artwork->slug = $slug;
 
 		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
 			
 		$artwork->save();
-		$artwork->update(Input::all());	
+		$artwork->update($input);	
 
 			
 
-		return Response::json(['Het kunstwerk is gewijzigd.klik <a href="/gallery">hier</a> om terug te keren naar de gallerij'], 200); // 200 = OK
+		return Response::json(['Het kunstwerk is gewijzigd. klik <a href="/gallery">hier</a> om terug te keren naar de gallerij'], 200); // 200 = OK
 
 		
 	}
