@@ -20,20 +20,6 @@
 								{!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
 							</div>
 						</div>
-						<div class="form-group" id="form-group-preview-img">
-							<div class="col-md-12">
-								<input type="file" name="image" class="form-control" style="display: none;">
-								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-default', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
-								<div id="image-editor">
-									
-								</div>
-							</div>
-						</div>
-						<div class="progress">
-						  <div id="progressbar-upload" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; margin-top: 50px;">
-						    0%
-						  </div>
-						</div>
 						<div class="form-group">
 							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
@@ -48,6 +34,20 @@
 							</div>
 						</div>
 						@endif
+						<div class="form-group" id="form-group-preview-img">
+							<div class="col-md-12">
+								<input type="file" name="image" class="form-control" style="display: none;">
+								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-info', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
+								<div id="image-editor">
+									
+								</div>
+							</div>
+						</div>
+						<div class="progress">
+						  <div id="progressbar-upload" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; margin-top: 50px;">
+						    0%
+						  </div>
+						</div>
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
 								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}

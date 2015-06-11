@@ -9,8 +9,8 @@
 
 					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
 						<div class="form-group">
-							{!! Form::label('Titel', null, ['class' => 'col-md-4 control-label']) !!}
-							<div class="col-md-6">
+							{!! Form::label('Titel', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-11">
 								{!! Form::text('title', $artwork->title, ['class' => 'form-control', 'id' => 'tbx-title']) !!}
 							</div>
 						</div>
@@ -25,16 +25,6 @@
 						    0%
 						  </div>
 						</div>
-						<div class="form-group" id="form-group-preview-img">
-							<div class="col-md-12">
-								<input type="file" name="image" class="form-control" style="display: none;">
-								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-default', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
-								<div id="image-editor">
-									// Load images instantly
-									<img src="{{ asset($artwork->file) }}" alt="" class="img-responsive">
-								</div>
-							</div>
-						</div>
 						<div class="form-group">
 							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
@@ -44,7 +34,17 @@
 						<div class="form-group">
 							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								{!! Form::checkbox('publish', true, ['class' => 'col-md-4 form-control']) !!}
+								{!! Form::checkbox('publish', true , ['class' => 'col-md-4 form-control']) !!}
+							</div>
+						</div>
+						<div class="form-group" id="form-group-preview-img">
+							<div class="col-md-12">
+								<input type="file" name="image" class="form-control" style="display: none;">
+								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-info', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
+								<div id="image-editor">
+									// Load images instantly
+									<img src="{{ asset($artwork->file) }}" alt="" class="img-responsive">
+								</div>
 							</div>
 						</div>
 						<div class="form-group">

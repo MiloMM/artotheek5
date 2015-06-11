@@ -8,6 +8,7 @@ use View;
 use Redirect;
 use Auth;
 use App\Artwork;
+use DB;
 
 class PagesController extends Controller {
 
@@ -26,11 +27,30 @@ class PagesController extends Controller {
 
 	public function myprofile()
 	{
-		if (Auth::check()) {
+		if (Auth::check()) 
+		{
 			return Redirect::to('/users/' . Auth::user()->slug);
-		} else {
+		} 
+		else 
+		{
 			return Redirect::action('PagesController@index');
 		}
+	}
+
+	public function artists()
+	{
+		if(Auth::check())
+		{
+			$artists = 	DB::table('users')
+	        ->join('user_privelege', function($join)
+	        {
+	            $join->on('users.id', '=', 'user_privelege.user_id')
+	                 ->where('user_privelege.privelege_id', '<', 3);
+	        })
+	        ->get();
+		}
+
+		return View::make('artists/index',compact('artists'));
 	}
 
 }

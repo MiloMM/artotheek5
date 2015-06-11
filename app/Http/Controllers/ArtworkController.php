@@ -28,7 +28,6 @@ class ArtworkController extends Controller {
 		return Redirect::action('PagesController@gallery');
 	}
 	
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -36,11 +35,16 @@ class ArtworkController extends Controller {
 	 */
 	public function create()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
 			return View::make('artworks/create');
-		} else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) {
+		} 
+		else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) 
+		{
 			return View::make('artworks/studentCreate');
-		} else {
+		} 
+		else
+		{
 			return View::make('errors/401'); // Unauthorized
 		}
 	}
@@ -52,14 +56,18 @@ class ArtworkController extends Controller {
 	 */
 	public function store()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator'])) 
+		{
 			$artwork = new Artwork();
 			$artwork->id = Artwork::count() + 1;
 			$artwork->title = Input::get('title');
 			$artwork->description = trim(Input::get('description'));
-			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+			{
 				$artwork->state = Input::get('publish') == "true" ? 0 : 1;
-			} else {
+			} 
+			else
+			{
 				$artwork->state = 1;
 			}
 
@@ -86,9 +94,12 @@ class ArtworkController extends Controller {
 			$artwork->save();
 
 			return Response::json([
-				0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken'
+				0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken',
+				1 => 'of klik <a href="/gallery"> hier </a> om terug te keren naar de gallerij'
 			], 200);
-		} else {
+		} 
+		else 
+		{
 			return Response::json([
 				0 => 'Je bent niet geautoriseerd.'
 			], 401);
@@ -104,9 +115,12 @@ class ArtworkController extends Controller {
 	public function show($slug)
 	{
 		$artwork = Artwork::whereSlug($slug)->first();
-		if ($artwork) {
+		if ($artwork) 
+		{
 			return View::make('artworks/show')->with(compact('artwork'));
-		} else {
+		}
+		else 
+		{
 			return View::make('errors/404');
 		}
 	}
@@ -120,12 +134,14 @@ class ArtworkController extends Controller {
 	public function edit($slug)
 	{
 		$artwork = Artwork::where('slug', $slug)->first();
-		if ($artwork) {
+		if ($artwork) 
+		{
 			return View::make('artworks/edit', compact('artwork'));
-		} else {
+		} 
+		else 
+		{
 			throw new \Exception('Kunstwerk is niet gevonden in de database.');
 		}
-
 	}
 
 	/**
@@ -145,10 +161,6 @@ class ArtworkController extends Controller {
 
 		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
 
-		if (Artwork::where('slug', $slug)->first()) {
-			return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
-		}
-
 		$image = Image::make(Input::get('image-data-url'));
 			
 		$imageExtension = substr($image->mime(), 6);
@@ -158,15 +170,20 @@ class ArtworkController extends Controller {
 		$artwork->slug = $slug;
 
 		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
+
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$artwork->state = Input::get('publish') == "true" ? 0 : 1;
+		} 
+		else 
+		{
+			$artwork->state = 1;
+		}
 			
 		$artwork->save();
 		$artwork->update($input);	
 
-			
-
 		return Response::json(['Het kunstwerk is gewijzigd. klik <a href="/gallery">hier</a> om terug te keren naar de gallerij'], 200); // 200 = OK
-
-		
 	}
 	/**
 	 * Remove the specified resource from storage.
@@ -179,5 +196,4 @@ class ArtworkController extends Controller {
 	{
 		//
 	}
-
 }

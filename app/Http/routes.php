@@ -13,6 +13,7 @@
 Route::get('/gallery','PagesController@gallery');
 Route::get('/', 'PagesController@index');
 Route::get('/test', 'JsonController@artworks');
+Route::get('/artists' , 'PagesController@artists');
 
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
 
@@ -24,6 +25,7 @@ Route::resource('artworks', 'ArtworkController');
 Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

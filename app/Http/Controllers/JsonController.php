@@ -25,13 +25,15 @@ class JsonController extends Controller {
 		return Response::json($artworks->reverse(), 200);
 	}
 
-	public function archivedArtworks() {
+	public function archivedArtworks() 
+	{
 		$artworks = Artwork::whereState(1)->get();
 		TagsHelper::addTagsToCollection($artworks);
 		return Response::json($artworks->reverse(), 200);
 	}
 
-	public function news() {
+	public function news() 
+	{
 		$articles = News::whereState(0)->get();
 		TagsHelper::addTagsToCollection($articles);
 		return Response::json($articles->reverse(), 200);

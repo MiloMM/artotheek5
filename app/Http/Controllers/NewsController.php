@@ -31,9 +31,12 @@ class NewsController extends Controller {
 	 */
 	public function create()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
 			return View::make('news/create');
-		} else {
+		} 
+		else 
+		{
 			return View::make('errors/401');
 		}
 	}
@@ -50,7 +53,8 @@ class NewsController extends Controller {
 
 		$slug = strtolower(implode('-', explode(' ', $input['title'])));
 
-		if (News::where('slug', $slug)->first()) {
+		if (News::where('slug', $slug)->first()) 
+		{
 			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
 		}
 
@@ -63,7 +67,8 @@ class NewsController extends Controller {
 		/**
 		 * @todo Tagging is not working
 		 */
-		foreach ($tags as $tag) {
+		foreach ($tags as $tag) 
+		{
 			$article->tag($tag);
 		}
 
@@ -81,9 +86,12 @@ class NewsController extends Controller {
 	public function show($slug)
 	{
 		$article = News::where('slug', $slug)->first();
-		if ($article) {
+		if ($article) 
+		{
 			return View::make('news/show', compact('article'));
-		} else {
+		} 
+		else 
+		{
 			throw new \Exception('Artikel is niet gevonden in de database.');
 		}
 	}
@@ -97,9 +105,12 @@ class NewsController extends Controller {
 	public function edit($slug)
 	{
 		$article = News::where('slug', $slug)->first();
-		if ($article) {
+		if ($article) 
+		{
 			return View::make('news/edit', compact('article'));
-		} else {
+		} 
+		else 
+		{
 			throw new \Exception('Artikel is niet gevonden in de database.');
 		}
 	}
@@ -122,11 +133,13 @@ class NewsController extends Controller {
 		
 		return Response::json([], 200); // 200 = OK
 
-		if (isset($input['state'])) {
+		if (isset($input['state'])) 
+		{
 			$article = News::findOrFail($id);
 			$article->update($input);
 			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200);
-		} else {
+		} else 
+		{
 			
 			$tags = explode(',', $input['tags']);
 

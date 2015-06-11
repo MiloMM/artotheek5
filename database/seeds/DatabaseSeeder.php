@@ -59,6 +59,20 @@ class UserTableSeeder extends Seeder {
         	'password' => Hash::make('dummy'),
         	'slug' => 'dummy-student'
         ]);
+
+        User::create([
+        	'name' => 'Dummy Student 2',
+        	'email' => 'dummystudent2@example.com',
+        	'password' => Hash::make('dummy'),
+        	'slug' => 'dummy-student-2'
+        ]);
+
+        User::create([
+        	'name' => 'Dummy Student 3',
+        	'email' => 'dummystudent3@example.com',
+        	'password' => Hash::make('dummy'),
+        	'slug' => 'dummy-student-3'
+        ]);
     }
 }
 
@@ -121,6 +135,28 @@ class UserPrivelegePivotTableSeeder extends Seeder {
         } else {
         	$user->priveleges()->attach($id);
         }
+
+        // Dummy Student
+        $user = User::where('name', 'Dummy Student 2')->first();
+        $id = Privelege::where('name', 'Student')->first()->id;
+
+        if (!$id) {
+        	$this->command->info('Student privelege can\'t be found.');
+        } else {
+        	$user->priveleges()->attach($id);
+        }
+
+        // Dummy Student
+        $user = User::where('name', 'Dummy Student 3')->first();
+        $id = Privelege::where('name', 'Student')->first()->id;
+
+        if (!$id) {
+        	$this->command->info('Student privelege can\'t be found.');
+        } else {
+        	$user->priveleges()->attach($id);
+        }
+
+
 
 	}
 
