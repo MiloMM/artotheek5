@@ -6,11 +6,17 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"></div>
 			<div class="panel-body">
-				<a href="/news/{{ $event->slug }}/edit" class="btn btn-primary">Wijzig</a>
+				<a href="/events/{{ $event->slug }}/edit" class="btn btn-primary">Wijzig</a>
 				<button id="btnRemove" class="btn btn-danger">Verwijder</button>
 			</div>
 		</div>
 		{!! $event->content !!}
+		<hr>
+		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>:
+			@foreach($tagArray as $tag)
+				<a href="/tags/{{$tag}}">{{ $tag }}</a>
+			@endforeach
+		</p>
 	</div>
 </div>
 <script>
@@ -34,7 +40,7 @@
 			});
 		});
 		$('#btnPublish').click(function () {
-			var request = $.post('/news/{{ $event->id }}', {
+			var request = $.post('/events/{{ $event->id }}', {
 				_token: '{{ csrf_token() }}',
 				_method: 'PUT',
 				title: '{{ $event->title }}',

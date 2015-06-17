@@ -43,21 +43,29 @@ class EventController extends Controller {
 	public function store(EventRequest $request)
 	{
 		$input = Input::all();
-		$tags = explode(',',$input['tags']);
-
 
 		$slug = strtolower(implode('-',explode(' ',$input['title'])));
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
 
 		if(Event::where('slug',$slug)->first())
 		{
 			return Response::json([0=>'Dit Evenement is al aangemaakt.'],409);
 		}
-
-		$input['slug'] = $slug;
+		
 		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
+		$input['slug'] = $slug;
+
 		$event = Event::create($input);
+
+		$tags = explode(',',$input['tags']);
+		foreach ($tags as $tag) 
+		{
+			$event->tag($tag);
+		}
 
 		return [
 			0 => 'Evenement aangemaakt, klik <a href="/events/' . $slug . '">hier</a> om het te bekijken.'
@@ -73,9 +81,12 @@ class EventController extends Controller {
 	public function show($slug)
 	{
 		$event = Event::where('slug',$slug)->first();
+
+		$tagArray = $event->tagNames();
+
 		if($event)
 		{
-			return View::make('events/show',compact('event'));
+			return View::make('events/show',compact('event','tagArray'));
 		}
 		else
 		{
@@ -89,9 +100,10 @@ class EventController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($slug)
 	{
 		$event = Event::where('slug',$slug)->first();
+
 		if($event)
 		{
 			return View::make('events/edit',compact('event'));
@@ -117,9 +129,22 @@ class EventController extends Controller {
 		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
+		$slug = strtolower(implode('-',explode(' ',$input['title'])));
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
+
 		$event = Event::findOrFail($id);
+
+		$tags = explode(',', $input['tags']);
+		foreach ($tags as $tag) 
+		{
+			$event->tag($tag);
+		}
+
 		$event->update(Input::all());
-		return Response::json([],200);
+
+		return Response::json(['Evenement gewijzigd!'],200);
 	/**
 	 * Remove the specified resource from storage.
 	 *

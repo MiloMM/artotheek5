@@ -19,7 +19,7 @@
 			<div class="form-group">
 				{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
 				<div class="col-md-6">
-					<input id="tbx-tags" type="text" class="form-control" value="{!! $event->tags !!}" placeholder="Voeg tags toe..." data-role="tagsinput">
+					<input id="tbx-tags" type="text" class="form-control" value="{!! $event->tagsToTagsinput() !!}" placeholder="Voeg tags toe..." data-role="tagsinput">
 				</div>
 			</div>
 			<div class="form-group">

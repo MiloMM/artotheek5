@@ -50,8 +50,10 @@ class NewsController extends Controller {
 	{
 		$input = Input::all();
 		$tags = explode(',', $input['tags']);
-
 		$slug = strtolower(implode('-', explode(' ', $input['title'])));
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
 
 		if (News::where('slug', $slug)->first()) 
 		{
@@ -67,6 +69,7 @@ class NewsController extends Controller {
 		/**
 		 * @todo Tagging is not working
 		 */
+
 		foreach ($tags as $tag) 
 		{
 			$article->tag($tag);
@@ -85,10 +88,15 @@ class NewsController extends Controller {
 	 */
 	public function show($slug)
 	{
+		//Bug bij vraagteken in de slug kijg je error
+
 		$article = News::where('slug', $slug)->first();
+
+		$tagArray = $article->tagNames();
+
 		if ($article) 
 		{
-			return View::make('news/show', compact('article'));
+			return View::make('news/show', compact('article','tagArray'));
 		} 
 		else 
 		{
@@ -123,27 +131,46 @@ class NewsController extends Controller {
 	 */
 	public function update(NewsRequest $request, $id)
 	{
+//this is for the edit page
 		$input = Input::all();
 
 		$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
+
+		$slug = strtolower(implode('-', explode(' ', $input['title'])));
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
+		$input['slug'] = $slug;
 		
 		$article = News::findOrFail($id);
-		$article->update(Input::all());
-		
-		return Response::json([], 200); // 200 = OK
+		$article->untag();
 
+		$tags = explode(',', $input['tags']);
+		foreach ($tags as $tag) 
+		{
+			$article->tag($tag);
+		}
+
+		$article->update(Input::all());
+	
+		return Response::json(['Artikel gewijzigd. klik <a href="/news">hier</a> om terug te keren naar het overzicht'], 200); // 200 = OK
+
+//this is for the archive button
 		if (isset($input['state'])) 
 		{
 			$article = News::findOrFail($id);
 			$article->update($input);
 			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200);
 		} else 
-		{
-			
+		{			
 			$tags = explode(',', $input['tags']);
 
 			$slug = strtolower(implode('-', explode(' ', $input['title'])));
+			$slug = str_replace('?','', $slug);
+			$slug = str_replace('/','',$slug );
+			$slug = str_replace('\\','',$slug );
+
 
 			if (News::where('slug', $slug)->first() && News::where('slug', $slug)->first()->id != $id) {
 				return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);

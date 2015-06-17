@@ -19,7 +19,11 @@
 		</div>
 		{!! $article->content !!}
 		<hr>
-		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>: {{ $article->tagsToHumanReadableString() }}</p>
+		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>:
+			@foreach($tagArray as $tag)
+			<a href="/tags/{{$tag}}">{{ $tag }}</a>
+			@endforeach
+		</p>
 	</div>
 </div>
 <script>

@@ -58,10 +58,13 @@ class ArtworkController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator'])) 
 		{
+			$input = Input::all();
 			$artwork = new Artwork();
 			$artwork->id = Artwork::count() + 1;
 			$artwork->title = Input::get('title');
 			$artwork->description = trim(Input::get('description'));
+			$tags = explode(',', $input['tags']);
+
 			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
 			{
 				$artwork->state = Input::get('publish') == "true" ? 0 : 1;
@@ -72,6 +75,9 @@ class ArtworkController extends Controller {
 			}
 
 			$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
+			$slug = str_replace('?','', $slug);
+			$slug = str_replace('/','',$slug );
+			$slug = str_replace('\\','',$slug );
 
 			if (Artwork::where('slug', $slug)->first()) {
 				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
@@ -90,7 +96,11 @@ class ArtworkController extends Controller {
 			$artwork->user_id = Auth::user()->id;
 
 			$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
-			
+
+			foreach ($tags as $tag) 
+			{
+				$artwork->tag($tag);
+			}
 			$artwork->save();
 
 			return Response::json([
@@ -115,9 +125,12 @@ class ArtworkController extends Controller {
 	public function show($slug)
 	{
 		$artwork = Artwork::whereSlug($slug)->first();
+
+		$tagArray = $artwork->tagNames();
+
 		if ($artwork) 
 		{
-			return View::make('artworks/show')->with(compact('artwork'));
+			return View::make('artworks/show')->with(compact('artwork','tagArray'));
 		}
 		else 
 		{
@@ -159,7 +172,13 @@ class ArtworkController extends Controller {
 		
 		$artwork = Artwork::findOrFail($id);
 
+		$tags = explode(',', $input['tags']);
+
 		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
+		$artwork->slug = $slug;
 
 		$image = Image::make(Input::get('image-data-url'));
 			
@@ -167,8 +186,7 @@ class ArtworkController extends Controller {
 
 		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
 		$artwork->user_id = Auth::user()->id;
-		$artwork->slug = $slug;
-
+		
 		$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
 
 		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
@@ -178,6 +196,11 @@ class ArtworkController extends Controller {
 		else 
 		{
 			$artwork->state = 1;
+		}
+
+		foreach ($tags as $tag) 
+		{
+			$artwork->tag($tag);
 		}
 			
 		$artwork->save();

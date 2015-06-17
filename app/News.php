@@ -59,5 +59,4 @@ class News extends Model {
 		}
 		return $str;
 	}
-
 }

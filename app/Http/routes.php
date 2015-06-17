@@ -10,21 +10,22 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/gallery','PagesController@gallery');
 Route::get('/', 'PagesController@index');
-Route::get('/test', 'JsonController@artworks');
+Route::get('/gallery','PagesController@gallery');
 Route::get('/artists' , 'PagesController@artists');
-
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
 
 Route::resource('users', 'UserController');
 Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');
 Route::resource('artworks', 'ArtworkController');
+Route::resource('tags','TagsController');
 
 Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
+
+
 
 
 Route::controllers([

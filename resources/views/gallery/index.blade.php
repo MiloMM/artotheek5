@@ -26,34 +26,9 @@
 						    </a>
 						    <p class="artwork-label">@{{ artwork.title }}</p>
 						 </div>
-
-						    @if($artCount % 3 == 1)
-						   	<div class="col-md-4 col-xs-6 thumb artwork-container">
-							    <span class="artwork-container-helper"></span>
-							    <a href="">
-							    	<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img-responsive artwork-image">
-							    </a>
-							    <p class="artwork-label"></p>
-							</div>
-							 <div class="col-md-4 col-xs-6 thumb artwork-container"`>
-							    <span class="artwork-container-helper"></span>
-							    <a href="">
-							    	<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img-responsive artwork-image">
-							    </a>
-							    <p class="artwork-label"></p>
-						    </div>
-							@endif
-
-							 @if($artCount % 3 == 2)
-							 <div class="col-md-4 col-xs-6 thumb artwork-container">
-							    <span class="artwork-container-helper"></span>
-							    <a href="">
-							    	<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img-responsive artwork-image">
-							    </a>
-							    <p class="artwork-label"></p>
-						    </div>
-							@endif
-						
+					</div>
+					
+					<div class="panel-body"></div>
 						@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 							<h1>Gearchiveerd</h1>
 							<hr>
