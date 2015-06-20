@@ -53,6 +53,7 @@
 					<li><a href="{{ action('EventController@index') }}">Evenementen</a></li>
 					<li><a href="{{ action('PagesController@gallery') }}">Gallerij</a></li>
 					<li><a href="{{ action('PagesController@artists') }}">Kunstenaars</a></li>
+					<li><a href="{{ action('ReservationController@index') }}">Reserveringen</a></li>					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

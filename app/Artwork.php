@@ -6,7 +6,7 @@ class Artwork extends Model {
 
 	use \Conner\Tagging\TaggableTrait; // Tags
 
-	protected $fillable = ['title', 'description', 'file', 'state', 'slug'];
+	protected $fillable = ['title', 'description', 'file', 'state', 'slug','reserved'];
 	protected $table = 'artworks';
 
 	public function tagsToHumanReadableString() 

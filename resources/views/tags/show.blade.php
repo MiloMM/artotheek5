@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h2>Alle Kunstwerken met de tag: {{ $tag }}</h2></div>
 				<div class="panel-body">					
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="panel panel-default">
 
 				<div class="panel-heading"><h2>Alle nieuws artikelen met de tag: {{ $tag }}</h2></div>
@@ -36,7 +36,11 @@
 					</div>
 					@endforeach
 				</div>
+			</div>
+		</div>
 
+		<div class="col-md-4">
+			<div class="panel panel-default">
 				<div class="panel-heading"><h2>Alle Evenementen met de tag: {{ $tag }}</h2></div>
 				<div class="panel-body">					
 					@foreach($events as $event)

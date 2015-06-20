@@ -20,10 +20,13 @@ Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');
 Route::resource('artworks', 'ArtworkController');
 Route::resource('tags','TagsController');
+Route::resource('reservation','ReservationController');
 
 Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
+
+Route::get('/reservation/create/{id}','ReservationController@create');
 
 
 

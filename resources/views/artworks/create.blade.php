@@ -182,7 +182,6 @@
 					msg += "</ul>";
 
 					functions.showErrorBanner(msg);
-
 				}
 			}
 			

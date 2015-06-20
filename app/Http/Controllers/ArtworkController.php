@@ -63,6 +63,7 @@ class ArtworkController extends Controller {
 			$artwork->id = Artwork::count() + 1;
 			$artwork->title = Input::get('title');
 			$artwork->description = trim(Input::get('description'));
+			$artwork->reserved = 0;
 			$tags = explode(',', $input['tags']);
 
 			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 

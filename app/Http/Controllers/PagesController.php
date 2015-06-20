@@ -9,6 +9,7 @@ use Redirect;
 use Auth;
 use App\Artwork;
 use DB;
+use Response;
 
 class PagesController extends Controller {
 
@@ -48,6 +49,10 @@ class PagesController extends Controller {
 	                 ->where('user_privelege.privelege_id', '<', 3);
 	        })
 	        ->get();
+		}
+		else
+		{
+			throw new \Exception('Je moet ingelogd zijn om deze pagina te kunnen bekijken.');
 		}
 
 		return View::make('artists/index',compact('artists'));

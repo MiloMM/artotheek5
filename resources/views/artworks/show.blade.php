@@ -4,6 +4,9 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<a href="/artworks/{{ $artwork->slug }}/edit" class="btn btn-warning">Wijzig</a>
+			@if(Auth::check())
+				<a href="/reservation/create/{{ $artwork->id }}" class="btn btn-info">Reserveer</a>
+			@endif
 		</div>
 		<div class="panel-heading">
 			{{ $artwork->title }}	
