@@ -7,21 +7,14 @@
 			<div class="panel-heading"></div>
 			<div class="panel-body">
 				<a href="/news/{{ $article->slug }}/edit" class="btn btn-primary">Wijzig</a>
-				@if ($article->state == 1)
-					<button id="btnPublish" class="btn btn-success">Publiceer</button>
-					<button id="btnArchive" style="display:none;" class="btn btn-warning">Archiveer</button>
-				@else
-					<button id="btnPublish" style="display:none;" class="btn btn-success">Publiceer</button>
-					<button id="btnArchive" class="btn btn-warning">Archiveer</button>
-				@endif
 				<button id="btnRemove" class="btn btn-danger">Verwijder</button>
 			</div>
 		</div>
 		{!! $article->content !!}
 		<hr>
-		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>:
+		<p class="tag-paragraph">
 			@foreach($tagArray as $tag)
-			<a href="/tags/{{$tag}}">{{ $tag }}</a>
+			<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
 			@endforeach
 		</p>
 	</div>

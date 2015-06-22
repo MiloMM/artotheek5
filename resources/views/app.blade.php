@@ -54,6 +54,7 @@
 					<li><a href="{{ action('PagesController@gallery') }}">Gallerij</a></li>
 					<li><a href="{{ action('PagesController@artists') }}">Kunstenaars</a></li>
 					<li><a href="{{ action('ReservationController@index') }}">Reserveringen</a></li>					
+					<li><a href="{{ action('TagsController@index') }}">Tags</a></li>					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

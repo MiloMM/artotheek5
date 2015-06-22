@@ -10,7 +10,7 @@ class Event extends Model {
 	//
 	protected $table = 'events';
 
-	protected $fillable = ['title', 'content','start_at','end_at','slug'];
+	protected $fillable = ['title', 'content','state','slug'];
 
 	public function tagsToHumanReadableString() 
 	{

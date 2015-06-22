@@ -10,6 +10,7 @@ use View;
 use Input;
 use App\Http\Requests\EventRequest;
 use Response;
+use Auth;
 
 
 class EventController extends Controller {
@@ -21,7 +22,7 @@ class EventController extends Controller {
 	 */
 	public function index()
 	{
-		$events = Event::all();
+		$events = Event::where('state',0);
 		return View::make('events/index',compact('events'));
 	}
 
@@ -60,6 +61,15 @@ class EventController extends Controller {
 		$input['slug'] = $slug;
 
 		$event = Event::create($input);
+
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$event->state = Input::get('publish') == "true" ? 0 : 1;
+		} 	
+		else
+		{
+			$event->state = 1;
+		}
 
 		$tags = explode(',',$input['tags']);
 		foreach ($tags as $tag) 
@@ -135,6 +145,15 @@ class EventController extends Controller {
 		$slug = str_replace('\\','',$slug );
 
 		$event = Event::findOrFail($id);
+
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$event->state = Input::get('publish') == "true" ? 0 : 1;
+		} 
+		else 
+		{
+			$event->state = 1;
+		}
 
 		$tags = explode(',', $input['tags']);
 		foreach ($tags as $tag) 

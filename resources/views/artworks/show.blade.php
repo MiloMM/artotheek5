@@ -11,13 +11,13 @@
 		<div class="panel-heading">
 			{{ $artwork->title }}	
 		</div>
+		<img src="/{{ $artwork->file }}" alt="" style="width: 100%">
 		<div class="panel-body">{!! $artwork->description !!}</div>
-		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>: 
+		<p class="tag-paragraph"> 
 			@foreach($tagArray as $tag)
-				<a href="/tags/{{$tag}}">	{{ $tag }} </a>
+				<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
 			@endforeach
 		</p>
-		<img src="/{{ $artwork->file }}" alt="" style="width: 100%">
 	</div>
 </div>
 

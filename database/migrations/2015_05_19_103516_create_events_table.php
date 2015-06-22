@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration {
 			$table->string('title');
 			$table->string('content',50000);
 			$table->string('slug');
+			$table->integer('state')->unsigned();
 			$table->timestamps();
 		});
 	}

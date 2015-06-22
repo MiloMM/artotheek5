@@ -12,9 +12,9 @@
 		</div>
 		{!! $event->content !!}
 		<hr>
-		<p class="tag-paragraph"><span class="glyphicon glyphicon-tag"></span>:
+		<p class="tag-paragraph">
 			@foreach($tagArray as $tag)
-				<a href="/tags/{{$tag}}">{{ $tag }}</a>
+				<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
 			@endforeach
 		</p>
 	</div>

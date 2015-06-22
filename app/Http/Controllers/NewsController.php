@@ -20,7 +20,7 @@ class NewsController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = News::all();
+		$articles = News::where('state',0);
 		return View::make('news/index', compact('articles'));
 	}
 
@@ -65,15 +65,22 @@ class NewsController extends Controller {
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
 		$article = News::create($input);
-
-		/**
-		 * @todo Tagging is not working
-		 */
+		
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$article->state = Input::get('publish') == "true" ? 0 : 1;
+		} 
+		else
+		{
+			$article->state = 1;
+		}
 
 		foreach ($tags as $tag) 
 		{
 			$article->tag($tag);
 		}
+
+		$article->save();
 
 		return [
 			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
@@ -144,8 +151,17 @@ class NewsController extends Controller {
 		$input['slug'] = $slug;
 		
 		$article = News::findOrFail($id);
-		$article->untag();
 
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$article->state = Input::get('publish') == "true" ? 0 : 1;
+		} 
+		else 
+		{
+			$article->state = 1;
+		}
+
+		$article->untag();
 		$tags = explode(',', $input['tags']);
 		foreach ($tags as $tag) 
 		{
@@ -155,38 +171,6 @@ class NewsController extends Controller {
 		$article->update(Input::all());
 	
 		return Response::json(['Artikel gewijzigd. klik <a href="/news">hier</a> om terug te keren naar het overzicht'], 200); // 200 = OK
-
-//this is for the archive button
-		if (isset($input['state'])) 
-		{
-			$article = News::findOrFail($id);
-			$article->update($input);
-			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200);
-		} else 
-		{			
-			$tags = explode(',', $input['tags']);
-
-			$slug = strtolower(implode('-', explode(' ', $input['title'])));
-			$slug = str_replace('?','', $slug);
-			$slug = str_replace('/','',$slug );
-			$slug = str_replace('\\','',$slug );
-
-
-			if (News::where('slug', $slug)->first() && News::where('slug', $slug)->first()->id != $id) {
-				return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
-			}
-
-			$input['slug'] = $slug;
-
-			$input['content'] = str_replace("\n", '', $input['content']); // remove line endings
-			$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
-
-			$article = News::findOrFail($id);
-			$article->update($input);
-
-			return Response::json([ 0 => 'Dit artikel is gewijzigd!'], 200); // 200 = OK
-		}
-
 	}
 
 	/**
@@ -201,5 +185,4 @@ class NewsController extends Controller {
 		$article->delete();
 		return Response::json([], 200);
 	}
-
 }

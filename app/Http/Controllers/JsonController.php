@@ -9,6 +9,7 @@ use View;
 use App\News;
 use Response;
 use App\Services\TagsHelper;
+use \Str;
 
 class JsonController extends Controller {
 
@@ -35,6 +36,10 @@ class JsonController extends Controller {
 	public function news() 
 	{
 		$articles = News::whereState(0)->get();
+		// foreach ($articles as $article) 
+		// {
+		// 	$article->content = substr($article->content,0,150).'...';
+		// }
 		TagsHelper::addTagsToCollection($articles);
 		return Response::json($articles->reverse(), 200);
 	}

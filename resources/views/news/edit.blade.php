@@ -23,6 +23,12 @@
 				</div>
 			</div>
 			<div class="form-group">
+				{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
+				<div class="col-md-6">
+					{!! Form::checkbox('publish', true , ['class' => 'col-md-4 form-control']) !!}
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-md-6 col-md-offset-4">
 					{!! Form::submit('Opslaan', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
 				</div>

@@ -3,9 +3,8 @@
 
 <div class="panel panel-default">
 <div class="panel-heading">
-	<h1>Gebruikers Profiel</h1>
+	<h1>Gebruikers Profiel</h1><a class="btn btn-warning" href="{{$user->slug}}/edit">Wijzig</a>
 </div>
-		
 	<div class="panel-body">
 		<p>Naam: {{$user->name}}</p>
 		<p>E-mail: {{$user->email}}</p>

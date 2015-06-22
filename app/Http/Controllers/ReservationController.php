@@ -30,7 +30,7 @@ class ReservationController extends Controller {
 	        ->join('artworks', function($join)
 	        {
 	            $join->on('reservations.artwork_id', '=', 'artworks.id')
-	                 ->where('artworks.reserved', '>', 1);
+	                 ->where('artworks.reserved', '>', 0);
 	        })
 	        ->join('users', function($join)
 	        {
@@ -117,7 +117,7 @@ class ReservationController extends Controller {
 			}
 
 			return Response::json([0 => 'Het kunstwerk is al gereserveerd op deze datum.',
-								   1 => 'Het is weer beschikbaar op '.$latest.'.']);
+								   1 => 'Het is uiterlijk weer beschikbaar op '.$latest.'.']);
 		}
 	}
 

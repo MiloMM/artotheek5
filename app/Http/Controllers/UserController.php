@@ -8,6 +8,8 @@ use App\User;
 use Auth;
 use View;
 use Redirect;
+use Input;
+use Response;
 
 class UserController extends Controller {
 
@@ -78,7 +80,8 @@ class UserController extends Controller {
 	 */
 	public function edit($slug)
 	{
-		//
+		$user = User::where('slug',$slug)->first();
+		return View::make('users/edit',compact('user'));
 	}
 
 	/**
@@ -87,9 +90,17 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($slug)
 	{
-		//
+		$user = User::where('slug',$slug)->first();
+		$input = Input::all();
+
+		 $user->name = Input::get('name');
+		 $user->email = Input::get('email');
+
+		$user->update();
+
+		return Response::json([0 => 'Profiel Gewijzigd.']);
 	}
 
 	/**

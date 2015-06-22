@@ -20,7 +20,8 @@ class TagsController extends Controller {
 
 	public function index()
 	{
-		//
+		$allTags = Artwork::existingTags();
+		return View::make('tags/index',compact('allTags'));
 	}
 
 	/**
