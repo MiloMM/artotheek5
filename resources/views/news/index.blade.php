@@ -13,7 +13,7 @@
 					<input type="text" class="form-control" placeholder="Zoek..." ng-model="newsQuery">
 					<hr>
 					<div class="panel panel-default" ng-repeat="article in articles | filter:newsQuery">
-						<div class="panel-heading">@{{ article.title }}</div>
+						<div class="panel-heading" style="font-size: 24px;">@{{ article.title }}</div>
 						<div class="panel-body" ng-bind-html="article.content"></div>
 						<a href="/news/@{{ article.slug }}" style="margin: 10px;" class="btn btn-success">Volledig Artikel</a>
 					</div>
@@ -23,10 +23,15 @@
 	</div>
 </div>
 <script>
-	app.controller('newsController', function ($scope, $http) {
+	app.controller('newsController', function ($scope, $http, $sce) {
         var request = $http.get('{{ url("/json/news") }}');
         request.then(function (response) {
-            $scope.articles = response.data;
+        	var untrustedData = response.data;
+        	$(untrustedData).each(function (k, v) {
+        		console.log($sce.trustAsHtml(untrustedData[k].content));
+        		untrustedData[k].content = $sce.trustAsHtml(untrustedData[k].content);
+        	});
+            $scope.articles = untrustedData;
         });
     });
 </script>

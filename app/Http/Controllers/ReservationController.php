@@ -16,6 +16,7 @@ use Redirect;
 use Illuminate\Http\RedirectResponse;
 use App\Reservation;
 use DB;
+use App\Http\Controllers\HttpCode;
 
 class ReservationController extends Controller {
 
@@ -36,12 +37,12 @@ class ReservationController extends Controller {
 	        {
 	            $join->on('reservations.user_id', '=', 'users.id');
 	        })
-	        ->select(['*', DB::raw('users.slug as userSlug'),DB::raw('artworks.slug as artworkSlug'),
-	        			   DB::raw('artworks.id as artworkId'),DB::raw('users.id as userId'),
+	        ->select(['*', DB::raw('users.slug as userSlug'), DB::raw('artworks.slug as artworkSlug'),
+	        			   DB::raw('artworks.id as artworkId'), DB::raw('users.id as userId'),
 	        			   DB::raw('reservations.id as reservationId')])
 	        ->get();
 
-		return View::make('reservation/index')->with('reservations',$reservations);
+		return View::make('reservation/index')->with('reservations', $reservations);
 	}
 
 	/**
@@ -54,7 +55,7 @@ class ReservationController extends Controller {
 		if(Auth::check())
 		{
 			$artwork = Artwork::findOrFail($id);
-			return View::make('reservation/create',compact('artwork'));
+			return View::make('reservation/create', compact('artwork'));
 		}
 	}
 
@@ -81,45 +82,45 @@ class ReservationController extends Controller {
 		$overlap = false;
 		foreach ($allReservations as $key) 
 		{
-			if(Input::get('from-date') < $key->to_date && Input::get('from-date') > $key->from_date)
+			if (Input::get('from-date') < $key->to_date && Input::get('from-date') > $key->from_date)
 			{
 				$overlap = true;
 			}
-			elseif(Input::get('to-date') > $key->from_date && Input::get('to-date') < $key->to_date)
+			elseif (Input::get('to-date') > $key->from_date && Input::get('to-date') < $key->to_date)
 			{
 				$overlap = true;
 			}
-			elseif(Input::get('from-date') == $key->from_date)
+			elseif (Input::get('from-date') == $key->from_date)
 			{
 				$overlap = true;
 			}
 		}
 
-		if($overlap == false)
+		if (!$overlap)
 		{
 			$artwork->reserved += 1;
 			$reservation->save();
 			$artwork->update(['reserved' => $artwork->reserved]);
 
-			return Response::json([0 => 'Reservering geslaagd. Klik <a href="/gallery">hier</a> om terug te gaan'], 200);
+			return Response::json([0 => 'Reservering geslaagd. Klik <a href="/gallery">hier</a> om terug te gaan'], HttpCode::Ok);
 		}
 		else
 		{
 			$latest = "";
 			foreach ($allReservations as $key) 
 			{
-				if(is_null($latest))
+				if (is_null($latest))
 				{
 					$latest = $key->to_date;
 				}
-				elseif($key->to_date > $latest)
+				elseif ($key->to_date > $latest)
 				{
 					$latest = $key->to_date;
 				}
 			}
 
 			return Response::json([0 => 'Het kunstwerk is al gereserveerd op deze datum.',
-								   1 => 'Het is uiterlijk weer beschikbaar op '.$latest.'.']);
+								   1 => 'Het is uiterlijk weer beschikbaar op '.$latest.'.'], HttpCode::Conflict);
 		}
 	}
 

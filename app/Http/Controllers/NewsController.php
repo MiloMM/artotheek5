@@ -8,6 +8,7 @@ use View;
 use Input;
 use App\News;
 use App\Http\Requests\NewsRequest;
+use App\Http\Controllers\HttpCode;
 use Response;
 use Auth;
 
@@ -57,7 +58,7 @@ class NewsController extends Controller {
 
 		if (News::where('slug', $slug)->first()) 
 		{
-			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], 409);
+			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], HttpCode::Conflict);
 		}
 
 		$input['slug'] = $slug;
@@ -82,9 +83,9 @@ class NewsController extends Controller {
 
 		$article->save();
 
-		return [
+		return Response::json([
 			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
-		];
+		], HttpCode::Ok);
 	}
 
 	/**
@@ -170,7 +171,7 @@ class NewsController extends Controller {
 
 		$article->update(Input::all());
 	
-		return Response::json(['Artikel gewijzigd. klik <a href="/news">hier</a> om terug te keren naar het overzicht'], 200); // 200 = OK
+		return Response::json(['Artikel gewijzigd. klik <a href="/news">hier</a> om terug te keren naar het overzicht'], HttpCode::Ok); // 200 = OK
 	}
 
 	/**
@@ -183,6 +184,6 @@ class NewsController extends Controller {
 	{
 		$article = News::findOrFail($id);
 		$article->delete();
-		return Response::json([], 200);
+		return Response::json([], HttpCode::Ok);
 	}
 }

@@ -35,4 +35,16 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	// Custom code
+	// Add youtube plugin
+	config.extraPlugins = 'youtube';
+
+	// Youtube config
+	config.youtube_width = '640';
+	config.youtube_height = '480';
+	config.youtube_related = false;
+	config.youtube_older = false;
+	config.youtube_privacy = false;
+
 };

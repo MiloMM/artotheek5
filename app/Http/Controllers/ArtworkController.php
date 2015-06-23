@@ -14,6 +14,7 @@ use Auth;
 use Response;
 use Redirect;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\HttpCode;
 
 
 class ArtworkController extends Controller {
@@ -81,7 +82,7 @@ class ArtworkController extends Controller {
 			$slug = str_replace('\\','',$slug );
 
 			if (Artwork::where('slug', $slug)->first()) {
-				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], 409);
+				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], HttpCode::Conflict);
 			}
 
 			$artwork->slug = $slug;
