@@ -40,20 +40,13 @@ class PagesController extends Controller {
 
 	public function artists()
 	{
-		if(Auth::check())
-		{
-			$artists = 	DB::table('users')
-	        ->join('user_privelege', function($join)
-	        {
-	            $join->on('users.id', '=', 'user_privelege.user_id')
-	                 ->where('user_privelege.privelege_id', '<', 3);
-	        })
-	        ->get();
-		}
-		else
-		{
-			throw new \Exception('Je moet ingelogd zijn om deze pagina te kunnen bekijken.');
-		}
+		$artists = 	DB::table('users')
+	    ->join('user_privelege', function($join)
+	    {
+	        $join->on('users.id', '=', 'user_privelege.user_id')
+	             ->where('user_privelege.privelege_id', '<', 3);
+	    })
+	    ->get();
 
 		return View::make('artists/index',compact('artists'));
 	}

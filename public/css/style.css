@@ -36,3 +36,8 @@
 	color: #ACACAC;
 	font-style: italic;
 }
+
+tr:nth-child(even)
+{
+	background: #eeeeee;
+}

@@ -68,7 +68,7 @@ class NewsController extends Controller {
 		
 		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
 		{
-			$article->state = Input::get('publish') == "true" ? 0 : 1;
+			$article->state = Input::get('publish') == "true" ? 1 : 0;
 		} 
 		else
 		{

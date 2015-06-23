@@ -11,11 +11,11 @@
 					<div class="panel panel-default" >
 						<div class="panel-heading">{{ $artwork->title }}</div>
 						<div class="panel-body">
-							<p>{!! $artwork->content !!}</p>
+							<img src="/{{ $artwork->file }}" alt="" style="width: 100%">
+							<a href="/artworks/{{ $artwork->slug }}" style="margin: 10px;" class="btn btn-success">Bekijk kunstwerk</a>
 						</div>
-						<a href="/artworks/{{ $artwork->slug }}" style="margin: 10px;" class="btn btn-success">Bekijk kunstwerk</a>
 					</div>
-					<img src="/{{ $artwork->file }}" alt="" style="width: 100%">
+					
 					@endforeach
 				</div>
 			</div>
@@ -30,9 +30,9 @@
 					<div class="panel panel-default" >
 						<div class="panel-heading">{{ $article->title }}</div>
 						<div class="panel-body">
-							<p>{!! $article->content !!}</p>
+							<a href="/news/{{ $article->slug }}" style="margin: 10px;" class="btn btn-success">Bekijk Artikel</a>
 						</div>
-						<a href="/news/{{ $article->slug }}" style="margin: 10px;" class="btn btn-success">Volledig Artikel</a>
+						
 					</div>
 					@endforeach
 				</div>
@@ -47,9 +47,8 @@
 					<div class="panel panel-default" >
 						<div class="panel-heading">{{ $event->title }}</div>
 						<div class="panel-body">
-							<p>{!! $event->content !!}</p>
+							<a href="/artworks/{{ $event->slug }}" style="margin: 10px;" class="btn btn-success">Bekijk Evenement</a>
 						</div>
-						<a href="/artworks/{{ $event->slug }}" style="margin: 10px;" class="btn btn-success">Bekijk kunstwerk</a>
 					</div>
 					@endforeach
 				</div>

@@ -36,7 +36,9 @@ class ReservationController extends Controller {
 	        {
 	            $join->on('reservations.user_id', '=', 'users.id');
 	        })
-	        ->select(['*', DB::raw('users.slug as userSlug'),DB::raw('artworks.slug as artworkSlug') ])
+	        ->select(['*', DB::raw('users.slug as userSlug'),DB::raw('artworks.slug as artworkSlug'),
+	        			   DB::raw('artworks.id as artworkId'),DB::raw('users.id as userId'),
+	        			   DB::raw('reservations.id as reservationId')])
 	        ->get();
 
 		return View::make('reservation/index')->with('reservations',$reservations);
