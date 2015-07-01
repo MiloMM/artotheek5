@@ -41,3 +41,13 @@ tr:nth-child(even)
 {
 	background: #eeeeee;
 }
+
+span
+{
+	cursor:pointer;
+}
+
+#calendar
+{
+	margin-right: 25px;
+}

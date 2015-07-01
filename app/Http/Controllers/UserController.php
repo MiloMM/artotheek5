@@ -51,24 +51,32 @@ class UserController extends Controller {
 	 */
 	public function show($slug)
 	{
-		// Does this user exist?
-		if (User::where('slug', $slug)->first()) 
+		if(Auth::check())
 		{
-			// Am i this user?
-			if (User::where('slug', $slug)->first()->id == Auth::user()->id) 
+			// Does this user exist?
+			if (User::where('slug', $slug)->first()) 
 			{
-				$user = User::where('slug',$slug)->first();
-				return View::make('users/showself',compact('user'));
-			} 
+				// Am i this user?
+				if (User::where('slug', $slug)->first()->id == Auth::user()->id) 
+				{
+					$user = User::where('slug',$slug)->first();
+					return View::make('users/showself',compact('user'));
+				} 
+				else 
+				{
+					$user = User::where('slug',$slug)->first();
+					return View::make('users/show',compact('user'));
+				}
+			}
 			else 
 			{
-				$user = User::where('slug',$slug)->first();
-				return View::make('users/show',compact('user'));
-			}
+				return Redirect::to('/');
+			}	
 		}
-		else 
+		else
 		{
 			return Redirect::to('/');
+
 		}
 	}
 

@@ -119,8 +119,7 @@ class ReservationController extends Controller {
 				}
 			}
 
-			return Response::json([0 => 'Het kunstwerk is al gereserveerd op deze datum.',
-								   1 => 'Het is uiterlijk weer beschikbaar op '.$latest.'.'], HttpCode::Conflict);
+			return Response::json([0 => 'Het kunstwerk is al gereserveerd op deze datum.'], HttpCode::Conflict);
 		}
 	}
 

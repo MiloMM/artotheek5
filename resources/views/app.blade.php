@@ -33,6 +33,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
+	<script src="{{ asset('js/jquery.tablesorter.js') }}"></script>
+
+	<link rel='stylesheet' href="{{ asset('/css/fullcalendar.css') }}"/>
+	<script src="{{ asset('js/moment.min.js') }}"></script>
+	<script src="{{ asset('js/fullcalendar.js') }}"></script>
+
 </head>
 <body ng-app="application">
 	<nav class="navbar navbar-default" id="page-top">
@@ -50,7 +56,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ action('NewsController@index') }}">Nieuws</a></li>
-					<li><a href="{{ action('EventController@index') }}">Evenementen</a></li>
+					<!-- <li><a href="{{ action('EventController@index') }}">Evenementen</a></li> -->
 					<li><a href="{{ action('PagesController@gallery') }}">Gallerij</a></li>
 					<li><a href="{{ action('PagesController@artists') }}">Kunstenaars</a></li>
 					<li><a href="{{ action('ReservationController@index') }}">Reserveringen</a></li>					

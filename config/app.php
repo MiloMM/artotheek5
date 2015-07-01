@@ -148,6 +148,7 @@ return [
 		'Conner\Tagging\TaggingServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'MaddHatter\LaravelFullcalendar\ServiceProvider',
 
 	],
 
@@ -199,7 +200,8 @@ return [
 		 	
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'HTML'      => 'Illuminate\Html\HtmlFacade',
-		'Image' => 'Intervention\Image\Facades\Image'
+		'Image' => 'Intervention\Image\Facades\Image',
+		'Calendar' => 'MaddHatter\LaravelFullcalendar\Facades\Calendar'
 	],
 
 ];

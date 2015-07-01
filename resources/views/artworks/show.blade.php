@@ -20,9 +20,9 @@
 			<div  style="float: right;" class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 		</div>
 		<div class="panel-heading">
-			{{ $artwork->title }}	
+			<h2>{{ $artwork->title }}</h2>		
 		</div>
-		<img src="/{{ $artwork->file }}" alt="" style="width: 100%; max-width: 500px; max-height: 700px;">
+		<center><img src="/{{ $artwork->file }}" alt="" style="width: 100%; max-width: 800px; max-height: 700px;"></center>	
 		<div class="panel-body">{!! $artwork->description !!}</div>
 		<p class="tag-paragraph"> 
 			@foreach($tagArray as $tag)
@@ -30,7 +30,33 @@
 			@endforeach
 		</p>
 	</div>
+	<h1 style ="padding:20,20,20,0">Reserveringen voor {{$artwork->title}}</h1>
+	<div id="calendar">
+		
+	</div>
 </div>
+<script>
+	reservations =  <?php echo json_encode($reservations); ?>;
+console.log(reservations);
 
+function createEvents(){
+    var events = [];
+    for (var r in reservations){
+        var nextevent = {
+            title  : reservations[r].title,
+            start  : reservations[r].from_date,
+            end    : reservations[r].to_date,
+            url	   : '/artworks/' + reservations[r].artworkSlug
+        }
+        events[events.length] = nextevent;
+    }
+    return events;
+
+}
+
+$('#calendar').fullCalendar({
+    events: createEvents()
+});
+</script>
 
 @stop

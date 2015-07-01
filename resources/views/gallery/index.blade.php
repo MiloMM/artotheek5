@@ -14,7 +14,7 @@
 				    <hr>
 
 					<div class="row">
-					   	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
+					   	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 				    		<h1>Gepubliceerd</h1>
 				    		<hr>
 						@endif

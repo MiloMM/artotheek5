@@ -15,6 +15,7 @@ use Response;
 use Redirect;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\HttpCode;
+use DB;
 
 
 class ArtworkController extends Controller {
@@ -87,17 +88,24 @@ class ArtworkController extends Controller {
 
 			$artwork->slug = $slug;
 
-			$image = Image::make(Input::get('image-data-url'));
+			$image = Image::canvas(800, 600);
+			$img = Image::make(Input::get('image-data-url'))->resize(800,600, function($c)
+			{
+				$c->aspectRatio();
+    			$c->upsize();
+			});
+			$image->insert($img, 'center');
+
 			
 			$imageExtension = substr($image->mime(), 6);
 
-			$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
+			$artwork->file = 'images/artworks/' . $artwork->id . '.jpeg' /*. $imageExtension*/;
 			/**
 			 * @todo add middleware to check if logged in.
 			 */
 			$artwork->user_id = Auth::user()->id;
 
-			$image->save('images/artworks/' . $artwork->id . '.' . $imageExtension);
+			$image->save('images/artworks/' . $artwork->id . '.jpeg' /*. $imageExtension*/);
 
 			foreach ($tags as $tag) 
 			{
@@ -130,9 +138,25 @@ class ArtworkController extends Controller {
 
 		$tagArray = $artwork->tagNames();
 
+		$reservations =	DB::table('reservations')
+        ->join('artworks', function($join)
+        {
+            $join->on('reservations.artwork_id', '=', 'artworks.id')
+                 ->where('artworks.reserved', '>', 0);
+        })
+        ->join('users', function($join)
+        {
+            $join->on('reservations.user_id', '=', 'users.id');
+        })
+        ->select(['*', DB::raw('users.slug as userSlug'), DB::raw('artworks.slug as artworkSlug'),
+        			   DB::raw('artworks.id as artworkId'), DB::raw('users.id as userId'),
+        			   DB::raw('reservations.id as reservationId')])
+        ->where('artworks.id','=',$artwork->id)
+        ->get();
+
 		if ($artwork) 
 		{
-			return View::make('artworks/show')->with(compact('artwork','tagArray'));
+			return View::make('artworks/show')->with(compact('artwork','tagArray','reservations'));
 		}
 		else 
 		{
@@ -182,7 +206,13 @@ class ArtworkController extends Controller {
 		$slug = str_replace('\\','',$slug );
 		$artwork->slug = $slug;
 
-		$image = Image::make(Input::get('image-data-url'));
+		$image = Image::canvas(800, 600);
+			$img = Image::make(Input::get('image-data-url'))->resize(800,600, function($c)
+			{
+				$c->aspectRatio();
+    			$c->upsize();
+			});
+			$image->insert($img, 'center');
 			
 		$imageExtension = substr($image->mime(), 6);
 
