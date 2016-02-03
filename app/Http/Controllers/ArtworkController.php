@@ -314,4 +314,12 @@ class ArtworkController extends Controller {
 	{
 		//
 	}
+
+	/**
+	 * @return string Response
+	 */
+	public function showArchived()
+	{
+		return Response::json(['test']);
+	}
 }

@@ -4,7 +4,7 @@
 	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
 		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Voeg toe</a>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-			<a href="{{ action('ArtworkController@showArchived') }}" id="btnShowArchived" class="btn btn-primary">Bekijk Gearchiveerd</a>
+			<a href="{{ action('PagesController@gallery') }}" id="btnShowPublished" class="btn btn-primary">Bekijk Gepubliceerd</a>
 		@endif
 		<hr>
 	@endif
@@ -17,7 +17,7 @@
 </div>
 <script>
 	$(function () {
-		app.controller('galleryController', function ($http, $scope) {
+		app.controller('galleryController', function ($http,  $scope) {
 		var request = $http.get('{{ url("/json/artworks") }}');
 		request.then(function (response) {
 			$scope.artworks = response.data;

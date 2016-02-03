@@ -36,27 +36,28 @@
 	</div>
 </div>
 <script>
-	reservations =  <?php echo json_encode($reservations); ?>;
-console.log(reservations);
+	$(function () {
+		reservations =  <?php echo json_encode($reservations); ?>;
 
-function createEvents(){
-    var events = [];
-    for (var r in reservations){
-        var nextevent = {
-            title  : reservations[r].title,
-            start  : reservations[r].from_date,
-            end    : reservations[r].to_date,
-            url	   : '/artworks/' + reservations[r].artworkSlug
-        }
-        events[events.length] = nextevent;
-    }
-    return events;
+		function createEvents(){
+		    var events = [];
+		    for (var r in reservations){
+		        var nextevent = {
+		            title  : reservations[r].title,
+		            start  : reservations[r].from_date,
+		            end    : reservations[r].to_date,
+		            url	   : '/artworks/' + reservations[r].artworkSlug
+		        }
+		        events[events.length] = nextevent;
+		    }
+		    return events;
 
-}
+		}
 
-$('#calendar').fullCalendar({
-    events: createEvents()
-});
+		$('#calendar').fullCalendar({
+		    events: createEvents()
+		});
+	});
 </script>
 
 @stop

@@ -11,25 +11,24 @@
 |
 */
 Route::get('/', 'PagesController@index');
-Route::get('/gallery','PagesController@gallery');
+Route::get('/gallery', 'PagesController@gallery');
 Route::get('/artists' , 'PagesController@artists');
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
+
+Route::get('artworks/archived', 'ArtworkController@showArchived');
 
 Route::resource('users', 'UserController');
 Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');
 Route::resource('artworks', 'ArtworkController');
-Route::resource('tags','TagsController');
-Route::resource('reservation','ReservationController');
+Route::resource('tags', 'TagsController');
+Route::resource('reservation', 'ReservationController');
 
 Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
 
-Route::get('/reservation/create/{id}','ReservationController@create');
-
-
-
+Route::get('/reservation/create/{id}', 'ReservationController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

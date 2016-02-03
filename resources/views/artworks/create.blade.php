@@ -59,10 +59,10 @@
 	</div>
 </div>
 <script>
-	var editor = CKEDITOR.replace('textarea-description');
-	var isEditingImage = false;
-
 	$(function () {
+
+		var editor = CKEDITOR.replace('textarea-description');
+		var isEditingImage = false;
 
 		$('#btn-select-img').click(function () {
 			$('#form input[type=file]').click();

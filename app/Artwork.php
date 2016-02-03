@@ -1,15 +1,24 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Artwork extends Model {
 
 	use \Conner\Tagging\TaggableTrait; // Tags
+	use SearchableTrait;
 
 	protected $fillable = ['title', 'description', 'file', 'state', 'slug','reserved'];
 	protected $table = 'artworks';
 
-	public function tagsToHumanReadableString() 
+	protected $searchable = [
+		'columns' => [
+			'artworks.title' => 10,
+			'artworks.description' => 5,
+		]
+	];
+
+	public function tagsToHumanReadableString()
 	{
 		$tags = $this->tagged;
 		if ($tags->count() == 0) 

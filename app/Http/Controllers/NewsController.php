@@ -21,7 +21,7 @@ class NewsController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = News::where('state',0);
+		$articles = News::where('state', 0);
 		return View::make('news/index', compact('articles'));
 	}
 
