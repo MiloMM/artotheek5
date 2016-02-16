@@ -79,6 +79,14 @@ class ArtworkController extends Controller {
 			$artwork->description = trim(Input::get('description'));
 			// Set the reserved to 0
 			$artwork->reserved = 0;
+
+			$artwork->artist = Input::get('artist');
+			$artwork->technique = Input::get('technique');
+			$artwork->category = Input::get('category');
+			$artwork->size = Input::get('size');
+			$artwork->price = Input::get('price');
+
+
 			// get the tags [test,mark] <-- format and split them by a , to an array
 			$tags = explode(',', $input['tags']);
 

@@ -21,6 +21,36 @@
 							</div>
 						</div>
 						<div class="form-group">
+							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('artist', null, ['class' => 'form-control', 'id' => 'tbx-artist']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('technique', null, ['class' => 'form-control', 'id' => 'tbx-technique']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('category', null, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('size', null, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Prijs', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('price', null, ['class' => 'form-control', 'id' => 'tbx-price']) !!}
+							</div>
+						</div>
+						<div class="form-group">
 							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
 								<input id="tbx-tags" type="text" class="form-control" value="" placeholder="Voeg tags toe..." data-role="tagsinput">
@@ -194,6 +224,11 @@
 			form.append('_token', '{{ csrf_token() }}');
 			form.append('_method', 'POST');
 			form.append('title', $('#tbx-title').val());
+			form.append('artist', $('#tbx-artist').val());
+			form.append('technique', $('#tbx-technique').val());
+			form.append('category', $('#tbx-category').val());
+			form.append('size', $('#tbx-size').val());
+			form.append('price', $('#tbx-price').val());
 			form.append('description', editor.getData());
 			form.append('image-data-url', dataURL);
 			form.append('publish', $('input[name=publish]')[0].checked);

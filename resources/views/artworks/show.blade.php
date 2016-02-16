@@ -24,6 +24,14 @@
 		</div>
 		<center><img src="/{{ $artwork->file }}" alt="" style="width: 100%; max-width: 800px; max-height: 700px;"></center>	
 		<div class="panel-body">{!! $artwork->description !!}</div>
+		<div class="panel-heading">
+			<p>Kunstenaar: {!! $artwork->artist !!}</p>
+			<p>Techniek: {!! $artwork->technique !!}</p>
+			<p>Categorie: {!! $artwork->category !!}</p>
+			<p>Formaat: {!! $artwork->size !!}</p>
+			<p>Prijs: €{!! $artwork->price !!}</p>
+		</div>
+		
 		<p class="tag-paragraph"> 
 			@foreach($tagArray as $tag)
 				<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
