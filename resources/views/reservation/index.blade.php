@@ -15,6 +15,7 @@
     	<th>Kunstenaar <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
     	<th>Van <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
     	<th>Tot <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+        <th>Aflever Adres<span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
     </tr>
     </thead>
     <tbody>
@@ -31,6 +32,7 @@
     	<td><a href="users/{{$reservation->userSlug}}">{{ $reservation->name }}</a></td>
     	<td>{{ $date }}</td>
     	<td>{{ $date2 }}</td>
+        <td>{{ $reservation->delivery_adress }}</td>
 
 
     </tr>

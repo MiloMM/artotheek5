@@ -16,6 +16,9 @@
 				<hr>
 				{!! Form::label('Tot:', null, ['class' => 'col-md-1 control-label', 'style' => 'text-align:center']) !!}	
 				{!! Form::input('date', 'to-date') !!}
+				<hr>
+				{!! Form::label('Aflever adres', null, ['class' => 'col-md-1 control-label', 'style' => 'text-align:center']) !!}	
+				{!! Form::input('text', 'delivery_adress') !!}
 
 				{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send', 'style' => 'margin-top:20px']) !!}
 			</div>
@@ -80,6 +83,7 @@
 			form.append('_method', 'POST');
 			form.append('from-date', $('[name="from-date"]').val());
 			form.append('to-date', $('[name="to-date"]').val());
+			form.append('delivery_adress', $('[name="delivery_adress"]').val());
 			form.append('artwork-id', '{{$artwork->id}}');
 			form.append('artist-id', '{{Auth::user()->id}}');
 

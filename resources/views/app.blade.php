@@ -45,6 +45,7 @@
 		<li><a href="/">Home</a></li>
 		<li><a href="/gallery">Gallerij</a></li>
 		<li><a href="/artists">Kustenaars</a></li>
+		<li><a href="/reservations">Reserveringen</a></li>
 	</ul>
 </div>
 
@@ -62,9 +63,13 @@
 				    	<span class="caret"></span>
 				  	</button>
 				  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				  		<li><a href="#">Fotografie</a></li>
+				  		<li><a href="#">Fotografie / Multimedia</a></li>
 				  		<li><a href="#">Kunstenaars</a></li>
-				  		<li><a href="#">Tekeningen</a></li>
+				  		<li><a href="#">Tekeningen / Grafiek</a></li>
+				  		<li><a href="#">Meubels</a></li>
+				  		<li><a href="#">Onderwerp</a></li>
+				  		<li><a href="#">Schilderkunst</a></li>
+				  		<li><a href="#">Ruimtelijk / Beelden</a></li>
 				  		<li><a href="#">Vormgeving</a></li>
 					</ul>
 				</div>

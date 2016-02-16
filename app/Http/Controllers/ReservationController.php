@@ -76,6 +76,7 @@ class ReservationController extends Controller {
 		$reservation->artwork_id = Input::get('artwork-id');
 		$reservation->from_date = Input::get('from-date');
 		$reservation->to_date = Input::get('to-date');
+		$reservation->delivery_adress = Input::get('delivery_adress');
 
 		$artwork = Artwork::findOrFail(Input::get('artwork-id'));
 
