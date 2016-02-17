@@ -27,8 +27,8 @@
 <body ng-app="application">
 
 <div class="navmenu navmenu-default navmenu-fixed-right">
-	<a class="navmenu-brand" href="#">DaVinci Galleria</a>
-	<ul class="nav navmenu-nav">
+	<a class="navmenu-brand" href="/">DaVinci Galleria</a>
+	<ul style="margin-bottom:0px;" class="nav navmenu-nav">
 		@if (Auth::guest())
 			<li><a href="/auth/login">Login</a></li>
 			<li><a href="/auth/register">Registeer</a></li>
@@ -52,7 +52,7 @@
 <div class="canvas">
 	<div class="navbar navbar-default navbar-fixed-top" style="position: relative;">
 		<div class="custom-navbar-left" style="float: left;">
-			<img src="{{ asset('images/logo.png') }}" alt="Logo Image" style="width: 80px; margin: 8px 0 0 10px;">
+			<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Image" style="width: 80px; margin: 8px 0 0 10px;"></a>
 		</div>
 			
 		<div class="custom-navbar-right" style="float: right;">
