@@ -12,6 +12,7 @@
 	{{-- <link href="{{ asset('/css/main.css') }}" rel="stylesheet"> --}}
 	{{-- <link href="{{ asset('/css/style.css') }}" rel="stylesheet"> --}}
 	<link rel="stylesheet" href="{{ asset('/css/darkroom.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	{{-- <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'> --}}
 	{{-- Tags --}}
