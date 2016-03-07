@@ -2369,9 +2369,11 @@ output {
   line-height: 1.42857143;
   color: #555555;
 }
+
+
 .form-control {
   display: block;
-  width: 20%!important;
+  width: 100%;
   float: right;
   height: 34px;
   padding: 6px 12px;
@@ -6274,4 +6276,11 @@ body,
 label,
 .checkbox label {
   font-weight: 300;
+}
+
+@media (min-width: 640px) {
+  #searchControlDiv {
+    width:320px!important;
+    right: 0;
+  }
 }
