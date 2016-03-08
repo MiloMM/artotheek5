@@ -28,7 +28,7 @@
 <body ng-app="application">
 
 <div class="navmenu navmenu-default navmenu-fixed-right">
-	<a class="navmenu-brand" href="/">DaVinci Galleria</a>
+	<a class="navmenu-brand" href="/">DaVinci Galleria TEST</a>
 	<ul style="margin-bottom:0px;" class="nav navmenu-nav">
 		@if (Auth::guest())
 			<li><a href="/auth/login">Login</a></li>
