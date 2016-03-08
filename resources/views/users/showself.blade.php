@@ -12,6 +12,11 @@
 		<p>Telefoon nummer: {{$user->telephone}}</p>
 		<p>Opleiding: {{$user->education}}</p>
 		<p>Leerjaar: {{$user->school_year}}</p>
+
+		<p>Overzicht werk: {{$user->overzicht_werk}}</p>
+		<p>Kostenplaatje: {{$user->kostenplaatje}}</p>
+		<p>Bezorg adres: {{$user->bezorg_adres}}</p>
+		<p>Domein afdeling: {{$user->domein_afdeling}}</p>
 	</div>
 	
 </div>
