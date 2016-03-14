@@ -27,7 +27,8 @@
 </head>
 <body ng-app="application">
 
-<div class="navmenu navmenu-default navmenu-fixed-right">
+<div id="custom_navmenu" class="custom_navmenu">
+	<span id="custom_navbar_toggle_two" class="glyphicon glyphicon-remove custom_glyphicon-remove"></span>
 	<a class="navmenu-brand" href="/">DaVinci Galleria</a>
 	<ul style="margin-bottom:0px;" class="nav navmenu-nav">
 		@if (Auth::guest())
@@ -48,6 +49,7 @@
 		<li><a href="/artists">Kustenaars</a></li>
 		<li><a href="/reservations">Reserveringen</a></li>
 	</ul>
+	
 </div>
 
 <div class="canvas">
@@ -78,7 +80,7 @@
 			<button id="searchControlBtn" class="btn btn-default" style="float: left; margin-top: 9px; padding: 5px 15px 5px 15px;">
 				<span class="glyphicon glyphicon-search"></span>
 			</button>
-		    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
+		    <button type="button" id="custom_navbar_toggle" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
@@ -118,6 +120,7 @@
 <script src="{{ asset('js/moment.min.js') }}"></script>
 <script src="{{ asset('js/fullcalendar.js') }}"></script>
 <script src="{{ asset('js/jasny-bs.js') }}"></script>
+<script src="{{ asset('js/navbar-toggle.js') }}"></script>
 <script>
 	var app = angular.module('application', ['ngSanitize']);
 

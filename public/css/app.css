@@ -21,12 +21,29 @@ html, body {
     z-index: 1;
 }
 
+.custom_navmenu {
+  background-color:rgba(84,53,91,0.8);
+  display:none;
+  z-index:5;
+  height: 100vh;
+  width: 300px;
+  position: fixed;
+  right:0;
+}
+
+.custom_glyphicon-remove {
+  font-size: 20px;
+  color:white;
+  padding: 19px;
+  float: right;
+}
+
 .canvas {
     position: relative;
     left: 0;
     z-index: 2;
     min-height: 100%;
-    padding: 50px 0 0 0;
+    padding: 0 0 0 0;
     background: #fff;
 }
 
@@ -3644,11 +3661,19 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   display: block;
   padding: 10px 15px;
+  color: white;
+}
+a.navmenu-brand {
+  color: white;
+}
+a.navmenu-brand:hover {
+  color: white;
+  background-color:rgba(84,53,91,0.3)!important;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color:rgba(84,53,91,0.2)!important;
 }
 .nav > li.disabled > a {
   color: #777777;
@@ -3663,7 +3688,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-  background-color: #eeeeee;
+  background-color:rgba(84,53,91,0.2)!important;
   border-color: #337ab7;
 }
 .nav .nav-divider {
