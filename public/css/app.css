@@ -37,6 +37,23 @@ html, body {
   float: right;
 }
 
+#custom_navmenu ul.nav li.dropdown ul.dropdown-menu {
+  padding: 0;
+  background: none;
+}
+#custom_navmenu ul.nav li.dropdown ul.dropdown-menu:hover {
+  background-color:rgba(84,53,91,0.2)!important;
+}
+
+#custom_navmenu ul.nav li.dropdown ul.dropdown-menu li a {
+  padding: 10px 15px 10px 30px;
+  color: white;
+}
+#custom_navmenu ul.nav li.dropdown ul.dropdown-menu li a:hover {
+  background: none;
+}
+
+
 .canvas {
     position: relative;
     left: 0;
