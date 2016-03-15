@@ -17,9 +17,12 @@ class AddColumnToUsers extends Migration {
 		    $table->string('telephone');
 		    $table->string('education');
 		    $table->string('school_year');
+		    $table->string('overzicht_werk');
+		    $table->string('kostenplaatje');
+		    $table->string('bezorg_adres');
+		    $table->string('domein_afdeling');
 		});
 	}
-	
 
 	/**
 	 * Reverse the migrations.
