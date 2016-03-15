@@ -66,14 +66,14 @@
 				    	<span class="caret"></span>
 				  	</button>
 				  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				  		<li><a href="#">Fotografie / Multimedia</a></li>
-				  		<li><a href="#">Kunstenaars</a></li>
-				  		<li><a href="#">Tekeningen / Grafiek</a></li>
-				  		<li><a href="#">Meubels</a></li>
-				  		<li><a href="#">Onderwerp</a></li>
-				  		<li><a href="#">Schilderkunst</a></li>
-				  		<li><a href="#">Ruimtelijk / Beelden</a></li>
-				  		<li><a href="#">Vormgeving</a></li>
+				  		<li><a href="#?search=1">Fotografie / Multimedia</a></li>
+						<li><a href="#?search=2">Kunstenaars</a></li>
+						<li><a href="#?search=3">Tekeningen / Grafiek</a></li>
+						<li><a href="#?search=4">Meubels</a></li>
+						<li><a href="#?search=5">Onderwerp</a></li>
+						<li><a href="#?search=6">Schilderkunst</a></li>
+						<li><a href="#?search=7">Ruimtelijk / Beelden</a></li>
+						<li><a href="#?search=8">Vormgeving</a></li>
 					</ul>
 				</div>
 			</div>
