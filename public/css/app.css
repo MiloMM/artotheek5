@@ -23,12 +23,11 @@ html, body {
 
 .custom_navmenu {
   background-color:rgba(84,53,91,0.8);
-  display:none;
   z-index:5;
   height: 100vh;
   width: 300px;
   position: fixed;
-  right:0;
+  right:-300px;
 }
 
 .custom_glyphicon-remove {
