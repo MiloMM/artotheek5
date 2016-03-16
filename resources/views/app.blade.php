@@ -1,3 +1,6 @@
+<?php
+	$search = ""
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
