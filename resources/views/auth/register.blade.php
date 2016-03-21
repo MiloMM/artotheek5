@@ -12,19 +12,61 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
+							<label class="col-md-4 control-label">Naam</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">E-Mail Adres</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label class="col-md-4 control-label">Telefoon Nummer</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="telephone" value="{{ old('telephone') }}">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-4 control-label">Opleiding</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="education" value="{{ old('education') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Leerjaar</label>
+							<div class="col-md-6">
+								<input type="number" class="form-control" name="school_year" value="{{ old('school_year') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Adres</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="delivery_address" value="{{ old('delivery_address') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Postcode</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="zip" value="{{ old('zip') }}">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-4 control-label">Sector/Afdeling</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="sector" value="{{ old('sector') }}">
+							</div>
+						</div>
+						
 						<div class="form-group">
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">

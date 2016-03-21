@@ -35,8 +35,14 @@ html, body {
   color:white;
   padding: 19px;
   float: right;
+  transition: transform 0.3s ease-out;
+  -webkit-transition: transform 0.3s ease-out;
+  cursor:pointer;
 }
-
+.custom_glyphicon-remove:hover {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
 #custom_navmenu ul.nav li.dropdown ul.dropdown-menu {
   padding: 0;
   background: none;
@@ -53,20 +59,19 @@ html, body {
   background: none;
 }
 
-
 .canvas {
-    position: relative;
-    left: 0;
-    z-index: 2;
-    min-height: 100%;
-    padding: 0 0 0 0;
-    background: #fff;
+  position: relative;
+  left: 0;
+  z-index: 2;
+  min-height: 100%;
+  padding: 0 0 0 0;
+  background: #fff;
 }
 
 @media (min-width: 0) {
-    .navbar-toggle {
-        display: block; /* force showing the toggle */
-    }
+  .navbar-toggle {
+      display: block; /* force showing the toggle */
+  }
 }
 
 @media (min-width: 992px) {
