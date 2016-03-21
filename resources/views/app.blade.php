@@ -1,5 +1,10 @@
 <?php
-	$search = ""
+if( isset($_GET['filter']) )
+{
+	$search="Zoek " . $_GET['filter'] . "..."; 
+}else{
+	$search="Zoek...";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,14 +74,14 @@
 				    	<span class="caret"></span>
 				  	</button>
 				  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				  		<li><a href="#?search=1">Fotografie / Multimedia</a></li>
-						<li><a href="#?search=2">Kunstenaars</a></li>
-						<li><a href="#?search=3">Tekeningen / Grafiek</a></li>
-						<li><a href="#?search=4">Meubels</a></li>
-						<li><a href="#?search=5">Onderwerp</a></li>
-						<li><a href="#?search=6">Schilderkunst</a></li>
-						<li><a href="#?search=7">Ruimtelijk / Beelden</a></li>
-						<li><a href="#?search=8">Vormgeving</a></li>
+				  		<li><a href="?filter=Fotografie / Multimedia">Fotografie / Multimedia</a></li>
+						<li><a href="?filter=Kunstenaars">Kunstenaars</a></li>
+						<li><a href="?filter=Tekeningen / Grafiek">Tekeningen / Grafiek</a></li>
+						<li><a href="?filter=Meubels">Meubels</a></li>
+						<li><a href="?filter=Onderwerp">Onderwerp</a></li>
+						<li><a href="?filter=Schilderkunst">Schilderkunst</a></li>
+						<li><a href="?filter=Ruimtelijk / Beelden">Ruimtelijk / Beelden</a></li>
+						<li><a href="?filter=Vormgeving">Vormgeving</a></li>
 					</ul>
 				</div>
 			</div>
@@ -91,7 +96,7 @@
 		</div>
 
 		<div id="searchControlDiv" style="position: absolute; bottom: -35px;  width: 100%; display: none;">
-			<input class="form-control" type="text" placeholder="Zoek..." />
+			<input class="form-control" type="text" placeholder="<?php echo $search;?>" />
 		</div>
 	</div>
 
