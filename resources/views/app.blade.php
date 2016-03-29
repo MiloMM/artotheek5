@@ -83,6 +83,7 @@ if( isset($_GET['filter']) )
 						<li><a href="?filter=Schilderkunst">Schilderkunst</a></li>
 						<li><a href="?filter=Ruimtelijk / Beelden">Ruimtelijk / Beelden</a></li>
 						<li><a href="?filter=Vormgeving">Vormgeving</a></li>
+						<li><a href="?filter=geen">Geen filter</a></li>
 					</ul>
 				</div>
 			</div>
