@@ -122,4 +122,9 @@ class UserController extends Controller {
 		//
 	}
 
+	public function Logout()
+	{
+		Auth::logout();
+    	return Redirect::to('auth/login');
+	}
 }

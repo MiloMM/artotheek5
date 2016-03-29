@@ -47,7 +47,7 @@ html, body {
   padding: 0;
   background: none;
 }
-#custom_navmenu ul.nav li.dropdown ul.dropdown-menu:hover {
+#custom_navmenu ul.nav li.dropdown ul.dropdown-menu li a:hover {
   background-color:rgba(84,53,91,0.2)!important;
 }
 
@@ -3686,6 +3686,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 a.navmenu-brand {
   color: white;
+  margin: 0px;
+  padding: 20px 15px;
 }
 a.navmenu-brand:hover {
   color: white;

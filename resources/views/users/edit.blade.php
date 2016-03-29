@@ -21,6 +21,12 @@
 							</div>
 						</div>
 						<div class="form-group">
+							{!! Form::label('Telefoon Nummer', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-11">
+								{!! Form::text('telephone', $user->telephone, ['class' => 'form-control', 'id' => 'tbx-telephone']) !!}
+							</div>
+						</div>
+						<div class="form-group">
 								<div class="col-md-6 col-md-offset-3">
 									{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
 								</div>

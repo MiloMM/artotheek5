@@ -47,6 +47,7 @@ if( isset($_GET['filter']) )
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
 				<ul class="dropdown-menu navmenu-nav">
 					<li><a href="/myprofile">My Profile</a></li>
+					<li><a href="{{ URL::to('logout') }}">Logout</a></li>
 				</ul>
 			</li>
 		@endif
