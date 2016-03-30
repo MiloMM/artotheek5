@@ -1,7 +1,11 @@
 <?php
 if( isset($_GET['filter']) )
 {
-	$search="Zoek " . $_GET['filter'] . "..."; 
+	if($_GET['filter'] != 'geen'){
+		$search="Zoek " . $_GET['filter'] . "...";
+	}else{
+		$search="Zoek...";
+	}
 }else{
 	$search="Zoek...";
 }
