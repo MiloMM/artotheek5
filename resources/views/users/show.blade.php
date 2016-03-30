@@ -4,20 +4,53 @@
 <div class="panel-heading">
 	<h1>Kunstenaar Profiel</h1>
 </div>
-		
 	<div class="panel-body">
-		<p>Naam: {{$user->name}}</p>
-		<p>E-mail: {{$user->email}}</p>
-		<p>Lid sinds: {{$user->created_at}}</p>
-		<p>Telefoon nummer: {{$user->telephone}}</p>
-		<p>Opleiding: {{$user->education}}</p>
-		<p>Leerjaar: {{$user->school_year}}</p>
-
-		<p>Overzicht werk: {{$user->overzicht_werk}}</p>
-		<p>Kostenplaatje: {{$user->kostenplaatje}}</p>
-		<p>Bezorg adres: {{$user->bezorg_adres}}</p>
-		<p>Domein afdeling: {{$user->domein_afdeling}}</p>
+		<table class=table>
+			<tr>
+				<td><b>Naam</b></td>
+				<td colspan="3">{{$user->name}}</td>
+			</tr>
+			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
+			<tr>
+				<td><b>E-mail</b></td>
+				<td colspan="3">{{$user->email}}</td>
+			</tr>
+			@endif
+			<tr>
+				<td><b>Lid sinds</b></td>
+				<td colspan="3">{{$user->created_at}}</td>
+			</tr>
+			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+			<tr>
+				<td><b>Telefoon nummer</b></td>
+				<td colspan="3">{{$user->telephone}}</td>
+			</tr>
+			@endif
+			<tr>
+				<td><b>Opleiding</b></td>
+				<td>{{$user->education}}</td>
+				<td><b>Leerjaar</b></td>
+				<td>{{$user->school_year}}</td>
+			</tr>
+			<tr>
+				<td><b>Overzicht werk</b></td>
+				<td colspan="3">{{$user->work_summary}}</td>
+			</tr>
+			<tr>
+				<td><b>Kostenplaatje</b></td>
+				<td colspan="3">{{$user->price}}</td>
+			</tr>
+			<tr>
+				<td><b>Bezorg adres</b></td>
+				<td>{{$user->delivery_address}}</td>
+				<td><b>Postcode</b></td>
+				<td>{{$user->zip}}</td>
+			</tr>
+			<tr>
+				<td><b>Sector/Afdeling</b></td>
+				<td colspan="3">{{$user->sector}}</td>
+			</tr>	
+		</table>
 	</div>
-	
 </div>
 @stop
