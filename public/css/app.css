@@ -3693,6 +3693,10 @@ a.navmenu-brand:hover {
   color: white;
   background-color:rgba(84,53,91,0.3)!important;
 }
+a.navmenu-brand:active {
+  color: white;
+  background-color:rgba(84,53,91,0.35)!important;
+}
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
