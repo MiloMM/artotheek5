@@ -20,13 +20,7 @@ html, body {
 .navmenu {
     z-index: 1;
 }
-a.custom-gallery-link h2 {
-  color:#333!important;
-}
-a.custom-gallery-link:hover {
-  color:#333!important;
-  text-decoration: none;
-}
+
 .custom_navmenu {
   background-color:rgba(84,53,91,0.8);
   z-index:5;
@@ -35,15 +29,7 @@ a.custom-gallery-link:hover {
   position: fixed;
   right:-300px;
 }
-#customSearchControlDiv {
-  background-color:#f8f8f8;
-  z-index: 3;
-  position:fixed;
-  top: -200px;
-  width: 100%;
-  height: 200px;
-  border-bottom: 1px solid #e7e7e7;
-}
+
 .custom_glyphicon-remove {
   font-size: 20px;
   color:white;
@@ -6342,4 +6328,11 @@ body,
 label,
 .checkbox label {
   font-weight: 300;
+}
+
+@media (min-width: 640px) {
+  #searchControlDiv {
+    width:320px!important;
+    right: 0;
+  }
 }

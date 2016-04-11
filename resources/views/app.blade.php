@@ -65,8 +65,6 @@ if( isset($_GET['filter']) )
 	
 </div>
 
-
-
 <div class="canvas">
 	<div class="navbar navbar-default navbar-fixed-top" style="position: relative;">
 		<div class="custom-navbar-left" style="float: left;">
@@ -93,7 +91,7 @@ if( isset($_GET['filter']) )
 					</ul>
 				</div>
 			</div>
-			<button id="customSearchControlBtn" class="btn btn-default" style="float: left; margin-top: 9px; padding: 5px 15px 5px 15px;">
+			<button id="searchControlBtn" class="btn btn-default" style="float: left; margin-top: 9px; padding: 5px 15px 5px 15px;">
 				<span class="glyphicon glyphicon-search"></span>
 			</button>
 		    <button type="button" id="custom_navbar_toggle" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
@@ -103,12 +101,11 @@ if( isset($_GET['filter']) )
 		    </button>
 		</div>
 
-		
+		<div id="searchControlDiv" style="position: absolute; bottom: -35px;  width: 100%; display: none;">
+			<input class="form-control" type="text" placeholder="<?php echo $search;?>" />
+		</div>
 	</div>
 
-	<div id="customSearchControlDiv">
-		<input class="form-control" type="text" placeholder="<?php echo $search;?>" />			
-	</div>
 
 	<div class="container">
 		@yield('content')

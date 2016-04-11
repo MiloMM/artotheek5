@@ -13,7 +13,7 @@
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia quod reprehenderit, pariatur alias, rem illo modi earum distinctio voluptatibus est, corrupti delectus. Adipisci similique eveniet distinctio tenetur voluptatem iusto dolorum.
 		</p>
 	<div class="panel-header">
-		<div style="text-align: center;"><a href="/gallery" class="custom-gallery-link"><h2>Gallerij</h2></a></div>
+		<div style="text-align: center;"><h2>Gallerij</h2></div>
 	</div>
 		<div class="container-fluid" ng-controller="galleryController">
 			<div class="col-md-2 col-xs-6 thumb artwork-container" ng-repeat="artwork in artworks">
