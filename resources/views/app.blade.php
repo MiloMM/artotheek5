@@ -89,84 +89,84 @@ if( isset($_GET['filter']) )
 						<li><a href="?filter=Vormgeving">Vormgeving</a></li>
 						<li><a href="/">Geen filter</a></li>
 					</ul>
-<!--		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li>Fotografie / multimedia</li>
-				<li>Kunstenaars</li>
-				<li>Grafiek / tekeningen</li>
-				<li>Meubels</li>
-				<li>Onderwerp</li>
-				<li>Schilderkunst</li>
-				<li>Ruimtelijk / beelden / sculptuur</li>
-				<li>Vormgeving</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Fotografie / multimedia
-				<li>Architectuur</li>
-				<li>Dieren</li>
-				<li>Figuren</li>
-				<li>Genre</li>
-				<li>Interieur</li>
-				<li>Landschap</li>
-				<li>Sculptuur / object / beeld</li>
-				<li>Stilleven</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Kunstenaars op alfabet
+<!--		<select aria-labelledby="dropdownMenu1">
+				<option>Fotografie / multimedia</option>
+				<option>Kunstenaars</option>
+				<option>Grafiek / tekeningen</option>
+				<option>Meubels</option>
+				<option>Onderwerp</option>
+				<option>Schilderkunst</option>
+				<option>Ruimtelijk / beelden / sculptuur</option>
+				<option>Vormgeving</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Fotografie / multimedia
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Sculptuur / object / beeld</option>
+				<option>Stilleven</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Kunstenaars op alfabet
 				...
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Grafiek / tekeningen
-				<li>Abstract</li>
-				<li>Architectuur</li>
-				<li>Dieren</li>
-				<li>Figuren</li>
-				<li>Genre</li>
-				<li>Interieur</li>
-				<li>Landschap</li>
-				<li>Meubel</li>
-				<li>Sculptuur / object</li>
-				<li>Stilleven</li>
-				<li>Vormgeving</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Meubels
-				<li>Stoelen</li>
-				<li>Tafels</li>
-				<li>Banken</li>
-				<li>Overige</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Onderwerp
-				<li>Abstract</li>
-				<li>Architectuur</li>
-				<li>Dieren</li>
-				<li>Figuren</li>
-				<li>Genre</li>
-				<li>Interieur</li>
-				<li>Landschap</li>
-				<li>Meubel</li>
-				<li>patronen</li>
-				<li>Sculptuur / object</li>
-				<li>Stilleven</li>
-				<li>Vormgeving</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Schilderkunst
-				<li>Abstract</li>
-				<li>Architectuur</li>
-				<li>Dieren</li>
-				<li>Figuren</li>
-				<li>Genre</li>
-				<li>Interieur</li>
-				<li>Landschap</li>
-				<li>Meubel</li>
-				<li>Patronen</li>
-				<li>Sculptuur / object</li>
-				<li>Stilleven</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Ruimtelijk / beelden / sculptuur
-				<li>Abstract</li>
-				<li>Dieren</li>
-				<li>Figuren</li>
-			</ul>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Vormgeving
-				<li>Letters</li>
-				<li>Vormen</li>
-			</ul>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Grafiek / tekeningen
+				<option>Abstract</option>
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Meubel</option>
+				<option>Sculptuur / object</option>
+				<option>Stilleven</option>
+				<option>Vormgeving</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Meubels
+				<option>Stoelen</option>
+				<option>Tafels</option>
+				<option>Banken</option>
+				<option>Overige</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Onderwerp
+				<option>Abstract</option>
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Meubel</option>
+				<option>patronen</option>
+				<option>Sculptuur / object</option>
+				<option>Stilleven</option>
+				<option>Vormgeving</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Schilderkunst
+				<option>Abstract</option>
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Meubel</option>
+				<option>Patronen</option>
+				<option>Sculptuur / object</option>
+				<option>Stilleven</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Ruimtelijk / beelden / sculptuur
+				<option>Abstract</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Vormgeving
+				<option>Letters</option>
+				<option>Vormen</option>
+			</select>
 -->	
 				</div>
 			</div>
