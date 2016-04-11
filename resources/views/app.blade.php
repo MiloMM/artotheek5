@@ -181,7 +181,7 @@ if( isset($_GET['filter']) )
 		</div>
 	</div>
 
-	<div id="customSearchControlDiv" style="position: absolute; bottom: -35px;  width: 100%; display: none;">
+	<div id="customSearchControlDiv">
 		<input class="form-control" type="text" placeholder="<?php echo $search;?>" />	
 	</div>
 
@@ -190,7 +190,7 @@ if( isset($_GET['filter']) )
 	</div>
 </div>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries           hekwefvysv-->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
