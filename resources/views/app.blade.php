@@ -191,7 +191,7 @@ if( isset($_GET['filter']) )
 	</div>
 </div>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries           hekwefvysv-->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
