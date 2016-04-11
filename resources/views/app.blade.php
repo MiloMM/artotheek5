@@ -91,6 +91,85 @@ if( isset($_GET['filter']) )
 						<li><a href="?filter=Vormgeving">Vormgeving</a></li>
 						<li><a href="/">Geen filter</a></li>
 					</ul>
+<!--		<select aria-labelledby="dropdownMenu1">
+				<option>Fotografie / multimedia</option>
+				<option>Kunstenaars</option>
+				<option>Grafiek / tekeningen</option>
+				<option>Meubels</option>
+				<option>Onderwerp</option>
+				<option>Schilderkunst</option>
+				<option>Ruimtelijk / beelden / sculptuur</option>
+				<option>Vormgeving</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Fotografie / multimedia
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Sculptuur / object / beeld</option>
+				<option>Stilleven</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Kunstenaars op alfabet
+				...
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Grafiek / tekeningen
+				<option>Abstract</option>
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Meubel</option>
+				<option>Sculptuur / object</option>
+				<option>Stilleven</option>
+				<option>Vormgeving</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Meubels
+				<option>Stoelen</option>
+				<option>Tafels</option>
+				<option>Banken</option>
+				<option>Overige</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Onderwerp
+				<option>Abstract</option>
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Meubel</option>
+				<option>patronen</option>
+				<option>Sculptuur / object</option>
+				<option>Stilleven</option>
+				<option>Vormgeving</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Schilderkunst
+				<option>Abstract</option>
+				<option>Architectuur</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+				<option>Genre</option>
+				<option>Interieur</option>
+				<option>Landschap</option>
+				<option>Meubel</option>
+				<option>Patronen</option>
+				<option>Sculptuur / object</option>
+				<option>Stilleven</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Ruimtelijk / beelden / sculptuur
+				<option>Abstract</option>
+				<option>Dieren</option>
+				<option>Figuren</option>
+			</select>
+			<select aria-labelledby="dropdownMenu1"> Vormgeving
+				<option>Letters</option>
+				<option>Vormen</option>
+			</select>
+-->	
 				</div>
 			</div>
 			<button id="customSearchControlBtn" class="btn btn-default" style="float: left; margin-top: 9px; padding: 5px 15px 5px 15px;">
@@ -103,7 +182,13 @@ if( isset($_GET['filter']) )
 		    </button>
 		</div>
 
+<<<<<<< HEAD
 		
+=======
+		<div id="searchControlDiv" style="position: absolute; bottom: -35px;  width: 100%; display: none;">
+			<input class="form-control" type="text" placeholder="<?php echo $search;?>" />	
+		</div>
+>>>>>>> origin/master
 	</div>
 
 	<div id="customSearchControlDiv">
@@ -151,5 +236,6 @@ if( isset($_GET['filter']) )
 		});
 	});
 </script>
+<!-- Hier komt nog een extra script -->
 </body>
 </html>
