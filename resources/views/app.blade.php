@@ -89,6 +89,85 @@ if( isset($_GET['filter']) )
 						<li><a href="?filter=Vormgeving">Vormgeving</a></li>
 						<li><a href="/">Geen filter</a></li>
 					</ul>
+<!--		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>Fotografie / multimedia</li>
+				<li>Kunstenaars</li>
+				<li>Grafiek / tekeningen</li>
+				<li>Meubels</li>
+				<li>Onderwerp</li>
+				<li>Schilderkunst</li>
+				<li>Ruimtelijk / beelden / sculptuur</li>
+				<li>Vormgeving</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Fotografie / multimedia
+				<li>Architectuur</li>
+				<li>Dieren</li>
+				<li>Figuren</li>
+				<li>Genre</li>
+				<li>Interieur</li>
+				<li>Landschap</li>
+				<li>Sculptuur / object / beeld</li>
+				<li>Stilleven</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Kunstenaars op alfabet
+				...
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Grafiek / tekeningen
+				<li>Abstract</li>
+				<li>Architectuur</li>
+				<li>Dieren</li>
+				<li>Figuren</li>
+				<li>Genre</li>
+				<li>Interieur</li>
+				<li>Landschap</li>
+				<li>Meubel</li>
+				<li>Sculptuur / object</li>
+				<li>Stilleven</li>
+				<li>Vormgeving</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Meubels
+				<li>Stoelen</li>
+				<li>Tafels</li>
+				<li>Banken</li>
+				<li>Overige</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Onderwerp
+				<li>Abstract</li>
+				<li>Architectuur</li>
+				<li>Dieren</li>
+				<li>Figuren</li>
+				<li>Genre</li>
+				<li>Interieur</li>
+				<li>Landschap</li>
+				<li>Meubel</li>
+				<li>patronen</li>
+				<li>Sculptuur / object</li>
+				<li>Stilleven</li>
+				<li>Vormgeving</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Schilderkunst
+				<li>Abstract</li>
+				<li>Architectuur</li>
+				<li>Dieren</li>
+				<li>Figuren</li>
+				<li>Genre</li>
+				<li>Interieur</li>
+				<li>Landschap</li>
+				<li>Meubel</li>
+				<li>Patronen</li>
+				<li>Sculptuur / object</li>
+				<li>Stilleven</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Ruimtelijk / beelden / sculptuur
+				<li>Abstract</li>
+				<li>Dieren</li>
+				<li>Figuren</li>
+			</ul>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> Vormgeving
+				<li>Letters</li>
+				<li>Vormen</li>
+			</ul>
+-->	
 				</div>
 			</div>
 			<button id="searchControlBtn" class="btn btn-default" style="float: left; margin-top: 9px; padding: 5px 15px 5px 15px;">
@@ -102,7 +181,7 @@ if( isset($_GET['filter']) )
 		</div>
 
 		<div id="searchControlDiv" style="position: absolute; bottom: -35px;  width: 100%; display: none;">
-			<input class="form-control" type="text" placeholder="<?php echo $search;?>" />
+			<input class="form-control" type="text" placeholder="<?php echo $search;?>" />	
 		</div>
 	</div>
 
@@ -148,5 +227,6 @@ if( isset($_GET['filter']) )
 		});
 	});
 </script>
+<!-- Hier komt nog een extra script -->
 </body>
 </html>
