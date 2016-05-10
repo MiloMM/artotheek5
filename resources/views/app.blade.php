@@ -62,7 +62,6 @@ if( isset($_GET['filter']) )
 		<li><a href="/artists">Kustenaars</a></li>
 		<li><a href="/reservations">Reserveringen</a></li>
 	</ul>
-	
 </div>
 
 <div class="canvas">
@@ -89,7 +88,7 @@ if( isset($_GET['filter']) )
 						<li><a href="?filter=Vormgeving">Vormgeving</a></li>
 						<li><a href="/">Geen filter</a></li>
 					</ul>
-<!--		<select aria-labelledby="dropdownMenu1">
+<!--		<select class="form-control">
 				<option>Fotografie / multimedia</option>
 				<option>Kunstenaars</option>
 				<option>Grafiek / tekeningen</option>
@@ -99,7 +98,7 @@ if( isset($_GET['filter']) )
 				<option>Ruimtelijk / beelden / sculptuur</option>
 				<option>Vormgeving</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Fotografie / multimedia
+			<select class="form-control"> Fotografie / multimedia
 				<option>Architectuur</option>
 				<option>Dieren</option>
 				<option>Figuren</option>
@@ -109,10 +108,10 @@ if( isset($_GET['filter']) )
 				<option>Sculptuur / object / beeld</option>
 				<option>Stilleven</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Kunstenaars op alfabet
+			<select class="form-control"> Kunstenaars op alfabet
 				...
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Grafiek / tekeningen
+			<select class="form-control"> Grafiek / tekeningen
 				<option>Abstract</option>
 				<option>Architectuur</option>
 				<option>Dieren</option>
@@ -125,13 +124,13 @@ if( isset($_GET['filter']) )
 				<option>Stilleven</option>
 				<option>Vormgeving</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Meubels
+			<select class="form-control"> Meubels
 				<option>Stoelen</option>
 				<option>Tafels</option>
 				<option>Banken</option>
 				<option>Overige</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Onderwerp
+			<select class="form-control"> Onderwerp
 				<option>Abstract</option>
 				<option>Architectuur</option>
 				<option>Dieren</option>
@@ -145,7 +144,7 @@ if( isset($_GET['filter']) )
 				<option>Stilleven</option>
 				<option>Vormgeving</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Schilderkunst
+			<select class="form-control"> Schilderkunst
 				<option>Abstract</option>
 				<option>Architectuur</option>
 				<option>Dieren</option>
@@ -158,12 +157,12 @@ if( isset($_GET['filter']) )
 				<option>Sculptuur / object</option>
 				<option>Stilleven</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Ruimtelijk / beelden / sculptuur
+			<select class="form-control"> Ruimtelijk / beelden / sculptuur
 				<option>Abstract</option>
 				<option>Dieren</option>
 				<option>Figuren</option>
 			</select>
-			<select aria-labelledby="dropdownMenu1"> Vormgeving
+			<select class="form-control"> Vormgeving
 				<option>Letters</option>
 				<option>Vormen</option>
 			</select>
@@ -181,8 +180,52 @@ if( isset($_GET['filter']) )
 		</div>
 	</div>
 
-	<div id="customSearchControlDiv">
-		<input class="form-control" type="text" placeholder="<?php echo $search;?>" />	
+	<div id="customSearchControlDiv" margin-top="5px">
+	<form class="form-horizontal" role="form" method="GET" action="{{ url('/gallery/search') }}">
+		<!--<input type="hidden" name="_token" value="{{ csrf_token() }}">-->
+		<input class="form-control" name="keyword" type="text" placeholder="<?=$search;?>" required />
+		<button type="submit">Zoek</button>
+	
+		<div class="col-md-8 col-md-offset-2">
+			<div style="margin-bottom: 5px;" class="row">
+				<label class="custom-searchbar-label">Kunstenaar</label>
+				<select name="kunstenaar" class="custom-select-class-large">
+					<option value="">Alle kunstenaars</option>
+					<option>Alfred Jodocus Kwak</option>
+					<option>Friedrich Nietzsche</option>
+				</select>
+				<label class="custom-searchbar-label-small">Kleur</label>
+				<select name="kleur" class="custom-select-class-small">
+					<option value="">Alle kleuren</option>
+					<option>Rood</option>
+					<option>Blauw</option>
+					<option>Geel</option>
+				</select>
+			</div>
+			<div style="margin-bottom: 5px;" class="row">
+				<label class="custom-searchbar-label">Onderwerp</label>
+				<select name="onderwerp" class="custom-select-class-large">
+					<option>Eten</option>
+					<option>Drieren</option>
+				</select>
+				<label class="custom-searchbar-label-small">Grootte</label>
+				<input name="grootte" class="custom-select-class-large" placeholder="Voorbeeld: 20 x 20" />
+			</div>
+			<div style="margin-bottom: 5px;" class="row">
+				<label class="custom-searchbar-label">Materiaal</label>
+				<select name="materiaal" class="custom-select-class-large">
+					<option>Hout</option>
+					<option>Metaal</option>
+				</select>
+				<label class="custom-searchbar-label-small">Techniek</label>
+				<select name="techniek" class="custom-select-class-small">
+					<option>Airbrush</option>
+					<option>Impasto</option>
+					<option>Penseeltekening</option>
+				</select>
+			</div>
+		</div>
+	</form>
 	</div>
 
 	<div class="container">
@@ -217,14 +260,6 @@ if( isset($_GET['filter']) )
 	var app = angular.module('application', ['ngSanitize']);
 
 	CKEDITOR.env.isCompatible = true;
-
-	$(function () {
-		$searchControlBtn = $('#searchControlBtn');
-		$searchControlDiv = $('#searchControlDiv');
-		$searchControlBtn.click(function () {
-			$searchControlDiv.fadeToggle(300);
-		});
-	});
 </script>
 </body>
 </html>

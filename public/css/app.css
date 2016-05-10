@@ -53,6 +53,28 @@ a.custom-gallery-link:hover {
   -webkit-transition: transform 0.3s ease-out;
   cursor:pointer;
 }
+select.custom-select-class-large {
+  width: 20%;
+  height: 4vh;
+  margin-right: 5%
+}
+select.custom-select-class-small {
+  width: 10%;
+  height: 4vh;
+  margin-right: 5%
+}
+label.custom-searchbar-label {
+  font-size: 19px;
+  width: 10%;
+  margin: 0 15px 1px 0;
+  vertical-align: middle;
+}
+label.custom-searchbar-label-small {
+  font-size: 19px;
+  width: 8%;
+  margin: 0 15px 1px 0;
+  vertical-align: middle;
+}
 .custom_glyphicon-remove:hover {
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);

@@ -33,6 +33,18 @@
 							</div>
 						</div>
 						<div class="form-group">
+							{!! Form::label('Colour', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), 'Rood', ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::select('material', array('hout' => 'Hout', 'metaal' => 'Metaal'), 'Hout', ['class' => 'form-control', 'id' => 'tbx-material']) !!}
+							</div>
+						</div>
+						<div class="form-group">
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
 								{!! Form::text('category', null, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
