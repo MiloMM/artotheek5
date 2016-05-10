@@ -33,7 +33,7 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="col-md-4 control-label">Opleiding</label>
+							<label class="col-md-4 control-label">Opleiding / Sector</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="education" value="{{ old('education') }}">
 							</div>
@@ -57,13 +57,6 @@
 							<label class="col-md-4 control-label">Postcode</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="zip" value="{{ old('zip') }}">
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-md-4 control-label">Sector/Afdeling</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="sector" value="{{ old('sector') }}">
 							</div>
 						</div>
 						

@@ -27,7 +27,7 @@
 			</tr>
 			@endif
 			<tr>
-				<td><b>Opleiding</b></td>
+				<td><b>Opleiding / Sector</b></td>
 				<td>{{$user->education}}</td>
 				<td><b>Leerjaar</b></td>
 				<td>{{$user->school_year}}</td>
@@ -46,10 +46,6 @@
 				<td><b>Postcode</b></td>
 				<td>{{$user->zip}}</td>
 			</tr>
-			<tr>
-				<td><b>Sector/Afdeling</b></td>
-				<td colspan="3">{{$user->sector}}</td>
-			</tr>	
 		</table>
 	</div>
 </div>
