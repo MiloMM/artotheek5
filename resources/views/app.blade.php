@@ -183,11 +183,11 @@ if( isset($_GET['filter']) )
 	<div id="customSearchControlDiv" margin-top="5px">
 	<form class="form-horizontal" role="form" method="GET" action="{{ url('/gallery/search') }}">
 		<!--<input type="hidden" name="_token" value="{{ csrf_token() }}">-->
-		<input class="form-control" name="keyword" type="text" placeholder="<?=$search;?>" required />
-		<button type="submit">Zoek</button>
+		
+		
 	
 		<div class="col-md-8 col-md-offset-2">
-			<div style="margin-bottom: 5px;" class="row">
+			<div class="row custom-searchbar-row">
 				<label class="custom-searchbar-label">Kunstenaar</label>
 				<select name="kunstenaar" class="custom-select-class-large">
 					<option value="">Alle kunstenaars</option>
@@ -201,28 +201,34 @@ if( isset($_GET['filter']) )
 					<option>Blauw</option>
 					<option>Geel</option>
 				</select>
+				<label class="custom-searchbar-label">Trefwoorden</label>
 			</div>
-			<div style="margin-bottom: 5px;" class="row">
+			<div class="row custom-searchbar-row">
 				<label class="custom-searchbar-label">Onderwerp</label>
 				<select name="onderwerp" class="custom-select-class-large">
+					<option value="">Alle Onderwerpen</option>
 					<option>Eten</option>
-					<option>Drieren</option>
+					<option>Dieren</option>
 				</select>
 				<label class="custom-searchbar-label-small">Grootte</label>
-				<input name="grootte" class="custom-select-class-large" placeholder="Voorbeeld: 20 x 20" />
+				<input name="grootte" class="custom-textfield-class-small" placeholder="Voorbeeld: 20 x 20" />
+				<input class="custom-textfield-class-large" name="keyword" type="text" placeholder="<?=$search;?>" required />
 			</div>
-			<div style="margin-bottom: 5px;" class="row">
+			<div class="row custom-searchbar-row">
 				<label class="custom-searchbar-label">Materiaal</label>
 				<select name="materiaal" class="custom-select-class-large">
+					<option value="">Alle Materialen</option>
 					<option>Hout</option>
 					<option>Metaal</option>
 				</select>
 				<label class="custom-searchbar-label-small">Techniek</label>
 				<select name="techniek" class="custom-select-class-small">
+					<option value="">Alle Technieken</option>
 					<option>Airbrush</option>
 					<option>Impasto</option>
 					<option>Penseeltekening</option>
 				</select>
+				<button class="custom-searchbar-button" type="submit">Zoek</button>
 			</div>
 		</div>
 	</form>

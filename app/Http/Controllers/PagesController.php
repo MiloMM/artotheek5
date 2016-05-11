@@ -68,13 +68,35 @@ class PagesController extends Controller {
 			6 => $request->input('techniek')
 		];
         $NoSpace = trim($SearchQuery[0], ' ');
-        $result = Artwork::where('title', 'like', '%'.$NoSpace.'%')->get();
+        $result[0] = strlen($NoSpace);
+        $result[1] = Artwork::where('title', 'like', '%'.$NoSpace.'%');
 
         if ($SearchQuery[1]) {
-        	$result = Artwork::and()->get();
+        	str_replace('+', ' ', $SearchQuery[1]);
+        	$result[1] = $result[1]->where('artist', '=', $SearchQuery[1]);
         }
+        if ($SearchQuery[2]) {
+        	str_replace('+', ' ', $SearchQuery[2]);
+        	$result[1] = $result[1]->where('colour', '=', $SearchQuery[2]);
+        }
+        if ($SearchQuery[3]) {
+        	str_replace('+', ' ', $SearchQuery[3]);
+        	$result[1] = $result[1]->where('category', '=', $SearchQuery[3]);
+        }
+        if ($SearchQuery[4]) {
+        	str_replace('+', ' ', $SearchQuery[4]);
+        	$result[1] = $result[1]->where('size', '=', $SearchQuery[4]);
+        }
+        if ($SearchQuery[5]) {
+        	str_replace('+', ' ', $SearchQuery[5]);
+        	$result[1] = $result[1]->where('material', '=', $SearchQuery[5]);
+        }
+        if ($SearchQuery[6]) {
+        	str_replace('+', ' ', $SearchQuery[6]);
+        	$result[1] = $result[1]->where('technique', '=', $SearchQuery[6]);
+        }
+        $result[1] = $result[1]->get();
 
-     		
 		    return View::make('/gallery/search')->with('result', $result);
 		} 
 		else 
