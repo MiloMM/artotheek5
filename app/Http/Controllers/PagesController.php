@@ -71,6 +71,7 @@ class PagesController extends Controller {
         $result = Artwork::where('title', 'like', '%'.$NoSpace.'%')->get();
 
         if ($SearchQuery[1]) {
+        	//Hier is een fout.
         	$result = Artwork::and()->get();
         }
 
