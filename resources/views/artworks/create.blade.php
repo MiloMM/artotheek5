@@ -238,6 +238,8 @@
 			form.append('title', $('#tbx-title').val());
 			form.append('artist', $('#tbx-artist').val());
 			form.append('technique', $('#tbx-technique').val());
+			form.append('colour', $('#tbx-colour').val());
+			form.append('material', $('#tbx-material').val());
 			form.append('category', $('#tbx-category').val());
 			form.append('size', $('#tbx-size').val());
 			form.append('price', $('#tbx-price').val());

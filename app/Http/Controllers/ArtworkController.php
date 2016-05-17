@@ -85,8 +85,8 @@ class ArtworkController extends Controller {
 			$artwork->category = Input::get('category');
 			$artwork->size = Input::get('size');
 			$artwork->price = Input::get('price');
-			/*$artwork->colour = Input::get('colour');
-			$artwork->material = Input::get('material');*/
+			$artwork->colour = Input::get('colour');
+			$artwork->material = Input::get('material');
 
 			// get the tags [test,mark] <-- format and split them by a , to an array
 			$tags = explode(',', $input['tags']);
