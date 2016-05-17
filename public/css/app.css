@@ -41,7 +41,7 @@ a.custom-gallery-link:hover {
   position:fixed;
   top: -200px;
   width: 100%;
-  height: 200px;
+  height: 170px;
   border-bottom: 1px solid #e7e7e7;
 }
 .custom_glyphicon-remove {
@@ -53,20 +53,35 @@ a.custom-gallery-link:hover {
   -webkit-transition: transform 0.3s ease-out;
   cursor:pointer;
 }
+.custom-searchbar-row:first-of-type{
+  margin-top: 33px;
+}
+.custom-searchbar-row {
+  margin-bottom: 5px;
+}
 select.custom-select-class-large {
   width: 20%;
   height: 4vh;
   margin-right: 5%
 }
 select.custom-select-class-small {
-  width: 10%;
+  width: 15%;
+  height: 4vh;
+  margin-right: 5%
+}
+input.custom-textfield-class-large {
+  width: 30%;
+  height: 4vh;
+}
+input.custom-textfield-class-small {
+  width: 15%;
   height: 4vh;
   margin-right: 5%
 }
 label.custom-searchbar-label {
   font-size: 19px;
   width: 10%;
-  margin: 0 15px 1px 0;
+  margin: 0 25px 1px 0;
   vertical-align: middle;
 }
 label.custom-searchbar-label-small {
@@ -74,6 +89,9 @@ label.custom-searchbar-label-small {
   width: 8%;
   margin: 0 15px 1px 0;
   vertical-align: middle;
+}
+button.custom-searchbar-button {
+  padding: 3px 30px 3px 30px;
 }
 .custom_glyphicon-remove:hover {
   transform: rotate(180deg);

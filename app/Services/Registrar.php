@@ -51,7 +51,6 @@ class Registrar implements RegistrarContract {
 			'education' => $data['education'],
 			'school_year' => $data['school_year'],
 			'delivery_address' => $data['delivery_address'],
-			'sector' => $data['sector'],
 			'zip' => $data['zip']
 		]);
 
