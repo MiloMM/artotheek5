@@ -19,6 +19,9 @@ Route::get('/gallery/search', 'PagesController@gallerySearch');
 
 Route::get('artworks/archived', 'ArtworkController@showArchived');
 
+Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
+
+Route::resource('filters', 'FilterController');
 Route::resource('users', 'UserController');
 Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');

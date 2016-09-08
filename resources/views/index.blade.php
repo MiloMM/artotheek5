@@ -4,7 +4,6 @@
 	<div class="panel-header">
 		<div style="text-align: center;"><h1>Da Vinci Artotheek</h1></div>
 	</div>
-	
 	<div class="panel-body">
 		<div style="text-align: center;"><p>Hier komt de super mooie homepage van de artotheek.</p></div>
 		<p>
