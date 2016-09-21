@@ -14,6 +14,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/gallery', 'PagesController@gallery');
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/artists' , 'PagesController@artists');
+Route::get('/news' , 'NewsController@index');
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
 
 Route::get('artworks/archived', 'ArtworkController@showArchived');

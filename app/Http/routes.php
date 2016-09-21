@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'PagesController@index');
+Route::get('/about', 'PagesController@about');
 Route::get('/gallery', 'PagesController@gallery');
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/artists' , 'PagesController@artists');

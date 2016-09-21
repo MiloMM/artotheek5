@@ -6385,3 +6385,19 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+
+#searchtoggle_two {
+	position: absolute;
+	right: 0;
+}
+
+.footer {
+	background: #262626;
+	padding: 45px;
+	color: white;
+}
+
+.footer h4 {
+	margin-top: 0;
+	font-weight: bold;
+}

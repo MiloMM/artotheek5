@@ -1,4 +1,5 @@
 <div id="custom_searchmenu" class="custom_searchmenu">
+	<span id="searchtoggle_two" class="glyphicon glyphicon-remove custom_glyphicon-remove"></span>
 	<img class="site_logo_menu" src="{{ asset('images/Galleria_logo_small.png') }}">
 	{!! Form::open(array('url' => 'gallery/search', 'method' => 'get', 'required')) !!}
 		{!! Form::token() !!}

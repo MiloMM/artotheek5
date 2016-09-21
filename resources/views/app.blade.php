@@ -31,12 +31,13 @@
 	<span id="custom_navbar_toggle_two" class="glyphicon glyphicon-remove custom_glyphicon-remove"></span>
 	<a class="navmenu-brand" href="/">DaVinci Galleria</a>
 	<ul class="nav navmenu-nav">
-		<li><a href="#">Over DaVinci Galleria</a></li>
+		<li><a href="/about">Over DaVinci Galleria</a></li>
 		<li><a href="/gallery">Gallerij</a></li>
 		<li><a href="#">Uitleenvoorwaarden</a></li>
 		<li><a href="#">Nieuws</a></li>
 		<li><a href="/artists">Kustenaars</a></li>
 		<li><a href="/reservations">Reserveringen</a></li>
+		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 			<li><a href="/filters">Filters Aanpassen</a></li>
 		@endif
@@ -78,7 +79,24 @@
 	</div>
 
 	<div class="container">
-		@yield('content')
+		<div class="row">
+			@yield('content')
+		</div>
+	</div>
+	
+</div>
+
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h4>Contactgegevens</h4>
+				Da Vinci Artotheek<br>
+				Straat 123<br>
+				1234 AB Stad<br>
+				artotheek@davinci.nl<br>
+			</div>
+		</div>
 	</div>
 </div>
 

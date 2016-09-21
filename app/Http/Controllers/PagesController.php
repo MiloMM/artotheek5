@@ -111,4 +111,9 @@ class PagesController extends Controller {
 			return Redirect::action('PagesController@gallery');
 		}
 	}
+	
+	public function about()
+	{
+		return view('about/index');
+	}
 }

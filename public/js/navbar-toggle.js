@@ -99,7 +99,10 @@ function filter_toggle_function() // Zorgt dat de filters uitklappen in het zoek
     }
 }
 
+filter_toggle_function();
 $("#expandtext").on('click',function(){filter_toggle_function()});
 $("#searchtoggle").on('click',function(){search_toggle_function()});
+$("#searchtoggle_two").on('click',function(){search_toggle_function()});
+$("#searchbutton_menu").on('click',function(){search_toggle_function()});
 $("#custom_navbar_toggle").on('click',function(){menu_toggle_function()});
 $("#custom_navbar_toggle_two").on('click',function(){menu_toggle_function()});
