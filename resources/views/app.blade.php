@@ -37,7 +37,7 @@
 		<li><a href="#">Nieuws</a></li>
 		<li><a href="/artists">Kustenaars</a></li>
 		<li><a href="/reservations">Reserveringen</a></li>
-		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</a></li>
+		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken<span class="glyphicon glyphicon-search" style="margin-left:10px;"></span></a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 			<li><a href="/filters">Filters Aanpassen</a></li>
 		@endif
@@ -83,10 +83,7 @@
 			@yield('content')
 		</div>
 	</div>
-	
-</div>
-
-<div class="footer">
+	<div class="footer">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
@@ -98,6 +95,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

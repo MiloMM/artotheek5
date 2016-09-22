@@ -8,12 +8,20 @@
 		@endif
 		<hr>
 	@endif
-	 <div class="col-md-4 col-xs-6 thumb artwork-container" ng-repeat="artwork in artworks">
-	 	<span class="artwork-container-helper"></span>
-	    <a href="/artworks/@{{ artwork.slug }}">
-	    	<img src="@{{ artwork.file }}" class="img-responsive artwork-image">
-	    </a>
-	 </div>
+	<!--<div class="col-md-4 col-xs-6 thumb artwork-container" ng-repeat="artwork in artworks">
+		<span class="artwork-container-helper"></span>
+		<a href="/artworks/@{{ artwork.slug }}">
+			<img src="@{{ artwork.file }}" class="img-responsive artwork-image">
+		</a>
+	</div>-->
+	<div class="" ng-controller="galleryController">
+		<div class="img-box" ng-repeat="artwork in artworks">
+			<span class=""></span>
+			<a href="/artworks/@{{ artwork.slug }}">
+				<img src="@{{ artwork.file }}" class="img-box-image">
+			</a>
+		</div>
+	</div>
 </div>
 <script>
 	$(function () {

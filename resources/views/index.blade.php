@@ -2,23 +2,30 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-header">
-		<div style="text-align: center;"><h1>Da Vinci Artotheek</h1></div>
+		<div style="padding-left: 15px;"><h1>Da Vinci Artotheek</h1></div>
 	</div>
 	<div class="panel-body">
-		<div style="text-align: center;"><p>Hier komt de super mooie homepage van de artotheek.</p></div>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magni officia sequi, eos voluptatem assumenda quod deserunt tempora nulla aperiam impedit eveniet nisi aliquid dolore cum modi molestias ipsa. Dignissimos.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci, provident error, est explicabo architecto eligendi reiciendis. Expedita earum, ex iure. Voluptatem, rem minima cupiditate provident adipisci, perspiciatis debitis culpa.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia quod reprehenderit, pariatur alias, rem illo modi earum distinctio voluptatibus est, corrupti delectus. Adipisci similique eveniet distinctio tenetur voluptatem iusto dolorum.
+		<!--<p>
+			Welkom bij de Da Vinci Artotheek! Op deze website zijn verschillende kunstwerken te vinden die gemaakt zijn door de leerlingen van de Da Vinci Art & Design opleiding.
 		</p>
+		<br><br>-->
+		Curabitur eleifend condimentum tristique. Aenean feugiat orci <br>non nunc feugiat luctus. Suspendisse non pretium quam. Aliquam imperdiet<br> malesuada congue. Duis quis libero rhoncus, varius ligula sit amet, efficitur nunc. Mauris <br>et purus et mi dignissim elementum eget id purus. Pellentesque in neque rutrum, mollis neque quis, varius<br> ex. Quisque eleifend, lorem id rutrum placerat, magna dolor rhoncus lectus, vel tempus tortor felis id arcu. Curabitur orci nibh<br>.
 	<div class="panel-header">
-		<div style="text-align: center;"><a href="/gallery" class="custom-gallery-link"><h2>Gallerij</h2></a></div>
+		<a href="/gallery" class="custom-gallery-link" style="color:black"><h4>Recent toegevoegd:</h4></a>
 	</div>
-		<div class="container-fluid" ng-controller="galleryController">
+		<!--<div class="container-fluid" ng-controller="galleryController">
 			<div class="col-md-2 col-xs-6 thumb artwork-container" ng-repeat="artwork in artworks">
 			 	<span class="artwork-container-helper"></span>
 			    <a href="/artworks/@{{ artwork.slug }}">
 			    	<img src="@{{ artwork.file }}" class="img-responsive artwork-image">
+			    </a>
+			</div>
+		</div>-->
+		<div class="" ng-controller="galleryController">
+			<div class="img-box" ng-repeat="artwork in artworks">
+			 	<span class=""></span>
+			    <a href="/artworks/@{{ artwork.slug }}">
+			    	<img src="@{{ artwork.file }}" class="img-box-image">
 			    </a>
 			</div>
 		</div>
