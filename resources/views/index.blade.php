@@ -9,7 +9,7 @@
 			Welkom bij de Da Vinci Artotheek! Op deze website zijn verschillende kunstwerken te vinden die gemaakt zijn door de leerlingen van de Da Vinci Art & Design opleiding.
 		</p>
 		<br><br>-->
-		Curabitur eleifend condimentum tristique. Aenean feugiat orci <br>non nunc feugiat luctus. Suspendisse non pretium quam. Aliquam imperdiet<br> malesuada congue. Duis quis libero rhoncus, varius ligula sit amet, efficitur nunc. Mauris <br>et purus et mi dignissim elementum eget id purus. Pellentesque in neque rutrum, mollis neque quis, varius<br> ex. Quisque eleifend, lorem id rutrum placerat, magna dolor rhoncus lectus, vel tempus tortor felis id arcu. Curabitur orci nibh<br>.
+		Curabitur eleifend condimentum tristique. Aenean feugiat orci <br>non nunc feugiat luctus. Suspendisse non pretium quam. Aliquam imperdiet<br> malesuada congue. Duis quis libero rhoncus, varius ligula sit amet, efficitur nunc. Mauris <br>et purus et mi dignissim elementum eget id purus. Pellentesque in neque rutrum, mollis neque quis, varius<br> ex. Quisque eleifend, lorem id rutrum placerat, magna dolor rhoncus lectus, vel tempus tortor felis id arcu. Curabitur orci nibh.<br><br>
 	<div class="panel-header">
 		<a href="/gallery" class="custom-gallery-link" style="color:black"><h4>Recent toegevoegd:</h4></a>
 	</div>
