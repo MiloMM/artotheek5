@@ -6483,18 +6483,12 @@ label,
 
 h1 {
 	font-size: 20pt !important;
-}
-
-#indexPageIntroduction {
-  font-family: 'open sans' !important;
-=======
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif !important;
 	font-size: 24px !important;
 	font-style: normal !important;
 	font-variant: normal !important;
 	font-weight: 500 !important;
 	line-height: 26.4px !important;
-
 }
 
 .search-img {
@@ -6557,4 +6551,8 @@ h1 {
 
 h1#indexPageTitle {
   color: rgb(130,62,136);
+}
+
+#indexPageIntroduction {
+  font-family: 'open sans' !important;
 }
