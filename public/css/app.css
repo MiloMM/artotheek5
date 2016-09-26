@@ -6444,7 +6444,8 @@ label,
 	display: inline-block;
 	vertical-align: bottom;
 	margin: 0 10px 10px 0;
-	/*border-radius: 10px 10px 10px 10px;
+	/*border: solid #d6d6d6 5px;
+	border-radius: 10px 10px 10px 10px;
 	-moz-border-radius: 10px 10px 10px 10px;
 	-webkit-border-radius: 10px 10px 10px 10px;*/
 	box-shadow: 5px 5px 10px #333333;
@@ -6457,10 +6458,10 @@ label,
 	transition: 0.5s;
 	-webkit-transition: 0.5s;
 	-moz-transition: 0.5s;
-	-ms-transform: rotate(5deg); /* IE 9 */
-    -webkit-transform: rotate(5deg); /* Chrome, Safari, Opera */
-    transform: rotate(5deg);
-	box-shadow: 0 0 0;
+	-ms-transform: rotate(2deg) scale(1.1); /* IE 9 */
+    -webkit-transform: rotate(2deg) scale(1.1); /* Chrome, Safari, Opera */
+    transform: rotate(2deg) scale(1.01);
+	
 }
 
 .img-box-image {
@@ -6484,10 +6485,76 @@ h1 {
 	font-size: 20pt !important;
 }
 
-h1#indexPageTitle {
-  color: rgb(130,62,136);
-}
-
 #indexPageIntroduction {
   font-family: 'open sans' !important;
+=======
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif !important;
+	font-size: 24px !important;
+	font-style: normal !important;
+	font-variant: normal !important;
+	font-weight: 500 !important;
+	line-height: 26.4px !important;
+
+}
+
+.search-img {
+	width: auto;
+	height: 200px;
+	display: inline-block;
+}
+
+.search-img img {
+	width: auto;
+	height: 100%;
+}
+
+.search-img h3 {
+	text-align: center;
+	color: black;
+	margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.img-box {
+		width: 100%;
+		height: auto;
+		margin-bottom: 20px;
+	}
+	
+	.img-box-image {
+		width: 100%;
+		height: auto;
+	}
+	
+	.content {
+		padding-left: 25px !important;
+		padding-right: 25px !important;
+	}
+	
+	.search-img img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.img-box {
+		width: 100%;
+		height: auto;
+		margin-bottom: 15px;
+	}
+	
+	.img-box-image {
+		width: 100%;
+		height: auto;
+	}
+	
+	.content {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+}
+
+h1#indexPageTitle {
+  color: rgb(130,62,136);
 }
