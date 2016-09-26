@@ -6483,18 +6483,16 @@ label,
 
 h1 {
 	font-size: 20pt !important;
-}
-
-#indexPageIntroduction {
-  font-family: 'open sans' !important;
-=======
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif !important;
 	font-size: 24px !important;
 	font-style: normal !important;
 	font-variant: normal !important;
 	font-weight: 500 !important;
 	line-height: 26.4px !important;
+}
 
+#indexPageIntroduction {
+  font-family: 'open sans' !important;
 }
 
 .search-img {
