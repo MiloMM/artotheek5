@@ -6483,3 +6483,11 @@ label,
 h1 {
 	font-size: 20pt !important;
 }
+
+h1#indexPageTitle {
+  color: rgb(130,62,136);
+}
+
+#indexPageIntroduction {
+  font-family: 'open sans' !important;
+}

@@ -16,7 +16,6 @@
 	</div>-->
 	<div class="" ng-controller="galleryController">
 		<div class="img-box" ng-repeat="artwork in artworks">
-			<span class=""></span>
 			<a href="/artworks/@{{ artwork.slug }}">
 				<img src="@{{ artwork.file }}" class="img-box-image">
 			</a>
@@ -26,17 +25,17 @@
 <script>
 	$(function () {
 		app.controller('galleryController', function ($http, $scope) {
-		var request = $http.get('{{ url("/json/artworks") }}');
-		request.then(function (response) {
-			$scope.artworks = response.data;
-		});
-		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-			request = $http.get('{{ url("/json/archivedArtworks") }}');
+			var request = $http.get('{{ url("/json/artworks") }}');
 			request.then(function (response) {
-				$scope.archivedArtworks = response.data;
+				$scope.artworks = response.data;
 			});
-		@endif
-	});
+			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
+				request = $http.get('{{ url("/json/archivedArtworks") }}');
+				request.then(function (response) {
+					$scope.archivedArtworks = response.data;
+				});
+			@endif
+		});
 	});
 </script>
 @endsection
