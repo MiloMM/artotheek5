@@ -14,6 +14,7 @@
 			<img src="@{{ artwork.file }}" class="img-responsive artwork-image">
 		</a>
 	</div>-->
+	<h1>Gallerij</h1>
 	<div class="" ng-controller="galleryController">
 		<div class="img-box" ng-repeat="artwork in artworks">
 			<span class=""></span>
