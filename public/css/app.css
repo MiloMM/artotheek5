@@ -6556,3 +6556,7 @@ h1 {
 h1#indexPageTitle {
   color: rgb(130,62,136);
 }
+
+#indexPageIntroduction {
+  font-family: 'open sans' !important;
+}
