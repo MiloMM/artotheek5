@@ -63,7 +63,7 @@
 <div class="canvas">
 	<div class="navbar navbar-default navbar-fixed-top" style="position: relative;">
 		<div class="custom-navbar-left" style="float: left;">
-			<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Image" style="width: 150px; margin: 8px 0 0 10px;"></a>
+			<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Image" style="width: 150px; margin: 8px 0 8px 10px;"></a>
 		</div>
 			
 		<div class="custom-navbar-right" style="float: right;">
