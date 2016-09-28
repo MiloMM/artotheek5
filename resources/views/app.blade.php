@@ -23,6 +23,7 @@
 	<link rel='stylesheet' href="{{ asset('/css/fullcalendar.css') }}"/>
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/jquery-header.js') }}"></script>
 
 </head>
 <body ng-app="application">
@@ -61,9 +62,9 @@
 @include('header/search')
 
 <div class="canvas">
-	<div class="navbar navbar-default navbar-fixed-top" style="position: relative;">
+	<div class="navbar navbar-default navbar-fixed-top headerBarFixed" style="position: relative;">
 		<div class="custom-navbar-left" style="float: left;">
-			<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Image" style="width: 150px; margin: 8px 0 8px 10px;"></a>
+			<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Image" id="headerLogo" class="headerLogo"></a>
 		</div>
 			
 		<div class="custom-navbar-right" style="float: right;">
