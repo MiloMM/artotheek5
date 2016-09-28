@@ -6450,32 +6450,20 @@ label,
 	display: inline-block;
 	vertical-align: bottom;
 	margin: 0 10px 10px 0;
-	/*border: solid #d6d6d6 5px;
-	border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	-webkit-border-radius: 10px 10px 10px 10px;*/
+	border: solid #d6d6d6 5px;
 	box-shadow: 5px 5px 10px #333333;
-	transition: 0.5s;
-	-webkit-transition: 0.5s;
-	-moz-transition: 0.5s;
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
 }
 
 .img-box:hover {
-	transition: 0.5s;
-	-webkit-transition: 0.5s;
-	-moz-transition: 0.5s;
-	-ms-transform: rotate(2deg) scale(1.1); /* IE 9 */
-    -webkit-transform: rotate(2deg) scale(1.1); /* Chrome, Safari, Opera */
-    transform: rotate(2deg) scale(1.01);
-	
+	opacity: 0.8;
 }
 
 .img-box-image {
 	width: auto;
 	height: 100%;
-	/*border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;*/
 }
 
 .img-box-image:hover {
@@ -6487,18 +6475,19 @@ label,
 	
 }
 
+@font-face {
+    font-family: Dax Medium;
+    src: url(/fonts/DaxMedium.ttf);
+}
+
 h1 {
 	font-size: 20pt !important;
-	font-family: Futura, "Trebuchet MS", Arial, sans-serif !important;
+	font-family: Dax Medium !important;
 	font-size: 24px !important;
 	font-style: normal !important;
 	font-variant: normal !important;
 	font-weight: 500 !important;
 	line-height: 26.4px !important;
-}
-
-#indexPageIntroduction {
-  font-family: 'open sans' !important;
 }
 
 .search-img {
@@ -6592,6 +6581,7 @@ h1 {
 
 h1#indexPageTitle {
   color: rgb(130,62,136);
+  margin-bottom: 0 !important;
 }
 
 #indexPageIntroduction {
