@@ -35,6 +35,7 @@ a.custom-gallery-link:hover {
   width: 380px;
   position: fixed;
   right:-380px;
+  top: 0;
 }
 .custom_glyphicon-remove {
   font-size: 20px;
@@ -6545,15 +6546,28 @@ h1 {
 	}
 	
 	.custom_searchmenu {
-		width: 100%;
-		background: 0;
-		background-color: #6d256a;
+		width: 85%;
+		right: -800px;
 	}
 	
 	.custom_navmenu {
-		width: 100%;
-		background: 0;
-		background-color: #6d256a;
+		width: 85%;
+		right: -800px;
+	}
+	
+	.custom_navmenu li {
+		border-bottom: 2px solid white;
+		background: #8e5f8d;
+	}
+	
+	.custom_navmenu li:first-child {
+		border-top: 2px solid white;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.menuButtonsHidden {
+		display: none !important;
 	}
 }
 
@@ -6575,13 +6589,84 @@ h1 {
 	}
 	
 	.site_logo_menu {
-		width: 150px;
+		width: 35%;
 		height: auto;
+		margin: 15px;
+	}
+	
+	.custom_searchmenu {
+		padding: 0;
+	}
+	
+	
+	.filter-box .col-md-5 {
+		width: 47%;
 	}
 }
 
+@media screen and (max-width: 750px) and (orientation: landscape) {
+	.custom_navmenu ul {
+		padding-left: 15px;
+	}
+	
+	.custom_navmenu li {
+		width: 46%;
+		display: block !important;
+		float: left;
+		border-bottom: solid white 1px;
+		border-left: solid white 1px;
+		border-right: solid white 1px;
+		background: #8e5f8d;
+	}
+	
+	.custom_navmenu li:nth-child(even) {
+		border-top: solid white 1px;
+	}
+	
+	.custom_navmenu li:nth-child(1) {
+		border-top: solid white 1px;
+	}
+	
+	.custom_navmenu li:nth-child(2) {
+		border-top: solid white 1px;
+		border-left: none;
+	}
+	
+	.custom_navmenu li:nth-child(4) {
+		border-top: none;
+		border-left: none;
+	}
+	
+	.custom_navmenu li:nth-child(6) {
+		border-top: none;
+		border-left: none;
+	}
+	
+	.custom_searchmenu form {
+		padding-top: 0;
+	}
+	
+	.filter-box .col-md-5 {
+		width: 32%;
+	}
+	
+	.filter-box .col-md-5:nth-child(even) {
+		margin-left: 0;
+	}
+	
+	.filter-box .col-md-5 {}
+	
+	.site_logo_menu {
+		width: 30%;
+		margin: 15px;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	
+}
+
 h1#indexPageTitle {
-  color: rgb(130,62,136);
+  color: #83447A;
   margin-bottom: 0 !important;
 }
 
