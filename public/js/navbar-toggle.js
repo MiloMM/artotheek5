@@ -27,12 +27,20 @@ function menu_toggle_function() // Zorgt voor het openen van het navigatie menu
             {
                 search_toggle_function();
             }
+			setTimeout(function(){
+				$("#searchtoggle").addClass("menuButtonsHidden");
+				$("#custom_navbar_toggle").addClass("menuButtonsHidden");
+			}, 100);
         }
         else
         {
-            $('#custom_navmenu').animate({right:'-380px'}, 300, function(){busy_animating_menu = false;}); // sluit het menu
+            $('#custom_navmenu').animate({right:'-800px'}, 300, function(){busy_animating_menu = false;}); // sluit het menu
             button_slide();
             toggle_state = false;
+			setTimeout(function(){
+				$("#searchtoggle").removeClass("menuButtonsHidden");
+				$("#custom_navbar_toggle").removeClass("menuButtonsHidden");
+			}, 100);
         }
     }
 }
@@ -55,16 +63,24 @@ function search_toggle_function() // Zorgt voor het openen van het zoekbalk menu
             {
                 filter_toggle_function();
             }
+			setTimeout(function(){
+				$("#searchtoggle").addClass("menuButtonsHidden");
+				$("#custom_navbar_toggle").addClass("menuButtonsHidden");
+			}, 100);
         }
         else
         {
-            $('#custom_searchmenu').animate({right:'-380px'}, 300, function(){busy_animating_searchmenu = false;}); // sluit de zoekbalk
+            $('#custom_searchmenu').animate({right:'-800px'}, 300, function(){busy_animating_searchmenu = false;}); // sluit de zoekbalk
             button_slide();
             search_toggle_state = false;
             if (filter_state)
             {
                 filter_toggle_function();
             }
+			setTimeout(function(){
+				$("#searchtoggle").removeClass("menuButtonsHidden");
+				$("#custom_navbar_toggle").removeClass("menuButtonsHidden");
+			}, 100);
         }
     }
 }
