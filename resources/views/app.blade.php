@@ -33,10 +33,10 @@
 	<a class="navmenu-brand" href="/">DaVinci Galleria</a>
 	<ul class="nav navmenu-nav">
 		<li><a href="/about">Over DaVinci Galleria</a></li>
-		<li><a href="/gallery">Gallerij</a></li>
+		<li><a href="/gallery">Galerij</a></li>
 		<li><a href="#">Uitleenvoorwaarden</a></li>
 		<li><a href="#">Nieuws</a></li>
-		<li><a href="/artists">Kustenaars</a></li>
+		<li><a href="/artists">Kunstenaars</a></li>
 		<li><a href="/reservations">Reserveringen</a></li>
 		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken<span class="glyphicon glyphicon-search" style="margin-left:10px;"></span></a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
