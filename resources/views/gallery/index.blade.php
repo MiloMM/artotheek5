@@ -15,7 +15,7 @@
 		</a>
 	</div>-->
 	<h1>Galerij</h1>
-	<div class="" ng-controller="galleryController">
+	<div class="flex-container" ng-controller="galleryController">
 		<div class="img-box" ng-repeat="artwork in artworks">
 			<a href="/artworks/@{{ artwork.slug }}">
 				<img src="@{{ artwork.file }}" class="img-box-image">
