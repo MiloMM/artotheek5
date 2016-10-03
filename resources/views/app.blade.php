@@ -38,7 +38,7 @@
 		<li><a href="#">Nieuws</a></li>
 		<li><a href="/artists">Kunstenaars</a></li>
 		<li><a href="/reservations">Reserveringen</a></li>
-		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken<span class="glyphicon glyphicon-search" style="margin-left:10px;"></span></a></li>
+		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</span></a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 			<li><a href="/filters">Filters Aanpassen</a></li>
 		@endif
