@@ -30,6 +30,8 @@ Route::resource('artworks', 'ArtworkController');
 Route::resource('tags', 'TagsController');
 Route::resource('reservation', 'ReservationController');
 
+Route::get('artworks/{id}/archive', 'ArtworkController@archive');
+
 Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');

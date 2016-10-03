@@ -12,17 +12,30 @@
 
 <div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-default">
-		<div class="panel-heading">
-			<a href="/artworks/{{ $artwork->slug }}/edit" class="btn btn-warning">Wijzig</a>
+		<div class="panel-heading" style="height: 50px;">
 			@if(Auth::check())
-				<a href="/reservation/create/{{ $artwork->id }}" class="btn btn-info">Reserveer</a>
+				<div style="float: left">
+					<h2 style="margin-top: -2px;">{{ $artwork->title }}</h2>
+				</div>
+				<div style="float: right">
+					<a href="/artworks/{{ $artwork->slug }}/edit" title="Wijzigen">
+						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+					</a>
+					<a href="/reservation/create/{{ $artwork->id }}" title="Reserveren">
+						<i class="fa fa-book fa-2x" aria-hidden="true"></i>
+					</a>
+					<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet je zeker dat je dit kunstwerk wilt archiveren?')" title="Archiveren">
+						<i class="fa fa-archive fa-2x" aria-hidden="true"></i>
+					</a>
+				</div>
 			@endif
-			<div  style="float: right;" class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 		</div>
-		<div class="panel-heading">
-			<h2>{{ $artwork->title }}</h2>		
+		
+		<div class="">
+			
 		</div>
 		<center><img src="/{{ $artwork->file }}" alt="" style="width: 100%; max-width: 800px; max-height: 700px;"></center>	
+		<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 		<div class="panel-body">{!! $artwork->description !!}</div>
 		<div class="panel-heading">
 			<p>Kunstenaar: {!! $artwork->artist !!}</p>

@@ -72,7 +72,7 @@ class ArtworkController extends Controller {
 			// Create an artwork
 			$artwork = new Artwork();
 			// Set the id one higher than the amount of artworks
-			$artwork->id = Artwork::count() + 1;
+			$artwork->id = Artwork::max('id') + 1;
 			// Set the title to the input
 			$artwork->title = Input::get('title');
 			// Set the description to a trimmed version of the input (removing whitespaces)
@@ -319,9 +319,18 @@ class ArtworkController extends Controller {
 	 * @return Response
 	 */
 
+	 
 	public function destroy($id)
 	{
-		//
+		
+	}
+	
+	public function archive($id)
+	{
+		$artwork = Artwork::findOrFail($id);
+		$artwork->state = 1;
+		$artwork->save();
+		return Redirect()->action('PagesController@gallery');
 	}
 
 	/**
