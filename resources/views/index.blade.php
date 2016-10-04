@@ -11,9 +11,8 @@
 	<div class="panel-header">
 		<p style="color:black"><h4>Recent toegevoegd:</h4></p>
 	</div>
-		<div class="" ng-controller="galleryController">
+		<div class="flex-container" ng-controller="galleryController">
 			<div class="img-box" ng-repeat="artwork in artworks|limitTo:8">
-			 	<span class=""></span>
 			    <a href="/artworks/@{{ artwork.slug }}">
 			    	<img src="@{{ artwork.file }}" class="img-box-image">
 			    </a>
