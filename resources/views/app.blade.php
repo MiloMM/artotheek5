@@ -44,7 +44,7 @@
 			<li><a href="/filters">Filters Aanpassen</a></li>
 		@endif
 	</ul>
-	<ul class="nav navmenu-nav">
+	<ul class="nav navmenu-nav login-menu">
 		@if (Auth::guest())
 			<li><a href="/auth/login">Login</a></li>
 			<li><a href="/auth/register">Registreer</a></li>

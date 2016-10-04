@@ -2,9 +2,9 @@
 @section('content')
 <div class="container-fluid" ng-controller="galleryController">
 	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
-		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Voeg toe</a>
+		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Voeg toe</a>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-			<a href="{{ action('ArtworkController@showArchived') }}" id="btnShowArchived" class="btn btn-primary">Bekijk Gearchiveerd</a>
+			<a href="{{ action('ArtworkController@showArchived') }}" id="btnShowArchived" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Archief</a>
 		@endif
 		<hr>
 	@endif
@@ -29,6 +29,7 @@
 			var request = $http.get('{{ url("/json/artworks") }}');
 			request.then(function (response) {
 				$scope.artworks = response.data;
+				console.log($scope.artworks);
 			});
 			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 				request = $http.get('{{ url("/json/archivedArtworks") }}');
