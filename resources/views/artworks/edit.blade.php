@@ -14,16 +14,61 @@
 								{!! Form::text('title', $artwork->title, ['class' => 'form-control', 'id' => 'tbx-title']) !!}
 							</div>
 						</div>
+						<div class="form-group" id="form-group-preview-img">
+							<div class="col-md-12">
+								<div id="image-editor">
+									<!-- Load images instantly -->
+									<img src="{{ asset($artwork->file) }}" alt="" class="img-responsive">
+								</div>
+							</div>
+						</div>
 						<div class="form-group">
 							{!! Form::label('Descriptie', null, ['class' => 'control-label col-md-1']) !!}
 							<div class="col-md-12">
-								{!! Form::textarea('description', $artwork->description, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
+								{!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
 							</div>
 						</div>
-						<div class="progress">
-						  <div id="progressbar-upload" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; margin-top: 50px;">
-						    0%
-						  </div>
+						<div class="form-group">
+							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('artist', null, ['class' => 'form-control', 'id' => 'tbx-artist']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('technique', null, ['class' => 'form-control', 'id' => 'tbx-technique']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Colour', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), 'Rood', ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::select('material', array('hout' => 'Hout', 'metaal' => 'Metaal'), 'Hout', ['class' => 'form-control', 'id' => 'tbx-material']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('category', null, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('size', null, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Prijs', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10">
+								{!! Form::text('price', null, ['class' => 'form-control', 'id' => 'tbx-price']) !!}
+							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
@@ -37,15 +82,11 @@
 								{!! Form::checkbox('publish', true , ['class' => 'col-md-4 form-control']) !!}
 							</div>
 						</div>
-						<div class="form-group" id="form-group-preview-img">
-							<div class="col-md-12">
-								<input type="file" name="image" class="form-control" style="display: none;">
-								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-info', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
-								<div id="image-editor">
-									// Load images instantly
-									<img src="{{ asset($artwork->file) }}" alt="" class="img-responsive">
-								</div>
-							</div>
+
+						<div class="progress">
+						  <div id="progressbar-upload" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; margin-top: 50px;">
+						    0%
+						  </div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
