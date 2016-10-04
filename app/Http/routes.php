@@ -18,7 +18,7 @@ Route::get('/artists' , 'PagesController@artists');
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
 Route::get('/gallery/search', 'PagesController@gallerySearch');
 
-Route::get('artworks/archived', 'ArtworkController@showArchived');
+Route::get('gallery/archive', 'ArtworkController@showArchived');
 
 Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
 
@@ -31,6 +31,7 @@ Route::resource('tags', 'TagsController');
 Route::resource('reservation', 'ReservationController');
 
 Route::get('artworks/{id}/archive', 'ArtworkController@archive');
+Route::get('artworks/{id}/destroy', 'ArtworkController@destroy');
 
 Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');

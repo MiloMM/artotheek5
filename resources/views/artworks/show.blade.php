@@ -13,10 +13,10 @@
 <div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="height: 50px;">
+			<div style="float: left">
+				<h2 style="margin-top: -2px;">{{ $artwork->title }}</h2>
+			</div>
 			@if(Auth::check())
-				<div style="float: left">
-					<h2 style="margin-top: -2px;">{{ $artwork->title }}</h2>
-				</div>
 				<div style="float: right">
 					<a href="/artworks/{{ $artwork->slug }}/edit" title="Wijzigen">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -24,9 +24,18 @@
 					<a href="/reservation/create/{{ $artwork->id }}" title="Reserveren">
 						<i class="fa fa-book fa-2x" aria-hidden="true"></i>
 					</a>
-					<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet je zeker dat je dit kunstwerk wilt archiveren?')" title="Archiveren">
-						<i class="fa fa-archive fa-2x" aria-hidden="true"></i>
-					</a>
+					@if ($artwork->state === 0)
+						<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet u zeker dat u dit kunstwerk wilt archiveren?')" title="Archiveren">
+							<i class="fa fa-archive fa-2x" aria-hidden="true"></i>
+						</a>
+					@else
+						<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet u zeker dat u dit kunstwerk wilt uit het archief wil halen en weer in de galerij wil tonen?')" title="Uit het archief halen en terug zetten in de galerij">
+							<i class="fa fa-archive fa-2x" aria-hidden="true"></i>
+						</a>
+						<a href="/artworks/{{ $artwork->id }}/destroy" onclick="return confirm('Als u verder gaat, wordt het kunstwerk definitief van de website verwijderd. Weet u dit zeker?')" title="Verwijderen">
+							<i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+						</a>
+					@endif
 				</div>
 			@endif
 		</div>

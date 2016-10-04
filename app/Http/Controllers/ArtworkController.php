@@ -322,15 +322,35 @@ class ArtworkController extends Controller {
 	 
 	public function destroy($id)
 	{
-		
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			Artwork::destroy($id);
+			return Redirect()->action('PagesController@gallery');
+		}
+		else {
+			return View::make('errors/' . HttpCode::NotFound);
+		}
 	}
 	
 	public function archive($id)
 	{
-		$artwork = Artwork::findOrFail($id);
-		$artwork->state = 1;
-		$artwork->save();
-		return Redirect()->action('PagesController@gallery');
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$artwork = Artwork::findOrFail($id);
+			if ($artwork->state === 0) {
+				$artwork->state = 1;
+				$artwork->save();
+				return Redirect()->action('ArtworkController@showArchived');
+			}
+			else {
+				$artwork->state = 0;
+				$artwork->save();
+				return Redirect()->action('PagesController@gallery');
+			}
+		}
+		else {
+			return View::make('errors/' . HttpCode::NotFound);
+		}
 	}
 
 	/**
@@ -338,6 +358,14 @@ class ArtworkController extends Controller {
 	 */
 	public function showArchived()
 	{
-		return Response::json(['test']);
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		{
+			$artworks = Artwork::all();
+			$artCount = Artwork::where('state', 1)->count();
+			return View::make('gallery/archive', compact('artworks', 'artCount'));
+		}
+		else {
+			return View::make('errors/' . HttpCode::NotFound);
+		}
 	}
 }
