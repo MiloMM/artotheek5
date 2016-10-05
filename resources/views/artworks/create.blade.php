@@ -15,7 +15,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Descriptie', null, ['class' => 'control-label col-md-1']) !!}
+							{!! Form::label('Omschrijving', null, ['class' => 'control-label col-md-1']) !!}
 							<div class="col-md-12">
 								{!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
 							</div>

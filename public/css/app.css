@@ -6738,6 +6738,9 @@ h1#indexPageTitle {
   height: 44px !important;
 }
 
-
+.editpage-img {
+	width: auto;
+	height: 200px;
+}
 
 
