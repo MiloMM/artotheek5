@@ -11,20 +11,17 @@ use DB;
 //use Request;
 use Response;
 use Illuminate\Http\Request;
+use App\Services\TagsHelper;
 
 class PagesController extends Controller {
 
 	//
 	public function index()
 	{
-		return View::make('index');
-	}
-
-	public function gallery()
-	{
-		$artworks = Artwork::all();
+		$artworks = Artwork::orderBy('id', 'DESC')->take(8)->get();
 		$artCount = Artwork::where('state', 0)->count();
-		return View::make('gallery/index', compact('artworks', 'artCount'));
+		TagsHelper::addTagsToCollection($artworks);
+		return View::make('index', compact('artworks', 'artCount'));
 	}
 
 	public function myprofile()

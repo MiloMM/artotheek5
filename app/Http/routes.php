@@ -12,7 +12,7 @@
 */
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
-Route::get('/gallery', 'PagesController@gallery');
+
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/artists' , 'PagesController@artists');
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
@@ -30,6 +30,7 @@ Route::resource('artworks', 'ArtworkController');
 Route::resource('tags', 'TagsController');
 Route::resource('reservation', 'ReservationController');
 
+Route::get('/gallery', 'ArtworkController@index');
 Route::get('artworks/{id}/archive', 'ArtworkController@archive');
 Route::get('artworks/{id}/destroy', 'ArtworkController@destroy');
 

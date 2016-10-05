@@ -25,19 +25,19 @@
 						<div class="form-group">
 							{!! Form::label('Omschrijving', null, ['class' => 'control-label col-md-1']) !!}
 							<div class="col-md-12">
-								{!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
+								{!! Form::textarea('description', $artwork->description, ['class' => 'form-control', 'id' => 'textarea-description']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('artist', null, ['class' => 'form-control', 'id' => 'tbx-artist']) !!}
+								{!! Form::text('artist', $artwork->artist, ['class' => 'form-control', 'id' => 'tbx-artist']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('technique', null, ['class' => 'form-control', 'id' => 'tbx-technique']) !!}
+								{!! Form::text('technique', $artwork->technique, ['class' => 'form-control', 'id' => 'tbx-technique']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -55,19 +55,19 @@
 						<div class="form-group">
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('category', null, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
+								{!! Form::text('category', $artwork->category, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('size', null, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
+								{!! Form::text('size', $artwork->size, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Prijs', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('price', null, ['class' => 'form-control', 'id' => 'tbx-price']) !!}
+								{!! Form::text('price', $artwork->price, ['class' => 'form-control', 'id' => 'tbx-price']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -110,20 +110,32 @@
 		$('#btn-send').click(function () {
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/artworks/{{$artwork->id}}');
+			xhr.open('POST', '/artworks');
 
-			xhr.upload.onprogress = function (e) {
-				var percentage = (e.loaded / e.total * 100);
-				var progressbar = $('#progressbar-upload');
-				progressbar.attr('aria-valuenow', percentage);
-				progressbar.attr('style', 'width: ' + percentage + '%;');
-				progressbar.html(percentage + '%');
+			xhr.onload = function () {
+				
+				if (xhr.status == 200 || xhr.status == 0) {
+					response = JSON.parse(xhr.response);
+					var msg = "<ul>";
+					$(response).each(function (k, v) {
+						msg += "<li>" + v + "</li>";
+					});
+					msg += "</ul>";
+
+					functions.showSuccessBanner(msg, 5000);
+
+				} else {
+
+					response = JSON.parse(xhr.response);
+					var msg = "<ul>";
+					$(response).each(function (k, v) {
+						msg += "<li>" + v + "</li>";
+					});
+					msg += "</ul>";
+
+					functions.showErrorBanner(msg);
+				}
 			}
-			
-			var canvas = $('.canvas-container .lower-canvas')[0];
-			var dataURL = canvas.toDataURL('image/jpeg');
-			var encoding = dataURL.split(',')[0];
-			var base64 = dataURL.split(',')[1];
 
 			var form = new FormData();
 			form.append('_token', '{{ csrf_token() }}');

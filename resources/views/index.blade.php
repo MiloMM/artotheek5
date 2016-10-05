@@ -11,23 +11,15 @@
 	<div class="panel-header">
 		<p style="color:black"><h4>Recent toegevoegd:</h4></p>
 	</div>
-		<div class="flex-container" ng-controller="galleryController">
-			<div class="img-box" ng-repeat="artwork in artworks|limitTo:8">
-			    <a href="/artworks/@{{ artwork.slug }}">
-			    	<img src="@{{ artwork.file }}" class="img-box-image">
-			    </a>
-			</div>
+		<div class="flex-container">
+			@foreach($artworks as $artwork)
+				<div class="img-box">
+					<a href="/artworks/{{ $artwork->slug }}">
+						<img src="{{ $artwork->file }}" class="img-box-image" id="{{ $artwork->id }}">
+					</a>
+				</div>
+			@endforeach
 		</div>
-		<script>
-			$(function () {
-				app.controller('galleryController', function ($http, $scope) {
-					var request = $http.get('{{ url("/json/artworks") }}');
-					request.then(function (response) {
-						$scope.artworks = response.data;
-					});
-				});
-			});
-		</script>
 	</div>
 </div>
 @stop

@@ -15,6 +15,7 @@ use Response;
 use Redirect;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\HttpCode;
+use App\Services\TagsHelper;
 use DB;
 
 
@@ -27,8 +28,10 @@ class ArtworkController extends Controller {
 	 */
 	public function index()
 	{
-		// Show the gallery index
-		return Redirect::action('PagesController@gallery');
+		$artworks = Artwork::where(['state' => 0])->get()->reverse();
+		$artCount = Artwork::where('state', 0)->count();
+		TagsHelper::addTagsToCollection($artworks);
+		return View::make('gallery/index', compact('artworks', 'artCount'));
 	}
 	
 	/**
@@ -296,7 +299,7 @@ class ArtworkController extends Controller {
 		} 
 		else 
 		{
-			// Set to state to archived
+			// Set the state to archived
 			$artwork->state = 1;
 		}
 
@@ -312,26 +315,21 @@ class ArtworkController extends Controller {
 
 		return Response::json(['Het kunstwerk is gewijzigd. klik <a href="/gallery">hier</a> om terug te keren naar de gallerij'], 200); // 200 = OK
 	}
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  string  $id
-	 * @return Response
-	 */
-
 	 
+	/* Delete the artwork from the archive (and so the database). */
 	public function destroy($id)
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
 		{
 			Artwork::destroy($id);
-			return Redirect()->action('PagesController@gallery');
+			return Redirect()->action('ArtworkController@showArchived');
 		}
 		else {
 			return View::make('errors/' . HttpCode::NotFound);
 		}
 	}
 	
+	/* If the artwork is not yet in the archive, move it there. Otherwise remove it from the archive and put it back to the gallery. */
 	public function archive($id)
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
@@ -345,7 +343,7 @@ class ArtworkController extends Controller {
 			else {
 				$artwork->state = 0;
 				$artwork->save();
-				return Redirect()->action('PagesController@gallery');
+				return Redirect()->action('ArtworkController@index');
 			}
 		}
 		else {
@@ -353,15 +351,14 @@ class ArtworkController extends Controller {
 		}
 	}
 
-	/**
-	 * @return string Response
-	 */
+	/* Get all archived artworks and show them on the page. */
 	public function showArchived()
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
 		{
-			$artworks = Artwork::all();
+			$artworks = Artwork::where(['state' => 1])->get();
 			$artCount = Artwork::where('state', 1)->count();
+			TagsHelper::addTagsToCollection($artworks);
 			return View::make('gallery/archive', compact('artworks', 'artCount'));
 		}
 		else {
