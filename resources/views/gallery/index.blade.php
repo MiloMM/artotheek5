@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-<div class="container-fluid" ng-controller="galleryController">
+<div class="container-fluid">
 	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
 		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Voeg toe</a>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
@@ -14,7 +14,7 @@
 	@foreach($artworks as $artwork)
 		<div class="img-box">
 			<a href="/artworks/{{ $artwork->slug }}">
-				<img src="{{ $artwork->file }}" class="img-box-image" id="{{ $artwork->id }}">
+				<img src="{{ $artwork->file }}" class="img-box-image">
 			</a>
 		</div>
 	@endforeach
