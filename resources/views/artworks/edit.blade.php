@@ -7,7 +7,7 @@
 				<div class="panel-heading">Wijzig het kunstwerk: {{ $artwork->title }}</div>
 				<div class="panel-body">
 
-					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
+					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form', 'method' => 'put', 'action' => ['ArtworkController@update', $artwork->id]]) !!}
 						<div class="form-group">
 							{!! Form::label('Titel', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-11">
@@ -17,7 +17,7 @@
 						<div class="form-group" id="form-group-preview-img">
 							<div class="col-md-12">
 								<div id="image-editor">
-									<!-- Load images instantly -->
+									<!-- Load image instantly -->
 									<img src="{{ asset($artwork->file) }}" alt="" class="editpage-img">
 								</div>
 							</div>
@@ -41,7 +41,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Colour', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('kleur', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
 								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), 'Rood', ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
 							</div>
@@ -90,7 +90,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
+								{!! Form::submit('Aanpassen', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
 							</div>
 						</div>
 					{!! Form::close() !!}
@@ -101,59 +101,7 @@
 </div>
 <script>
 	$(function () {
-		var editor = CKEDITOR.replace('textarea-description');	
-
-		$('#form').submit(function (event) {  
-			event.preventDefault();
-		});
-
-		$('#btn-send').click(function () {
-
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/artworks');
-
-			xhr.onload = function () {
-				
-				if (xhr.status == 200 || xhr.status == 0) {
-					response = JSON.parse(xhr.response);
-					var msg = "<ul>";
-					$(response).each(function (k, v) {
-						msg += "<li>" + v + "</li>";
-					});
-					msg += "</ul>";
-
-					functions.showSuccessBanner(msg, 5000);
-
-				} else {
-
-					response = JSON.parse(xhr.response);
-					var msg = "<ul>";
-					$(response).each(function (k, v) {
-						msg += "<li>" + v + "</li>";
-					});
-					msg += "</ul>";
-
-					functions.showErrorBanner(msg);
-				}
-			}
-
-			var form = new FormData();
-			form.append('_token', '{{ csrf_token() }}');
-			form.append('_method', 'POST');
-			form.append('title', $('#tbx-title').val());
-			form.append('artist', $('#tbx-artist').val());
-			form.append('technique', $('#tbx-technique').val());
-			form.append('colour', $('#tbx-colour').val());
-			form.append('material', $('#tbx-material').val());
-			form.append('category', $('#tbx-category').val());
-			form.append('size', $('#tbx-size').val());
-			form.append('price', $('#tbx-price').val());
-			form.append('description', editor.getData());
-			form.append('publish', $('input[name=publish]')[0].checked);
-			form.append('tags', $('#tbx-tags').val());
-
-			xhr.send(form);
-		});
+		var editor = CKEDITOR.replace('textarea-description');
 	});
 </script>
 @stop

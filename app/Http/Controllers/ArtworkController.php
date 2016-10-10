@@ -155,7 +155,6 @@ class ArtworkController extends Controller {
 			{
 				$artwork->tag($tag);
 			}
-
 			// save the artwork data in the database
 			$artwork->save();
 
@@ -249,71 +248,7 @@ class ArtworkController extends Controller {
 	 */
 	public function update($id)
 	{
-		// Get our artwork
-		$artwork = Artwork::findOrFail($id);
-
-		// get all post data
-		$input = Input::all();
-
-		// Remove line endings from our description
-		$input['description'] = str_replace("\n", '', $input['description']); // remove line endings
-		$input['description'] = str_replace("\r", '', $input['description']); // remove line endings
 		
-		// make an tag array from the string
-		$tags = explode(',', $input['tags']);
-
-		// Make the title to a slug form
-		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
-		$slug = str_replace('?','', $slug);
-		$slug = str_replace('/','',$slug );
-		$slug = str_replace('\\','',$slug );
-
-		// Set the slug
-		$artwork->slug = $slug;
-
-		$image = Image::canvas(800, 600);
-			$img = Image::make(Input::get('image-data-url'))->resize(800,600, function($c)
-			{
-				$c->aspectRatio();
-    			$c->upsize();
-			});
-			$image->insert($img, 'center');
-		// Get the image
-		$image = Image::make(Input::get('image-data-url'));
-			
-		// Get the extension ex: png, jpg
-		$imageExtension = substr($image->mime(), 6);
-
-		// Set the file
-		$artwork->file = 'images/artworks/' . $artwork->id . '.' . $imageExtension;
-		$artwork->user_id = Auth::user()->id;
-		
-		// Save the image
-		$image->save($artwork->file);
-
-		// Is the user a moderator or admin?
-		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
-		{
-			// If the checkbox is checked publish immediately
-			$artwork->state = Input::get('publish') == "true" ? 0 : 1;
-		} 
-		else 
-		{
-			// Set the state to archived
-			$artwork->state = 1;
-		}
-
-		// Tag our artwork with the tags given
-		foreach ($tags as $tag) 
-		{
-			$artwork->tag($tag);
-		}
-		
-		// Save our artwork
-		$artwork->save();
-		$artwork->update($input);	
-
-		return Response::json(['Het kunstwerk is gewijzigd. klik <a href="/gallery">hier</a> om terug te keren naar de gallerij'], 200); // 200 = OK
 	}
 	 
 	/* Delete the artwork from the archive (and so the database). */
