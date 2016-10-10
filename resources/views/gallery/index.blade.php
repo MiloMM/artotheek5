@@ -10,14 +10,18 @@
 	@endif
 	
 	<h1>Galerij</h1>
-	<div class="flex-container">
-	@foreach($artworks as $artwork)
-		<div class="img-box">
-			<a href="/artworks/{{ $artwork->slug }}">
-				<img src="{{ $artwork->file }}" class="img-box-image">
-			</a>
-		</div>
-	@endforeach
+	<div class="flex-container" id="image-container">
 	</div>
 </div>
+<script>
+	imgContainer = document.getElementById('image-container');
+	images = {!! $artworks !!};
+	
+	@foreach($artworks as $artwork)
+		//console.log({!! $artwork !!});
+		imgContainer.innerHTML += '<div class="img-box" id="{{ $artwork->id }}"><a href="/artworks/{{ $artwork->slug }}"><img src="{{ $artwork->file }}" class="img-box-image"></a></div>';
+		
+	@endforeach
+
+</script>
 @endsection
