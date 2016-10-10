@@ -248,9 +248,44 @@ class ArtworkController extends Controller {
 	 */
 	public function update($id)
 	{
+		// Select the artwork you want to modify.
+		$artwork = Artwork::find($id);
+		// Check if you want to publish it.
+		$publish = isset($_POST['publish']) ? 0 : 1;
+
+		// Create a slug from the title
+		// replace all spaces by a -
+		$slug = strtolower(implode('-', explode(' ', Input::get('title'))));
+		// replace all ?, /, \\ by nothing
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
+
+		// check if the slug already exist.
+		if (Artwork::where('slug', $slug)->first()) 
+		{
+			// Tell the user this title is already being used
+			return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], HttpCode::Conflict);
+		}
+
+		// Update all the fields.
+		$artwork->update([
+			'title' => $_POST['title'], 
+			'description' => $_POST['description'],
+			'artist' => $_POST['artist'],
+			'technique' => $_POST['technique'],
+			'colour' => $_POST['colour'],
+			'material' => $_POST['material'],
+			'category' => $_POST['category'],
+			'size' => $_POST['size'],
+			'price' => $_POST['price'],
+			'state' => $_POST['publish'],
+			'slug' => $slug
+		]);
 		
+
+		return redirect('artworks');
 	}
-	 
 	/* Delete the artwork from the archive (and so the database). */
 	public function destroy($id)
 	{

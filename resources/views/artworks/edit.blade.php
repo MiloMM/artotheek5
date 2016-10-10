@@ -43,13 +43,13 @@
 						<div class="form-group">
 							{!! Form::label('kleur', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), 'Rood', ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
+								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), $artwork->colour, ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::select('material', array('hout' => 'Hout', 'metaal' => 'Metaal'), 'Hout', ['class' => 'form-control', 'id' => 'tbx-material']) !!}
+								{!! Form::select('material', array('hout' => 'Hout', 'metaal' => 'Metaal'), $artwork->material, ['class' => 'form-control', 'id' => 'tbx-material']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -79,7 +79,7 @@
 						<div class="form-group">
 							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								{!! Form::checkbox('publish', true , ['class' => 'col-md-4 form-control']) !!}
+								{!! Form::checkbox('publish', false , ['class' => 'col-md-4 form-control']) !!}
 							</div>
 						</div>
 
