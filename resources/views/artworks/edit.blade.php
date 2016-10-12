@@ -31,31 +31,56 @@
 						<div class="form-group">
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('artist', $artwork->artist, ['class' => 'form-control', 'id' => 'tbx-artist']) !!}
+								<select class="form-control" id="tbx-artist" name="artist">
+								@foreach ($artists as $artist)
+									<?php $selected = ($artwork->artist == $artist->naam) ? "selected" : ""; ?>
+									<option value="{{ $artist->naam }}" {{ $selected }}>{{ $artist->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('technique', $artwork->technique, ['class' => 'form-control', 'id' => 'tbx-technique']) !!}
+								<select class="form-control" id="tbx-technique" name="technique">
+								@foreach ($techniques as $technique)
+									<?php $selected = ($artwork->technique == $technique->naam) ? "selected" : ""; ?>
+									<option value="{{ $technique->naam }}" {{ $selected }}>{{ $technique->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('kleur', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), $artwork->colour, ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
+								<select class="form-control" id="tbx-colour" name="colour">
+								@foreach ($colours as $colour)
+									<?php $selected = ($artwork->colour == $colour->naam) ? "selected" : ""; ?>
+									<option value="{{ $colour->naam }}" {{ $selected }}>{{ $colour->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::select('material', array('hout' => 'Hout', 'metaal' => 'Metaal'), $artwork->material, ['class' => 'form-control', 'id' => 'tbx-material']) !!}
+								<select class="form-control" id="tbx-material" name="material">
+								@foreach ($materials as $material)
+									<?php $selected = ($artwork->material == $material->naam) ? "selected" : ""; ?>
+									<option value="{{ $material->naam }}" {{ $selected }}>{{ $material->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('category', $artwork->category, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
+								<select class="form-control" id="tbx-category" name="category">
+								@foreach ($categories as $category)
+									<?php $selected = ($artwork->material == $material->naam) ? "selected" : ""; ?>
+									<option value="{{ $category->naam }}" {{ $selected }}>{{ $category->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">

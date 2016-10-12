@@ -10,6 +10,8 @@ use Input;
 use App\Http\Requests\ArtworkRequest;
 use Image;
 use App\Artwork;
+use App\filter;
+use App\filter_optie;
 use Auth;
 use Response;
 use Redirect;
@@ -44,8 +46,24 @@ class ArtworkController extends Controller {
 		// Is the user a moderator or admin?
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
 		{
+			// Get the selectbox options and pass them to the view via the compact function.
+			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
+			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->get();
+			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->get();
+			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->get();
+			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->get();
+			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
+			
+			$filterArray = [
+				'artists',
+				'techniques',
+				'colours',
+				'materials',
+				'categories'
+			];
+			
 			// Show the super create
-			return View::make('artworks/create');
+			return View::make('artworks/create', compact($filterArray));
 		} 
 		// Is the user a student?
 		else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) 
@@ -230,8 +248,25 @@ class ArtworkController extends Controller {
 		// Does the artwork exist?
 		if ($artwork) 
 		{
+			// Get the selectbox options and pass them to the view via the compact function.
+			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
+			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->get();
+			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->get();
+			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->get();
+			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->get();
+			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
+			
+			$filterArray = [
+				'artwork',
+				'artists',
+				'techniques',
+				'colours',
+				'materials',
+				'categories'
+			];
+			
 			// Show the view
-			return View::make('artworks/edit', compact('artwork'));
+			return View::make('artworks/edit', compact($filterArray));
 		} 
 		else 
 		{
@@ -261,13 +296,6 @@ class ArtworkController extends Controller {
 		$slug = str_replace('/','',$slug );
 		$slug = str_replace('\\','',$slug );
 
-		// check if the slug already exist.
-		if (Artwork::where('slug', $slug)->first()) 
-		{
-			// Tell the user this title is already being used
-			return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], HttpCode::Conflict);
-		}
-
 		// Update all the fields.
 		$artwork->update([
 			'title' => $_POST['title'], 
@@ -279,7 +307,7 @@ class ArtworkController extends Controller {
 			'category' => $_POST['category'],
 			'size' => $_POST['size'],
 			'price' => $_POST['price'],
-			'state' => $_POST['publish'],
+			'state' => $publish,
 			'slug' => $slug
 		]);
 		

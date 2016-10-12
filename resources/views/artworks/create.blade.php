@@ -6,7 +6,6 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Nieuw Kunstwerk</div>
 				<div class="panel-body">
-
 					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
 						<div class="form-group">
 							{!! Form::label('Titel', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}
@@ -23,31 +22,51 @@
 						<div class="form-group">
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('artist', null, ['class' => 'form-control', 'id' => 'tbx-artist']) !!}
+								<select class="form-control" id="tbx-artist" name="artist">
+								@foreach ($artists as $artist)
+									<option value="{{ $artist->naam }}">{{ $artist->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('technique', null, ['class' => 'form-control', 'id' => 'tbx-technique']) !!}
+								<select class="form-control" id="tbx-technique" name="technique">
+								@foreach ($techniques as $technique)
+									<option value="{{ $technique->naam }}">{{ $technique->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Colour', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::select('colour', array('rood' => 'Rood', 'blauw' => 'Blauw'), 'Rood', ['class' => 'form-control', 'id' => 'tbx-colour']) !!}
+								<select class="form-control" id="tbx-colour" name="colour">
+								@foreach ($colours as $colour)
+									<option value="{{ $colour->naam }}">{{ $colour->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::select('material', array('hout' => 'Hout', 'metaal' => 'Metaal'), 'Hout', ['class' => 'form-control', 'id' => 'tbx-material']) !!}
+								<select class="form-control" id="tbx-material" name="material">
+								@foreach ($materials as $material)
+									<option value="{{ $material->naam }}">{{ $material->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('category', null, ['class' => 'form-control', 'id' => 'tbx-category']) !!}
+								<select class="form-control" id="tbx-category" name="category">
+								@foreach ($categories as $category)
+									<option value="{{ $category->naam }}">{{ $category->naam }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">

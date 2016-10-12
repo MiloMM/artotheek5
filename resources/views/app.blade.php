@@ -88,12 +88,11 @@
 	<div class="footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
-				<h4>Contactgegevens</h4>
-				Da Vinci Artotheek<br>
-				Straat 123<br>
-				1234 AB Stad<br>
-				artotheek@davinci.nl<br>
+			<div class="col-md-12">
+				Da Vinci Artotheek - 
+				Leerparkpromenade 100 - 
+				3312 KW Dordrecht - 
+				artotheek@davinci.nl
 			</div>
 		</div>
 	</div>

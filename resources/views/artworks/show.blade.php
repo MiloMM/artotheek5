@@ -12,7 +12,7 @@
 
 <div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-default">
-		<div class="panel-heading" style="height: 50px;">
+		<div class="" style="height: 50px;border-bottom: solid black 1px;">
 			<div style="float: left">
 				<h2 style="margin-top: -2px;">{{ $artwork->title }}</h2>
 			</div>
@@ -39,27 +39,40 @@
 				</div>
 			@endif
 		</div>
-		
-		<div class="">
-			
-		</div>
-		<center><img src="/{{ $artwork->file }}" alt="" style="width: 100%; max-width: 800px; max-height: 700px;"></center>	
+		<img class="showArtworkImage" src="/{{ $artwork->file }}" alt="">
 		<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
-		<div class="panel-body">{!! $artwork->description !!}</div>
-		<div class="panel-heading">
-			<p>Kunstenaar: {!! $artwork->artist !!}</p>
-			<p>Techniek: {!! $artwork->technique !!}</p>
-			<p>Categorie: {!! $artwork->category !!}</p>
-			<p>Formaat: {!! $artwork->size !!}</p>
-			<p>Prijs: €{!! $artwork->price !!}</p>
-		</div>
 		
-		<p class="tag-paragraph"> 
-			@foreach($tagArray as $tag)
-				<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
-			@endforeach
-		</p>
-	</div>
+		<div class="artworkInfo">
+			<div class="col-md-12">{!! $artwork->description !!}</div>
+			
+			<div class="col-md-2">Kunstenaar</div>
+			<div class="col-md-1">:</div>
+			<div class="col-md-9">{!! $artwork->artist !!}</div>
+			
+			<div class="col-md-2">Techniek</div>
+			<div class="col-md-1">:</div>
+			<div class="col-md-9">{!! $artwork->technique !!}</div>
+			
+			<div class="col-md-2">Categorie</div>
+			<div class="col-md-1">:</div>
+			<div class="col-md-9">{!! $artwork->category !!}</div>
+			
+			<div class="col-md-2">Formaat</div>
+			<div class="col-md-1">:</div>
+			<div class="col-md-9">{!! $artwork->size !!}</div>
+			
+			<div class="col-md-2">Prijs</div>
+			<div class="col-md-1">:</div>
+			<div class="col-md-9">€{!! $artwork->price !!}</div>
+		
+			<div class="col-md-2">
+				@foreach($tagArray as $tag)
+					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
+				@endforeach
+			</div>
+			<div class="col-md-10"></div>
+		</div>
+	</div><br><br>
 	<h1 style ="padding:20,20,20,0">Reserveringen voor {{$artwork->title}}</h1>
 	<div id="calendar">
 		

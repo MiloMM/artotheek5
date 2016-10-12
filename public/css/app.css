@@ -6428,7 +6428,37 @@ label,
 	right: 0;
 }
 
+.custom-navbar-right {
+	margin-top: 4px;
+}
+
 .footer {
+	background: #603f5b;
+	padding: 10px 0 10px 0;
+	color: white;
+	text-align: center;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-top: 1px solid #83447A;
+	font-size: 8pt;
+}
+
+/*.footer {
+	background: none;
+	padding: 10px 0 10px 0;
+	color: black;
+	text-align: center;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-top: 1px solid #83447A;
+	font-size: 8pt;
+}*/
+
+/*.footer {
 	background: rgb(237, 237, 237);
 	height: 200px;
 	padding: 45px;
@@ -6439,7 +6469,7 @@ label,
 	bottom: 0;
 	left: 0;
   border-top: 1px solid #e7e7e7;
-}
+}*/
 
 .footer h4 {
 	margin-top: 0;
@@ -6463,8 +6493,8 @@ label,
 	display: inline-block;
 	vertical-align: bottom;
 	margin: 0 10px 10px 0;
-	border: solid #d6d6d6 5px;
-	box-shadow: 5px 5px 10px #333333;
+	/*border: solid #d6d6d6 5px;*/
+	/*box-shadow: 5px 5px 10px #333333;*/
 	transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
@@ -6522,8 +6552,8 @@ h1 {
 }
 
 .content {
-  margin-top: 97px !important;
-	padding-bottom: 220px;
+	margin-top: 97px !important;
+	padding-bottom: 100px;
 }
 
 @media screen and (max-width: 600px) {
@@ -6569,7 +6599,7 @@ h1 {
 	
 	.custom_navmenu li {
 		border-bottom: 2px solid white;
-		background: #8e5f8d;
+		background: rgba(142, 95, 141, 0.8);
 	}
 	
 	.custom_navmenu li:first-child {
@@ -6580,6 +6610,10 @@ h1 {
 @media screen and (max-width: 750px) {
 	.menuButtonsHidden {
 		display: none !important;
+	}
+	
+	.login-menu li ul li:nth-child(2) {
+		border-bottom: solid white 1px;
 	}
 }
 
@@ -6628,7 +6662,7 @@ h1 {
 		border-bottom: solid white 1px;
 		border-left: solid white 1px;
 		border-right: solid white 1px;
-		background: #8e5f8d;
+		background: rgba(142, 95, 141, 0.8);
 	}
 	
 	.custom_navmenu li:nth-child(even) {
@@ -6665,6 +6699,12 @@ h1 {
 	
 	.login-menu li {
 		width: 100%;
+		border: solid white 1px;
+	}
+	
+	.login-menu li:nth-child(2) {
+		border: solid white 1px;
+		border-top: none;
 	}
 	
 	.login-menu li ul li {
@@ -6674,6 +6714,11 @@ h1 {
 	
 	.login-menu li ul li:first-child {
 		border-right: solid white 1px;
+	}
+	
+	.login-menu li ul li:nth-child(2) {
+		border: none;
+		border-top: solid white 1px;
 	}
 	
 	.custom_searchmenu form {
@@ -6709,8 +6754,20 @@ h1 {
 @media screen and (max-width: 750px) and (orientation: portrait) {
 	.login-menu li:nth-child(2) {
 		border: none;
+		border-bottom: 2px solid white;
 	}
 }
+
+@media screen and (min-width: 350px) and (max-width: 450px) and (orientation: portrait) {
+	.custom_navmenu {
+		width: 70%;
+	}
+	
+	.custom_searchmenu {
+		width: 70%;
+	}
+}
+
 
 h1#indexPageTitle {
   color: #83447A;
@@ -6742,5 +6799,18 @@ h1#indexPageTitle {
 	width: auto;
 	height: 200px;
 }
+
+.artworkInfo .col-md-2 {
+	padding-left: 0;
+}
+
+.artworkInfo .col-md-9 {
+	min-height: 20px;
+}
+
+.artworkInfo .col-md-10 {
+	min-height: 20px;
+}
+
 
 
