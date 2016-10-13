@@ -22,9 +22,11 @@
 	<link rel="stylesheet" href="{{ asset('css/jasny-bs.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('css/navmenu-reveal.css') }}">
 	<link rel='stylesheet' href="{{ asset('/css/fullcalendar.css') }}"/>
-
+	<link rel='stylesheet' href="{{ asset('/chosen/chosen.css') }}"/>
+	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/jquery-header.js') }}"></script>
+	<script src="{{ asset('/chosen/chosen.jquery.min.js') }}"/></script>
 
 </head>
 <body ng-app="application">

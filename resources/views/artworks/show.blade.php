@@ -10,11 +10,10 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="col-md-8 col-md-offset-2">
-	<div class="panel panel-default">
-		<div class="" style="height: 50px;border-bottom: solid black 1px;">
+<div class="col-md-8 col-md-offset-2 artworkPage">
+		<div class="artworkTitleBar">
 			<div style="float: left">
-				<h2 style="margin-top: -2px;">{{ $artwork->title }}</h2>
+				<h2>{{ $artwork->title }}</h2>
 			</div>
 			@if(Auth::check())
 				<div style="float: right">
@@ -39,8 +38,7 @@
 				</div>
 			@endif
 		</div>
-		<img class="showArtworkImage" src="/{{ $artwork->file }}" alt="">
-		<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+		<center class="centerImage"><img class="showArtworkImage" src="/{{ $artwork->file }}" alt=""></center>
 		
 		<div class="artworkInfo">
 			<div class="col-md-12">{!! $artwork->description !!}</div>
@@ -72,11 +70,13 @@
 			</div>
 			<div class="col-md-10"></div>
 		</div>
-	</div><br><br>
+	<br><br>
 	<h1 style ="padding:20,20,20,0">Reserveringen voor {{$artwork->title}}</h1>
 	<div id="calendar">
 		
 	</div>
+	<br><br>
+	<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 </div>
 <script>
 	$(function () {

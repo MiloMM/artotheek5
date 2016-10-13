@@ -31,7 +31,7 @@
 						<div class="form-group">
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-artist" name="artist">
+								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
 									<?php $selected = ($artwork->artist == $artist->naam) ? "selected" : ""; ?>
 									<option value="{{ $artist->naam }}" {{ $selected }}>{{ $artist->naam }}</option>
@@ -127,6 +127,8 @@
 <script>
 	$(function () {
 		var editor = CKEDITOR.replace('textarea-description');
+		$(".chosen-select").chosen();
 	});
+	$("#form_field").trigger("chosen:updated");
 </script>
 @stop

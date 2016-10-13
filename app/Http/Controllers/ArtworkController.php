@@ -47,12 +47,12 @@ class ArtworkController extends Controller {
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
-			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->get();
-			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->get();
-			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->get();
-			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->get();
-			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
+			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
+			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
+			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
+			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
 			
 			$filterArray = [
 				'artists',
@@ -249,12 +249,12 @@ class ArtworkController extends Controller {
 		if ($artwork) 
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
-			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->get();
-			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->get();
-			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->get();
-			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->get();
-			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->get();
+			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
+			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
+			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
+			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
 			
 			$filterArray = [
 				'artwork',
@@ -295,7 +295,12 @@ class ArtworkController extends Controller {
 		$slug = str_replace('?','', $slug);
 		$slug = str_replace('/','',$slug );
 		$slug = str_replace('\\','',$slug );
-
+		
+		if ($checkSlug = Artwork::where('slug', $slug)->first()) {
+			if ($artwork->id !== $checkSlug->id) {
+				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], HttpCode::Conflict);
+			}
+		}
 		// Update all the fields.
 		$artwork->update([
 			'title' => $_POST['title'], 
@@ -312,7 +317,7 @@ class ArtworkController extends Controller {
 		]);
 		
 
-		return redirect('artworks');
+		return redirect('artworks/'.$artwork->slug);
 	}
 	/* Delete the artwork from the archive (and so the database). */
 	public function destroy($id)

@@ -6800,6 +6800,17 @@ h1#indexPageTitle {
 	height: 200px;
 }
 
+.showArtworkImage {
+	width: auto;
+	height: 450px;
+	
+}
+
+.artworkInfo {
+	margin-top: 25px;
+	margin-bottom: 125px;
+}
+
 .artworkInfo .col-md-2 {
 	padding-left: 0;
 }
@@ -6812,5 +6823,38 @@ h1#indexPageTitle {
 	min-height: 20px;
 }
 
+.centerImage {
+	display: block;
+	background: url('/images/repbg.png');
+}
 
+.artworkTitleBar {
+	background: white;
+	margin-bottom: 40px;
+}
 
+.artworkTitleBar h2{
+	margin-bottom: 3px;
+	margin-top: 0;
+}
+
+.artworkPage {
+	margin-top: 25px;
+}
+
+.chosen-single {
+	height: 34px !important;
+	padding: 6px 12px !important;
+    font-size: 14px !important;
+    line-height: 1.42857143 !important;
+    color: #555 !important;
+    background-color: #fff !important;
+    background-image: none !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s !important;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s !important;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s !important;
+}
