@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	{{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="De DaVinci Galleria">
-	<meta name="author" content="DaVinci College">
+	<meta name="description" content="De Da Vinci Galleria">
+	<meta name="author" content="Da Vinci College">
 
-	<title>DaVinci Galleria</title>
+	<title>Da Vinci Galleria</title>
 
 	{{-- <link href="{{ asset('/css/main.css') }}" rel="stylesheet"> --}}
 	{{-- <link href="{{ asset('/css/style.css') }}" rel="stylesheet"> --}}
@@ -33,9 +33,9 @@
 
 <div id="custom_navmenu" class="custom_navmenu">
 	<span id="custom_navbar_toggle_two" class="glyphicon glyphicon-remove custom_glyphicon-remove"></span>
-	<a class="navmenu-brand" href="/">DaVinci Galleria</a>
+	<a class="navmenu-brand" href="/">Da Vinci Galleria</a>
 	<ul class="nav navmenu-nav">
-		<li><a href="/about">Over DaVinci Galleria</a></li>
+		<li><a href="/about">Over Da Vinci Galleria</a></li>
 		<li><a href="/gallery">Galerij</a></li>
 		<li><a href="#">Uitleenvoorwaarden</a></li>
 		<li><a href="#">Nieuws</a></li>

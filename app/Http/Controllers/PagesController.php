@@ -18,7 +18,7 @@ class PagesController extends Controller {
 	//
 	public function index()
 	{
-		$artworks = Artwork::orderBy('id', 'DESC')->take(8)->get();
+		$artworks = Artwork::orderBy('id', 'DESC')->take(12)->get();
 		$artCount = Artwork::where('state', 0)->count();
 		TagsHelper::addTagsToCollection($artworks);
 		return View::make('index', compact('artworks', 'artCount'));

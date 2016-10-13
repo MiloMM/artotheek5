@@ -6483,13 +6483,14 @@ label,
   display: -webkit-flex;
   display: flex;
   
-  -webkit-flex-flow: row wrap;
-  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .img-box {
 	width: auto;
-	height: 200px;
+	height: 140px;
 	display: inline-block;
 	vertical-align: bottom;
 	margin: 0 10px 10px 0;
