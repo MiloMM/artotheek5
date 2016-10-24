@@ -45,5 +45,25 @@ class FilterController extends Controller
 
 		return redirect()->route('filterIndex', [$request['filter_id']])->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> U heeft succesvol het item <strong>' . $request['naam'] . '</strong> toegevoegd');
 	}
+	
+	public function edit()
+	{
+		echo 'response ='. $_POST['data'];
+	}
+	
+	public function update()
+	{
+		
+	}
+	
+	public function delete($filter, $id)
+	{
+		if (filter_optie::destroy($id)) {
+			return redirect('filters/' . $filter)->with('errorMsg', '<span class="glyphicon glyphicon-ok"></span> Het item is succesvol verwijderd.');
+		}
+		else {
+			return redirect('filters/' . $filter)->with('errorMsg', '<span class="glyphicon glyphicon-ok"></span> Er is iets fout gegaan met het verwijderen. Probeer het nog een keer.');
+		}
+	}
 
 }

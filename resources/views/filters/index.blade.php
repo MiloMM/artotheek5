@@ -12,6 +12,9 @@
 		@if(session('succesMsg'))
 			<div class="alert alert-success"> {!!session('succesMsg')!!} </div>
 		@endif
+		@if(session('errorMsg'))
+			<div class="alert alert-success errorMsg"> {!!session('errorMsg')!!} </div>
+		@endif
 		
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -33,10 +36,15 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Naam</th>
+				<th>Opties</th>
 			</tr>
 		@foreach($filter_opties as $filter_optie)
 			<tr>
-				<td>{{$filter_optie->naam}}</td>
+				<td width="75%">{{$filter_optie->naam}}</td>
+				<td style="width:25%; text-align:right;">
+					<a class="fa fa-pencil-square-o filter-options" href="/filters/{{$filter_optie->filter_id}}/{{$filter_optie->id}}/edit" onclick="return confirm('Weet u zeker dat u \'{{$filter_optie->naam}}\' uit het filter wilt verwijderen?')"></a>
+					<a class="fa fa-trash filter-options" href="/filters/{{$filter_optie->filter_id}}/{{$filter_optie->id}}/delete" onclick="return confirm('Weet u zeker dat u \'{{$filter_optie->naam}}\' uit het filter wilt verwijderen?')"></a>
+				</td>
 			</tr>
 		@endforeach
 		</table>

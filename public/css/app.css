@@ -147,6 +147,10 @@ a.custom-gallery-link:hover {
   color: white!important;
 }
 
+.filter-options {
+	font-size: 19px !important;
+}
+
 .custom-spacer{
   margin-bottom: 10px;
 }
@@ -6858,4 +6862,9 @@ h1#indexPageTitle {
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s !important;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s !important;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s !important;
+}
+
+.errorMsg {
+	background: #ff6363 !important;
+	color: white !important;
 }

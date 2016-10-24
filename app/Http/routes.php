@@ -20,6 +20,8 @@ Route::get('/gallery/search', 'PagesController@gallerySearch');
 
 Route::get('gallery/archive', 'ArtworkController@showArchived');
 
+Route::get('filters/{filter}/{id}/delete', 'FilterController@delete');
+Route::get('filters/{id}/edit', 'FilterController@edit');
 Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
 
 Route::resource('filters', 'FilterController');
