@@ -6868,3 +6868,12 @@ h1#indexPageTitle {
 	background: #ff6363 !important;
 	color: white !important;
 }
+
+.filter-edit-form {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.nav-tabs li a:hover {
+	background-color: #603f5b !important;
+}
