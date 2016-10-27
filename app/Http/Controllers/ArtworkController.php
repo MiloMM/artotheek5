@@ -111,7 +111,10 @@ class ArtworkController extends Controller {
 			$artwork->material = Input::get('material');
 
 			// get the tags [test,mark] <-- format and split them by a , to an array
-			$tags = explode(',', $input['tags']);
+			if (!empty($input['tags'])) {
+				$tags = explode(',', $input['tags']);
+			}
+			
 
 			// Is the user an moderator or admin
 			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
@@ -170,10 +173,13 @@ class ArtworkController extends Controller {
 			$image->save($artwork->file);
 
 			// tag the artwork with all the tags
-			foreach ($tags as $tag) 
-			{
-				$artwork->tag($tag);
+			if (!empty($tags)) {
+				foreach ($tags as $tag) 
+				{
+					$artwork->tag($tag);
+				}
 			}
+			
 			// save the artwork data in the database
 			$artwork->save();
 
