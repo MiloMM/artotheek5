@@ -26,11 +26,11 @@ class PagesController extends Controller {
 
 	public function myprofile()
 	{
-		if (Auth::check()) 
+		if (Auth::check())
 		{
 			return Redirect::to('/users/' . Auth::user()->slug);
-		} 
-		else 
+		}
+		else
 		{
 			return Redirect::action('PagesController@index');
 		}
@@ -51,7 +51,7 @@ class PagesController extends Controller {
 
 	public function gallerySearch(Request $request)
 	{
-		
+
 		if ($request->has('keyword'))
 		{
 			$SearchQuery = [
@@ -102,13 +102,13 @@ class PagesController extends Controller {
 	        $result[1] = $result[1]->get();
 
 			return View::make('/gallery/search')->with('result', $result);
-		} 
-		else 
+		}
+		else
 		{
 			return Redirect::action('PagesController@gallery');
 		}
 	}
-	
+
 	public function about()
 	{
 		return view('about/index');

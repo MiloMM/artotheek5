@@ -54,29 +54,28 @@ class UserController extends Controller {
 		if(Auth::check())
 		{
 			// Does this user exist?
-			if (User::where('slug', $slug)->first()) 
+			if (User::where('slug', $slug)->first())
 			{
 				// Am i this user?
-				if (User::where('slug', $slug)->first()->id == Auth::user()->id) 
+				if (User::where('slug', $slug)->first()->id == Auth::user()->id)
 				{
 					$user = User::where('slug',$slug)->first();
 					return View::make('users/showself',compact('user'));
-				} 
-				else 
+				}
+				else
 				{
 					$user = User::where('slug',$slug)->first();
 					return View::make('users/show',compact('user'));
 				}
 			}
-			else 
+			else
 			{
 				return Redirect::to('/');
-			}	
+			}
 		}
 		else
 		{
 			return Redirect::to('/');
-
 		}
 	}
 
@@ -117,10 +116,15 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
-	}
+	 public function destroy($id)
+	  	{
+	   	//make sure you call the model on the top of your controller => use App\[modelname];
+	   	User::findOrFail($id)->delete();
+	     //return Redirect::to('auth/login');
+	  		echo "A user with the user id of $id has been removed";
+	 		//Modelname:findorfail($id)->destroy()
+			return Redirect::to('/gallery');
+	  	}
 
 	public function Logout()
 	{

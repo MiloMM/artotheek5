@@ -1,8 +1,9 @@
 @extends('app')
 @section('content')
 <div class="panel panel-default">
-<div class="panel-heading">
+<div class="panel-heading" style="position: relative;">
 	<h1>Kunstenaar Profiel</h1>
+	<a href="/destroy/{{$user->id}}" class="profileDeleteButton">allahu akbar</a>
 </div>
 	<div class="panel-body">
 		<table class=table>

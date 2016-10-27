@@ -6,7 +6,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Wijzig gebruikers profiel</div>
 				<div class="panel-body">
-
+					
 					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
 						<div class="form-group">
 							{!! Form::label('Naam', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}
@@ -47,9 +47,9 @@
 			xhr.open('POST', '/users/{{$user->slug}}');
 
 			xhr.onload = function () {
-				
+
 				if (xhr.status == 200 || xhr.status == 0) {
-					
+
 
 					response = JSON.parse(xhr.response);
 					var msg = "<ul>";
