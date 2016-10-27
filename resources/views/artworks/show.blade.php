@@ -62,13 +62,14 @@
 			<div class="col-md-2">Prijs</div>
 			<div class="col-md-1">:</div>
 			<div class="col-md-9">€{!! $artwork->price !!}</div>
-		
-			<div class="col-md-2">
+			
+			<div class="col-md-2">Tags</div>
+			<div class="col-md-1">:</div>
+			<div class="col-md-9">
 				@foreach($tagArray as $tag)
-					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}">{{ $tag }}</a>
+					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}"> {{ $tag }}</a>,
 				@endforeach
 			</div>
-			<div class="col-md-10"></div>
 		</div>
 	<br><br>
 	<h1 style ="padding:20,20,20,0">Reserveringen voor {{$artwork->title}}</h1>

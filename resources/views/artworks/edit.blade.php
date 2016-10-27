@@ -97,8 +97,14 @@
 						</div>
 						<div class="form-group">
 							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
-							<div class="col-md-6">
-								<input id="tbx-tags" type="text" class="form-control" value="{!! $artwork->tagsToTagsinput() !!}" placeholder="Voeg tags toe..." data-role="tagsinput">
+							<div class="col-md-6" id="tag-box">
+								<input id="tbx-tags" type="text" class="form-control" value="{{ $artwork->tagsToTagsInput() }}" placeholder="Voeg tags toe..." name="tags" data-role="tagsinput">
+							</div>
+						</div>
+						<div class="form-group" style="display:none">
+							{!! Form::label('Oude tags', null, ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-6" id="old-tags-box">
+								<input id="old-tags" type="text" class="form-control" value="{{ $artwork->tagsToTagsInput() }}" name="old-tags" data-role="tagsinput">
 							</div>
 						</div>
 						<div class="form-group">
@@ -130,5 +136,18 @@
 		$(".chosen-select").chosen();
 	});
 	$("#form_field").trigger("chosen:updated");
+	
+	$('#tag-box').change(function() {
+		var tags = document.getElementsByClassName('tagText');
+		var tagString = "";
+		
+		for (var i = 0; i < tags.length; i++) {
+			tagString += tags[i].innerHTML + ',';
+		}
+		
+		tagString = tagString.substring(0, tagString.length - 1)
+		
+		$('#tbx-tags').attr('value', tagString);
+	});
 </script>
 @stop

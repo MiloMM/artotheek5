@@ -61,6 +61,11 @@ class Artwork extends Model {
 			}
 			$i++;
 		}
+		
+		if (substr($str, 0, 1) === ',') {
+			$str = substr($str, 1);
+		}
+		
 		return $str;
 	}	
 }

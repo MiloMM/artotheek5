@@ -10,6 +10,7 @@ use Input;
 use App\Http\Requests\ArtworkRequest;
 use Image;
 use App\Artwork;
+use App\Tagging_Tagged;
 use App\filter;
 use App\filter_optie;
 use Auth;
@@ -266,6 +267,7 @@ class ArtworkController extends Controller {
 			];
 			
 			// Show the view
+
 			return View::make('artworks/edit', compact($filterArray));
 		} 
 		else 
@@ -283,6 +285,7 @@ class ArtworkController extends Controller {
 	 */
 	public function update($id)
 	{
+		
 		// Select the artwork you want to modify.
 		$artwork = Artwork::find($id);
 		// Check if you want to publish it.
@@ -316,6 +319,26 @@ class ArtworkController extends Controller {
 			'slug' => $slug
 		]);
 		
+		if (!empty(Input::get('old-tags'))) {
+			$oldTags = explode(',', Input::get('old-tags'));
+		}
+		
+		if (!empty(Input::get('tags'))) {
+			$tags = explode(',', Input::get('tags'));
+		}
+		
+		if (!empty($oldTags)) {
+			DB::table('tagging_tagged')->where('taggable_id', $artwork->id)->delete();
+		}
+		
+		// tag the artwork with all the tags
+		if (!empty($tags)) {
+			foreach ($tags as $tag) {
+				$artwork->tag($tag);
+			}
+		}
+		
+		$artwork->save();
 
 		return redirect('artworks/'.$artwork->slug);
 	}

@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	{{-- <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'> --}}
 	{{-- Tags --}}
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-tagsinput.css') }}">
 
 	<link rel="stylesheet" href="{{ asset('css/jasny-bs.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('css/navmenu-reveal.css') }}">
@@ -110,7 +110,7 @@
 <!-- Scripts -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>--}}
-<script src="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
+<script src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
 <script src="{{ asset('js/darkroom.min.js') }}"></script>
