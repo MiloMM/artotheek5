@@ -38,14 +38,11 @@ class PagesController extends Controller {
 
 	public function artists()
 	{
-		$artists = 	DB::table('users')
-	    ->join('user_privelege', function($join)
-	    {
-	        $join->on('users.id', '=', 'user_privelege.user_id')
-	             ->where('user_privelege.privelege_id', '<', 3);
-	    })
-	    ->get();
-
+		$artists = 	DB::table('users')->join('user_privelege', function($join)
+			{
+					$join->on('users.id', '=', 'user_privelege.user_id')
+							 ->where('user_privelege.privelege_id', '=', 2);
+			})->get();
 		return View::make('artists/index',compact('artists'));
 	}
 
