@@ -19,7 +19,7 @@ class FilterController extends Controller
 
 	public function index($id = 1)
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 		{
 			$filters = filter::all();
 			$filter_opties = filter_optie::where('filter_id', '=', $id)
@@ -28,7 +28,7 @@ class FilterController extends Controller
 												->get();
 
 			return view::make('filters/index')->with(compact('filters', 'id', 'filter_opties', 'filter_count'));
-		} 
+		}
 		else
 		{
 			return View::make('errors/' . HttpCode::Unauthorized);
@@ -46,7 +46,7 @@ class FilterController extends Controller
 
 		return redirect()->route('filterIndex', [$request['filter_id']])->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> U heeft succesvol het item <strong>' . $request['naam'] . '</strong> toegevoegd');
 	}
-	
+
 	public function edit($filter, $id)
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
@@ -58,13 +58,13 @@ class FilterController extends Controller
 		}
 		die;
 	}
-	
+
 	public function update($id)
 	{
 		$filterItem = filter_optie::findOrFail($id);
 		$filterItemBefore = $filterItem->naam;
 		$filterItem->naam = Input::get('naam');
-		
+
 		if ($filterItem->save()) {
 			return redirect('filters/' . $filterItem->filter_id)->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> Het item <b>'.$filterItemBefore.'</b> is succesvol gewijzigd naar <b>'.$filterItem->naam.'</b>.');
 		}
@@ -72,7 +72,7 @@ class FilterController extends Controller
 			return redirect('filters/' . $filterItem->filter_id)->with('errorMsg', '<span class="glyphicon glyphicon-ok"></span> Er is helaas iets fout gegaan. Probeer het nog een keer.');
 		}
 	}
-	
+
 	public function delete($filter, $id)
 	{
 		if (filter_optie::destroy($id)) {

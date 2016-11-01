@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="{{ asset('css/navmenu-reveal.css') }}">
 	<link rel='stylesheet' href="{{ asset('/css/fullcalendar.css') }}"/>
 	<link rel='stylesheet' href="{{ asset('/chosen/chosen.css') }}"/>
-	
+
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/jquery-header.js') }}"></script>
 	<script src="{{ asset('/chosen/chosen.jquery.min.js') }}"/></script>
@@ -69,7 +69,7 @@
 		<div class="custom-navbar-left" style="float: left;">
 			<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Image" id="headerLogo" class="headerLogo"></a>
 		</div>
-			
+
 		<div class="custom-navbar-right" style="float: right;">
 			<button id="searchtoggle" class="btn btn-default" style="float: left; margin-top: 9px; padding: 5px 15px 5px 15px;">
 				<span class="glyphicon glyphicon-search"></span>
@@ -91,9 +91,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				Da Vinci Artotheek - 
-				Leerparkpromenade 100 - 
-				3312 KW Dordrecht - 
+				Da Vinci Artotheek -
+				Leerparkpromenade 100 -
+				3312 KW Dordrecht -
 				artotheek@davinci.nl
 			</div>
 		</div>

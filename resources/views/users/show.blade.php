@@ -3,7 +3,9 @@
 <div class="panel panel-default">
 <div class="panel-heading" style="position: relative;">
 	<h1>Kunstenaar Profiel</h1>
-	<a href="/destroy/{{$user->id}}" class="profileDeleteButton">allahu akbar</a>
+	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
+		<a href="/destroy/{{$user->id}}" class="profileDeleteButton">Verwijder alles van deze kunstenaar</a>
+	@endif
 </div>
 	<div class="panel-body">
 		<table class=table>

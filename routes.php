@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/destroy/{id}', 'UserController@destroy');
 Route::get('/', 'PagesController@index');
 Route::get('/gallery', 'PagesController@gallery');
 Route::get('/reservations', 'ReservationController@index');

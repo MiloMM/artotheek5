@@ -12,6 +12,8 @@
 */
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
+Route::get('/destroy/{id}', 'UserController@destroy');
+
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/artists' , 'PagesController@artists');

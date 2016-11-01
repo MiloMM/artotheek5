@@ -51,13 +51,11 @@ class UserController extends Controller {
 	 */
 	public function show($slug)
 	{
-		if(Auth::check())
-		{
 			// Does this user exist?
 			if (User::where('slug', $slug)->first())
 			{
 				// Am i this user?
-				if (User::where('slug', $slug)->first()->id == Auth::user()->id)
+				if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id)
 				{
 					$user = User::where('slug',$slug)->first();
 					return View::make('users/showself',compact('user'));
@@ -73,11 +71,6 @@ class UserController extends Controller {
 				return Redirect::to('/');
 			}
 		}
-		else
-		{
-			return Redirect::to('/');
-		}
-	}
 
 	/**
 	 * Show the form for editing the specified resource.

@@ -18,7 +18,7 @@
 		@if(session('errorMsg'))
 			<div class="alert alert-success errorMsg"> {!!session('errorMsg')!!} </div>
 		@endif
-		
+
 
 				<div class="">
 					{!! Form::open(array('url' => 'filters', 'required')) !!}
@@ -30,7 +30,7 @@
 
 					{!! Form::close() !!}
 				</div>
-			
+
 	</div>
 	<div class="col-md-6">
 		<h3>Overzicht</h3>
