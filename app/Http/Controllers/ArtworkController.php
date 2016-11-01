@@ -10,7 +10,6 @@ use Input;
 use App\Http\Requests\ArtworkRequest;
 use Image;
 use App\Artwork;
-use App\Tagging_Tagged;
 use App\filter;
 use App\filter_optie;
 use Auth;

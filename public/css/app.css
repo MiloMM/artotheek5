@@ -6820,11 +6820,7 @@ h1#indexPageTitle {
 	padding-left: 0;
 }
 
-.artworkInfo .col-md-9 {
-	min-height: 20px;
-}
-
-.artworkInfo .col-md-10 {
+.artworkInfo .col-md-9, .artworkInfo .col-md-10, .artworkInfo .col-md-12 {
 	min-height: 20px;
 }
 
@@ -6898,4 +6894,16 @@ h1#indexPageTitle {
 .profileDeleteButton:hover {
   color: black;
   text-decoration: none;
+}
+
+.bootstrap-tagsinput {
+	width: 100%;
+}
+
+.control-label {
+	text-align: left !important;
+}
+
+.tagsDiv {
+	padding-left: 0 !important;
 }

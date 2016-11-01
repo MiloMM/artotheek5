@@ -63,11 +63,12 @@
 			<div class="col-md-1">:</div>
 			<div class="col-md-9">€{!! $artwork->price !!}</div>
 			
-			<div class="col-md-2">Tags</div>
-			<div class="col-md-1">:</div>
-			<div class="col-md-9">
+			<div class="col-md-12 tagsDiv">
+			<?php $i = 1; ?>
 				@foreach($tagArray as $tag)
-					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}"> {{ $tag }}</a>,
+					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}"> {{ $tag }}</a>@if ($i < count($tagArray)){{ ',' }}
+					@endif
+			<?php $i++ ?>
 				@endforeach
 			</div>
 		</div>

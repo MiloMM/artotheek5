@@ -9,7 +9,7 @@
 
 					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form', 'method' => 'put', 'action' => ['ArtworkController@update', $artwork->id]]) !!}
 						<div class="form-group">
-							{!! Form::label('Titel', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Titel', null, ['class' => 'col-md-1 control-label']) !!}
 							<div class="col-md-11">
 								{!! Form::text('title', $artwork->title, ['class' => 'form-control', 'id' => 'tbx-title']) !!}
 							</div>
@@ -29,7 +29,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
@@ -40,7 +40,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-technique" name="technique">
 								@foreach ($techniques as $technique)
@@ -51,7 +51,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('kleur', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('kleur', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-colour" name="colour">
 								@foreach ($colours as $colour)
@@ -62,7 +62,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-material" name="material">
 								@foreach ($materials as $material)
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-category" name="category">
 								@foreach ($categories as $category)
@@ -84,25 +84,25 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								{!! Form::text('size', $artwork->size, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Prijs', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							{!! Form::label('Prijs', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								{!! Form::text('price', $artwork->price, ['class' => 'form-control', 'id' => 'tbx-price']) !!}
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
-							<div class="col-md-6" id="tag-box">
+							{!! Form::label('Tags', null, ['class' => 'col-md-2 control-label']) !!}
+							<div class="col-md-10" id="tag-box">
 								<input id="tbx-tags" type="text" class="form-control" value="{{ $artwork->tagsToTagsInput() }}" placeholder="Voeg tags toe..." name="tags" data-role="tagsinput">
 							</div>
 						</div>
 						<div class="form-group" style="display:none">
-							{!! Form::label('Oude tags', null, ['class' => 'col-md-4 control-label']) !!}
+							{!! Form::label('Oude tags', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-6" id="old-tags-box">
 								<input id="old-tags" type="text" class="form-control" value="{{ $artwork->tagsToTagsInput() }}" name="old-tags" data-role="tagsinput">
 							</div>
