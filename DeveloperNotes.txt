@@ -1,5 +1,6 @@
 This document is made by Sidney for personal use and doesn't add anything to the application.
 
 to do:
-1: destroy() must destroy everything from an artist, not just the account.  -> ~30% (need point 1 fixed to continue)
-2: I need to add an option for users with privelege 4 to change other users privelege-status.  -> 0% (need point 1 fixed to start)
+1: destroy() must destroy everything from an artist, not just the account.  -> ~30%
+2: I need to add an option for users with privelege 4 to change other users privelege-status.  -> 0%
+3: Artist filters from, user with privelege 2 instead of manual insert in the filerter table.

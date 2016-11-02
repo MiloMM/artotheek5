@@ -24,7 +24,7 @@
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
-									<option value="{{ $artist->naam }}">{{ $artist->naam }}</option>
+									<option value="{{ $artist->id }}">{{ $artist->name }}</option>
 								@endforeach
 								</select>
 							</div>
@@ -98,7 +98,7 @@
 								<input type="file" name="image" class="form-control" style="display: none;">
 								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-info', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
 								<div id="image-editor">
-									
+
 								</div>
 							</div>
 						</div>
@@ -169,7 +169,7 @@
 										}
 									}
 								});
-								
+
 							}, 500);
 						});
 						$('.darkroom-icon-cancel').parent().click(function () {
@@ -182,7 +182,7 @@
 					$(this).replaceWith($(this).val('').clone(true));
 				}
 			}
-			
+
 		});
 
 		$('#form').submit(function (event) {
@@ -219,7 +219,7 @@
 			}
 
 			xhr.onload = function () {
-				
+
 				if (xhr.status == 200 || xhr.status == 0) {
 					var progressbar = $('#progressbar-upload');
 					progressbar.html('geupload');
@@ -245,7 +245,7 @@
 					functions.showErrorBanner(msg);
 				}
 			}
-			
+
 			var canvas = $('.canvas-container .lower-canvas')[0];
 			var dataURL = canvas.toDataURL('image/jpeg');
 			var encoding = dataURL.split(',')[0];

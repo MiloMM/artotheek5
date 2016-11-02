@@ -34,7 +34,7 @@
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
 									<?php $selected = ($artwork->artist == $artist->naam) ? "selected" : ""; ?>
-									<option value="{{ $artist->naam }}" {{ $selected }}>{{ $artist->naam }}</option>
+										<option value="{{ $artist->id }}" $selected>{{ $artist->name }}</option>
 								@endforeach
 								</select>
 							</div>
@@ -136,17 +136,17 @@
 		$(".chosen-select").chosen();
 	});
 	$("#form_field").trigger("chosen:updated");
-	
+
 	$('#tag-box').change(function() {
 		var tags = document.getElementsByClassName('tagText');
 		var tagString = "";
-		
+
 		for (var i = 0; i < tags.length; i++) {
 			tagString += tags[i].innerHTML + ',';
 		}
-		
+
 		tagString = tagString.substring(0, tagString.length - 1)
-		
+
 		$('#tbx-tags').attr('value', tagString);
 	});
 </script>

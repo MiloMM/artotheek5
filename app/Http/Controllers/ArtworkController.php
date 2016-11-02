@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\User;
 use View;
 use Input;
 use App\Http\Requests\ArtworkRequest;
@@ -35,7 +36,7 @@ class ArtworkController extends Controller {
 		TagsHelper::addTagsToCollection($artworks);
 		return View::make('gallery/index', compact('artworks', 'artCount'));
 	}
-	
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -44,16 +45,16 @@ class ArtworkController extends Controller {
 	public function create()
 	{
 		// Is the user a moderator or admin?
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$artists = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', '=', 2)->get();
 			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
 			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
 			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
-			
+
 			$filterArray = [
 				'artists',
 				'techniques',
@@ -61,16 +62,16 @@ class ArtworkController extends Controller {
 				'materials',
 				'categories'
 			];
-			
+
 			// Show the super create
 			return View::make('artworks/create', compact($filterArray));
-		} 
+		}
 		// Is the user a student?
-		else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) 
+		else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student']))
 		{
 			// Show the student version of the create
 			return View::make('artworks/studentCreate');
-		} 
+		}
 		else
 		{
 			// Show the unauthorized page
@@ -86,7 +87,7 @@ class ArtworkController extends Controller {
 	public function store()
 	{
 		// Is the user a student or moderator or admin?
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
 		{
 			// Get all post data
 			$input = Input::all();
@@ -113,14 +114,14 @@ class ArtworkController extends Controller {
 			if (!empty($input['tags'])) {
 				$tags = explode(',', $input['tags']);
 			}
-			
+
 
 			// Is the user an moderator or admin
-			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 			{
 				// If the publish checkbox was checked set publish to true
 				$artwork->state = Input::get('publish') == "true" ? 0 : 1;
-			} 
+			}
 			else
 			{
 				// Else make it archived
@@ -136,7 +137,7 @@ class ArtworkController extends Controller {
 			$slug = str_replace('\\','',$slug );
 
 			// check if the slug already exist.
-			if (Artwork::where('slug', $slug)->first()) 
+			if (Artwork::where('slug', $slug)->first())
 			{
 				// Tell the user this title is already being used
 				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], HttpCode::Conflict);
@@ -155,7 +156,7 @@ class ArtworkController extends Controller {
 
 			// Retrieve the image
 			$image = Image::make(Input::get('image-data-url'));
-			
+
 			// Get the image extension ex: png, jpg
 			$imageExtension = substr($image->mime(), 6);
 
@@ -173,12 +174,12 @@ class ArtworkController extends Controller {
 
 			// tag the artwork with all the tags
 			if (!empty($tags)) {
-				foreach ($tags as $tag) 
+				foreach ($tags as $tag)
 				{
 					$artwork->tag($tag);
 				}
 			}
-			
+
 			// save the artwork data in the database
 			$artwork->save();
 
@@ -187,8 +188,8 @@ class ArtworkController extends Controller {
 				0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken',
 				1 => 'of klik <a href="/gallery"> hier </a> om terug te keren naar de gallerij'
 			], 200);
-		} 
-		else 
+		}
+		else
 		{
 			// Unauthorized error
 			return Response::json([
@@ -207,7 +208,7 @@ class ArtworkController extends Controller {
 	{
 		// get the artwork by the slug
 		$artwork = Artwork::whereSlug($slug)->first();
-
+		$artist = User::where('users.id', '=', $artwork->artist)->first();
 		$tagArray = $artwork->tagNames();
 
 		$reservations =	DB::table('reservations')
@@ -226,14 +227,14 @@ class ArtworkController extends Controller {
         ->where('artworks.id','=',$artwork->id)
         ->get();
 
-		if ($artwork) 
+		if ($artwork)
 		{
 			$tagArray = $artwork->tagNames();
 
-			return View::make('artworks/show')->with(compact('artwork','tagArray','reservations'));
+			return View::make('artworks/show')->with(compact('artwork','tagArray','reservations', 'artist'));
 			// get the tags
 		}
-		else 
+		else
 		{
 			// Show a not found page
 			return View::make('errors/' . HttpCode::NotFound);
@@ -252,16 +253,16 @@ class ArtworkController extends Controller {
 		$artwork = Artwork::where('slug', $slug)->first();
 
 		// Does the artwork exist?
-		if ($artwork) 
+		if ($artwork)
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$artists = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', '=', 2)->get();
 			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
 			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
 			//$formats = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
-			
+
 			$filterArray = [
 				'artwork',
 				'artists',
@@ -270,12 +271,12 @@ class ArtworkController extends Controller {
 				'materials',
 				'categories'
 			];
-			
+
 			// Show the view
 
 			return View::make('artworks/edit', compact($filterArray));
-		} 
-		else 
+		}
+		else
 		{
 			// Show the not found page
 			return View::make('errors/' . HttpCode::NotFound);
@@ -290,7 +291,7 @@ class ArtworkController extends Controller {
 	 */
 	public function update($id)
 	{
-		
+
 		// Select the artwork you want to modify.
 		$artwork = Artwork::find($id);
 		// Check if you want to publish it.
@@ -303,7 +304,7 @@ class ArtworkController extends Controller {
 		$slug = str_replace('?','', $slug);
 		$slug = str_replace('/','',$slug );
 		$slug = str_replace('\\','',$slug );
-		
+
 		if ($checkSlug = Artwork::where('slug', $slug)->first()) {
 			if ($artwork->id !== $checkSlug->id) {
 				return Response::json([0 => 'Deze titel is al gebruikt bij een ander kunstwerk.'], HttpCode::Conflict);
@@ -311,7 +312,7 @@ class ArtworkController extends Controller {
 		}
 		// Update all the fields.
 		$artwork->update([
-			'title' => $_POST['title'], 
+			'title' => $_POST['title'],
 			'description' => $_POST['description'],
 			'artist' => $_POST['artist'],
 			'technique' => $_POST['technique'],
@@ -323,26 +324,26 @@ class ArtworkController extends Controller {
 			'state' => $publish,
 			'slug' => $slug
 		]);
-		
+
 		if (!empty(Input::get('old-tags'))) {
 			$oldTags = explode(',', Input::get('old-tags'));
 		}
-		
+
 		if (!empty(Input::get('tags'))) {
 			$tags = explode(',', Input::get('tags'));
 		}
-		
+
 		if (!empty($oldTags)) {
 			DB::table('tagging_tagged')->where('taggable_id', $artwork->id)->delete();
 		}
-		
+
 		// tag the artwork with all the tags
 		if (!empty($tags)) {
 			foreach ($tags as $tag) {
 				$artwork->tag($tag);
 			}
 		}
-		
+
 		$artwork->save();
 
 		return redirect('artworks/'.$artwork->slug);
@@ -350,7 +351,7 @@ class ArtworkController extends Controller {
 	/* Delete the artwork from the archive (and so the database). */
 	public function destroy($id)
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			Artwork::destroy($id);
 			return Redirect()->action('ArtworkController@showArchived');
@@ -359,11 +360,11 @@ class ArtworkController extends Controller {
 			return View::make('errors/' . HttpCode::NotFound);
 		}
 	}
-	
+
 	/* If the artwork is not yet in the archive, move it there. Otherwise remove it from the archive and put it back to the gallery. */
 	public function archive($id)
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			$artwork = Artwork::findOrFail($id);
 			if ($artwork->state === 0) {
@@ -385,7 +386,7 @@ class ArtworkController extends Controller {
 	/* Get all archived artworks and show them on the page. */
 	public function showArchived()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			$artworks = Artwork::where(['state' => 1])->get();
 			$artCount = Artwork::where('state', 1)->count();
