@@ -10,6 +10,8 @@ use View;
 use Redirect;
 use Input;
 use Response;
+use App\Artwork;
+use DB;
 
 class UserController extends Controller {
 
@@ -109,15 +111,13 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function destroy($id)
-	  	{
-	   	//make sure you call the model on the top of your controller => use App\[modelname];
-	   	User::findOrFail($id)->delete();
-	     //return Redirect::to('auth/login');
-	  		echo "A user with the user id of $id has been removed";
-	 		//Modelname:findorfail($id)->destroy()
-			return Redirect::to('/gallery');
-	  	}
+	public function destroy($id)
+	{
+		$userPriveleges = DB::table('user_privelege')->where('user_id', '=', $id)->delete();
+		$userArtworks = Artwork::where('artist', '=', $id)->delete();
+		$user = User::findOrFail($id)->delete();
+		return redirect()->action('PagesController@artists');
+	}
 
 	public function Logout()
 	{

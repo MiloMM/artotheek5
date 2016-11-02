@@ -33,8 +33,10 @@
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
-									<?php $selected = ($artwork->artist == $artist->naam) ? "selected" : ""; ?>
-										<option value="{{ $artist->id }}" $selected>{{ $artist->name }}</option>
+									<?php $selected = ($artwork->artist == $artist->id) ? "selected" : ""; ?>
+										<option value="{{ $artist->id }}" {{ $selected }}>{{ $artist->name }}</option>
+									<?php //$selected = ($artwork->artist == $artist->naam) ? "selected" : ""; ?>
+									{{--<option value="{{ $artist->naam }}" {{ $selected }}>{{ $artist->naam }}</option>--}}
 								@endforeach
 								</select>
 							</div>
@@ -86,7 +88,12 @@
 						<div class="form-group">
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
-								{!! Form::text('size', $artwork->size, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
+								<select class="form-control" id="tbx-size" name="size">
+								@foreach ($formats as $format)
+									<?php $selected = ($artwork->size == $format) ? "selected" : ""; ?>
+									<option value="{{ $format }}" {{ $selected }}>{{ $format }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -108,9 +115,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
+							{!! Form::label('Publiceer', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-6">
-								{!! Form::checkbox('publish', false , ['class' => 'col-md-4 form-control']) !!}
+								{!! Form::checkbox('publish', false , ['class' => 'col-md-10 form-control']) !!}
 							</div>
 						</div>
 

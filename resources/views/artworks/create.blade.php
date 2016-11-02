@@ -72,7 +72,11 @@
 						<div class="form-group">
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								{!! Form::text('size', null, ['class' => 'form-control', 'id' => 'tbx-size']) !!}
+								<select class="form-control" id="tbx-size" name="size">
+								@foreach ($formats as $format)
+									<option value="{{ $format }}">{{ $format }}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -82,15 +86,15 @@
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Tags', null, ['class' => 'col-md-4 control-label']) !!}
-							<div class="col-md-6">
+							{!! Form::label('Tags', null, ['class' => 'col-md-2 control-label']) !!}
+							<div class="col-md-10">
 								<input id="tbx-tags" type="text" class="form-control" value="" placeholder="Voeg tags toe..." data-role="tagsinput">
 							</div>
 						</div>
 						<div class="form-group">
-							{!! Form::label('Publiceer', null, ['class' => 'col-md-4 control-label']) !!}
+							{!! Form::label('Publiceer', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-6">
-								{!! Form::checkbox('publish', true, ['class' => 'col-md-4 form-control']) !!}
+								{!! Form::checkbox('publish', true, ['class' => 'col-md-10 form-control']) !!}
 							</div>
 						</div>
 						<div class="form-group" id="form-group-preview-img">

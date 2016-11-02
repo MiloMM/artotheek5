@@ -4,7 +4,7 @@
 <div class="panel-heading" style="position: relative;">
 	<h1>Kunstenaar Profiel</h1>
 	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-		<a href="/destroy/{{$user->id}}" class="profileDeleteButton">Verwijder alles van deze kunstenaar</a>
+		<a href="/users/destroy/{{ $user->id }}" class="fa fa-times fa-2x profileDeleteButton" onclick="return confirm('Waarschuwing! Als u verder gaat worden het profiel van deze kunstenaar en alle bijbehorende kunstwerken permanent verwijderd.')"></a>
 	@endif
 </div>
 	<div class="panel-body">

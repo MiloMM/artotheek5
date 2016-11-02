@@ -6875,25 +6875,16 @@ h1#indexPageTitle {
 }
 
 .profileDeleteButton {
-    text-decoration: none;
-    font: menu;
-    display: inline-block; padding: 2px 8px;
-    background: ButtonFace; color: ButtonText;
-    border-style: solid; border-width: 2px;
-    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-    position: absolute;
-    right: 5px;
-    top: 25px;
-    font-weight: bold;
+	color: red !important;
+	position: absolute !important;
+	right: 25px !important;
+	top: 25px !important;
+	text-decoration: none !important;
 }
 
-.profileDeleteButton:active {
-    border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
-}
-
-.profileDeleteButton:hover {
-  color: black;
-  text-decoration: none;
+.profileDeleteButton:hover, .profileDeleteButton:active {
+	color: darkred !important;
+	text-decoration: none;
 }
 
 .bootstrap-tagsinput {
