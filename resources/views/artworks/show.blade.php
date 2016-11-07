@@ -43,25 +43,25 @@
 		<div class="artworkInfo">
 			<div class="col-md-12">{!! $artwork->description !!}</div>
 
-			<div class="col-md-2">Kunstenaar</div>
-			<div class="col-md-1">:</div>
-			<div class="col-md-9">{!! $artist['name'] !!}</div>
+			<div class="col-md-2 col-sm-2 col-xs-2">Kunstenaar</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artist['name'] !!}</div>
 
-			<div class="col-md-2">Techniek</div>
-			<div class="col-md-1">:</div>
-			<div class="col-md-9">{!! $artwork->technique !!}</div>
+			<div class="col-md-2 col-sm-2 col-xs-2">Techniek</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->technique !!}</div>
 
-			<div class="col-md-2">Categorie</div>
-			<div class="col-md-1">:</div>
-			<div class="col-md-9">{!! $artwork->category !!}</div>
+			<div class="col-md-2 col-sm-2 col-xs-2">Categorie</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->category !!}</div>
 
-			<div class="col-md-2">Formaat</div>
-			<div class="col-md-1">:</div>
-			<div class="col-md-9">{!! $artwork->size !!}</div>
+			<div class="col-md-2 col-sm-2 col-xs-2">Formaat</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->size !!}</div>
 
-			<div class="col-md-2">Prijs</div>
-			<div class="col-md-1">:</div>
-			<div class="col-md-9">€{!! $artwork->price !!}</div>
+			<div class="col-md-2 col-sm-2 col-xs-2">Prijs</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">€{!! $artwork->price !!}</div>
 
 			<div class="col-md-12 tagsDiv">
 			<?php $i = 1; ?>
