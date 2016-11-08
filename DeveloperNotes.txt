@@ -1,6 +1,9 @@
 This document is made by Sidney for personal use and doesn't add anything to the application.
 
 to do:
-1: destroy() must destroy everything from an artist, not just the account.  -> ~30%
-2: I need to add an option for users with privelege 4 to change other users privelege-status.  -> 0%
-3: Artist filters from, user with privelege 2 instead of manual insert in the filerter table.
+1: I need to add an option for users with privelege 4 to change other users privelege-status.  -> 0%
+
+Iteration points:
+1: Afbeeldingen resizen
+2: Wat ze nou precies wilt met de accounts
+3: reserveren werkt nog niet
