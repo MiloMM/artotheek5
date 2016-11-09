@@ -10,7 +10,6 @@ use View;
 use Redirect;
 use Input;
 use Response;
-use App\Artwork;
 use DB;
 
 class UserController extends Controller {
@@ -114,7 +113,6 @@ class UserController extends Controller {
 	public function destroy($id)
 	{
 		$userPriveleges = DB::table('user_privelege')->where('user_id', '=', $id)->delete();
-		$userArtworks = Artwork::where('artist', '=', $id)->delete();
 		$user = User::findOrFail($id)->delete();
 		return redirect()->action('PagesController@artists');
 	}

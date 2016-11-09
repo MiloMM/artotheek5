@@ -48,8 +48,7 @@ class ArtworkController extends Controller {
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', '=', 2)->get();
-			//$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
 			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
@@ -258,8 +257,7 @@ class ArtworkController extends Controller {
 		if ($artwork)
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', '=', 2)->get();
-			//$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
 			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();

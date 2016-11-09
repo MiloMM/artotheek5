@@ -6436,7 +6436,7 @@ label,
 	margin-top: 4px;
 }
 
-/*.footer {
+.footer {
 	background: #603f5b;
 	padding: 10px 0 10px 0;
 	color: white;
@@ -6447,9 +6447,9 @@ label,
 	left: 0;
 	border-top: 1px solid #83447A;
 	font-size: 8pt;
-}*/
+}
 
-.footer {
+/*.footer {
 	background: none;
 	padding: 10px 0 10px 0;
 	color: black;
@@ -6460,7 +6460,7 @@ label,
 	left: 0;
 	border-top: 1px solid #83447A;
 	font-size: 8pt;
-}
+}*/
 
 .footer h4 {
 	margin-top: 0;
