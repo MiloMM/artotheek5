@@ -100,7 +100,7 @@
 						<div class="form-group" id="form-group-preview-img">
 							<div class="col-md-12">
 								<input type="file" name="image" class="form-control" style="display: none;">
-								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-info', 'id' => 'btn-select-img', 'style' => 'margin-bottom: 70px;']) !!}
+								{!! Form::button('Selecteer Foto', ['class' => 'form-control btn btn-info', 'id' => 'btn-select-img', 'style' => '']) !!}
 								<div id="image-editor">
 
 								</div>
@@ -146,6 +146,7 @@
 					var fr = new FileReader();
 					fr.onload = function () {
 						$('#image-editor').append('<img class="img-responsive">');
+						$('#image-editor').css('margin-top', '95px');
 						if ($('.darkroom-container')) {
 							$('.darkroom-container').remove();
 						}

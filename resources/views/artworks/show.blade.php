@@ -12,15 +12,13 @@
 
 <div class="col-md-8 col-md-offset-2 artworkPage">
 		<div class="artworkTitleBar">
-			<div style="float: left">
-				<h2>{{ $artwork->title }}</h2>
-			</div>
+			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
 			@if(Auth::check())
-				<div style="float: right">
-					<a href="/artworks/{{ $artwork->slug }}/edit" title="Wijzigen">
+				<div class="artworkOptions">
+					<a href="/artworks/{{ $artwork->slug }}/edit" title="Kunstwerk wijzigen">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
 					</a>
-					<a href="/reservation/create/{{ $artwork->id }}" title="Reserveren">
+					<a href="/reservation/create/{{ $artwork->id }}" title="Kunstwerk reserveren">
 						<i class="fa fa-book fa-2x" aria-hidden="true"></i>
 					</a>
 					@if ($artwork->state === 0)
@@ -38,10 +36,10 @@
 				</div>
 			@endif
 		</div>
-		<center class="centerImage"><img class="showArtworkImage" src="/{{ $artwork->file }}" alt=""></center>
+		<div class="centerImage"><img class="showArtworkImage" src="/{{ $artwork->file }}" alt=""></div>
 
 		<div class="artworkInfo">
-			<div class="col-md-12">{!! $artwork->description !!}</div>
+			<div class="col-md-12 artworkDescription">{!! $artwork->description !!}</div>
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Kunstenaar</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>

@@ -6436,7 +6436,7 @@ label,
 	margin-top: 4px;
 }
 
-.footer {
+/*.footer {
 	background: #603f5b;
 	padding: 10px 0 10px 0;
 	color: white;
@@ -6447,9 +6447,9 @@ label,
 	left: 0;
 	border-top: 1px solid #83447A;
 	font-size: 8pt;
-}
+}*/
 
-/*.footer {
+.footer {
 	background: none;
 	padding: 10px 0 10px 0;
 	color: black;
@@ -6460,20 +6460,7 @@ label,
 	left: 0;
 	border-top: 1px solid #83447A;
 	font-size: 8pt;
-}*/
-
-/*.footer {
-	background: rgb(237, 237, 237);
-	height: 200px;
-	padding: 45px;
-	color: black;
-	margin-top: 30px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-  border-top: 1px solid #e7e7e7;
-}*/
+}
 
 .footer h4 {
 	margin-top: 0;
@@ -6637,6 +6624,11 @@ h1 {
 	.fb-like {
 		display: none !important;
 	}
+	
+	.filter-edit-form {
+		width: 100% !important;
+		padding: 15px;
+	}
 }
 
 @media screen and (max-width: 450px) {
@@ -6693,6 +6685,7 @@ h1 {
 		margin-bottom: 10px;
 	}
 }
+
 
 @media screen and (max-width: 750px) and (orientation: landscape) {
 	.custom_navmenu ul {
@@ -6873,12 +6866,10 @@ h1#indexPageTitle {
 
 .centerImage {
 	display: block;
-	background: url('/images/repbg.png');
 }
 
 .artworkTitleBar {
 	background: white;
-	height: 40px;
 }
 
 .artworkTitleBar h2{
@@ -6944,4 +6935,33 @@ h1#indexPageTitle {
 
 .tagsDiv {
 	padding-left: 0 !important;
+}
+
+.artworkTitle {
+	display: inline-block;
+}
+
+.artworkOptions {
+	display: inline-block;
+}
+
+.artworkInfo .artworkDescription {
+	padding: 0;
+}
+
+#form-group-preview-image {
+	margin-top: 75px;
+}
+
+@media screen and (min-width: 330px) {
+	.artworkOptions {
+		display: inline-block;
+		margin-left: 10px;
+	}
+}
+
+@media screen and (max-width: 330px) {
+	.artworkTitleBar {
+		margin-bottom: 5px;
+	}
 }
