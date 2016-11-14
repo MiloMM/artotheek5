@@ -2,8 +2,9 @@ This document is made by Sidney for personal use and doesn't add anything to the
 
 to do:
 - create table arists
-- make these fields: 'artist.id (auto-increment)', 'artist.userId -> users.id (can be null)', 'artist.name', 'artist.id -> artwork.artist'
-- all connections between artworks and users must be destroyed EXCEPT 'artworks.userid -> users.id'
+- make these fields: 'artist.id (auto-increment)', 'artist.user_id -> users.id (can be null)', 'artist.name'
+- 'artwork.artist' belongs to 'artist.id'
+- all connections between artworks and users must be destroyed EXCEPT 'artworks.user_id -> users.id'
 - get all filters from artist names from artist.name (instead of filter_opties.name)
 - delete * from filter_opties where filter_opties.filter_id == 1
 - make this connection 'artworks.artist -> artists.id'.

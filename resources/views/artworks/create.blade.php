@@ -24,7 +24,7 @@
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
-									<option value="{{ $artist->naam }}">{{ $artist->naam }}</option>
+									<option value="{{ $artist->id }}">{{ $artist->name }}</option>
 								@endforeach
 								</select>
 							</div>

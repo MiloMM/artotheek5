@@ -33,8 +33,8 @@
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
 								@foreach ($artists as $artist)
-									<?php $selected = ($artwork->artist == $artist->naam) ? "selected" : ""; ?>
-									<option value="{{ $artist->naam }}" {{ $selected }}>{{ $artist->naam }}</option>
+									<?php $selected = ($artwork->artist == $artist->id) ? "selected" : ""; ?>
+									<option value="{{ $artist->id }}" {{ $selected }}>{{ $artist->name }}</option>
 								@endforeach
 								</select>
 							</div>

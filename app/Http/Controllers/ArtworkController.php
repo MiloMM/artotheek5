@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Artist;
 use View;
 use Input;
 use App\Http\Requests\ArtworkRequest;
@@ -48,7 +49,7 @@ class ArtworkController extends Controller {
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$artists = Artist::orderBy('name')->get();
 			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
@@ -209,7 +210,7 @@ class ArtworkController extends Controller {
 	{
 		// get the artwork by the slug
 		$artwork = Artwork::whereSlug($slug)->first();
-		$artist = User::where('users.id', '=', $artwork->artist)->first();
+		$artist = Artist::where('artists.id', '=', $artwork->artist)->first();
 		$tagArray = $artwork->tagNames();
 
 		$reservations =	DB::table('reservations')
@@ -257,7 +258,7 @@ class ArtworkController extends Controller {
 		if ($artwork)
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$artists = Artist::orderBy('name')->get();
 			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
