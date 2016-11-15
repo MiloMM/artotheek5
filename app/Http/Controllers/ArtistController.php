@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Artist;
+use App\Artwork;
 use App\User;
 Use Input;
 use View;
@@ -40,7 +41,7 @@ class ArtistController extends Controller {
 	 */
 	public function create()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$users = User::orderBy('name')->select('id', 'name')->get();
 			
 			return View::make('artists/create', compact('users'));
@@ -57,12 +58,15 @@ class ArtistController extends Controller {
 	 */
 	public function store()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$artist = new Artist();
 			$artist->name = Input::get('name');
 			$artist->user_id = Input::get('user');
 			$artist->save();
 			return redirect('/artists');
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
 		}
 	}
 
@@ -85,7 +89,7 @@ class ArtistController extends Controller {
 	 */
 	public function edit($id)
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$artist = Artist::findOrFail($id);
 			$users = User::orderBy('name')->select('id', 'name')->get();
 			
@@ -104,26 +108,58 @@ class ArtistController extends Controller {
 	 */
 	public function update($id)
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$artist = Artist::findOrFail($id);
 			$artist->name = Input::get('name');
 			$artist->user_id = Input::get('user');
 			$artist->save();
 			return redirect('/artists');
 		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Show the form for deleting an existing artist.
+	 *
+	 * @return Response
+	 */
+	public function delete($id)
+	{
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
+			$artist = Artist::findOrFail($id);
+			
+			return View::make('/artists/delete', compact('artist'));
+		}
+	}
+	
+	/**
+	 * Remove the specified artist from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function destroy($id)
 	{
-		$artist = Artist::findOrFail($id);
-		$artist->delete();
-		return redirect('/artists');
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
+			
+			$artist = Artist::findOrFail($id);
+			if (Input::get('delete') == "delete") {
+				$artist->delete();
+			}
+			elseif (Input::get('delete') == "deleteAll") {
+				$artworks = Artwork::where('artist', $id)->delete();
+				$artist->delete();
+			}
+			else {
+				
+			}
+			return redirect('/artists');
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 }

@@ -17,7 +17,7 @@ Route::get('/users/destroy/{id}', 'UserController@destroy');
 Route::get('/artists' , 'ArtistController@index');
 Route::get('/artists/create' , 'ArtistController@create');
 Route::get('/artists/edit/{id}' , 'ArtistController@edit');
-Route::get('/artists/delete/{id}' , 'ArtistController@destroy');
+Route::get('/artists/delete/{id}' , 'ArtistController@delete');
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
