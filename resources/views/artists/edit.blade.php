@@ -20,9 +20,9 @@
 			</select>
 			</div>
 			
-			<div>
+			<div class="submit-div">
 				{!! Form::submit('Wijzigen', ['class' => 'btn btn-primary']) !!}
-				<a class="btn btn-primary" href="/artists }}">Annuleren</a>
+				<a class="btn btn-primary" href="/artists">Annuleren</a>
 			</div>
 		{!! Form::close() !!}
 	</div>

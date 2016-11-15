@@ -10,9 +10,11 @@
 	</div>
 	<div class="panel-body">
 		@foreach($artists as $artist)
-			<a href="{{$artist->profileLink}}">{{$artist->name}}</a>
-			<a class="fa fa-pencil-square-o filter-options" href="/artists/edit/{{ $artist->id }}"title="Wijzigen"></a>
-			<a class="fa fa-trash filter-options" href="/artists/delete/{{ $artist->id }}" onclick="return confirm('Weet u zeker dat u \'{{$artist->name}}\' wilt verwijderen?')" title="Verwijderen"></a>
+			<a href="{{$artist->profileLink}}" style="display:inline-block; width:125px;">{{$artist->name}}</a>
+			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+				<a class="fa fa-pencil-square-o filter-options" href="/artists/edit/{{ $artist->id }}"title="Wijzigen"></a>
+				<a class="fa fa-trash filter-options" href="/artists/delete/{{ $artist->id }}" title="Verwijderen"></a>
+			@endif
 			<br>
 		@endforeach
 	</div>
