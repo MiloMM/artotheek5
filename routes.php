@@ -13,7 +13,7 @@
 Route::get('/', 'PagesController@index');
 Route::get('/gallery', 'PagesController@gallery');
 Route::get('/reservations', 'ReservationController@index');
-Route::get('/artists' , 'PagesController@artists');
+Route::get('/artists' , 'ArtistController@index');
 Route::get('/news' , 'NewsController@index');
 Route::get('/myprofile', 'PagesController@myprofile'); // Redirect to own user profile
 

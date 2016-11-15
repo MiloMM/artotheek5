@@ -22,6 +22,9 @@ class ArtistController extends Controller {
 				$userProfileSlug = DB::table('users')->where('id', $artist->user_id)->select('slug')->get();
 				$artist->profileLink = "/users/" . $userProfileSlug[0]->slug;
 			}
+			else {
+				$artist->profileLink = "";
+			}
 		}
 
 		return View::make('artists/index',compact('artists'));

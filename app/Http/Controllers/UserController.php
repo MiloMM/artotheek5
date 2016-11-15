@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Artist;
 use Auth;
 use View;
 use Redirect;
@@ -113,8 +114,12 @@ class UserController extends Controller {
 	public function destroy($id)
 	{
 		$userPriveleges = DB::table('user_privelege')->where('user_id', '=', $id)->delete();
-		$user = User::findOrFail($id)->delete();
-		return redirect()->action('PagesController@artists');
+		$user = User::findOrFail($id);
+		$artist = Artist::where('user_id', '=', $id)->first();
+		$artist->user_id = 0;
+		$artist->save();
+		$user->delete();
+		return redirect()->action('ArtistController@index');
 	}
 
 	public function Logout()

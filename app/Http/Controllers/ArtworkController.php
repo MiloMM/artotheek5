@@ -211,6 +211,11 @@ class ArtworkController extends Controller {
 		// get the artwork by the slug
 		$artwork = Artwork::whereSlug($slug)->first();
 		$artist = Artist::where('artists.id', '=', $artwork->artist)->first();
+
+		if ($artist == null) {
+			$artist['name'] = "-";
+		}
+		
 		$tagArray = $artwork->tagNames();
 
 		$reservations =	DB::table('reservations')
