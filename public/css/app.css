@@ -6437,7 +6437,7 @@ label,
 }
 
 .footer {
-	background: #603f5b;
+	background: rgb(136,87,135);
 	padding: 10px 0 10px 0;
 	color: white;
 	text-align: center;
@@ -6551,7 +6551,7 @@ h1 {
 .artworkInfo .col-md-2 {
 	font-weight: bold;
 }
-	
+
 
 @media screen and (max-width: 600px) {
 	.img-box {
@@ -6612,19 +6612,19 @@ h1 {
 	.login-menu li ul li:nth-child(2) {
 		border-bottom: solid white 1px;
 	}
-	
+
 	.centerImage {
 		background: none !important;
 	}
-	
+
 	.artworkInfo {
 		margin-bottom: 0 !important;
 	}
-	
+
 	.fb-like {
 		display: none !important;
 	}
-	
+
 	.filter-edit-form {
 		width: 100% !important;
 		padding: 15px;
@@ -6662,24 +6662,24 @@ h1 {
 	.filter-box .col-md-5 {
 		width: 47%;
 	}
-	
+
 	.showArtworkImage {
 		width: 100% !important;
 		height: auto !important;
 	}
-	
+
 	.artworkInfo {
 		margin-bottom: 0 !important;
 	}
-	
+
 	.artworkInfo div {
 		width: 100% !important;
 	}
-	
+
 	.artworkInfo .col-md-1 {
 		display: none;
 	}
-	
+
 	.artworkInfo .col-md-9 {
 		padding-left: 0;
 		margin-bottom: 10px;
@@ -6778,7 +6778,7 @@ h1 {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	
+
 	.centerImage {
 		text-align: left !important;
 	}
@@ -6797,7 +6797,7 @@ h1 {
 		border: none;
 		border-bottom: 2px solid white;
 	}
-	
+
 	#fc-scroller {
 		height: 100% !important;
 	}

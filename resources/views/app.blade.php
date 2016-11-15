@@ -91,7 +91,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				Da Vinci Artotheek -
+				&copy;
+				<a href="/about">Da Vinci Artotheek</a> -
 				Leerparkpromenade 100 -
 				3312 KW Dordrecht -
 				artotheek@davinci.nl

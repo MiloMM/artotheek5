@@ -17,7 +17,7 @@ class GetGlobalData {
 	{
 		view()->composer('*', function ($view)
 		{
-			$filterData = filter_optie::all();
+			$filterData = filter_optie::orderBy('naam')->get();
 
 			$newarray = array();
 			foreach ($filterData as $filter)
@@ -25,7 +25,7 @@ class GetGlobalData {
 				$newarray[$filter->filter_id][$filter->naam] = $filter->naam;
 			}
 
-            view()->share('newarray', $newarray);           
+            view()->share('newarray', $newarray);
         });
 		return $next($request);
 	}
