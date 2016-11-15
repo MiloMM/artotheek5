@@ -30,6 +30,7 @@ Route::get('filters/{filter}/{id}/edit', 'FilterController@edit');
 Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
 
 Route::resource('filters', 'FilterController');
+Route::resource('artists', 'ArtistController');
 Route::resource('users', 'UserController');
 Route::resource('events', 'EventController');
 Route::resource('news', 'NewsController');

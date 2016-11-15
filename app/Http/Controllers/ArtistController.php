@@ -3,7 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Artist;
+use App\User;
+Use Input;
 use View;
+use Auth;
 use Illuminate\Http\Request;
 use DB;
 
@@ -37,7 +40,14 @@ class ArtistController extends Controller {
 	 */
 	public function create()
 	{
-		die('Create');
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			$users = User::orderBy('name')->select('id', 'name')->get();
+			
+			return View::make('artists/create', compact('users'));
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 	/**
@@ -47,7 +57,13 @@ class ArtistController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			$artist = new Artist();
+			$artist->name = Input::get('name');
+			$artist->user_id = Input::get('user');
+			$artist->save();
+			return redirect('/artists');
+		}
 	}
 
 	/**
@@ -69,7 +85,15 @@ class ArtistController extends Controller {
 	 */
 	public function edit($id)
 	{
-		die('Edit');
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			$artist = Artist::findOrFail($id);
+			$users = User::orderBy('name')->select('id', 'name')->get();
+			
+			return View::make('artists/edit', compact('artist', 'users'));
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 	/**
@@ -80,7 +104,13 @@ class ArtistController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) {
+			$artist = Artist::findOrFail($id);
+			$artist->name = Input::get('name');
+			$artist->user_id = Input::get('user');
+			$artist->save();
+			return redirect('/artists');
+		}
 	}
 
 	/**
@@ -91,7 +121,9 @@ class ArtistController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		die('Destroy');
+		$artist = Artist::findOrFail($id);
+		$artist->delete();
+		return redirect('/artists');
 	}
 
 }

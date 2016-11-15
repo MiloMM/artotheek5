@@ -118,7 +118,7 @@ class ArtworkController extends Controller {
 			}
 
 
-			// Is the user an moderator or admin
+			// Is the user a moderator or admin
 			if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 			{
 				// If the publish checkbox was checked set publish to true

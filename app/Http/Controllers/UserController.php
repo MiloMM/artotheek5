@@ -115,9 +115,10 @@ class UserController extends Controller {
 	{
 		$userPriveleges = DB::table('user_privelege')->where('user_id', '=', $id)->delete();
 		$user = User::findOrFail($id);
-		$artist = Artist::where('user_id', '=', $id)->first();
-		$artist->user_id = 0;
-		$artist->save();
+		if ($artist = Artist::where('user_id', '=', $id)->first()) {
+			$artist->user_id = 0;
+			$artist->save();
+		}
 		$user->delete();
 		return redirect()->action('ArtistController@index');
 	}
