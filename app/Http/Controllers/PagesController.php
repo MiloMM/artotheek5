@@ -48,11 +48,11 @@ class PagesController extends Controller {
 			5 => $request->input('materiaal'),
 			6 => $request->input('techniek')
 		];
-
+		
 		$NoSpace = trim($SearchQuery[0], ' ');
 		$result[0] = strlen($NoSpace);
 		$result[1] = Artwork::where('title', 'like', '%'.$NoSpace.'%');
-
+		
 		if ($SearchQuery[1] != 'Alle Kunstenaars')
 		{
 			str_replace('+', ' ', $SearchQuery[1]);
@@ -84,8 +84,8 @@ class PagesController extends Controller {
 			$result[1] = $result[1]->where('technique', '=', $SearchQuery[6]);
 		}
 
-		$result[1] = $result[1]->get();
-
+		$result[1] = $result[1]->orderBy('title')->get();
+		
 		return View::make('/gallery/search')->with('result', $result);
 	}
 

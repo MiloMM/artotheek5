@@ -15,7 +15,7 @@
 			<div class="col-md-5">
 				{!! Form::label('kunstenaar', 'Kunstenaar', ['class' => 'custom-label']) !!}
 				<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" name="kunstenaar">
-				<option value="Alle kunstenaars">Alle kunstenaars</option>
+				<option value="Alle Kunstenaars">Alle kunstenaars</option>
 				@foreach ($artists as $artist)
 					<option value="{{ $artist->id }}">{{ $artist->name }}</option>
 				@endforeach
