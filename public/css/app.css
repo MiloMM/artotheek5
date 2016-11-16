@@ -92,6 +92,10 @@ a.custom-gallery-link:hover {
 	padding: 0;
 }
 
+.filter-box .chosen-container-single {
+	width: 100% !important;
+}
+
 .filter-box .col-md-5 {
 	width: 48%;
 	display: inline-block;
@@ -6800,6 +6804,14 @@ h1 {
 
 	#fc-scroller {
 		height: 100% !important;
+	}
+	
+	.navmenu-nav {
+		margin-bottom: 0 !important;
+	}
+	
+	.login-menu .dropdown {
+		border-top: 0 !important;
 	}
 }
 

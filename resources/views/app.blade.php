@@ -91,8 +91,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				&copy;
-				<a href="/about">Da Vinci Artotheek</a> -
+				&copy; 2016
+				<a href="/about" style="color: white; text-decoration: underline;">Da Vinci Artotheek</a> -
 				Leerparkpromenade 100 -
 				3312 KW Dordrecht -
 				artotheek@davinci.nl
@@ -129,6 +129,7 @@
 	var app = angular.module('application', ['ngSanitize']);
 
 	CKEDITOR.env.isCompatible = true;
+
 </script>
 </body>
 </html>
