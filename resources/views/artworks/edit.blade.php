@@ -32,6 +32,7 @@
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
+								<option value="">Leeg laten</option>
 								@foreach ($artists as $artist)
 									<?php $selected = ($artwork->artist == $artist->id) ? "selected" : ""; ?>
 									<option value="{{ $artist->id }}" {{ $selected }}>{{ $artist->name }}</option>
@@ -43,6 +44,7 @@
 							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-technique" name="technique">
+								<option value="">Leeg laten</option>
 								@foreach ($techniques as $technique)
 									<?php $selected = ($artwork->technique == $technique->naam) ? "selected" : ""; ?>
 									<option value="{{ $technique->naam }}" {{ $selected }}>{{ $technique->naam }}</option>
@@ -54,6 +56,7 @@
 							{!! Form::label('kleur', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-colour" name="colour">
+								<option value="">Leeg laten</option>
 								@foreach ($colours as $colour)
 									<?php $selected = ($artwork->colour == $colour->naam) ? "selected" : ""; ?>
 									<option value="{{ $colour->naam }}" {{ $selected }}>{{ $colour->naam }}</option>
@@ -65,6 +68,7 @@
 							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-material" name="material">
+								<option value="">Leeg laten</option>
 								@foreach ($materials as $material)
 									<?php $selected = ($artwork->material == $material->naam) ? "selected" : ""; ?>
 									<option value="{{ $material->naam }}" {{ $selected }}>{{ $material->naam }}</option>
@@ -76,6 +80,7 @@
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-category" name="category">
+								<option value="">Leeg laten</option>
 								@foreach ($categories as $category)
 									<?php $selected = ($artwork->material == $material->naam) ? "selected" : ""; ?>
 									<option value="{{ $category->naam }}" {{ $selected }}>{{ $category->naam }}</option>
@@ -87,6 +92,7 @@
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-size" name="size">
+								<option value="">Leeg laten</option>
 								@foreach ($formats as $format)
 									<?php $selected = ($artwork->size == $format) ? "selected" : ""; ?>
 									<option value="{{ $format }}" {{ $selected }}>{{ $format }}</option>

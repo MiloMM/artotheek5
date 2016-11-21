@@ -23,6 +23,7 @@
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
+								<option value="">Leeg laten</option>
 								@foreach ($artists as $artist)
 									<option value="{{ $artist->id }}">{{ $artist->name }}</option>
 								@endforeach
@@ -33,6 +34,7 @@
 							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-technique" name="technique">
+								<option value="">Leeg laten</option>
 								@foreach ($techniques as $technique)
 									<option value="{{ $technique->naam }}">{{ $technique->naam }}</option>
 								@endforeach
@@ -43,6 +45,7 @@
 							{!! Form::label('Colour', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-colour" name="colour">
+								<option value="">Leeg laten</option>
 								@foreach ($colours as $colour)
 									<option value="{{ $colour->naam }}">{{ $colour->naam }}</option>
 								@endforeach
@@ -53,6 +56,7 @@
 							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-material" name="material">
+								<option value="">Leeg laten</option>
 								@foreach ($materials as $material)
 									<option value="{{ $material->naam }}">{{ $material->naam }}</option>
 								@endforeach
@@ -63,6 +67,7 @@
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-category" name="category">
+								<option value="">Leeg laten</option>
 								@foreach ($categories as $category)
 									<option value="{{ $category->naam }}">{{ $category->naam }}</option>
 								@endforeach
@@ -73,6 +78,7 @@
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-size" name="size">
+								<option value="">Leeg laten</option>
 								@foreach ($formats as $format)
 									<option value="{{ $format }}">{{ $format }}</option>
 								@endforeach

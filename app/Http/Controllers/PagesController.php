@@ -48,45 +48,81 @@ class PagesController extends Controller {
 			5 => $request->input('materiaal'),
 			6 => $request->input('techniek')
 		];
+
+		$artworks = DB::table('artworks');
 		
-		$NoSpace = trim($SearchQuery[0], ' ');
-		$result[0] = strlen($NoSpace);
-		$result[1] = Artwork::where('title', 'like', '%'.$NoSpace.'%');
-		
+		if ($SearchQuery[0] != "")
+		{
+			$artworks = $artworks->where('title', 'like', '%'.$SearchQuery[0].'%');
+			$tagResults = DB::table('artworks')->join('tagging_tagged', 'taggable_id', '=', 'artworks.id')->where('tag_name', 'like', '%'.$SearchQuery[0].'%')->groupBy('title');
+		}
 		if ($SearchQuery[1] != 'Alle Kunstenaars')
 		{
-			str_replace('+', ' ', $SearchQuery[1]);
-			$result[1] = $result[1]->where('artist', '=', $SearchQuery[1]);
+			$artworks = $artworks->where('artist', '=', $SearchQuery[1]);
+			
+			if (isset($tagResults)) {
+				$tagResults = $tagResults->where('artist', '=', $SearchQuery[1]);
+			}
 		}
 		if ($SearchQuery[2] != 'Alle Kleuren')
 		{
-			str_replace('+', ' ', $SearchQuery[2]);
-			$result[1] = $result[1]->where('colour', '=', $SearchQuery[2]);
+			$artworks = $artworks->where('colour', '=', $SearchQuery[2]);
+			
+			if (isset($tagResults)) {
+				$tagResults = $tagResults->where('colour', '=', $SearchQuery[2]);
+			}
 		}
 		if ($SearchQuery[3] != 'Alle Onderwerpen')
 		{
-			str_replace('+', ' ', $SearchQuery[3]);
-			$result[1] = $result[1]->where('category', '=', $SearchQuery[3]);
+			$artworks = $artworks->where('category', '=', $SearchQuery[3]);
+			
+			if (isset($tagResults)) {
+				$tagResults = $tagResults->where('category', '=', $SearchQuery[3]);
+			}
 		}
 		if ($SearchQuery[4] != 'Alle Grootte')
 		{
-			str_replace('+', ' ', $SearchQuery[4]);
-			$result[1] = $result[1]->where('size', '=', $SearchQuery[4]);
+			$artworks = $artworks->where('size', '=', $SearchQuery[4]);
+			
+			if (isset($tagResults)) {
+				$tagResults = $tagResults->where('size', '=', $SearchQuery[4]);
+			}
 		}
 		if ($SearchQuery[5] != 'Alle Materialen')
 		{
-			str_replace('+', ' ', $SearchQuery[5]);
-			$result[1] = $result[1]->where('material', '=', $SearchQuery[5]);
+			$artworks = $artworks->where('material', '=', $SearchQuery[5]);
+			
+			if (isset($tagResults)) {
+				$tagResults = $tagResults->where('material', '=', $SearchQuery[5]);
+			}
 		}
 		if ($SearchQuery[6] != 'Alle Technieken')
 		{
-			str_replace('+', ' ', $SearchQuery[6]);
-			$result[1] = $result[1]->where('technique', '=', $SearchQuery[6]);
+			$artworks = $artworks->where('technique', '=', $SearchQuery[6]);
+			
+			if (isset($tagResults)) {
+				$tagResults = $tagResults->where('technique', '=', $SearchQuery[6]);
+			}
 		}
-
-		$result[1] = $result[1]->orderBy('title')->get();
 		
-		return View::make('/gallery/search')->with('result', $result);
+		if (isset($tagResults)) {
+			$artworks = array_merge($artworks->get(), $tagResults->get());
+		}
+		else {
+			$artworks = $artworks->get();
+		}
+		
+		if (!empty($artworks)) {
+			foreach ($artworks as $results) {
+				$searchResults[$results->slug] = $results;
+			}
+			ksort($searchResults);
+		}
+		else {
+			$searchResults = [];
+		}
+		
+		return View::make('/gallery/search')->with('searchResults', $searchResults);
 	}
 
 	public function about()
