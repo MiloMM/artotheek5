@@ -15,7 +15,7 @@
 				<option value="0">Nee</option>
 			@foreach ($users as $user)
 				<?php $selected = ($user->id == $artist->user_id) ? "selected" : ""; ?>
-				<option value="{{ $user->id }}" $selected>Ja, aan het profiel van: {{ $user->name }}</option>
+				<option value="{{ $user->id }}" {{ $selected }}>Ja, aan het profiel van: {{ $user->name }}</option>
 			@endforeach
 			</select>
 			</div>
