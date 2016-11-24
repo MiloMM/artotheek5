@@ -50,19 +50,21 @@ class ArtworkController extends Controller {
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
 			$artists = Artist::orderBy('name')->get();
-			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
-			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+			$categories = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$genres = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+			$techniques = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
-			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
+			$colours = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$formats = array('Klein', 'Middelgroot', 'Groot');
 
 			$filterArray = [
 				'artists',
 				'techniques',
-				'colours',
+				'genres',
 				'materials',
 				'categories',
-				'formats'
+				'formats',
+				'colours'
 			];
 
 			// Show the super create
@@ -107,6 +109,7 @@ class ArtworkController extends Controller {
 			$artwork->artist = Input::get('artist');
 			$artwork->technique = Input::get('technique');
 			$artwork->category = Input::get('category');
+			$artwork->genre = Input::get('genre');
 			$artwork->size = Input::get('size');
 			$artwork->price = Input::get('price');
 			$artwork->colour = Input::get('colour');
@@ -264,20 +267,22 @@ class ArtworkController extends Controller {
 		{
 			// Get the selectbox options and pass them to the view via the compact function.
 			$artists = Artist::orderBy('name')->get();
-			$techniques = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
-			$colours = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+			$categories = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+			$genres = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+			$techniques = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
 			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
-			$categories = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
+			$colours = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
 			$formats = array('Klein', 'Middelgroot', 'Groot');
 
 			$filterArray = [
 				'artwork',
 				'artists',
 				'techniques',
-				'colours',
+				'genres',
 				'materials',
 				'categories',
-				'formats'
+				'formats',
+				'colours'
 			];
 
 			// Show the view
@@ -327,6 +332,7 @@ class ArtworkController extends Controller {
 			'colour' => $_POST['colour'],
 			'material' => $_POST['material'],
 			'category' => $_POST['category'],
+			'genre' => $_POST['genre'],
 			'size' => $_POST['size'],
 			'price' => $_POST['price'],
 			'state' => $publish,

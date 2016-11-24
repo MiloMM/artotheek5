@@ -8,7 +8,7 @@ class Artwork extends Model {
 	use \Conner\Tagging\TaggableTrait; // Tags
 	use SearchableTrait;
 
-	protected $fillable = ['title', 'description', 'file', 'state', 'slug','reserved', 'artist', 'technique', 'category', 'size', 'price', 'colour', 'material'];
+	protected $fillable = ['title', 'description', 'file', 'state', 'slug','reserved', 'artist', 'technique', 'category', 'genre', 'size', 'price', 'colour', 'material'];
 	protected $table = 'artworks';
 
 	protected $searchable = [

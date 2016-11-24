@@ -75,6 +75,17 @@
 							</div>
 						</div>
 						<div class="form-group">
+							{!! Form::label('Genre', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
+							<div class="col-md-10">
+								<select class="form-control" id="tbx-genre" name="genre">
+								<option value="">Leeg laten</option>
+								@foreach ($genres as $genre)
+									<option value="{{ $genre->naam }}">{{ $genre->naam }}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
 								<select class="form-control" id="tbx-size" name="size">
@@ -271,6 +282,7 @@
 			form.append('colour', $('#tbx-colour').val());
 			form.append('material', $('#tbx-material').val());
 			form.append('category', $('#tbx-category').val());
+			form.append('genre', $('#tbx-genre').val());
 			form.append('size', $('#tbx-size').val());
 			form.append('price', $('#tbx-price').val());
 			form.append('description', editor.getData());

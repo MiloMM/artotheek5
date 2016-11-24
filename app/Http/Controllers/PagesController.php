@@ -42,8 +42,8 @@ class PagesController extends Controller {
 		$SearchQuery = [
 			0 => $request->input('keyword'),
 			1 => $request->input('kunstenaar'),
-			2 => $request->input('kleur'),
-			3 => $request->input('onderwerp'),
+			2 => $request->input('genre'),
+			3 => $request->input('categorie'),
 			4 => $request->input('grootte'),
 			5 => $request->input('materiaal'),
 			6 => $request->input('techniek')
@@ -64,15 +64,15 @@ class PagesController extends Controller {
 				$tagResults = $tagResults->where('artist', '=', $SearchQuery[1]);
 			}
 		}
-		if ($SearchQuery[2] != 'Alle Kleuren')
+		if ($SearchQuery[2] != 'Alle Genres')
 		{
-			$artworks = $artworks->where('colour', '=', $SearchQuery[2]);
+			$artworks = $artworks->where('genre', '=', $SearchQuery[2]);
 			
 			if (isset($tagResults)) {
-				$tagResults = $tagResults->where('colour', '=', $SearchQuery[2]);
+				$tagResults = $tagResults->where('genre', '=', $SearchQuery[2]);
 			}
 		}
-		if ($SearchQuery[3] != 'Alle Onderwerpen')
+		if ($SearchQuery[3] != 'Alle Categorieën')
 		{
 			$artworks = $artworks->where('category', '=', $SearchQuery[3]);
 			

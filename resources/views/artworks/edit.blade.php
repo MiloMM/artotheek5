@@ -82,8 +82,20 @@
 								<select class="form-control" id="tbx-category" name="category">
 								<option value="">Leeg laten</option>
 								@foreach ($categories as $category)
-									<?php $selected = ($artwork->material == $material->naam) ? "selected" : ""; ?>
+									<?php $selected = ($artwork->category == $category->naam) ? "selected" : ""; ?>
 									<option value="{{ $category->naam }}" {{ $selected }}>{{ $category->naam }}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('Genre', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
+							<div class="col-md-10">
+								<select class="form-control" id="tbx-genre" name="genre">
+								<option value="">Leeg laten</option>
+								@foreach ($genres as $genre)
+									<?php $selected = ($artwork->genre == $genre->naam) ? "selected" : ""; ?>
+									<option value="{{ $genre->naam }}" {{ $selected }}>{{ $genre->naam }}</option>
 								@endforeach
 								</select>
 							</div>

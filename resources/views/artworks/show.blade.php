@@ -56,6 +56,10 @@
 			<div class="col-md-2 col-sm-2 col-xs-2">Categorie</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
 			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->category !!}</div>
+			
+			<div class="col-md-2 col-sm-2 col-xs-2">Genre</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->genre !!}</div>
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Formaat</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>

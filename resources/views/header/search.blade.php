@@ -22,8 +22,12 @@
 				</select>
 			</div>
 			<div class="col-md-5">
-				{!! Form::label('onderwerp', 'Onderwerp', ['class' => 'custom-label']) !!}
-				{!! Form::select('onderwerp', $newarray[3], 'Alle Onderwerpen', ['class' => 'form-control chosen-select']) !!}
+				{!! Form::label('category', 'Categorie', ['class' => 'custom-label']) !!}
+				{!! Form::select('categorie', $newarray[1], 'Alle Categorieën', ['class' => 'form-control chosen-select']) !!}
+			</div>
+			<div class="col-md-5">
+				{!! Form::label('genre', 'Genre', ['class' => 'custom-label']) !!}
+				{!! Form::select('genre', $newarray[2], 'Alle Genres', ['class' => 'form-control chosen-select']) !!}
 			</div>
 			<div class="col-md-5">
 				{!! Form::label('materiaal', 'Materiaal', ['class' => 'custom-label']) !!}
@@ -31,13 +35,9 @@
 			</div>
 			<div class="col-md-5">
 				{!! Form::label('techniek', 'Techniek', ['class' => 'custom-label']) !!}
-				{!! Form::select('techniek', $newarray[5], 'Alle Technieken', ['class' => 'form-control chosen-select']) !!}
+				{!! Form::select('techniek', $newarray[3], 'Alle Technieken', ['class' => 'form-control chosen-select']) !!}
 			</div>
-			<div class="col-md-5">
-				{!! Form::label('kleur', 'Kleur', ['class' => 'custom-label']) !!}
-				{!! Form::select('kleur', $newarray[2], 'Alle Kleuren', ['class' => 'form-control chosen-select']) !!}
-			</div>
-			<div class="col-md-5">
+			<div class="col-md-5" style="display: none">
 				{!! Form::label('grootte', 'Grootte', ['class' => 'custom-label']) !!}
 				{!! Form::select('grootte', array('Alle Grootte' => 'Alle Grootte', 'klein' => 'Klein', 'middelgroot' => 'Middelgroot', 'groot' => 'Groot'), null, ['class' => 'form-control chosen-select']) !!}
 			</div>
