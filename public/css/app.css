@@ -6563,6 +6563,7 @@ h1 {
 	font-variant: normal !important;
 	font-weight: 500 !important;
 	line-height: 26.4px !important;
+	margin-top: 10px !important;
 }
 
 .search-img {
@@ -6584,7 +6585,7 @@ h1 {
 }
 
 .content {
-	margin-top: 97px !important;
+	margin-top: 107px !important;
 	padding-bottom: 100px;
 }
 
@@ -6644,32 +6645,7 @@ h1 {
 	}
 }
 
-@media screen and (max-width: 750px) {
-	.menuButtonsHidden {
-		display: none !important;
-	}
 
-	.login-menu li ul li:nth-child(2) {
-		border-bottom: solid white 1px;
-	}
-
-	.centerImage {
-		background: none !important;
-	}
-
-	.artworkInfo {
-		margin-bottom: 0 !important;
-	}
-
-	.fb-like {
-		display: none !important;
-	}
-
-	.filter-edit-form {
-		width: 100% !important;
-		padding: 15px;
-	}
-}
 
 @media screen and (max-width: 450px) {
 	.img-box {
@@ -6964,7 +6940,7 @@ h1#indexPageTitle {
 	color: red !important;
 	position: absolute !important;
 	right: 25px !important;
-	top: 25px !important;
+	top: 20px !important;
 	text-decoration: none !important;
 }
 
@@ -7016,4 +6992,75 @@ h1#indexPageTitle {
 
 .submit-div {
 	margin-top: 20px;
+}
+
+.chosen-results {
+	height: 100px !important;
+}
+
+.profileDetails {
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+
+.profileDetails div {
+	padding: 0 !important;
+}
+
+.profileDetails .col-md-3 {
+	border-right: solid lightgrey 1px;
+}
+
+.profileDetails .col-md-9 {
+	padding-left: 10px !important;
+}
+
+@media screen and (max-width: 750px) {
+	.menuButtonsHidden {
+		display: none !important;
+	}
+
+	.login-menu li ul li:nth-child(2) {
+		border-bottom: solid white 1px;
+	}
+
+	.centerImage {
+		background: none !important;
+	}
+
+	.artworkInfo {
+		margin-bottom: 0 !important;
+	}
+
+	.fb-like {
+		display: none !important;
+	}
+
+	.filter-edit-form {
+		width: 100% !important;
+		padding: 15px;
+	}
+	
+	.img-box-search {
+		width: 100%;
+		height: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	
+	.img-box-search h3 {
+		margin-left: 15px;
+	}
+	
+	.profileDetails .col-md-3 {
+		border-right: none;
+	}
+	
+	.profileDetails .col-md-9 {
+		padding-left: 0 !important;
+	}
+	
+	h4 {
+		padding-left: 15px;
+	}
 }

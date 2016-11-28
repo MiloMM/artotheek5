@@ -78,7 +78,10 @@ class ArtistController extends Controller {
 	 */
 	public function show($id)
 	{
-		die('Show');
+		$artworks = Artwork::where('artist', $id)->orderBy('created_at')->get();
+		$artist = Artist::where('id', $id)->first();
+		
+		return view('artists/show', compact('artworks', 'artist'));
 	}
 
 	/**

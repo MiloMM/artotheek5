@@ -43,23 +43,25 @@
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Kunstenaar</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artist['name'] !!}</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">
+				<a href="{{ $artist['profileLink'] }}">{!! $artist['name'] !!}</a>
+			</div>
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Techniek</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->technique !!}</div>
+			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal=Alle+Materialen&techniek={!! $artwork->technique !!}&grootte=Alle+Grootte">{!! $artwork->technique !!}</a></div>
 			
 			<div class="col-md-2 col-sm-2 col-xs-2">Materiaal</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->material !!}</div>
+			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal={!! $artwork->material !!}&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->material !!}</a></div>
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Categorie</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->category !!}</div>
+			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie={!! $artwork->category !!}&genre=Alle+Genres&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->category !!}</a></div>
 			
 			<div class="col-md-2 col-sm-2 col-xs-2">Genre</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->genre !!}</div>
+			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre={!! $artwork->genre !!}&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->genre !!}</a></div>
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Formaat</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>

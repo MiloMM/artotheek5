@@ -15,6 +15,7 @@ Route::get('/about', 'PagesController@about');
 Route::get('/users/destroy/{id}', 'UserController@destroy');
 
 Route::get('/artists' , 'ArtistController@index');
+Route::get('/artists/show/{id}' , 'ArtistController@show');
 Route::get('/artists/create' , 'ArtistController@create');
 Route::get('/artists/edit/{id}' , 'ArtistController@edit');
 Route::get('/artists/delete/{id}' , 'ArtistController@delete');

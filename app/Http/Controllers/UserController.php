@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Artist;
+use App\Artwork;
 use Auth;
 use View;
 use Redirect;
@@ -65,7 +66,15 @@ class UserController extends Controller {
 				else
 				{
 					$user = User::where('slug',$slug)->first();
-					return View::make('users/show',compact('user'));
+					$artist = Artist::where('user_id', $user->id)->first();
+					if ($artist->user_id != 0) {
+						$artworks = Artwork::where('artist', $artist->id)->get();
+					}
+					else {
+						$artworks = [];
+					}
+					
+					return View::make('users/show', compact('user', 'artworks'));
 				}
 			}
 			else

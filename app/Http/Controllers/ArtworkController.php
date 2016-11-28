@@ -214,9 +214,19 @@ class ArtworkController extends Controller {
 		// get the artwork by the slug
 		$artwork = Artwork::whereSlug($slug)->first();
 		$artist = Artist::where('artists.id', '=', $artwork->artist)->first();
-
+		
 		if ($artist == null) {
 			$artist['name'] = "-";
+			$artist['profileLink'] = "";
+		}
+		else {
+			if ($artist->user_id != 0) {
+				$userProfileSlug = DB::table('users')->where('id', $artist->user_id)->select('slug')->get();
+				$artist->profileLink = "/users/" . $userProfileSlug[0]->slug;
+			}
+			else {
+				$artist->profileLink = "/artists/show/".$artist->id;
+			}
 		}
 		
 		$tagArray = $artwork->tagNames();

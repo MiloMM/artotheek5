@@ -4,52 +4,70 @@
 <div class="panel-heading" style="position: relative;">
 	<h1>Kunstenaar Profiel</h1>
 	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-		<a href="/users/destroy/{{ $user->id }}" class="fa fa-times fa-2x profileDeleteButton" onclick="return confirm('Weet u zeker dat u dit profiel en account wilt verwijderen? De kunstenaar die aan dit profiel is gekoppeld blijft bestaan.')"></a>
+		<a href="/users/destroy/{{ $user->id }}" class="fa fa-times fa-2x profileDeleteButton" title="Account verwijderen" onclick="return confirm('Weet u zeker dat u dit profiel en account wilt verwijderen? De kunstenaar die aan dit profiel is gekoppeld blijft bestaan.')"></a>
 	@endif
 </div>
-	<div class="panel-body">
-		<table class=table>
-			<tr>
-				<td><b>Naam</b></td>
-				<td colspan="3">{{$user->name}}</td>
-			</tr>
-			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
-			<tr>
-				<td><b>E-mail</b></td>
-				<td colspan="3">{{$user->email}}</td>
-			</tr>
-			@endif
-			<tr>
-				<td><b>Lid sinds</b></td>
-				<td colspan="3">{{$user->created_at}}</td>
-			</tr>
-			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-			<tr>
-				<td><b>Telefoon nummer</b></td>
-				<td colspan="3">{{$user->telephone}}</td>
-			</tr>
-			@endif
-			<tr>
-				<td><b>Opleiding / Sector</b></td>
-				<td>{{$user->education}}</td>
-				<td><b>Leerjaar</b></td>
-				<td>{{$user->school_year}}</td>
-			</tr>
-			<tr>
-				<td><b>Overzicht werk</b></td>
-				<td colspan="3">{{$user->work_summary}}</td>
-			</tr>
-			<tr>
-				<td><b>Kostenplaatje</b></td>
-				<td colspan="3">{{$user->price}}</td>
-			</tr>
-			<tr>
-				<td><b>Bezorg adres</b></td>
-				<td>{{$user->delivery_address}}</td>
-				<td><b>Postcode</b></td>
-				<td>{{$user->zip}}</td>
-			</tr>
-		</table>
+	<div class="container profileDetails">
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Naam</b></div>
+			<div class="col-md-9">{{$user->name}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Lid sinds</b></div>
+			<div class="col-md-9">{{$user->created_at}}</div>
+		</div>
+		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+		<div class="col-md-6">
+			<div class="col-md-3"><b>E-mail</b></div>
+			<div class="col-md-9">{{$user->email}}</div>
+		</div>
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Telefoon nummer</b></div>
+			<div class="col-md-9">{{$user->telephone}}</div>
+		</div>
+		@endif
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Opleiding / Sector</b></div>
+			<div class="col-md-9">{{$user->education}}</div>
+		</div>	
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Leerjaar</b></div>
+			<div class="col-md-9">{{$user->school_year}}</div>
+		</div>
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Overzicht werk</b></div>
+			<div class="col-md-9">{{$user->work_summary}}</div>
+		</div>
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Kostenplaatje</b></div>
+			<div class="col-md-9">{{$user->price}}</div>
+		</div>
+		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+			<div class="col-md-6">
+				<div class="col-md-3"><b>Bezorg adres</b></div>
+				<div class="col-md-9">{{$user->delivery_address}}</div>
+			</div>
+			<div class="col-md-6">
+				<div class="col-md-3"><b>Postcode</b></div>
+				<div class="col-md-9">{{$user->zip}}</div>
+			</div>
+		@endif
 	</div>
 </div>
+	<h4>Kunstwerken</h4>
+	@if (count($artworks) > 0)
+		@foreach ($artworks as $artwork)
+		<div class="img-box-search">
+			<a href="/artworks/{{ $artwork->slug }}">
+				<img class="img-box-image" src="/{{$artwork->file}}" />
+				<h3>{{$artwork->title}}</h3>
+			</a>
+		</div>
+		@endforeach
+	@else
+		<i>Geen</i>
+	@endif
+		
 @stop
