@@ -6593,6 +6593,26 @@ h1 {
 	font-weight: bold;
 }
 
+.artist {
+	display: inline-block;
+	width: 150px;
+	border-right: solid lightgrey 1px;
+	color: black;
+	padding: 1px 5px 1px 5px;
+	border-radius: 10px 0px 0px 10px;
+}
+
+.artist:hover {
+	background: #885787;
+	color: white;
+	text-decoration: none;
+}
+
+.artist:active {
+	background: #885787 !important;
+	color: white !important;
+	text-decoration: none !important;
+}
 
 @media screen and (max-width: 600px) {
 	.img-box {
@@ -6971,6 +6991,7 @@ h1#indexPageTitle {
 
 .artworkInfo .artworkDescription {
 	padding: 0;
+	min-height: 0;
 }
 
 #form-group-preview-image {

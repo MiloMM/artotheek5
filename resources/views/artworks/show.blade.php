@@ -63,13 +63,13 @@
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
 			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre={!! $artwork->genre !!}&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->genre !!}</a></div>
 
-			<div class="col-md-2 col-sm-2 col-xs-2">Formaat</div>
+			<!--<div class="col-md-2 col-sm-2 col-xs-2">Formaat</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
 			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->size !!}</div>
 			
 			<div class="col-md-2 col-sm-2 col-xs-2">Kleur</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->colour !!}</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->colour !!}</div>-->
 
 			<div class="col-md-2 col-sm-2 col-xs-2">Prijs</div>
 			<div class="col-md-1 col-sm-1 col-xs-1">:</div>

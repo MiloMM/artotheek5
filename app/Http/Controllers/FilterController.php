@@ -64,8 +64,26 @@ class FilterController extends Controller
 		$filterItem = filter_optie::findOrFail($id);
 		$filterItemBefore = $filterItem->naam;
 		$filterItem->naam = Input::get('naam');
-
+		
+		if ($filterItem->filter_id == 1) {
+			$column = "category";
+		}
+		elseif ($filterItem->filter_id == 2) {
+			$column = "genre";
+		}
+		elseif ($filterItem->filter_id == 3) {
+			$column = "technique";
+		}
+		elseif ($filterItem->filter_id == 4) {
+			$column = "material";
+		}
+		elseif ($filterItem->filter_id == 5) {
+			$column = "colour";
+		}
+		
 		if ($filterItem->save()) {
+			Artwork::where($column, $filterItemBefore)->update([$column => $filterItem->naam]);
+			
 			return redirect('filters/' . $filterItem->filter_id)->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> Het item <b>'.$filterItemBefore.'</b> is succesvol gewijzigd naar <b>'.$filterItem->naam.'</b>.');
 		}
 		else {
