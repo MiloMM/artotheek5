@@ -14,7 +14,7 @@
 		<div class="filter-box" id="filterbox">
 			<div class="col-md-5">
 				{!! Form::label('kunstenaar', 'Kunstenaar', ['class' => 'custom-label']) !!}
-				<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" name="kunstenaar">
+				<select data-placeholder="Kies een kunstenaar" class="select2-select form-control" name="kunstenaar">
 				<option value="Alle Kunstenaars">Alle kunstenaars</option>
 				@foreach ($artists as $artist)
 					<option value="{{ $artist->id }}">{{ $artist->name }}</option>
@@ -23,29 +23,30 @@
 			</div>
 			<div class="col-md-5">
 				{!! Form::label('category', 'Categorie', ['class' => 'custom-label']) !!}
-				{!! Form::select('categorie', $newarray[1], 'Alle Categorieën', ['class' => 'form-control chosen-select']) !!}
+				{!! Form::select('categorie', $newarray[1], 'Alle Categorieën', ['class' => 'form-control select2-select']) !!}
 			</div>
 			<div class="col-md-5">
 				{!! Form::label('genre', 'Genre', ['class' => 'custom-label']) !!}
-				{!! Form::select('genre', $newarray[2], 'Alle Genres', ['class' => 'form-control chosen-select']) !!}
+				{!! Form::select('genre', $newarray[2], 'Alle Genres', ['class' => 'form-control select2-select']) !!}
 			</div>
 			<div class="col-md-5">
 				{!! Form::label('materiaal', 'Materiaal', ['class' => 'custom-label']) !!}
-				{!! Form::select('materiaal', $newarray[4], 'Alle Materialen', ['class' => 'form-control chosen-select']) !!}
+				{!! Form::select('materiaal', $newarray[4], 'Alle Materialen', ['class' => 'form-control select2-select']) !!}
 			</div>
 			<div class="col-md-5">
 				{!! Form::label('techniek', 'Techniek', ['class' => 'custom-label']) !!}
-				{!! Form::select('techniek', $newarray[3], 'Alle Technieken', ['class' => 'form-control chosen-select']) !!}
+				{!! Form::select('techniek', $newarray[3], 'Alle Technieken', ['class' => 'form-control select2-select']) !!}
 			</div>
 			<div class="col-md-5" style="display: none">
 				{!! Form::label('grootte', 'Grootte', ['class' => 'custom-label']) !!}
-				{!! Form::select('grootte', array('Alle Grootte' => 'Alle Grootte', 'klein' => 'Klein', 'middelgroot' => 'Middelgroot', 'groot' => 'Groot'), null, ['class' => 'form-control chosen-select']) !!}
+				{!! Form::select('grootte', array('Alle Grootte' => 'Alle Grootte', 'klein' => 'Klein', 'middelgroot' => 'Middelgroot', 'groot' => 'Groot'), null, ['class' => 'form-control select2-select']) !!}
 			</div>
 
 		</div>
 	{!! Form::close() !!}
 </div>
 <script>
-	$(".chosen-select").chosen();
-	$("#form_field").trigger("chosen:updated");
+	$(document).ready(function() {
+		$(".select2-select").select2();
+	});
 </script>

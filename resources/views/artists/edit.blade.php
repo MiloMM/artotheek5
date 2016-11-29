@@ -11,7 +11,7 @@
 			
 			<div>
 			{!! Form::label('name', 'Wilt u de kunstenaar koppelen aan een bestaand profiel/account?') !!}
-			<select class="chosen-select form-control" id="tbx-user" name="user">
+			<select class="select2-select form-control" id="tbx-user" name="user">
 				<option value="0">Nee</option>
 			@foreach ($users as $user)
 				<?php $selected = ($user->id == $artist->user_id) ? "selected" : ""; ?>
@@ -28,8 +28,9 @@
 	</div>
 </div>
 <script>
-	$(".chosen-select").chosen();
-	$("#form_field").trigger("chosen:updated");
+	$(document).ready(function() {
+		$(".select2-select").select2();
+	});
 </script>
 
 @stop

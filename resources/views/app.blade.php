@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="{{ asset('/css/darkroom.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
 	{{-- <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'> --}}
 	{{-- Tags --}}
 	<link rel="stylesheet" href="{{ asset('css/bootstrap-tagsinput.css') }}">
@@ -23,10 +23,12 @@
 	<link rel="stylesheet" href="{{ asset('css/navmenu-reveal.css') }}">
 	<link rel='stylesheet' href="{{ asset('/css/fullcalendar.css') }}"/>
 	<link rel='stylesheet' href="{{ asset('/chosen/chosen.css') }}"/>
+	<link rel='stylesheet' href="{{ asset('/css/select2.min.css') }}"/>
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/jquery-header.js') }}"></script>
 	<script src="{{ asset('/chosen/chosen.jquery.min.js') }}"/></script>
+	<script src="{{ asset('/js/select2.min.js') }}"/></script>
 
 </head>
 <body ng-app="application">
@@ -109,7 +111,7 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <!-- Scripts -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>--}}
 <script src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>

@@ -22,7 +22,7 @@
 						<div class="form-group">
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select data-placeholder="Kies een kunstenaar" class="chosen-select form-control" id="tbx-artist" name="artist">
+								<select data-placeholder="Kies een kunstenaar" class="select2-select form-control" id="tbx-artist" name="artist">
 								<option value="">Leeg laten</option>
 								@foreach ($artists as $artist)
 									<option value="{{ $artist->id }}">{{ $artist->name }}</option>
@@ -33,7 +33,7 @@
 						<div class="form-group">
 							{!! Form::label('Techniek', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-technique" name="technique">
+								<select class="form-control select2-select" id="tbx-technique" name="technique">
 								<option value="">Leeg laten</option>
 								@foreach ($techniques as $technique)
 									<option value="{{ $technique->naam }}">{{ $technique->naam }}</option>
@@ -44,7 +44,7 @@
 						<div class="form-group">
 							{!! Form::label('Colour', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-colour" name="colour">
+								<select class="form-control select2-select" id="tbx-colour" name="colour">
 								<option value="">Leeg laten</option>
 								@foreach ($colours as $colour)
 									<option value="{{ $colour->naam }}">{{ $colour->naam }}</option>
@@ -55,7 +55,7 @@
 						<div class="form-group">
 							{!! Form::label('Materiaal', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-material" name="material">
+								<select class="form-control select2-select" id="tbx-material" name="material">
 								<option value="">Leeg laten</option>
 								@foreach ($materials as $material)
 									<option value="{{ $material->naam }}">{{ $material->naam }}</option>
@@ -66,7 +66,7 @@
 						<div class="form-group">
 							{!! Form::label('Categorie', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-category" name="category">
+								<select class="form-control select2-select" id="tbx-category" name="category">
 								<option value="">Leeg laten</option>
 								@foreach ($categories as $category)
 									<option value="{{ $category->naam }}">{{ $category->naam }}</option>
@@ -77,7 +77,7 @@
 						<div class="form-group">
 							{!! Form::label('Genre', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-genre" name="genre">
+								<select class="form-control select2-select" id="tbx-genre" name="genre">
 								<option value="">Leeg laten</option>
 								@foreach ($genres as $genre)
 									<option value="{{ $genre->naam }}">{{ $genre->naam }}</option>
@@ -88,7 +88,7 @@
 						<div class="form-group">
 							{!! Form::label('Formaat', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:left']) !!}
 							<div class="col-md-10">
-								<select class="form-control" id="tbx-size" name="size">
+								<select class="form-control select2-select" id="tbx-size" name="size">
 								<option value="">Leeg laten</option>
 								@foreach ($formats as $format)
 									<option value="{{ $format }}">{{ $format }}</option>
@@ -142,7 +142,7 @@
 </div>
 <script>
 	$(function () {
-		$(".chosen-select").chosen();
+		$(".select2-select").select2();
 		var editor = CKEDITOR.replace('textarea-description');
 		var isEditingImage = false;
 

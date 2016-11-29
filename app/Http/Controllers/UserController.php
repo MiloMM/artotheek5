@@ -67,8 +67,14 @@ class UserController extends Controller {
 				{
 					$user = User::where('slug',$slug)->first();
 					$artist = Artist::where('user_id', $user->id)->first();
-					if ($artist->user_id != 0) {
-						$artworks = Artwork::where('artist', $artist->id)->get();
+					
+					if ($artist != null) {
+						if ($artist->user_id != 0) {
+							$artworks = Artwork::where('artist', $artist->id)->get();
+						}
+						else {
+							$artworks = [];
+						}
 					}
 					else {
 						$artworks = [];

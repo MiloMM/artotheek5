@@ -6614,6 +6614,15 @@ h1 {
 	text-decoration: none !important;
 }
 
+.select2 {
+	width: 100% !important;
+}
+
+.select2-selection {
+	height: 35px !important;
+	padding-top: 3px;
+}
+
 @media screen and (max-width: 600px) {
 	.img-box {
 		width: 100%;
