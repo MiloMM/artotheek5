@@ -23,7 +23,7 @@ class ArtistController extends Controller {
 		$artists = 	Artist::orderBy('name', 'ASC')->get();
 		foreach ($artists as $artist) {
 			if ($artist->user_id != 0) {
-				$userProfileSlug = DB::table('users')->where('id', $artist->user_id)->select('slug')->get();
+				$userProfileSlug = User::where('id', $artist->user_id)->select('slug')->get();
 				$artist->profileLink = "/users/" . $userProfileSlug[0]->slug;
 			}
 			else {

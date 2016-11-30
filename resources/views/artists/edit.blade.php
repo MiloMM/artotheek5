@@ -6,7 +6,7 @@
 		{!! Form::open(['action' => ['ArtistController@update', $artist->id], 'required', 'method' => 'put']) !!}
 			<div>
 				{!! Form::label('name', 'Naam') !!}
-				{!! Form::text('name', $artist->name, ['class' => 'form-control custom-spacer']) !!}
+				{!! Form::text('name', $artist->name, ['class' => 'form-control custom-spacer', 'required' => 'required']) !!}
 			</div>
 			
 			<div>

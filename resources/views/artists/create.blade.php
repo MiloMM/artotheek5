@@ -6,7 +6,7 @@
 		{!! Form::open(['action' => ['ArtistController@store'], 'required']) !!}
 			<div>
 				{!! Form::label('name', 'Naam') !!}
-				{!! Form::text('name', null, ['class' => 'form-control custom-spacer']) !!}
+				{!! Form::text('name', null, ['class' => 'form-control custom-spacer', 'required' => 'required']) !!}
 			</div>
 			
 			<div>

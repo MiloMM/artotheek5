@@ -11,7 +11,8 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="col-md-8 col-md-offset-2 artworkPage">
-		<div class="artworkTitleBar">
+<div class="panel-default">
+		<div class="artworkTitleBar panel-heading" style="height: 52px;">
 			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
 			@if(Auth::check())
 				<div class="artworkOptions">
@@ -38,50 +39,54 @@
 		</div>
 		<div class="centerImage"><img class="showArtworkImage" src="/{{ $artwork->file }}" alt=""></div>
 
-		<div class="artworkInfo">
+		<div class="container artworkInfo">
 			<div class="col-md-12 artworkDescription">{!! $artwork->description !!}</div>
-
-			<div class="col-md-2 col-sm-2 col-xs-2">Kunstenaar</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">
-				<a href="{{ $artist['profileLink'] }}">{!! $artist['name'] !!}</a>
+			<div class="col-md-12">
+				<div class="col-md-2"><b>Kunstenaar</b></div>
+				<div class="col-md-10">
+					<a href="{{ $artist['profileLink'] }}">{!! $artist['name'] !!}</a>
+				</div>
 			</div>
-
-			<div class="col-md-2 col-sm-2 col-xs-2">Techniek</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal=Alle+Materialen&techniek={!! $artwork->technique !!}&grootte=Alle+Grootte">{!! $artwork->technique !!}</a></div>
+			<div class="col-md-12">
+				<div class="col-md-2"><b>Techniek</b></div>
+				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal=Alle+Materialen&techniek={!! $artwork->technique !!}&grootte=Alle+Grootte">{!! $artwork->technique !!}</a></div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-2"><b>Materiaal</b></div>
+				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal={!! $artwork->material !!}&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->material !!}</a></div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-2"><b>Categorie</b></div>
+				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie={!! $artwork->category !!}&genre=Alle+Genres&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->category !!}</a></div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-2"><b>Genre</b></div>
+				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre={!! $artwork->genre !!}&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->genre !!}</a></div>
+			</div>
+			<!--<div class="col-md-12">
+				<div class="col-md-2 col-sm-2 col-xs-2"><b>Formaat</b></div>
+				<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->size !!}</div>
+			</div>
 			
-			<div class="col-md-2 col-sm-2 col-xs-2">Materiaal</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal={!! $artwork->material !!}&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->material !!}</a></div>
+			<div class="col-md-12">
+				<div class="col-md-2 col-sm-2 col-xs-2"><b>Kleur</b></div>
+				<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->colour !!}</div>
+			</div>-->
 
-			<div class="col-md-2 col-sm-2 col-xs-2">Categorie</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie={!! $artwork->category !!}&genre=Alle+Genres&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->category !!}</a></div>
-			
-			<div class="col-md-2 col-sm-2 col-xs-2">Genre</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre={!! $artwork->genre !!}&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->genre !!}</a></div>
-
-			<!--<div class="col-md-2 col-sm-2 col-xs-2">Formaat</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->size !!}</div>
-			
-			<div class="col-md-2 col-sm-2 col-xs-2">Kleur</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->colour !!}</div>-->
-
-			<div class="col-md-2 col-sm-2 col-xs-2">Prijs</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">:</div>
-			<div class="col-md-9 col-sm-9 col-xs-9">€{!! $artwork->price !!}</div>
-
+			<div class="col-md-12">
+				<div class="col-md-2"><b>Prijs</b></div>
+				<div class="col-md-10">€{!! $artwork->price !!}</div>
+			</div>
 			<div class="col-md-12 tagsDiv">
+				<div class="col-md-2"><b>Tags</b></div>
+				<div class="col-md-10">
 			<?php $i = 1; ?>
 				@foreach($tagArray as $tag)
 					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}"> {{ $tag }}</a>@if ($i < count($tagArray)){{ ',' }}
 					@endif
 			<?php $i++ ?>
 				@endforeach
+				</div>
 			</div>
 		</div>
 	<br><br>
@@ -91,6 +96,7 @@
 	</div>
 	<br><br>
 	<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+	</div>
 </div>
 <script>
 	$(function () {

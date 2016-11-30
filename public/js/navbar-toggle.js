@@ -98,7 +98,7 @@ function filter_toggle_function() // Zorgt dat de filters uitklappen in het zoek
         }
         else
         {
-            $('#filterbox').slideUp(400, function(){busy_animating_filters = false;});
+            //$('#filterbox').slideUp(400, function(){busy_animating_filters = false;});
             $('#expandtext').html("Filters (optioneel)");
             filter_state = false;
         }
