@@ -43,7 +43,7 @@ class ArtistController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$users = User::orderBy('name')->select('id', 'name')->get();
-			
+
 			return View::make('artists/create', compact('users'));
 		}
 		else {
@@ -62,6 +62,12 @@ class ArtistController extends Controller {
 			$artist = new Artist();
 			$artist->name = Input::get('name');
 			$artist->user_id = Input::get('user');
+			if ($artist->user_id != 0) {
+				DB::table('user_privelege')->where('user_id', $artist->user_id)->update([
+					'user_id' => $artist->user_id,
+					'privelege_id' => Input::get('userPrivelege')
+				]);
+			}
 			$artist->save();
 			return redirect('/artists');
 		}
@@ -80,7 +86,7 @@ class ArtistController extends Controller {
 	{
 		$artworks = Artwork::where('artist', $id)->orderBy('created_at')->get();
 		$artist = Artist::where('id', $id)->first();
-		
+
 		return view('artists/show', compact('artworks', 'artist'));
 	}
 
@@ -95,7 +101,7 @@ class ArtistController extends Controller {
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$artist = Artist::findOrFail($id);
 			$users = User::orderBy('name')->select('id', 'name')->get();
-			
+
 			return View::make('artists/edit', compact('artist', 'users'));
 		}
 		else {
@@ -115,6 +121,12 @@ class ArtistController extends Controller {
 			$artist = Artist::findOrFail($id);
 			$artist->name = Input::get('name');
 			$artist->user_id = Input::get('user');
+			if ($artist->user_id != 0) {
+					DB::table('user_privelege')->where('user_id', $artist->user_id)->update([
+					'user_id' => $artist->user_id,
+					'privelege_id' => Input::get('userPrivelege')
+				]);
+			}
 			$artist->save();
 			return redirect('/artists');
 		}
@@ -132,11 +144,11 @@ class ArtistController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$artist = Artist::findOrFail($id);
-			
+
 			return View::make('/artists/delete', compact('artist'));
 		}
 	}
-	
+
 	/**
 	 * Remove the specified artist from storage.
 	 *
@@ -146,7 +158,7 @@ class ArtistController extends Controller {
 	public function destroy($id)
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
-			
+
 			$artist = Artist::findOrFail($id);
 			if (Input::get('delete') == "delete") {
 				$artist->delete();
@@ -156,7 +168,7 @@ class ArtistController extends Controller {
 				$artist->delete();
 			}
 			else {
-				
+
 			}
 			return redirect('/artists');
 		}

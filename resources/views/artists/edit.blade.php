@@ -8,7 +8,7 @@
 				{!! Form::label('name', 'Naam') !!}
 				{!! Form::text('name', $artist->name, ['class' => 'form-control custom-spacer', 'required' => 'required']) !!}
 			</div>
-			
+
 			<div>
 			{!! Form::label('name', 'Wilt u de kunstenaar koppelen aan een bestaand profiel/account?') !!}
 			<select class="select2-select form-control" id="tbx-user" name="user">
@@ -19,7 +19,16 @@
 			@endforeach
 			</select>
 			</div>
-			
+
+			<div>
+				{!! Form::label('name', 'Welke rechten krijgt dit account?') !!}
+				<select class="select2-select form-control" id="tbx-userPrivelege" name="userPrivelege">
+					<option value="1">Gebruiker</option>
+					<option value="2">Kunstenaar</option>
+					<option value="4">Administrator</option>
+				</select>
+			</div>
+
 			<div class="submit-div">
 				{!! Form::submit('Wijzigen', ['class' => 'btn btn-primary']) !!}
 				<a class="btn btn-primary" href="/artists">Annuleren</a>
