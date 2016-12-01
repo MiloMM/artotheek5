@@ -10,16 +10,16 @@
 			</div>
 
 			<div>
-			{!! Form::label('name', 'Wilt u de kunstenaar koppelen aan een bestaand profiel/account?') !!}
-			<select class="select2-select form-control" id="tbx-user" name="user">
-				<option value="0">Nee</option>
-			@foreach ($users as $user)
-				<option value="{{ $user->id }}">Ja, aan het profiel van: {{ $user->name }}</option>
-			@endforeach
-			</select>
+				{!! Form::label('name', 'Wilt u de kunstenaar koppelen aan een bestaand profiel/account?') !!}
+				<select class="select2-select form-control" id="tbx-user" name="user">
+					<option value="0">Nee</option>
+				@foreach ($users as $user)
+					<option value="{{ $user->id }}">Ja, aan het profiel van: {{ $user->name }}</option>
+				@endforeach
+				</select>
 			</div>
-
-			<div>
+			<br>
+			<div id="rights" style="display:none;">
 				{!! Form::label('name', 'Welke rechten krijgt dit account?') !!}
 				<select class="select2-select form-control" id="tbx-userPrivelege" name="userPrivelege">
 					<option value="1">Gebruiker</option>
@@ -38,6 +38,17 @@
 <script>
 	$(document).ready(function() {
 		$(".select2-select").select2();
+	});
+	
+	$('#tbx-user').change(function() {
+		var priveleges = document.getElementById('rights');
+
+		if (jQuery(this).val() > 0) {
+			priveleges.style.display = "block";
+		}
+		else {
+			priveleges.style.display = "none";
+		}
 	});
 </script>
 

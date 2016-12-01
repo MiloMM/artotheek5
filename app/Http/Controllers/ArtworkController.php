@@ -348,17 +348,24 @@ class ArtworkController extends Controller {
 			'state' => $publish,
 			'slug' => $slug
 		]);
-
+		
+		// Delete the old tags from an artwork and lower the total count from that tag by 1
 		if (!empty(Input::get('old-tags'))) {
 			$oldTags = explode(',', Input::get('old-tags'));
+			
+			foreach ($oldTags as $oldTag) {
+				$tag = DB::table('tagging_tags')->where('name', $oldTag)->first();
+				
+				DB::table('tagging_tags')->where('name', $oldTag)->update([
+					'count' => $tag->count - 1
+				]);;
+			}
+			
+			DB::table('tagging_tagged')->where('taggable_id', $artwork->id)->delete();
 		}
 
 		if (!empty(Input::get('tags'))) {
 			$tags = explode(',', Input::get('tags'));
-		}
-
-		if (!empty($oldTags)) {
-			DB::table('tagging_tagged')->where('taggable_id', $artwork->id)->delete();
 		}
 
 		// tag the artwork with all the tags
