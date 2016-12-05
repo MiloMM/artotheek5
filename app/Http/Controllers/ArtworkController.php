@@ -354,28 +354,22 @@ class ArtworkController extends Controller {
 			$oldTags = explode(',', Input::get('old-tags'));
 			
 			foreach ($oldTags as $oldTag) {
-				$tag = DB::table('tagging_tags')->where('name', $oldTag)->first();
-				
-				DB::table('tagging_tags')->where('name', $oldTag)->update([
-					'count' => $tag->count - 1
-				]);;
+				DB::table('tagging_tags')->where('name', $oldTag)->decrement('count', 1);
 			}
 			
 			DB::table('tagging_tagged')->where('taggable_id', $artwork->id)->delete();
 		}
-
+	
+		// Get the tags from the input if not empty and add them to the database
 		if (!empty(Input::get('tags'))) {
 			$tags = explode(',', Input::get('tags'));
-		}
-
-		// tag the artwork with all the tags
-		if (!empty($tags)) {
+			
 			foreach ($tags as $tag) {
 				$artwork->tag($tag);
 			}
 		}
 
-		$artwork->save();
+		//$artwork->save();
 
 		return redirect('artworks/'.$artwork->slug);
 	}

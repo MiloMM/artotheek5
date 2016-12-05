@@ -133,7 +133,8 @@
 						<div class="form-group">
 							{!! Form::label('Publiceer', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-6">
-								{!! Form::checkbox('publish', false , ['class' => 'col-md-10 form-control']) !!}
+								<?php $checked = ($artwork->state === 1) ? false : true ?>
+								{!! Form::checkbox('publish', false, $checked) !!}
 							</div>
 						</div>
 
@@ -158,10 +159,9 @@
 		var editor = CKEDITOR.replace('textarea-description');
 		$(".select2-select").select2();
 	});
-	$("#form_field").trigger("chosen:updated");
 
 	$('#tag-box').change(function() {
-		var tags = document.getElementsByClassName('tagText');
+		var tags = $('#tag-box .tagText');
 		var tagString = "";
 
 		for (var i = 0; i < tags.length; i++) {
@@ -169,7 +169,6 @@
 		}
 
 		tagString = tagString.substring(0, tagString.length - 1)
-
 		$('#tbx-tags').attr('value', tagString);
 	});
 </script>

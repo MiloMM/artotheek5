@@ -297,6 +297,5 @@
 			xhr.send(form);
 		});
 	});
-	$("#form_field").trigger("chosen:updated");
 </script>
 @stop
