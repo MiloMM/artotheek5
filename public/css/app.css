@@ -6995,6 +6995,10 @@ h1#indexPageTitle {
 	margin-top: 20px;
 }
 
+.panel-heading {
+	position: relative;
+}
+
 .profileDetails {
 	margin-top: 10px;
 	padding-bottom: 10px;
@@ -7010,6 +7014,14 @@ h1#indexPageTitle {
 
 .profileDetails .col-md-9 {
 	padding-left: 10px !important;
+}
+
+.profileEditButton {
+	position: absolute !important;
+	right: 25px !important;
+	top: 16px !important;
+	text-decoration: none !important;
+	background: orange;
 }
 
 @media screen and (max-width: 750px) {

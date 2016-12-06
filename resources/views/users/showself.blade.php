@@ -3,49 +3,73 @@
 
 <div class="panel panel-default">
 <div class="panel-heading">
-	<h1>Mijn Profiel</h1><a class="btn btn-warning" href="{{$user->slug}}/edit">Wijzig</a>
+	<h1>Mijn Profiel</h1><a class="btn btn-warning profileEditButton" href="{{$user->slug}}/edit">Wijzig</a>
 </div>
-	<div class="panel-body">
-		<table class=table>
-			<tr>
-				<td><b>Naam</b></td>
-				<td colspan="3">{{$user->name}}</td>
-			</tr>
-			<tr>
-				<td><b>E-mail</b></td>
-				<td colspan="3">{{$user->email}}</td>
-			</tr>
-			<tr>
-				<td><b>Lid sinds</b></td>
-				<td colspan="3">{{$user->created_at}}</td>
-			</tr>
-			<tr>
-				<td><b>Telefoon nummer</b></td>
-				<td colspan="3">{{$user->telephone}}</td>
-			</tr>
-			<tr>
-				<td><b>Opleiding / Sector</b></td>
-				<td>{{$user->education}}</td>
-				<td><b>Leerjaar</b></td>
-				<td>{{$user->school_year}}</td>
-			</tr>
-			<tr>
-				<td><b>Overzicht werk</b></td>
-				<td colspan="3">{{$user->work_summary}}</td>
-			</tr>
-			<tr>
-				<td><b>Kostenplaatje</b></td>
-				<td colspan="3">{{$user->price}}</td>
-			</tr>
-			<tr>
-				<td><b>Bezorg adres</b></td>
-				<td>{{$user->delivery_address}}</td>
-				<td><b>Postcode</b></td>
-				<td>{{$user->zip}}</td>
-			</tr>
-		</table>
+	<div class="container profileDetails">
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Naam</b></div>
+			<div class="col-md-9">{{$user->name}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Lid sinds</b></div>
+			<div class="col-md-9">{{$user->created_at}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>E-mail</b></div>
+			<div class="col-md-9">{{$user->email}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Telefoon nummer</b></div>
+			<div class="col-md-9">{{$user->telephone}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Opleiding / Sector</b></div>
+			<div class="col-md-9">{{$user->education}}</div>
+		</div>	
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Leerjaar</b></div>
+			<div class="col-md-9">{{$user->school_year}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Overzicht werk</b></div>
+			<div class="col-md-9">{{$user->work_summary}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Kostenplaatje</b></div>
+			<div class="col-md-9">{{$user->price}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Bezorg adres</b></div>
+			<div class="col-md-9">{{$user->delivery_address}}</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-3"><b>Postcode</b></div>
+			<div class="col-md-9">{{$user->zip}}</div>
+		</div>
 	</div>
-
 </div>
+
+<h4>Kunstwerken</h4>
+@if (count($artworks) > 0)
+	@foreach ($artworks as $artwork)
+	<div class="img-box-search">
+		<a href="/artworks/{{ $artwork->slug }}">
+			<img class="img-box-image" src="/{{$artwork->file}}" />
+			<h3>{{$artwork->title}}</h3>
+		</a>
+	</div>
+	@endforeach
+@else
+	<i>Geen</i>
+@endif
 
 @stop

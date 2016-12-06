@@ -168,7 +168,7 @@
 			tagString += tags[i].innerHTML + ',';
 		}
 
-		tagString = tagString.substring(0, tagString.length - 1)
+		tagString = tagString.substring(0, tagString.length - 1);
 		$('#tbx-tags').attr('value', tagString);
 	});
 </script>

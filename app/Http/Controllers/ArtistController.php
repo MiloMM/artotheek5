@@ -101,7 +101,11 @@ class ArtistController extends Controller {
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$artist = Artist::findOrFail($id);
 			$users = User::orderBy('name')->select('id', 'name')->get();
-
+			
+			$privelege = DB::table('user_privelege')->where('user_id', $artist->user_id)->first();
+			$artist->privelege = ($privelege !== null) ? $privelege->privelege_id : 0;
+			$artist->display = ($artist->user_id === 0) ? "display: none" : "display: block";
+			
 			return View::make('artists/edit', compact('artist', 'users'));
 		}
 		else {

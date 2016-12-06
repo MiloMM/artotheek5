@@ -57,29 +57,28 @@ class UserController extends Controller {
 			// Does this user exist?
 			if (User::where('slug', $slug)->first())
 			{
-				// Am i this user?
-				if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id)
-				{
-					$user = User::where('slug',$slug)->first();
-					return View::make('users/showself',compact('user'));
-				}
-				else
-				{
-					$user = User::where('slug',$slug)->first();
-					$artist = Artist::where('user_id', $user->id)->first();
-					
-					if ($artist != null) {
-						if ($artist->user_id != 0) {
-							$artworks = Artwork::where('artist', $artist->id)->get();
-						}
-						else {
-							$artworks = [];
-						}
+				// Check if the user is linked to an artist and get the artworks
+				$user = User::where('slug',$slug)->first();
+				$artist = Artist::where('user_id', $user->id)->first();
+				
+				if ($artist != null) {
+					if ($artist->user_id != 0) {
+						$artworks = Artwork::where('artist', $artist->id)->get();
 					}
 					else {
 						$artworks = [];
 					}
-					
+				}
+				else {
+					$artworks = [];
+				}
+				
+				// Am i this user?
+				if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id)
+				{
+					return View::make('users/showself',compact('user', 'artworks'));
+				}
+				else {			
 					return View::make('users/show', compact('user', 'artworks'));
 				}
 			}
@@ -97,8 +96,13 @@ class UserController extends Controller {
 	 */
 	public function edit($slug)
 	{
-		$user = User::where('slug',$slug)->first();
-		return View::make('users/edit',compact('user'));
+		if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id) {
+			$user = User::where('slug',$slug)->first();
+			return View::make('users/edit',compact('user'));
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 	/**

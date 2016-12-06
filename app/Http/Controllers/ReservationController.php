@@ -27,22 +27,27 @@ class ReservationController extends Controller {
 	 */
 	public function index()
 	{
-		$reservations =	DB::table('reservations')
-	        ->join('artworks', function($join)
-	        {
-	            $join->on('reservations.artwork_id', '=', 'artworks.id')
-	                 ->where('artworks.reserved', '>', 0);
-	        })
-	        ->join('users', function($join)
-	        {
-	            $join->on('reservations.user_id', '=', 'users.id');
-	        })
-	        ->select(['*', DB::raw('users.slug as userSlug'), DB::raw('artworks.slug as artworkSlug'),
-	        			   DB::raw('artworks.id as artworkId'), DB::raw('users.id as userId'),
-	        			   DB::raw('reservations.id as reservationId')])
-	        ->get();
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
+			$reservations =	DB::table('reservations')
+				->join('artworks', function($join)
+				{
+					$join->on('reservations.artwork_id', '=', 'artworks.id')
+						 ->where('artworks.reserved', '>', 0);
+				})
+				->join('users', function($join)
+				{
+					$join->on('reservations.user_id', '=', 'users.id');
+				})
+				->select(['*', DB::raw('users.slug as userSlug'), DB::raw('artworks.slug as artworkSlug'),
+							   DB::raw('artworks.id as artworkId'), DB::raw('users.id as userId'),
+							   DB::raw('reservations.id as reservationId')])
+				->get();
 
-		return View::make('reservation/index')->with('reservations', $reservations);
+			return View::make('reservation/index')->with('reservations', $reservations);
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 	/**
