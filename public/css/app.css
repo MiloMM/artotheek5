@@ -7024,6 +7024,20 @@ h1#indexPageTitle {
 	background: orange;
 }
 
+.accountsPage .col-md-4 .col-md-12 {
+	padding: 0 !important;
+}
+
+.accountsPage .col-md-4 {
+	border: solid black 1px;
+	min-height: 300px;
+}
+
+.accountsPage .artist {
+	padding: 0 !important;
+	width: 80%;
+}
+
 @media screen and (max-width: 750px) {
 	.menuButtonsHidden {
 		display: none !important;

@@ -23,7 +23,16 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
+			$users['users'] = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 1)->get();
+			$users['artists'] = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 2)->get();
+			$users['administrators'] = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 4)->get();
+			//dd($users);
+			return view('users/index', compact('users'));
+		}
+		else {
+			return View::make('errors/' . HttpCode::Unauthorized);
+		}
 	}
 
 	/**
@@ -96,8 +105,12 @@ class UserController extends Controller {
 	 */
 	public function edit($slug)
 	{
-		if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id) {
+		if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id || Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$user = User::where('slug',$slug)->first();
+			
+			$privelege = DB::table('user_privelege')->where('user_id', $user->id)->first();
+			$user->privelege = ($privelege !== null) ? $privelege->privelege_id : 0;
+			
 			return View::make('users/edit',compact('user'));
 		}
 		else {
@@ -116,12 +129,26 @@ class UserController extends Controller {
 		$user = User::where('slug',$slug)->first();
 		$input = Input::all();
 
-		 $user->name = Input::get('name');
-		 $user->email = Input::get('email');
-
+		$user->name = Input::get('name');
+		$user->email = Input::get('email');
+		$user->telephone = Input::get('telephone');
+		$user->education = Input::get('education');
+		$user->school_year = Input::get('school_year');
+		$user->delivery_address = Input::get('delivery_address');
+		$user->zip = Input::get('zip');
+		
+		$slug = strtolower(implode('-', explode(' ', Input::get('name'))));
+		$slug = str_replace('?','', $slug);
+		$slug = str_replace('/','',$slug );
+		$slug = str_replace('\\','',$slug );
+		
+		$user->slug = $slug;
+		
 		$user->update();
+		
+		DB::table('user_privelege')->where('user_id', $user->id)->update(['privelege_id' => Input::get('privelege')]);
 
-		return Response::json([0 => 'Profiel Gewijzigd.']);
+		return redirect('/users');
 	}
 
 	/**
