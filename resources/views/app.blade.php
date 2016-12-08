@@ -44,6 +44,7 @@
 		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</span></a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 			<li><a href="/filters">Filters Aanpassen</a></li>
+			<li><a href="/users">Accountbeheer</a></li>
 		@endif
 	</ul>
 	<ul class="nav navmenu-nav login-menu">
@@ -52,8 +53,8 @@
 			<li><a href="/auth/register">Registreer</a></li>
 		@else
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
-				<ul class="dropdown-menu navmenu-nav">
+				<a href="#" class="dropdown-toggle" id="usernameDropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
+				<ul class="dropdown-menu navmenu-nav" id="usernameDropdownMenu">
 					<li><a href="/myprofile">My Profile</a></li>
 					<li><a href="{{ URL::to('logout') }}">Logout</a></li>
 				</ul>
@@ -130,6 +131,9 @@
 
 	CKEDITOR.env.isCompatible = true;
 
+	$('#usernameDropdown').click(function () {
+		$('#usernameDropdownMenu').toggle();
+	});
 </script>
 </body>
 </html>

@@ -62,12 +62,6 @@ class ArtistController extends Controller {
 			$artist = new Artist();
 			$artist->name = Input::get('name');
 			$artist->user_id = Input::get('user');
-			if ($artist->user_id != 0) {
-				DB::table('user_privelege')->where('user_id', $artist->user_id)->update([
-					'user_id' => $artist->user_id,
-					'privelege_id' => Input::get('userPrivelege')
-				]);
-			}
 			$artist->save();
 			return redirect('/artists');
 		}
@@ -102,10 +96,6 @@ class ArtistController extends Controller {
 			$artist = Artist::findOrFail($id);
 			$users = User::orderBy('name')->select('id', 'name')->get();
 			
-			$privelege = DB::table('user_privelege')->where('user_id', $artist->user_id)->first();
-			$artist->privelege = ($privelege !== null) ? $privelege->privelege_id : 0;
-			$artist->display = ($artist->user_id === 0) ? "display: none" : "display: block";
-			
 			return View::make('artists/edit', compact('artist', 'users'));
 		}
 		else {
@@ -125,12 +115,6 @@ class ArtistController extends Controller {
 			$artist = Artist::findOrFail($id);
 			$artist->name = Input::get('name');
 			$artist->user_id = Input::get('user');
-			if ($artist->user_id != 0) {
-					DB::table('user_privelege')->where('user_id', $artist->user_id)->update([
-					'user_id' => $artist->user_id,
-					'privelege_id' => Input::get('userPrivelege')
-				]);
-			}
 			$artist->save();
 			return redirect('/artists');
 		}
