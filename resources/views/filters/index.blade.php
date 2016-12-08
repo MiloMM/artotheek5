@@ -25,7 +25,7 @@
 						{!! Form::token() !!}
 						{!! Form::hidden('filter_id', $id) !!}
 						{!! Form::label('naam', 'Naam') !!}
-						{!! Form::text('naam', null, ['class' => 'form-control custom-spacer', 'placeholder' => $filters[$id-1]->naam]) !!} <br/>
+						{!! Form::text('naam', null, ['class' => 'form-control custom-spacer']) !!} <br/>
 						{!! Form::submit('Voeg toe', ['class' => 'btn btn-primary']) !!}
 
 					{!! Form::close() !!}

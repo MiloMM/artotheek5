@@ -10,16 +10,13 @@
 	</div>
 	<div class="panel-body">
 		@foreach($artists as $artist)
-			@if ($artist->user_id != 0)
-				<a href="{{ $artist->profileLink }}" class="artist">{{$artist->name}}</a>
-			@else
-				<a href="/artists/show/{{ $artist->id }}" class="artist">{{$artist->name}} </a>
+			<a href="{{ $artist->profileLink }}" class="artist">{{$artist->name}}</a>
+			
+			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+				<a class="fa fa-pencil-square-o filter-options" href="/artists/edit/{{ $artist->id }}"title="Wijzigen"></a>
+				<a class="fa fa-trash filter-options" href="/artists/delete/{{ $artist->id }}" title="Verwijderen"></a>
 			@endif
-				@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-					<a class="fa fa-pencil-square-o filter-options" href="/artists/edit/{{ $artist->id }}"title="Wijzigen"></a>
-					<a class="fa fa-trash filter-options" href="/artists/delete/{{ $artist->id }}" title="Verwijderen"></a>
-				@endif
-				<br>
+			<br>
 		@endforeach
 	</div>
 </div>

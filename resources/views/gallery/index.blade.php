@@ -2,7 +2,14 @@
 @section('content')
 <div class="container-fluid">
 	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Student', 'Moderator', 'Administrator']))
-		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Voeg toe</a>
+		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+			 Voeg toe
+		@else
+			Verzoek indienen
+		@endif
+		</a>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 			<a href="{{ action('ArtworkController@showArchived') }}" id="btnShowArchived" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Archief</a>
 		@endif

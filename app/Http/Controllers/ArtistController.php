@@ -13,11 +13,7 @@ use DB;
 
 class ArtistController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	/* Get all artists and pass them to the view. */
 	public function index()
 	{
 		$artists = 	Artist::orderBy('name', 'ASC')->get();
@@ -27,7 +23,7 @@ class ArtistController extends Controller {
 				$artist->profileLink = "/users/" . $userProfileSlug[0]->slug;
 			}
 			else {
-				$artist->profileLink = "";
+				$artist->profileLink = "/artists/show/" . $artist->id;
 			}
 		}
 

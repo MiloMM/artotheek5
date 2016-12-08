@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8">
 	{{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
@@ -55,8 +55,8 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" id="usernameDropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
 				<ul class="dropdown-menu navmenu-nav" id="usernameDropdownMenu">
-					<li><a href="/myprofile">My Profile</a></li>
-					<li><a href="{{ URL::to('logout') }}">Logout</a></li>
+					<li><a href="/myprofile">Mijn profiel</a></li>
+					<li><a href="{{ URL::to('logout') }}">Uitloggen</a></li>
 				</ul>
 			</li>
 		@endif

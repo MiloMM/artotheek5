@@ -45,28 +45,29 @@ class ArtworkController extends Controller {
 	 */
 	public function create()
 	{
+		// Get the selectbox options and pass them to the view via the compact function.
+		$artists = Artist::orderBy('name')->get();
+		$categories = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+		$genres = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+		$techniques = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
+		$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
+		$colours = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
+		$formats = array('Klein', 'Middelgroot', 'Groot');
+
+		$filterArray = [
+			'artists',
+			'techniques',
+			'genres',
+			'materials',
+			'categories',
+			'formats',
+			'colours'
+		];
+		
 		// Is the user a moderator or admin?
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
-			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = Artist::orderBy('name')->get();
-			$categories = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
-			$genres = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
-			$techniques = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
-			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
-			$colours = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
-			$formats = array('Klein', 'Middelgroot', 'Groot');
-
-			$filterArray = [
-				'artists',
-				'techniques',
-				'genres',
-				'materials',
-				'categories',
-				'formats',
-				'colours'
-			];
-
+			
 			// Show the super create
 			return View::make('artworks/create', compact($filterArray));
 		}
@@ -74,7 +75,7 @@ class ArtworkController extends Controller {
 		else if (Auth::check() && Auth::user()->hasOnePrivelege(['Student']))
 		{
 			// Show the student version of the create
-			return View::make('artworks/studentCreate');
+			return View::make('artworks/studentCreate', compact($filterArray));
 		}
 		else
 		{
