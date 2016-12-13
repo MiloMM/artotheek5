@@ -3,7 +3,7 @@
 @section('content')
 <div class="container accountsPage">
 	<div class="col-md-12">
-		<h1>Accounts<h1>
+		<h1>Accountbeheer<h1>
 	</div>
 	<div class="col-md-4" style="border-right: none;">
 		<h4>Gebruikers zonder speciale rechten</h2>

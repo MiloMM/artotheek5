@@ -5,7 +5,7 @@
 		<a href="{{ action('ArtworkController@create') }}" id="btnAdd" class="btn btn-success">
 			<i class="fa fa-plus" aria-hidden="true"></i>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-			 Voeg toe
+			Voeg toe
 		@else
 			Verzoek indienen
 		@endif

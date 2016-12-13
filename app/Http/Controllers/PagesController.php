@@ -7,6 +7,7 @@ use View;
 use Redirect;
 use Auth;
 use App\Artwork;
+use App\Artist;
 use DB;
 //use Request;
 use Response;
@@ -122,7 +123,14 @@ class PagesController extends Controller {
 			$searchResults = [];
 		}
 		
-		return View::make('/gallery/search')->with('searchResults', $searchResults);
+		if ($request->input('kunstenaar') != "Alle Kunstenaars") {
+			$artist = Artist::select('name')->where('id', $request->input('kunstenaar'))->first()->toArray();
+		}
+		else {
+			$artist['name'] = "Alle Kunstenaars";
+		}
+		
+		return View::make('/gallery/search', compact('searchResults', 'request', 'artist'));
 	}
 
 	public function about()

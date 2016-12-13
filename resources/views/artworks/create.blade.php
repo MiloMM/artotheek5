@@ -130,7 +130,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
+								{!! Form::submit('Toevoegen', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
 							</div>
 						</div>
 

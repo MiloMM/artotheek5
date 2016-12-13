@@ -1,7 +1,22 @@
 @extends('app')
 @section('content')
-	<p style="text-align: center;border-bottom: 1px solid #e7e7e7; padding-bottom: 10px;font-size: 16px;">Uw zoekopdracht haalde <b>{{count($searchResults ) }}</b> resultaten op</p>
+	<p style="text-align: center; font-size: 16px;">Uw zoekopdracht haalde <b>{{count($searchResults ) }}</b> resultaten op</p>
 
+	<div class="searchResults">
+		<ul>
+			@if (empty($request->input('keyword')))
+				<li><b>Trefwoord: </b><i>-</i> / </li>
+			@else
+				<li><b>Trefwoord: </b><i>{{ $request->input('keyword') }}</i> / </li>
+			@endif
+		
+			<li><b>Kunstenaar: </b><i>{{ $artist['name'] }}</i> / </li>
+			<li><b>Categorie: </b><i>{{ $request->input('categorie') }}</i> / </li>
+			<li><b>Genre: </b><i>{{ $request->input('genre') }}</i> / </li>
+			<li><b>Materiaal: </b><i>{{ $request->input('materiaal') }}</i> / </li>
+			<li><b>Techniek: </b><i>{{ $request->input('techniek') }}</i></li>
+		</ul>
+	</div>
 	<div class="" id="image-container">
 	@foreach ($searchResults as $result)
 		<div class="img-box-search">
