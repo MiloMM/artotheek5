@@ -11,7 +11,7 @@
 			<div class="col-md-12">
 				<a href="/users/{{ $user->slug }}" class="artist">{{ $user->name }}</a>
 				<a class="fa fa-pencil-square-o filter-options" href="/users/{{ $user->slug }}/edit"title="Wijzigen"></a>
-				<a class="fa fa-trash filter-options" href="/users/{{ $user->slug }}/edit" title="Verwijderen"></a>
+				<a class="fa fa-trash filter-options" href="/users/destroy/{{ $user->userId }}" title="Verwijderen" onclick="return confirm('Weet u zeker dat u dit profiel/account wilt verwijderen? De kunstenaar die aan dit profiel is gekoppeld blijft bestaan.')"></a>
 			</div>
 		@endforeach
 	</div>
@@ -21,7 +21,7 @@
 			<div class="col-md-12">
 				<a href="/users/{{ $user->slug }}" class="artist">{{ $user->name }}</a>
 				<a class="fa fa-pencil-square-o filter-options" href="/users/{{ $user->slug }}/edit"title="Wijzigen"></a>
-				<a class="fa fa-trash filter-options" href="/users/{{ $user->slug }}/edit" title="Verwijderen"></a>
+				<a class="fa fa-trash filter-options" href="/users/destroy/{{ $user->userId }}" title="Verwijderen" onclick="return confirm('Weet u zeker dat u dit profiel/account wilt verwijderen? De kunstenaar die aan dit profiel is gekoppeld blijft bestaan.')"></a>
 			</div>
 		@endforeach
 	</div>
@@ -31,7 +31,7 @@
 			<div class="col-md-12">
 				<a href="/users/{{ $user->slug }}" class="artist">{{ $user->name }}</a>
 				<a class="fa fa-pencil-square-o filter-options" href="/users/{{ $user->slug }}/edit"title="Wijzigen"></a>
-				<a class="fa fa-trash filter-options" href="/users/{{ $user->slug }}/edit" title="Verwijderen"></a>
+				<a class="fa fa-trash filter-options" href="/users/destroy/{{ $user->useId }}" title="Verwijderen" onclick="return confirm('Weet u zeker dat u dit profiel/account wilt verwijderen? De kunstenaar die aan dit profiel is gekoppeld blijft bestaan.')"></a>
 			</div>
 		@endforeach
 	</div>

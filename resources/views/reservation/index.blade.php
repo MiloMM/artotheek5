@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
 <div class="panel panel-default">
   <div class="panel-heading">Reserveringen</div>
 
@@ -10,12 +10,13 @@
   <table class="table">
   <thead>
     <tr>
-        <th>Reservering nr. <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
-    	<th>Kunstwerk <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
-    	<th>Kunstenaar <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
-    	<th>Van <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
-    	<th>Tot <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
-        <th>Aflever Adres<span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+        <th width="16%">Reservering nr. <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+    	<th width="16%">Kunstwerk <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+    	<th width="16%">Kunstenaar <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+    	<th width="16%">Van <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+    	<th width="16%">Tot <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+        <th width="16%">Aflever Adres<span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
+        <th width="4%">Opties</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +34,7 @@
     	<td>{{ $date }}</td>
     	<td>{{ $date2 }}</td>
         <td>{{ $reservation->delivery_adress }}</td>
+		<td></td>
 
 
     </tr>

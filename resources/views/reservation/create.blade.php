@@ -6,21 +6,27 @@
 <div class="panel panel-default">
 	
 	<div class="panel-heading">
-		<h1>Kuntwerk reserveren</h1>
+		<h1>Het kunstwerk '{{ $artwork->title }}' reserveren</h1>
 	</div>
 	<div class="panel-body">
 		{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
     		<div class="form-group">
-				{!! Form::label('Vanaf:', null, ['class' => 'col-md-1 control-label', 'style'=>'text-align:center']) !!}			
-				{!! Form::input('date', 'from-date') !!}
-				<hr>
-				{!! Form::label('Tot:', null, ['class' => 'col-md-1 control-label', 'style' => 'text-align:center']) !!}	
-				{!! Form::input('date', 'to-date') !!}
-				<hr>
-				{!! Form::label('Aflever adres', null, ['class' => 'col-md-1 control-label', 'style' => 'text-align:center']) !!}	
-				{!! Form::input('text', 'delivery_adress') !!}
-
-				{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send', 'style' => 'margin-top:20px']) !!}
+				<div class="form-group">
+					{!! Form::label('Vanaf:', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}			
+					{!! Form::input('date', 'from-date', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;']) !!}
+				</div>
+				<div class="form-group">
+					{!! Form::label('Tot:', null, ['class' => 'col-md-2 control-label', 'style' => 'text-align:center']) !!}	
+					{!! Form::input('date', 'to-date', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;']) !!}
+				</div>
+				<div class="form-group">
+					{!! Form::label('Aflever adres', null, ['class' => 'col-md-2 control-label', 'style' => 'text-align:center']) !!}	
+					{!! Form::input('text', 'delivery_adress', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;']) !!}
+				</div>
+				<div class="form-group">
+					{!! Form::label('', null, ['class' => 'col-md-2 control-label', 'style' => 'text-align:center']) !!}
+					{!! Form::submit('Verstuur', ['class' => 'btn btn-success', 'id' => 'btn-send', 'style' => 'width: 150px;']) !!}
+				</div>
 			</div>
 		{!! Form::close() !!}
 	</div>

@@ -57,7 +57,7 @@ class ReservationController extends Controller {
 	 */
 	public function create($id)
 	{
-		if(Auth::check())
+		if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 		{
 			$artwork = Artwork::findOrFail($id);
 			return View::make('reservation/create', compact('artwork'));

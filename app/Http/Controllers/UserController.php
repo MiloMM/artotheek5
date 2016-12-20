@@ -24,9 +24,9 @@ class UserController extends Controller {
 	public function index()
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
-			$users['users'] = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 1)->get();
-			$users['artists'] = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 2)->get();
-			$users['administrators'] = User::join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 4)->get();
+			$users['users'] = User::select('*', 'users.id as userId')->join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 1)->get();
+			$users['artists'] = User::select('*', 'users.id as userId')->join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 2)->get();
+			$users['administrators'] = User::select('*', 'users.id as userId')->join('user_privelege', 'users.id', '=', 'user_privelege.user_id')->where('privelege_id', 4)->get();
 			//dd($users);
 			return view('users/index', compact('users'));
 		}
@@ -166,7 +166,7 @@ class UserController extends Controller {
 			$artist->save();
 		}
 		$user->delete();
-		return redirect()->action('ArtistController@index');
+		return redirect()->action('UserController@index');
 	}
 
 	public function Logout()

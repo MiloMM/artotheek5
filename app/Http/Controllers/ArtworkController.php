@@ -67,7 +67,6 @@ class ArtworkController extends Controller {
 		// Is the user a moderator or admin?
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
-			
 			// Show the super create
 			return View::make('artworks/create', compact($filterArray));
 		}
@@ -185,7 +184,11 @@ class ArtworkController extends Controller {
 					$artwork->tag($tag);
 				}
 			}
-
+			
+			if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) {
+				Artwork::mailArtworkRequest($artwork->slug);
+			}
+			
 			// save the artwork data in the database
 			$artwork->save();
 
