@@ -13,15 +13,15 @@
     		<div class="form-group">
 				<div class="form-group">
 					{!! Form::label('Vanaf:', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}			
-					{!! Form::input('date', 'from-date', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;']) !!}
+					{!! Form::input('date', 'from-date', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;', 'required' => 'required']) !!}
 				</div>
 				<div class="form-group">
 					{!! Form::label('Tot:', null, ['class' => 'col-md-2 control-label', 'style' => 'text-align:center']) !!}	
-					{!! Form::input('date', 'to-date', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;']) !!}
+					{!! Form::input('date', 'to-date', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;', 'required' => 'required']) !!}
 				</div>
 				<div class="form-group">
 					{!! Form::label('Aflever adres', null, ['class' => 'col-md-2 control-label', 'style' => 'text-align:center']) !!}	
-					{!! Form::input('text', 'delivery_adress', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;']) !!}
+					{!! Form::input('text', 'delivery_adress', null, ['class' => 'col-md-10 form-control', 'style' => 'width:175px;', 'required' => 'required']) !!}
 				</div>
 				<div class="form-group">
 					{!! Form::label('', null, ['class' => 'col-md-2 control-label', 'style' => 'text-align:center']) !!}
@@ -68,7 +68,9 @@
 						msg += "<li>" + v + "</li>";
 					});
 					msg += "</ul>";
-
+					
+					window.location.href = "/reservations";
+					
 					functions.showSuccessBanner(msg, 5000);
 
 				} else {

@@ -35,16 +35,16 @@
 	<span id="custom_navbar_toggle_two" class="glyphicon glyphicon-remove custom_glyphicon-remove"></span>
 	<a class="navmenu-brand" href="/">Da Vinci Galleria</a>
 	<ul class="nav navmenu-nav">
-		<li><a href="/about">Over Da Vinci Galleria</a></li>
 		<li><a href="/gallery">Galerij</a></li>
-		<li><a href="#">Uitleenvoorwaarden</a></li>
 		<li><a href="#">Nieuws</a></li>
 		<li><a href="/artists">Kunstenaars</a></li>
-		<li><a href="/reservations">Reserveringen</a></li>
 		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</span></a></li>
+		<li><a href="#">Uitleenvoorwaarden</a></li>
+		<li><a href="/about">Over Da Vinci Galleria</a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-			<li><a href="/filters">Filters Aanpassen</a></li>
-			<li><a href="/users">Accountbeheer</a></li>
+			<li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>
+			<li class="menuItemAdmin"><a href="/filters">Filters Aanpassen</a></li>
+			<li class="menuItemAdmin"><a href="/users">Accountbeheer</a></li>
 		@endif
 	</ul>
 	<ul class="nav navmenu-nav login-menu">

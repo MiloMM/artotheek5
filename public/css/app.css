@@ -7051,6 +7051,10 @@ h1#indexPageTitle {
 	display: inline;
 }
 
+.menuItemAdmin {
+	
+}
+
 @media screen and (max-width: 750px) {
 	.menuButtonsHidden {
 		display: none !important;
