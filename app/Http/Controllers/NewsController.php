@@ -96,7 +96,7 @@ class NewsController extends Controller {
 	 */
 	public function show($slug)
 	{
-		//Bug bij vraagteken in de slug kijg je error
+		//Bug bij vraagteken in de slug kijg je <error></error>
 
 		$article = News::where('slug', $slug)->first();
 

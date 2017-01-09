@@ -7,7 +7,7 @@
 				<div class="panel-heading">Wijzig gebruikers profiel</div>
 				<div class="panel-body">
 					
-					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form']) !!}
+					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form', 'enctype' => 'multipart/form-data', 'method' => 'put', 'action' => ['UserController@update', $user->slug]]) !!}
 						<div class="form-group">
 							{!! Form::label('Naam', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
@@ -50,9 +50,30 @@
 								{!! Form::text('zip', $user->zip, ['class' => 'form-control', 'id' => 'tbx-zip']) !!}
 							</div>
 						</div>
+						<div class="form-group">
+							{!! Form::label('Biografie', null, ['class' => 'control-label col-md-2']) !!}
+							<div class="col-md-10">
+								{!! Form::textarea('biography', $user->biography, ['class' => 'form-control', 'id' => 'textarea-biography']) !!}
+							</div>
+						</div>
+						
+						<div class="form-group">
+							{!! Form::label('Profielfoto', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
+							<div class="col-md-10" style="margin-bottom: 10px;">
+								<img src="{{ $user->profile_picture }}" class="edit_profile_pic">
+							</div>
+							<div class="col-md-2"></div>
+							<div class="col-md-10">
+								<i>Nieuwe foto: </i><input type="file" name="fileToUpload" id="fileToUpload">
+							</div>
+						</div>
 						@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 							@if (Auth::user()->id != $user->id)
-								<div class="form-group">
+								<?php $display = "block"; ?>
+							@else
+								<?php $display = "none"; ?>
+							@endif
+								<div class="form-group" style="display: {{ $display }}">
 									{!! Form::label('Rechten', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 									<div class="col-md-10">
 										<input type="radio" value="1" name="privelege" <?php if ($user->privelege === 1) echo 'checked="checked"'; ?>> Gebruiker<br>
@@ -60,7 +81,6 @@
 										<input type="radio" value="4" name="privelege" <?php if ($user->privelege === 4) echo 'checked="checked"'; ?>> Administrator
 									</div>
 								</div>
-							@endif
 						@endif
 						<div class="form-group">
 								<div class="col-md-2 col-md-offset-2">
@@ -74,61 +94,9 @@
 	</div>
 </div>
 <script>
-	$('#form').submit(function (event) {
-			event.preventDefault();
-		});
-
-		$('#btn-send').click(function () {
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/users/{{$user->slug}}');
-
-			xhr.onload = function () {
-
-				if (xhr.status == 200 || xhr.status == 0) {
-
-
-					response = JSON.parse(xhr.response);
-					var msg = "<ul>";
-					$(response).each(function (k, v) {
-						msg += "<li>" + v + "</li>";
-					});
-					msg += "</ul>";
-
-					functions.showSuccessBanner(msg, 5000);
-					
-
-				} else {
-
-					response = JSON.parse(xhr.response);
-					var msg = "<ul>";
-					$(response).each(function (k, v) {
-						msg += "<li>" + v + "</li>";
-					});
-					msg += "</ul>";
-
-					functions.showErrorBanner(msg);
-				}
-			}
-
-			var form = new FormData();
-			form.append('_token', '{{ csrf_token() }}');
-			form.append('_method', 'PUT');
-			form.append('name', $('#tbx-name').val());
-			form.append('email', $('#tbx-email').val());
-			form.append('telephone', $('#tbx-telephone').val());
-			form.append('education', $('#tbx-education').val());
-			form.append('school_year', $('#tbx-school_year').val());
-			form.append('delivery_address', $('#tbx-delivery_address').val());
-			form.append('zip', $('#tbx-zip').val());
-			form.append('privelege', $('input[name="privelege"]:checked').val());
-
-			xhr.send(form);
-			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-				window.location.href = "/users";
-			@else
-				window.location.href = "/myprofile";
-			@endif
-		});
+	$(function () {
+		editor = CKEDITOR.replace('textarea-biography');
+	});
 </script>
 
 

@@ -7,6 +7,14 @@
 		<a href="/users/destroy/{{ $user->id }}" class="fa fa-times fa-2x profileDeleteButton" title="Account verwijderen" onclick="return confirm('Weet u zeker dat u dit profiel en account wilt verwijderen? De kunstenaar die aan dit profiel is gekoppeld blijft bestaan.')"></a>
 	@endif
 </div>
+	@if ($user->profile_picture != '' || $user->biography != '')
+		<div class="container profileDetails">
+			<div class="col-md-12">
+				<div class="col-md-3"><img src="{{$user->profile_picture}}" class="profile_pic"></div>
+				<div class="col-md-9">{!! $user->biography !!}</div>
+			</div>
+		</div>
+	@endif
 	<div class="container profileDetails">
 		<div class="col-md-6">
 			<div class="col-md-3"><b>Naam</b></div>
