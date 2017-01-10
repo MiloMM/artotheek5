@@ -7004,10 +7004,14 @@ h1#indexPageTitle {
 	padding-bottom: 10px;
 }
 
+.profileDetails .no_profile_pic {
+	font-size: 10pt;
+	text-align: center;
+}
+
 .profileDetails .profile_pic {
-	width: 100%;
+	width: 80%;
 	height: auto;
-	border: solid black 1px;
 }
 
 .profileDetails div {
@@ -7020,6 +7024,10 @@ h1#indexPageTitle {
 
 .profileDetails .col-md-9 {
 	padding-left: 10px !important;
+}
+
+.biography {
+	margin-top: 25px;
 }
 
 .profileEditButton {
@@ -7103,6 +7111,19 @@ h1#indexPageTitle {
 		margin-left: 15px;
 	}
 	
+	.panel-default {
+		padding: 10px !important;
+	}
+	
+	.panel-default .img-box-search{
+		padding: 0;
+	}
+	
+	.profileDetails .profile_pic {
+		width: 40%;
+		margin-bottom: 15px;
+	}
+	
 	.profileDetails .col-md-3 {
 		border-right: none;
 	}
@@ -7111,7 +7132,16 @@ h1#indexPageTitle {
 		padding-left: 0 !important;
 	}
 	
+	.biography {
+		margin-top: 25px;
+	}
+	
 	h4 {
 		/*padding-left: 15px;*/
+	}
+	
+	iframe {
+		max-width: 100% !important;
+		height: auto !important;
 	}
 }
