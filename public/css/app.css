@@ -6615,6 +6615,10 @@ h1 {
 	padding-top: 3px;
 }
 
+iframe {
+	max-width: 100% !important;
+}
+
 @media screen and (max-width: 600px) {
 	.img-box {
 		width: 100%;
@@ -6700,7 +6704,7 @@ h1 {
 		width: 47%;
 	}
 
-	.showArtworkImage {
+	.artworkImage {
 		width: 100% !important;
 		height: auto !important;
 	}
@@ -6863,6 +6867,7 @@ h1#indexPageTitle {
   position: fixed !important;
   top:0 !important;
   left:0 !important;
+  z-index: 98 !important;
 }
 
 .changeOnScroll {
@@ -6874,46 +6879,48 @@ h1#indexPageTitle {
 	height: 200px;
 }
 
-.showArtworkImage {
+.artworkImage {
+	width: 100%;
+	height: auto;
+}
+
+.artworkImage:hover {
+	cursor: pointer;
+}
+
+#imagePopup {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.7);
+	z-index: 99;
+	display: none;
+}
+
+#imagePopup img {
 	width: auto;
-	height: 450px;
-
-}
-
-.artworkInfo {
-	margin-top: 25px;
-	padding-left: 0 !important;
-	width: 100% !important;
-}
-
-.artworkInfo .col-md-2 {
-	border-right: solid lightgrey 1px;
-	padding-left: 0 !important;
-}
-
-.artworkInfo .col-md-10 a{
-	color: black !important;
-}
-
-.artworkInfo .col-md-10 a:hover {
-	color: #885787 !important;
-}
-
-.artworkInfo .col-md-12 {
-	padding-left: 0 !important;
+	height: 75%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
 }
 
 .centerImage {
 	display: block;
-	text-align: center;
 }
 
 .artworkTitleBar {
 	background: white;
+	min-height: 30px;
+	height: auto;
 }
 
 .artworkTitleBar h2{
-	margin-bottom: 3px;
+	margin-bottom: 0px;
 	margin-top: 0;
 }
 
@@ -6967,11 +6974,6 @@ h1#indexPageTitle {
 .artworkOptions {
 	display: inline-block;
 	float: right;
-}
-
-.artworkInfo .artworkDescription {
-	padding: 0;
-	min-height: 0;
 }
 
 #form-group-preview-image {
@@ -7074,6 +7076,14 @@ h1#indexPageTitle {
 	
 }
 
+.artworkInfoTable .col-md-3 {
+	border-right: solid lightgrey 1px;
+}
+
+.artworkInfoTable .col-md-9 a {
+	color: black;
+}
+
 @media screen and (max-width: 750px) {
 	.menuButtonsHidden {
 		display: none !important;
@@ -7087,10 +7097,26 @@ h1#indexPageTitle {
 		background: none !important;
 	}
 
+	#imagePopup img {
+		max-width: 90% !important;
+		height: auto;
+	}
+	
 	.artworkInfo {
-		margin-bottom: 0 !important;
+		margin-bottom: 25px !important;
+		padding-left: 0 !important;
+	}
+	
+	.artworkInfo div {
+		padding-left: 0 !important;
 	}
 
+	.artworkInfoTable .col-md-3 {
+		margin-top: 10px;
+		border: none;
+		border-top: solid lightgrey 1px;
+	}
+	
 	.fb-like {
 		display: none !important;
 	}

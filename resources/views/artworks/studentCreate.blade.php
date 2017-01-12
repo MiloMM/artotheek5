@@ -135,6 +135,12 @@
 								{!! Form::submit('Verstuur', ['class' => 'btn btn-success form-control', 'id' => 'btn-send']) !!}
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<a id="backToGallery" class="btn btn-primary" href="/gallery" style="display: none;">Terug naar de galerij.</a>
+							</div>
+						</div>
 
 					{!! Form::close() !!}
 				</div>
@@ -246,12 +252,10 @@
 
 				if (xhr.status == 200 || xhr.status == 0) {
 					var progressbar = $('#progressbar-upload');
-					@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-						progressbar.html('Voltooid! U wordt doorgestuurd naar de galerij.');
-					@else
-						progressbar.html('Voltooid! Uw verzoek wordt binnenkort door een administrator gecontroleerd.');
-					@endif
-
+					
+					progressbar.html('Voltooid! Uw verzoek wordt binnenkort door een administrator gecontroleerd.');
+					$('#backToGallery').toggle();
+					
 					response = JSON.parse(xhr.response);
 					var msg = "<ul>";
 					$(response).each(function (k, v) {

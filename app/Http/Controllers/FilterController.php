@@ -39,12 +39,21 @@ class FilterController extends Controller
 	public function store(request $request)
 	{
 		$filter_options = New filter_optie;
+		
+		$exists = DB::table('filter_opties')->where(['filter_id' => $request['filter_id'], 'naam' => $request['naam']])->get();
+		
+		if (count($exists) == 0) {
+			$filter_options->filter_id = $request['filter_id'];
+			$filter_options->naam = $request['naam'];
+			$filter_options->save();
+			
+			return redirect()->route('filterIndex', [$request['filter_id']])->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> U heeft succesvol het item <strong>' . $request['naam'] . '</strong> toegevoegd');
+		}
+		else {
+			return redirect()->route('filterIndex', [$request['filter_id']])->with('errorMsg', '<span class="glyphicon glyphicon-remove"></span> Dit item bestaat al onder dit filter.');
+		}
 
-		$filter_options->filter_id = $request['filter_id'];
-		$filter_options->naam = $request['naam'];
-		$filter_options->save();
-
-		return redirect()->route('filterIndex', [$request['filter_id']])->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> U heeft succesvol het item <strong>' . $request['naam'] . '</strong> toegevoegd');
+		
 	}
 
 	public function edit($filter, $id)
@@ -63,31 +72,39 @@ class FilterController extends Controller
 	{
 		$filterItem = filter_optie::findOrFail($id);
 		$filterItemBefore = $filterItem->naam;
-		$filterItem->naam = Input::get('naam');
 		
-		if ($filterItem->filter_id == 1) {
-			$column = "category";
-		}
-		elseif ($filterItem->filter_id == 2) {
-			$column = "genre";
-		}
-		elseif ($filterItem->filter_id == 3) {
-			$column = "technique";
-		}
-		elseif ($filterItem->filter_id == 4) {
-			$column = "material";
-		}
-		elseif ($filterItem->filter_id == 5) {
-			$column = "colour";
-		}
+		$exists = DB::table('filter_opties')->where(['filter_id' => $filterItem->filter_id, 'naam' => Input::get('naam')])->get();
 		
-		if ($filterItem->save()) {
-			Artwork::where($column, $filterItemBefore)->update([$column => $filterItem->naam]);
+		if (count($exists) == 0) {
+			$filterItem->naam = Input::get('naam');
 			
-			return redirect('filters/' . $filterItem->filter_id)->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> Het item <b>'.$filterItemBefore.'</b> is succesvol gewijzigd naar <b>'.$filterItem->naam.'</b>.');
+			if ($filterItem->filter_id == 1) {
+				$column = "category";
+			}
+			elseif ($filterItem->filter_id == 2) {
+				$column = "genre";
+			}
+			elseif ($filterItem->filter_id == 3) {
+				$column = "technique";
+			}
+			elseif ($filterItem->filter_id == 4) {
+				$column = "material";
+			}
+			elseif ($filterItem->filter_id == 5) {
+				$column = "colour";
+			}
+			
+			if ($filterItem->save()) {
+				Artwork::where($column, $filterItemBefore)->update([$column => $filterItem->naam]);
+				
+				return redirect('filters/' . $filterItem->filter_id)->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> Het item <b>'.$filterItemBefore.'</b> is succesvol gewijzigd naar <b>'.$filterItem->naam.'</b>.');
+			}
+			else {
+				return redirect('filters/' . $filterItem->filter_id)->with('errorMsg', '<span class="glyphicon glyphicon-ok"></span> Er is helaas iets fout gegaan. Probeer het nog een keer.');
+			}
 		}
 		else {
-			return redirect('filters/' . $filterItem->filter_id)->with('errorMsg', '<span class="glyphicon glyphicon-ok"></span> Er is helaas iets fout gegaan. Probeer het nog een keer.');
+			return redirect()->route('filterIndex', [$filterItem->filter_id])->with('errorMsg', '<span class="glyphicon glyphicon-remove"></span> Dit item bestaat al onder dit filter.');
 		}
 	}
 

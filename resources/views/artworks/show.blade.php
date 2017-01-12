@@ -10,9 +10,16 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<div id="imagePopup">
+	<span class="glyphicon glyphicon-remove custom_glyphicon-remove"></span>
+	<img src="/{{ $artwork->file }}" alt="" id="imagePopupImage">
+</div>
+
 <div class="col-md-8 col-md-offset-2 artworkPage">
+<a href="/gallery" class="btn btn-primary">Galerij</a><br><br>
 <div class="panel-default">
-		<div class="artworkTitleBar panel-heading" style="height: 52px;">
+		
+		<div class="artworkTitleBar panel-heading">
 			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
 			@if(Auth::check())
 				<div class="artworkOptions">
@@ -37,65 +44,74 @@
 				</div>
 			@endif
 		</div>
-		<div class="centerImage"><img class="showArtworkImage" src="/{{ $artwork->file }}" alt=""></div>
+		
+		<div class="col-md-4" style="padding: 0; margin-top: 10px;">
+			<img class="artworkImage" src="/{{ $artwork->file }}" alt="">
+			<i>Klik op de afbeelding om te vergroten.</i>
+		</div>
 
-		<div class="container artworkInfo">
+		<div class="col-md-8 artworkInfo" style="margin-top: 10px;">
 			<div class="col-md-12 artworkDescription">{!! $artwork->description !!}</div>
-			<div class="col-md-12">
-				<div class="col-md-2"><b>Kunstenaar</b></div>
-				<div class="col-md-10">
+			<div class="artworkInfoTable">
+			@if (!empty($artist['name']))
+				<div class="col-md-3"><b>Kunstenaar</b></div>
+				<div class="col-md-9" style="height: 20px;">
 					<a href="{{ $artist['profileLink'] }}">{!! $artist['name'] !!}</a>
 				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-md-2"><b>Techniek</b></div>
-				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal=Alle+Materialen&techniek={!! $artwork->technique !!}&grootte=Alle+Grootte">{!! $artwork->technique !!}</a></div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-md-2"><b>Materiaal</b></div>
-				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal={!! $artwork->material !!}&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->material !!}</a></div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-md-2"><b>Categorie</b></div>
-				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie={!! $artwork->category !!}&genre=Alle+Genres&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->category !!}</a></div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-md-2"><b>Genre</b></div>
-				<div class="col-md-10"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre={!! $artwork->genre !!}&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->genre !!}</a></div>
-			</div>
-			<!--<div class="col-md-12">
-				<div class="col-md-2 col-sm-2 col-xs-2"><b>Formaat</b></div>
+			@endif
+			@if (!empty($artwork->technique))
+				<div class="col-md-3"><b>Techniek</b></div>
+				<div class="col-md-9" style="height: 20px;"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal=Alle+Materialen&techniek={!! $artwork->technique !!}&grootte=Alle+Grootte">{!! $artwork->technique !!}</a></div>
+			@endif
+			@if (!empty($artwork->material))
+				<div class="col-md-3"><b>Materiaal</b></div>
+				<div class="col-md-9" style="height: 20px;"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal={!! $artwork->material !!}&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->material !!}</a></div>
+			@endif
+			@if (!empty($artwork->category))
+				<div class="col-md-3"><b>Categorie</b></div>
+				<div class="col-md-9" style="height: 20px;"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie={!! $artwork->category !!}&genre=Alle+Genres&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->category !!}</a></div>
+			@endif
+			@if (!empty($artwork->genre))
+				<div class="col-md-3"><b>Genre</b></div>
+				<div class="col-md-9" style="height: 20px;"><a href="/gallery/search?keyword=&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre={!! $artwork->genre !!}&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte">{!! $artwork->genre !!}</a></div>
+			@endif
+			<!--
+				<div class="col-md-3 col-sm-3 col-xs-3"><b>Formaat</b></div>
 				<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->size !!}</div>
-			</div>
 			
-			<div class="col-md-12">
-				<div class="col-md-2 col-sm-2 col-xs-2"><b>Kleur</b></div>
+				<div class="col-md-3 col-sm-3 col-xs-3"><b>Kleur</b></div>
 				<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->colour !!}</div>
-			</div>-->
-
-			<div class="col-md-12">
-				<div class="col-md-2"><b>Prijs</b></div>
-				<div class="col-md-10">€{!! $artwork->price !!}</div>
-			</div>
-			<div class="col-md-12 tagsDiv">
-				<div class="col-md-2"><b>Tags</b></div>
-				<div class="col-md-10">
-			<?php $i = 1; ?>
-				@foreach($tagArray as $tag)
-					<span class="glyphicon glyphicon-tag"></span><a href="/tags/{{$tag}}"> {{ $tag }}</a>@if ($i < count($tagArray)){{ ',' }}
-					@endif
-			<?php $i++ ?>
-				@endforeach
+			-->
+			@if ($artwork->price != 0)
+				<div class="col-md-3"><b>Prijs</b></div>
+				<div class="col-md-9" style="height: 20px;">€{!! $artwork->price !!}</div>
+			@endif
+			@if (!empty($tagArray))
+				<div class="tagsDiv">
+					<div class="col-md-3"><b>Tags</b></div>
+					<div class="col-md-9">
+				<?php $i = 1; ?>
+					@foreach($tagArray as $tag)
+						<span class="glyphicon glyphicon-tag"></span><a href="/gallery/search?keyword={{ $tag }}&kunstenaar=Alle+Kunstenaars&categorie=Alle+Categorieën&genre=Alle+Genres&materiaal=Alle+Materialen&techniek=Alle+Technieken&grootte=Alle+Grootte"> {{ $tag }}</a>@if ($i < count($tagArray)){{ ',' }}
+						@endif
+				<?php $i++ ?>
+					@endforeach
+					</div>
 				</div>
+			@endif
 			</div>
 		</div>
-	<br><br>
-	<h1 style ="padding:20,20,20,0">Reserveringen voor {{$artwork->title}}</h1>
-	<div id="calendar">
+		{{--
+		<div class="col-md-12" style="padding: 0;">
+			<div class="col-md-6" style="padding: 0;">
+				<h1 style ="padding:20,20,20,0">Reserveringen voor {{$artwork->title}}</h1>
+				<div id="calendar">
 
-	</div>
-	<br><br>
-	<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+				</div>
+				<br><br>
+				<div class="fb-like" data-href="http://www.artotheekdavinci.nl/artworks/{{ $artwork->slug }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+			</div>
+		</div>--}}
 	</div>
 </div>
 <script>
@@ -121,6 +137,18 @@
 		    events: createEvents()
 		});
 	});
+	
+	$('.artworkImage').click(function() {
+		$('#imagePopup').toggle();
+	});
+	
+	window.addEventListener('mouseup', function(event){
+		var viewer = document.getElementById("imagePopupImage");
+		if(event.target != viewer && event.target.parentNode != viewer) {
+			document.getElementById('imagePopup').style.display = "none";
+		}
+	});
+
 </script>
 
 @stop

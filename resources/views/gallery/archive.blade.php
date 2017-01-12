@@ -6,7 +6,7 @@
 	
 	<hr>
 	
-	 <div class="flex-container">
+	 <div class="" id="image-container">
 		@foreach($artworks as $artwork)
 			<div class="img-box">
 				<a href="/artworks/{{ $artwork->slug }}">

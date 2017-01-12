@@ -220,7 +220,7 @@ class ArtworkController extends Controller {
 		$artist = Artist::where('artists.id', '=', $artwork->artist)->first();
 		
 		if ($artist == null) {
-			$artist['name'] = "-";
+			$artist['name'] = "";
 			$artist['profileLink'] = "";
 		}
 		else {

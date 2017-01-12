@@ -16,7 +16,7 @@ class CreateFilterOptiesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('filter_id');
-			$table->string('naam')->unique();
+			$table->string('naam');
 			$table->timestamps();
 		});
 	}
