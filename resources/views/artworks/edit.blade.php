@@ -31,7 +31,7 @@
 						<div class="form-group">
 							{!! Form::label('Kunstenaar', null, ['class' => 'col-md-2 control-label']) !!}
 							<div class="col-md-10">
-								<select data-placeholder="Kies een kunstenaar" class="select2-select form-control" id="tbx-artist" name="artist">
+								<select class="select2-select form-control" id="tbx-artist" name="artist" placeholder="Kies een kunstenaar">
 								<option value="">Leeg laten</option>
 								@foreach ($artists as $artist)
 									<?php $selected = ($artwork->artist == $artist->id) ? "selected" : ""; ?>

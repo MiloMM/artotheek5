@@ -14,7 +14,7 @@
 		<div class="filter-box" id="filterbox">
 			<div class="col-md-5">
 				{!! Form::label('kunstenaar', 'Kunstenaar', ['class' => 'custom-label']) !!}
-				<select data-placeholder="Kies een kunstenaar" class="select2-select form-control" name="kunstenaar">
+				<select class="select2-select form-control" name="kunstenaar">
 				<option value="Alle Kunstenaars">Alle kunstenaars</option>
 				@foreach ($artists as $artist)
 					<option value="{{ $artist->id }}">{{ $artist->name }}</option>
