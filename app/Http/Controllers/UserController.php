@@ -197,9 +197,10 @@ class UserController extends Controller {
 		}
 		$user->update();
 
-		DB::table('user_privelege')->where('user_id', $user->id)->update(['privelege_id' => Input::get('privelege')]);
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
+			DB::table('user_privelege')->where('user_id', $user->id)->update(['privelege_id' => Input::get('privelege')]);
 			return redirect('/users');
+		}
 		else {
 			return redirect('/myprofile');
 		}

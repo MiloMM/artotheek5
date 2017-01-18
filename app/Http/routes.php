@@ -12,6 +12,7 @@
 */
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
+Route::get('/conditions', 'PagesController@conditions');
 Route::get('/users/destroy/{id}', 'UserController@destroy');
 
 Route::get('/artists' , 'ArtistController@index');

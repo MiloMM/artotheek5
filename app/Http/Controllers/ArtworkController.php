@@ -191,19 +191,6 @@ class ArtworkController extends Controller {
 			
 			// save the artwork data in the database
 			$artwork->save();
-
-			// Success
-			return Response::json([
-				0 => 'Het kunstwerk is aangemaakt klik <a href="/artworks/' . $artwork->slug . '">hier</a> om het the bekijken',
-				1 => 'of klik <a href="/gallery"> hier </a> om terug te keren naar de gallerij'
-			], 200);
-		}
-		else
-		{
-			// Unauthorized error
-			return Response::json([
-				0 => 'Je bent niet geautoriseerd.'
-			], 401);
 		}
 	}
 
@@ -382,6 +369,10 @@ class ArtworkController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
+			$artwork = Artwork::findOrFail($id);
+			if(file_exists($artwork->file)) {
+				unlink($artwork->file);
+			}
 			Artwork::destroy($id);
 			return Redirect()->action('ArtworkController@showArchived');
 		}

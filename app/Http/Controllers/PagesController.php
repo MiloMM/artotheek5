@@ -137,4 +137,9 @@ class PagesController extends Controller {
 	{
 		return view('about/index');
 	}
+	
+	public function conditions()
+	{
+		return view('conditions/index');
+	}
 }

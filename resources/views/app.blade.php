@@ -39,7 +39,7 @@
 		<li><a href="#">Nieuws</a></li>
 		<li><a href="/artists">Kunstenaars</a></li>
 		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</span></a></li>
-		<li><a href="#">Uitleenvoorwaarden</a></li>
+		<li><a href="/conditions">Uitleenvoorwaarden</a></li>
 		<li><a href="/about">Over Da Vinci Galleria</a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 			<li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>
