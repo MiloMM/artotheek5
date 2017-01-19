@@ -256,13 +256,6 @@
 					progressbar.html('Voltooid! Uw verzoek wordt binnenkort door een administrator gecontroleerd.');
 					$('#backToGallery').toggle();
 					
-					response = JSON.parse(xhr.response);
-					var msg = "<ul>";
-					$(response).each(function (k, v) {
-						msg += "<li>" + v + "</li>";
-					});
-					msg += "</ul>";
-					
 					setTimeout(function() {
 						window.location.href = "/gallery";
 					}, 2000);

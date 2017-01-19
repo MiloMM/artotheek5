@@ -51,7 +51,7 @@ class PagesController extends Controller {
 		];
 
 		$artworks = DB::table('artworks');
-		
+
 		if ($SearchQuery[0] != "")
 		{
 			$artworks = $artworks->where('title', 'like', '%'.$SearchQuery[0].'%');
@@ -104,6 +104,11 @@ class PagesController extends Controller {
 			if (isset($tagResults)) {
 				$tagResults = $tagResults->where('technique', '=', $SearchQuery[6]);
 			}
+		}
+		
+		$artworks = $artworks->where('state', 0);
+		if (isset($tagResults)) {
+			$tagResults = $tagResults->where('state', 0);
 		}
 		
 		if (isset($tagResults)) {

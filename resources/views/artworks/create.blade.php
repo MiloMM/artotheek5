@@ -245,13 +245,6 @@
 				if (xhr.status == 200 || xhr.status == 0) {
 					var progressbar = $('#progressbar-upload');
 					progressbar.html('Voltooid! U wordt doorgestuurd naar de galerij.');
-
-					response = JSON.parse(xhr.response);
-					var msg = "<ul>";
-					$(response).each(function (k, v) {
-						msg += "<li>" + v + "</li>";
-					});
-					msg += "</ul>";
 					
 					setTimeout(function() {
 						window.location.href = "/gallery";
