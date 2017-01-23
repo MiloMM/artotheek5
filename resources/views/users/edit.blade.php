@@ -35,7 +35,7 @@
 						<div class="form-group">
 							{!! Form::label('Leerjaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::input('number', 'school_year', $user->school_year, ['class' => 'form-control', 'id' => 'tbx-school_year']) !!}
+								{!! Form::input('number', 'school_year', $user->school_year, ['class' => 'form-control', 'id' => 'tbx-school_year', 'min' => '1', 'max' => '9999']) !!}
 							</div>
 						</div>
 						<div class="form-group">

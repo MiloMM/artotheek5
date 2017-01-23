@@ -50,7 +50,7 @@
 		</div>--}}
 		
 		<div class="col-md-6">
-			<div class="col-md-4"><b>Bezorg adres</b></div>
+			<div class="col-md-4"><b>Adres</b></div>
 			<div class="col-md-8">{{$user->delivery_address}}</div>
 		</div>
 		

@@ -72,7 +72,7 @@ class Artwork extends Model {
 	
 	public static function mailArtworkRequest($slug = "meloen")
 	{
-		$to = "artotheek@davinci.nl";
+		$to = "galleria@galleria.dvc-icta.nl";
 		$subject = "Gallerij verzoek ingediend door " . Auth::user()->name;
 		$message = "
 		<html>
@@ -81,24 +81,14 @@ class Artwork extends Model {
 			</head>
 			<body style='font-family:Arial;'>
 				<p>" . Auth::user()->name . " heeft een kunstwerk verzoek ingediend. Klik hier om deze te bekijken:</p>
-				<a href='http://" . $_SERVER['SERVER_NAME'] . ":8000/artworks/" . $slug . "' style='background:#337ab7;color:white;text-decoration:none;padding:5px 15px 5px 15px;border-radius:10px;'>Bekijk kunstwerk</a>
+				<a href='http://" . $_SERVER['SERVER_NAME'] . "/artworks/" . $slug . "' style='background:#337ab7;color:white;text-decoration:none;padding:5px 15px 5px 15px;border-radius:10px;'>Bekijk kunstwerk</a>
 			</body>
 		</html>";
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		$headers = "From: " . Auth::user()->email . "\r\n";
+		$headers = "MIME-Version: 1.0\r\n"; 
+		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+		$headers .= "From: " . Auth::user()->name . " <" . Auth::user()->email . ">\r\n";
 		
-		echo $to . "<br>";
-		echo $subject;
-		echo $message;
-		echo $headers;
-		
-		/*if (mail($to, $subject, $message, $headers)) {
-			echo 'Ja';
-		}
-		else {
-			echo 'Nee';
-		}*/
+		mail($to, $subject, $message, $headers)or die('mail error');
 	}
 }
 	

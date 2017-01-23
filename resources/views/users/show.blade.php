@@ -47,7 +47,7 @@
 			</div>--}}
 			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 				<div class="col-md-6">
-					<div class="col-md-3"><b>Bezorg adres</b></div>
+					<div class="col-md-3"><b>Adres</b></div>
 					<div class="col-md-9">{{$user->delivery_address}}</div>
 				</div>
 				<div class="col-md-6">

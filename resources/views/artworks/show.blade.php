@@ -21,7 +21,7 @@
 		
 		<div class="artworkTitleBar panel-heading">
 			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
-			@if(Auth::check())
+			@if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 				<div class="artworkOptions">
 					<a href="/artworks/{{ $artwork->slug }}/edit" title="Kunstwerk wijzigen">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
