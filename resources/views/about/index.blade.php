@@ -13,7 +13,7 @@
 		<li>Vincent van Wijk</li>
 		<li>Dennis Kievits</li>
 		<li>Dion Oosthoek</li>
-		<li>Jurgen</li>
+		<li>Jurgen Vingerhoets</li>
 		<li>Sidney Batenburg</li>
 		<li>Jelle Visser</li>
 		<li>Etc.</li>

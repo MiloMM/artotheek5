@@ -1,6 +1,15 @@
 @extends('app')
 @section('content')
-	<p style="text-align: center; font-size: 16px;">Uw zoekopdracht haalde <b>{{count($searchResults ) }}</b> resultaten op</p>
+
+	<?php
+		if (count($searchResults) > 1 || count($searchResults) < 1) {
+			$resultWord = "resultaten";
+		}
+		else {
+			$resultWord = "resultaat";
+		}
+	?>
+	<p style="text-align: center; font-size: 16px;">Uw zoekopdracht haalde <b>{{count($searchResults) }}</b> {{$resultWord}} op</p>
 
 	<div class="searchResults">
 		<ul>

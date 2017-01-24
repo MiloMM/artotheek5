@@ -18,8 +18,10 @@ class Registrar implements RegistrarContract {
 			'name' => 'required|max:255',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
+			'telephone' => 'max:20',
+			'school_year' => 'min:1|max:99|integer',
 			'delivery_address' => 'required',
-			'zip' => 'required'
+			'zip' => 'required|max:7'
 		]);
 	}
 

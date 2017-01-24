@@ -7030,6 +7030,7 @@ h1#indexPageTitle {
 
 .biography {
 	margin-top: 25px;
+	overflow-wrap: break-word;
 }
 
 .profileEditButton {

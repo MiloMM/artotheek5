@@ -46,7 +46,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Leerjaar</label>
 							<div class="col-md-6">
-								<input type="number" class="form-control" name="school_year" value="{{ old('school_year') }}" min="1" max="9999">
+								<input type="number" class="form-control" name="school_year" value="{{ old('school_year') }}" max="99" step="1">
 							</div>
 						</div>
 
@@ -65,14 +65,14 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password *</label>
+							<label class="col-md-4 control-label">Wachtwoord *</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password" required="required">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Confirm Password *</label>
+							<label class="col-md-4 control-label">Wachtwoord bevestigen *</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password_confirmation" required="required">
 							</div>
@@ -91,4 +91,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$('input[name="telephone"]').keypress(function() {
+		if (this.value.length >= 20) {
+			return false;
+		}
+	});
+	
+	$('input[name="zip"]').keypress(function() {
+		if (this.value.indexOf(' ') > -1) {
+			if (this.value.length >= 7) {
+				return false;
+			}
+		}
+		else {
+			if (this.value.length >= 6) {
+				return false;
+			}
+		}
+	});
+</script>
 @endsection

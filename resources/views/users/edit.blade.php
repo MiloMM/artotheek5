@@ -11,13 +11,13 @@
 						<div class="form-group">
 							{!! Form::label('Naam', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('name', $user->name, ['class' => 'form-control', 'id' => 'tbx-name']) !!}
+								{!! Form::text('name', $user->name, ['class' => 'form-control', 'id' => 'tbx-name', 'required' => 'required']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('E-mail', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('e-mail', $user->email, ['class' => 'form-control', 'id' => 'tbx-email']) !!}
+								{!! Form::text('e-mail', $user->email, ['class' => 'form-control', 'id' => 'tbx-email', 'required' => 'required', 'pattern' => '/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -35,19 +35,19 @@
 						<div class="form-group">
 							{!! Form::label('Leerjaar', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::input('number', 'school_year', $user->school_year, ['class' => 'form-control', 'id' => 'tbx-school_year', 'min' => '1', 'max' => '9999']) !!}
+								{!! Form::input('number', 'school_year', $user->school_year, ['class' => 'form-control', 'id' => 'tbx-school_year', 'max' => '99', 'step' => '1']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Adres', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('delivery_address', $user->delivery_address, ['class' => 'form-control', 'id' => 'tbx-delivery_address']) !!}
+								{!! Form::text('delivery_address', $user->delivery_address, ['class' => 'form-control', 'id' => 'tbx-delivery_address', 'required' => 'required']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 							{!! Form::label('Postcode', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('zip', $user->zip, ['class' => 'form-control', 'id' => 'tbx-zip']) !!}
+								{!! Form::text('zip', $user->zip, ['class' => 'form-control', 'id' => 'tbx-zip', 'required' => 'required']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -96,6 +96,25 @@
 <script>
 	$(function () {
 		editor = CKEDITOR.replace('textarea-biography');
+	});
+	
+	$('input[name="telephone"]').keypress(function() {
+		if (this.value.length >= 20) {
+			return false;
+		}
+	});
+	
+	$('input[name="zip"]').keypress(function() {
+		if (this.value.indexOf(' ') > -1) {
+			if (this.value.length >= 7) {
+				return false;
+			}
+		}
+		else {
+			if (this.value.length >= 6) {
+				return false;
+			}
+		}
 	});
 </script>
 
