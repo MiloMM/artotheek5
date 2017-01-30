@@ -36,13 +36,13 @@
 	<a class="navmenu-brand" href="/">Da Vinci Galleria</a>
 	<ul class="nav navmenu-nav">
 		<li><a href="/gallery">Galerij</a></li>
-		<li><a href="#">Nieuws</a></li>
+		{{--<li><a href="#">Nieuws</a></li>--}}
 		<li><a href="/artists">Kunstenaars</a></li>
 		<li><a href="" id="searchbutton_menu">Kunstwerk zoeken</span></a></li>
 		<li><a href="/conditions">Uitleenvoorwaarden</a></li>
 		<li><a href="/about">Over Da Vinci Galleria</a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-			<li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>
+		{{--<li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>--}}
 			<li class="menuItemAdmin"><a href="/filters">Filters Aanpassen</a></li>
 			<li class="menuItemAdmin"><a href="/users">Accountbeheer</a></li>
 		@endif
@@ -96,7 +96,7 @@
 				<a href="/about" style="color: white; text-decoration: underline;">Da Vinci Artotheek</a> -
 				Leerparkpromenade 100 -
 				3312 KW Dordrecht -
-				artotheek@davinci.nl
+				galleria@galleria.dvc-icta.nl
 			</div>
 		</div>
 	</div>

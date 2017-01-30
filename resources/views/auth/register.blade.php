@@ -93,8 +93,26 @@
 </div>
 
 <script>
+	$('input[name="name"]').keypress(function() {
+		if (this.value.length >= 100) {
+			return false;
+		}
+	});
+	
+	$('input[name="e-mail"]').keypress(function() {
+		if (this.value.length >= 125) {
+			return false;
+		}
+	});
+
 	$('input[name="telephone"]').keypress(function() {
 		if (this.value.length >= 20) {
+			return false;
+		}
+	});
+	
+	$('input[name="education"]').keypress(function() {
+		if (this.value.length >= 75) {
 			return false;
 		}
 	});

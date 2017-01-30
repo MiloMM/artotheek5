@@ -17,7 +17,7 @@
 						<div class="form-group">
 							{!! Form::label('E-mail', null, ['class' => 'col-md-2 control-label', 'style'=>'text-align:center']) !!}
 							<div class="col-md-10">
-								{!! Form::text('e-mail', $user->email, ['class' => 'form-control', 'id' => 'tbx-email', 'required' => 'required', 'pattern' => '/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/']) !!}
+								{!! Form::text('e-mail', $user->email, ['class' => 'form-control', 'id' => 'tbx-email', 'required' => 'required']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -98,6 +98,18 @@
 		editor = CKEDITOR.replace('textarea-biography');
 	});
 	
+	$('input[name="name"]').keypress(function() {
+		if (this.value.length >= 100) {
+			return false;
+		}
+	});
+	
+	$('input[name="e-mail"]').keypress(function() {
+		if (this.value.length >= 125) {
+			return false;
+		}
+	});
+	
 	$('input[name="telephone"]').keypress(function() {
 		if (this.value.length >= 20) {
 			return false;
@@ -114,6 +126,12 @@
 			if (this.value.length >= 6) {
 				return false;
 			}
+		}
+	});
+	
+	$('input[name="education"]').keypress(function() {
+		if (this.value.length >= 75) {
+			return false;
 		}
 	});
 </script>

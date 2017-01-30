@@ -6590,7 +6590,7 @@ h1 {
 	width: 150px;
 	border-right: solid lightgrey 1px;
 	color: black;
-	padding: 1px 5px 1px 5px;
+	padding: 1px 5px 1px 50px;
 	border-radius: 10px 0px 0px 10px;
 }
 
@@ -7051,13 +7051,17 @@ h1#indexPageTitle {
 }
 
 .accountsPage .col-md-4 {
-	border: solid black 1px;
-	min-height: 300px;
+
 }
 
 .accountsPage .artist {
 	padding: 0 !important;
 	width: 80%;
+	transition: 0.2s;
+}
+.accountsPage .artist:hover {
+	padding-left: 10px !important;
+	transition: 0.2s;
 }
 
 .searchResults ul {

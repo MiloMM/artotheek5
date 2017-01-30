@@ -130,7 +130,9 @@ class UserController extends Controller {
 		$input = Input::all();
 		//dd(Input::all());
 		$user->name = Input::get('name');
-		$user->email = Input::get('e-mail');
+		if (!empty(Input::get('e-mail')) && !filter_var(Input::get('e-mail'), FILTER_VALIDATE_EMAIL) === false) {
+			$user->email = Input::get('e-mail');
+		}
 		$user->telephone = Input::get('telephone');
 		$user->education = Input::get('education');
 		$user->school_year = Input::get('school_year');
