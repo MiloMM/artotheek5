@@ -70,7 +70,7 @@ class Artwork extends Model {
 		return $str;
 	}
 	
-	public static function mailArtworkRequest($slug = "meloen")
+	public static function mailArtworkRequest()
 	{
 		$to = "galleria@galleria.dvc-icta.nl";
 		$subject = "Gallerij verzoek ingediend door " . Auth::user()->name;
@@ -81,7 +81,7 @@ class Artwork extends Model {
 			</head>
 			<body style='font-family:Arial;'>
 				<p>" . Auth::user()->name . " heeft een kunstwerk verzoek ingediend. Klik hier om deze te bekijken:</p>
-				<a href='http://" . $_SERVER['SERVER_NAME'] . "/artworks/" . $slug . "' style='background:#337ab7;color:white;text-decoration:none;padding:5px 15px 5px 15px;border-radius:10px;'>Bekijk kunstwerk</a>
+				<a href='http://" . $_SERVER['SERVER_NAME'] . "/gallery/archive' style='background:#337ab7;color:white;text-decoration:none;padding:5px 15px 5px 15px;border-radius:10px;'>Bekijk kunstwerk</a>
 			</body>
 		</html>";
 		$headers = "MIME-Version: 1.0\r\n"; 

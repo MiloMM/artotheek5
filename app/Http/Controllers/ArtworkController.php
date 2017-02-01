@@ -186,7 +186,7 @@ class ArtworkController extends Controller {
 			}
 			
 			if (Auth::check() && Auth::user()->hasOnePrivelege(['Student'])) {
-				Artwork::mailArtworkRequest($artwork->slug);
+				Artwork::mailArtworkRequest();
 			}
 			
 			// save the artwork data in the database
@@ -408,7 +408,7 @@ class ArtworkController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
-			$artworks = Artwork::where(['state' => 1])->get();
+			$artworks = Artwork::where(['state' => 1])->orderBy('created_at', 'DESC')->get();
 			$artCount = Artwork::where('state', 1)->count();
 			TagsHelper::addTagsToCollection($artworks);
 			return View::make('gallery/archive', compact('artworks', 'artCount'));

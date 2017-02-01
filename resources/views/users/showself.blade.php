@@ -7,7 +7,6 @@
 </div>
 	
 <div class="container profileDetails" style="padding: 0;">
-	
 	<div class="col-md-10">
 		<div class="col-md-6">
 			<div class="col-md-4"><b>Naam</b></div>
@@ -62,14 +61,14 @@
 			<div class="col-md-12 biography">{!! $user->biography !!}</div>
 		@endif
 	</div>	
-		<div class="col-md-2">
-			@if ($user->profile_picture != '')
-				<img src="{{$user->profile_picture}}" class="profile_pic">
-			@else
-				<i class="no_profile_pic">Geen profielafbeelding</i>
-			@endif
-		</div>
+	<div class="col-md-2">
+		@if ($user->profile_picture != '')
+			<img src="{{$user->profile_picture}}" class="profile_pic">
+		@else
+			<i class="no_profile_pic">Geen profielafbeelding</i>
+		@endif
 	</div>
+</div>
 
 	<h4>Kunstwerken</h4>
 	@if (count($artworks) > 0)

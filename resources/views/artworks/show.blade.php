@@ -26,9 +26,6 @@
 					<a href="/artworks/{{ $artwork->slug }}/edit" title="Kunstwerk wijzigen">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
 					</a>
-					<a href="/reservation/create/{{ $artwork->id }}" title="Kunstwerk reserveren">
-						<i class="fa fa-book fa-2x" aria-hidden="true"></i>
-					</a>
 					@if ($artwork->state === 0)
 						<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet u zeker dat u dit kunstwerk wilt archiveren?')" title="Archiveren">
 							<i class="fa fa-archive fa-2x" aria-hidden="true"></i>

@@ -10,49 +10,49 @@
 	<div class="container profileDetails" style="padding: 0;">
 		<div class="col-md-10">
 			<div class="col-md-6">
-				<div class="col-md-3"><b>Naam</b></div>
-				<div class="col-md-9">{{$user->name}}</div>
+				<div class="col-md-4"><b>Naam</b></div>
+				<div class="col-md-8">{{$user->name}}</div>
 			</div>
 			
 			<div class="col-md-6">
-				<div class="col-md-3"><b>Lid sinds</b></div>
-				<div class="col-md-9">{{$user->created_at}}</div>
+				<div class="col-md-4"><b>Lid sinds</b></div>
+				<div class="col-md-8">{{$user->created_at}}</div>
 			</div>
 			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 			<div class="col-md-6">
-				<div class="col-md-3"><b>E-mail</b></div>
-				<div class="col-md-9">{{$user->email}}</div>
+				<div class="col-md-4"><b>E-mail</b></div>
+				<div class="col-md-8">{{$user->email}}</div>
 			</div>
 			<div class="col-md-6">
-				<div class="col-md-3"><b>Telefoon nummer</b></div>
-				<div class="col-md-9">{{$user->telephone}}</div>
+				<div class="col-md-4"><b>Telefoon nummer</b></div>
+				<div class="col-md-8">{{$user->telephone}}</div>
 			</div>
 			@endif
 			<div class="col-md-6">
-				<div class="col-md-3"><b>Opleiding / Sector</b></div>
-				<div class="col-md-9">{{$user->education}}</div>
+				<div class="col-md-4"><b>Opleiding / Sector</b></div>
+				<div class="col-md-8">{{$user->education}}</div>
 			</div>	
 			
 			<div class="col-md-6">
-				<div class="col-md-3"><b>Leerjaar</b></div>
-				<div class="col-md-9">{{$user->school_year}}</div>
+				<div class="col-md-4"><b>Leerjaar</b></div>
+				<div class="col-md-8">{{$user->school_year}}</div>
 			</div>
 			{{--<div class="col-md-6">
-				<div class="col-md-3"><b>Overzicht werk</b></div>
-				<div class="col-md-9">{{$user->work_summary}}</div>
+				<div class="col-md-4"><b>Overzicht werk</b></div>
+				<div class="col-md-8">{{$user->work_summary}}</div>
 			</div>
 			<div class="col-md-6">
-				<div class="col-md-3"><b>Kostenplaatje</b></div>
-				<div class="col-md-9">{{$user->price}}</div>
+				<div class="col-md-4"><b>Kostenplaatje</b></div>
+				<div class="col-md-8">{{$user->price}}</div>
 			</div>--}}
 			@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 				<div class="col-md-6">
-					<div class="col-md-3"><b>Adres</b></div>
-					<div class="col-md-9">{{$user->delivery_address}}</div>
+					<div class="col-md-4"><b>Adres</b></div>
+					<div class="col-md-8">{{$user->delivery_address}}</div>
 				</div>
 				<div class="col-md-6">
-					<div class="col-md-3"><b>Postcode</b></div>
-					<div class="col-md-9">{{$user->zip}}</div>
+					<div class="col-md-4"><b>Postcode</b></div>
+					<div class="col-md-8">{{$user->zip}}</div>
 				</div>
 			@endif
 			@if ($user->biography != '')

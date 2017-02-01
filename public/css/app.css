@@ -6590,14 +6590,17 @@ h1 {
 	width: 150px;
 	border-right: solid lightgrey 1px;
 	color: black;
-	padding: 1px 5px 1px 50px;
+	padding: 1px 5px 1px 0px;
 	border-radius: 10px 0px 0px 10px;
+	transition: 0.2s;
 }
 
 .artist:hover {
 	background: #885787;
 	color: white;
 	text-decoration: none;
+	padding-left: 10px !important;
+	transition: 0.2s;
 }
 
 .artist:active {
@@ -7020,11 +7023,11 @@ h1#indexPageTitle {
 	padding: 0 !important;
 }
 
-.profileDetails .col-md-3 {
+.profileDetails .col-md-4 {
 	border-right: solid lightgrey 1px;
 }
 
-.profileDetails .col-md-9 {
+.profileDetails .col-md-8 {
 	padding-left: 10px !important;
 }
 
