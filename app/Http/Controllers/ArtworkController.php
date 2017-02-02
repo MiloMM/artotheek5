@@ -260,39 +260,45 @@ class ArtworkController extends Controller {
 	 */
 	public function edit($slug)
 	{
-		// get the artwork
-		$artwork = Artwork::where('slug', $slug)->first();
-
-		// Does the artwork exist?
-		if ($artwork)
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 		{
-			// Get the selectbox options and pass them to the view via the compact function.
-			$artists = Artist::orderBy('name')->get();
-			$categories = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
-			$genres = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
-			$techniques = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
-			$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
-			$colours = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
-			$formats = array('Klein', 'Middelgroot', 'Groot');
+			// get the artwork
+			$artwork = Artwork::where('slug', $slug)->first();
 
-			$filterArray = [
-				'artwork',
-				'artists',
-				'techniques',
-				'genres',
-				'materials',
-				'categories',
-				'formats',
-				'colours'
-			];
+			// Does the artwork exist?
+			if ($artwork)
+			{
+				// Get the selectbox options and pass them to the view via the compact function.
+				$artists = Artist::orderBy('name')->get();
+				$categories = filter_optie::where('filter_id', '=', 1)->where('id', '>', 5)->orderBy('naam')->get();
+				$genres = filter_optie::where('filter_id', '=', 2)->where('id', '>', 5)->orderBy('naam')->get();
+				$techniques = filter_optie::where('filter_id', '=', 3)->where('id', '>', 5)->orderBy('naam')->get();
+				$materials = filter_optie::where('filter_id', '=', 4)->where('id', '>', 5)->orderBy('naam')->get();
+				$colours = filter_optie::where('filter_id', '=', 5)->where('id', '>', 5)->orderBy('naam')->get();
+				$formats = array('Klein', 'Middelgroot', 'Groot');
 
-			// Show the view
+				$filterArray = [
+					'artwork',
+					'artists',
+					'techniques',
+					'genres',
+					'materials',
+					'categories',
+					'formats',
+					'colours'
+				];
 
-			return View::make('artworks/edit', compact($filterArray));
+				// Show the view
+
+				return View::make('artworks/edit', compact($filterArray));
+			}
+			else
+			{
+				// Show the not found page
+				return View::make('errors/' . HttpCode::NotFound);
+			}
 		}
-		else
-		{
-			// Show the not found page
+		else {
 			return View::make('errors/' . HttpCode::NotFound);
 		}
 	}

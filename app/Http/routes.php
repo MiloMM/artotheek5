@@ -14,6 +14,8 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/conditions', 'PagesController@conditions');
 Route::get('/users/destroy/{id}', 'UserController@destroy');
+Route::get('/pagestext', 'PagesController@pagesText');
+Route::post('/pagestextupdate', 'PagesController@updatePagesText');
 
 Route::get('/artists' , 'ArtistController@index');
 Route::get('/artists/show/{id}' , 'ArtistController@show');

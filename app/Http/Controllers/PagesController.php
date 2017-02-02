@@ -22,7 +22,8 @@ class PagesController extends Controller {
 		$artworks = Artwork::where(['state' => 0])->orderBy('id', 'DESC')->take(12)->get();
 		$artCount = Artwork::where('state', 0)->count();
 		TagsHelper::addTagsToCollection($artworks);
-		return View::make('index', compact('artworks', 'artCount'));
+		$text = DB::table('pages_text')->where('page', 'home')->first();
+		return View::make('index', compact('artworks', 'artCount', 'text'));
 	}
 
 	public function myprofile()
@@ -140,11 +141,43 @@ class PagesController extends Controller {
 
 	public function about()
 	{
-		return view('about/index');
+		$text = DB::table('pages_text')->where('page', 'about')->first();
+		return view('about/index', compact('text'));
 	}
 	
 	public function conditions()
 	{
-		return view('conditions/index');
+		$text = DB::table('pages_text')->where('page', 'conditions')->first();
+		return view('conditions/index', compact('text'));
+	}
+	
+	public function pagesText()
+	{
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+		{
+			$text['home'] = DB::table('pages_text')->where('page', 'home')->first();
+			$text['about'] = DB::table('pages_text')->where('page', 'about')->first();
+			$text['conditions'] = DB::table('pages_text')->where('page', 'conditions')->first();
+
+			return view('pages_text/index', compact('text'));
+		}
+		else {
+			return View::make('errors/' . HttpCode::NotFound);
+		}
+	}
+	
+	public function updatePagesText()
+	{
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+		{
+			DB::table('pages_text')->where('page', 'home')->update(['text' => $_POST['home']]);
+			DB::table('pages_text')->where('page', 'about')->update(['text' => $_POST['about']]);
+			DB::table('pages_text')->where('page', 'conditions')->update(['text' => $_POST['conditions']]);
+			
+			return redirect()->action('PagesController@pagesText')->with('succesMsg', '<span class="glyphicon glyphicon-ok"></span> De wijzigingen zijn succesvol verwerkt.');
+		}
+		else {
+			return View::make('errors/' . HttpCode::NotFound);
+		}
 	}
 }

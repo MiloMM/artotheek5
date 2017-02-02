@@ -45,6 +45,7 @@
 		{{--<li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>--}}
 			<li class="menuItemAdmin"><a href="/filters">Filters Aanpassen</a></li>
 			<li class="menuItemAdmin"><a href="/users">Accountbeheer</a></li>
+			<li class="menuItemAdmin"><a href="/pagestext">Teksten aanpassen</a></li>
 		@endif
 	</ul>
 	<ul class="nav navmenu-nav login-menu">
