@@ -1,0 +1,153 @@
+<!-- Stellingen in een Array, Antwoorden i !-->
+
+For each kijken of party.alignment zelfde is als thesis.alignment
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<title>StemWijker</title>
+
+	<script>
+		var theses = [];
+
+		function createThesis(thesis, alignment){
+			this.thesis = thesis;
+			this.alignment = alignment;
+			theses.push(this);
+		};
+
+		createThesis("Het is belangrijk dat alle kolencentrales zo snel mogelijk worden vervangen/gesloten.", true);
+		createThesis("We moeten zelfstandiger worden, los van de EU.", false);
+		createThesis("De AOW leeftijd moet terug naar 65 jaar oud.", false);
+		console.log(theses);
+
+		function Party(name, alignment){
+			this.partyName = name;
+			this.score = 0;
+			  
+		};
+
+		function validateAnswers(){
+			var validation = true;
+    		var answers = [];
+    		answers[0] = document.forms["theses"]["answer1"].value;
+    		answers[1] = document.forms["theses"]["answer2"].value;
+    		answers[2] = document.forms["theses"]["answer3"].value;
+
+    		for (var i = 0; i <= answers.length; i++) {
+    			if (answers[i] == "" || answers[i] == false) {
+        			validation = false;
+    			}
+    		}
+    		if (validation == true){
+    			return answers;
+    		} else {
+    			return false;
+    		}
+		};
+
+		/*
+		function distributePoints(answerList){
+			var D66 = new Party("D66");
+			var PVV = new Party("PVV");
+			var Plus50 = new Party("50Plus");
+
+			
+			var opinion = answerList[0];
+			if (opinion == 1) {
+				D66.score++;
+				Plus50.score++;
+				PVV.score--;
+			}else if(opinion == 2){
+				D66.score--;
+				Plus50.score--;
+				PVV.score++;
+			} 
+
+			opinion = answerList[1];
+			if (opinion == 1) {
+				D66.score--;
+				Plus50.score--;
+				PVV.score++;
+			}else if(opinion == 2){
+				D66.score++;
+				Plus50.score++;
+				PVV.score--;
+			}
+
+			opinion = answerList[2];
+			if (opinion == 1) {
+				D66.score--;
+				PVV.score++
+				Plus50.score++;
+			}else if(opinion == 2){
+				D66.score++;
+				PVV.score--;
+				Plus50.score--;
+			}
+
+			var partijen = [
+				PVV,D66,Plus50
+			];
+
+			var highscore = Math.max.apply(Math,partijen.map(function(i){return i.score;}));
+			var winner = partijen.find(function(i){ return i.score == highscore; });
+			return  winner;
+
+
+		};*/
+
+		function controller(){
+				var answerList = validateAnswers();
+    			if (answerList == false) {
+        			alert("Er ging iets fout in berekenen van uw score");
+    			} else {
+    				var finalVerdict = distributePoints(answerList);
+    				console.log(finalVerdict);
+				}
+		};
+		</script>
+	</head>
+
+	<body>
+		<form name="theses" action="index.html" onsubmit='controller()' method="post">
+			<div id="thesis1" style="display:block;">
+				<h2 name="thesisTitle" id="thesisTitle1">Het is belangrijk dat alle kolencentrales zo snel mogelijk worden vervangen/gesloten.</h2>
+				<ul style="list-style-type:none">
+  					<li><input type="radio" name="answer1" value="1" required> Eens</li>
+					<li><input type="radio" name="answer1" value="2" > Oneens</li>
+  					<li><input type="radio" name="answer1" value="3" > Weet ik niet</li>
+  				</ul>
+  				<button>Volgende</button>
+  			</div>
+  			<!--
+  			<div id="thesis2" style="display:none;">
+				<h2 name="thesisTitle" id="thesisTitle2">We moeten zelfstandiger worden, los van de EU.</h2>
+				<ul style="list-style-type:none">
+  					<li><input type="radio" name="answer2" value="1" required> Eens</li>
+					<li><input type="radio" name="answer2" value="2" > Oneens</li>
+  					<li><input type="radio" name="answer2" value="3" > Weet ik niet</li>
+  				</ul>  			
+  			</div>
+  			<div id="thesis3" style="display:none;">
+				<h2 name="thesisTitle" id="thesisTitle3">De AOW leeftijd moet terug naar 65 jaar oud.</h2>
+				<ul style="list-style-type:none">
+  					<li><input type="radio" name="answer3" value="1" required> Eens</li>
+					<li><input type="radio" name="answer3" value="2" > Oneens</li>
+  					<li><input type="radio" name="answer3" value="3" > Weet ik niet</li>
+  				</ul> 
+  				<input type="submit" value="Submit"> 				
+  			</div>
+  			!-->
+  		</form>
+  		<h3 id="result"></h3> 
+	</body>
+</html>
