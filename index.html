@@ -52,18 +52,22 @@
 		function pollQuestion(pollInput) {
 			//console.log('PollInput = ', pollInput);
 
-			for (var p = 0; p <= theses[0]['scores'].length; p++) {
+		/*	for (var p = 0; p <= theses[0]['scores'].length - 1; p++) {
 				console.log(theses[i]['scores'][p][pollInput]);
-			}
+			}*/			
 
-			if(i > 2){
+			if(i > theses.length){
 				document.getElementById("pollQ").innerHTML = "Resultaat PH";
 				document.getElementById("pollButtons").style.display = "none";
 				console.log("Done");
 			} else{
-				document.getElementById("pollQ").innerHTML = theses[i]["thesis"];
+				for (var p = 0; p <= theses[0]['scores'].length - 1; p++) {
+					console.log(theses[i]['scores'][p][pollInput]);
+				}	
 				console.info('Question = ', theses[i]["thesis"]);
 				i++;
+				document.getElementById("pollQ").innerHTML = theses[i]["thesis"];
+		
 			}
 		}
 
