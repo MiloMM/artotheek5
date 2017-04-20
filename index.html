@@ -11,63 +11,8 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="script.js"></script>
 		<link rel="stylesheet" href="cover.css">
-		<script>
-
-		var theses = [{thesis:"Het is belangrijk dat alle kolencentrales zo snel mogelijk worden vervangen/gesloten.",
-						scores: [
-							[-3,-1,3], //D66 NO/NEUTRAL/YES
-							[-1,0,2], //50Plus
-							[3,0,-3]  //PVV
-						],
-						response: null
-					},
-
-						{thesis:"We moeten zelfstandiger worden, los van de EU.",
-						 scores: [
-							[3,0,-2], //D66 NO/NEUTRAL/YES
-							[2,1,-1], //50Plus
-							[-3,-1,3] //PVV
-						],
-						response: null
-					},
-						{thesis:"De AOW leeftijd moet terug naar 65 jaar oud.",
-						 scores: [
-						 	[2,0,-3], //D66 NO/NEUTRAL/YES
-						 	[-3,-1,3],//50Plus
-						 	[-2,0,2]  //PVV
-						 ],
-						 response: null
-					}];
-
-		var parties = [
-			{party:'D66', score:0},
-			{party:'50Plus', score:0},
-			{party:'PVV', score:0}
-			];
-
-		var i = 0;
-
-		function pollQuestion(pollInput) {		
-			if(i == 2){
-				for (var p = 0; p <= theses[0]['scores'].length - 1; p++) {
-					var mod = theses[i]['scores'][p][pollInput];
-					parties[p]['score'] = parties[p]['score'] + mod;
-				}	
-				//console.log(parties);
-				document.getElementById("pollQ").innerHTML = "Resultaat PH";
-				document.getElementById("thesis").style.display = "none";
-			} else{
-				for (var p = 0; p <= theses[0]['scores'].length - 1; p++) {
-					var mod = theses[i]['scores'][p][pollInput];
-					parties[p]['score'] = parties[p]['score'] + mod;
-				}	
-				i++;
-				document.getElementById("pollQ").innerHTML = theses[i]['thesis'];
-				//console.log(parties);
-			}
-		}
-		</script>
 	</head>
 
 <body>
@@ -86,10 +31,11 @@
 						</div>
   					</div>
   					<div id="result" style="display:none;">
-						<ul>s
-							<li>D66</li>
-							<li>50Plus</li>
-							<li>PVV</li>
+  					<h3>Results</h3>
+						<ul>
+							<li class="list-group-item">D66<span class="badge" id="D66_Result"></span></li>
+							<li class="list-group-item">50Plus<span class="badge" id="50Plus_Result"></span></li>
+							<li class="list-group-item">PVV<span class="badge" id="PVV_Result"></span></li>
 						</ul>
 					</div>
   				</div>
