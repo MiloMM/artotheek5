@@ -31,27 +31,25 @@
 			{party:'PVV', score:0}
 			];
 
-		var i = 0;
+		var i = 0; // Current Question in array Theses
 
 		function pollQuestion(pollInput) {
 
 			for (var p = 0; p <= theses[0]['scores'].length - 1; p++) {
 				var mod = theses[i]['scores'][p][pollInput];
 				parties[p]['score'] = parties[p]['score'] + mod;
-			}	
+			}
+
+			//console.log(parties);
 
 			if(i == 2){
-				console.log(parties);
-				document.getElementById("pollQ").innerHTML = "Resultaat PH";
 				document.getElementById("thesis").style.display = "none";
 				document.getElementById("result").style.display = "block";
-				document.getElementById("D66_Result").innerHTML = parties[0]['score'];	
-				document.getElementById("50Plus_Result").innerHTML = parties[1]['score'];	
-				document.getElementById("PVV_Result").innerHTML = parties[2]['score'];	
-
+				document.getElementById("D66_Result").innerHTML = parties[0]['score'];
+				document.getElementById("50Plus_Result").innerHTML = parties[1]['score'];
+				document.getElementById("PVV_Result").innerHTML = parties[2]['score'];
 			} else{
 				i++;
 				document.getElementById("pollQ").innerHTML = theses[i]['thesis'];
-				console.log(parties);
 			}
 		}
