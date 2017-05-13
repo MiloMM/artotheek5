@@ -3,6 +3,8 @@
 @section('content')
 	<h1>Uitleenvoorwaarden</h1>
 	
-	{!! $text->text !!}
+	@if(isset($text->text))
+		{!! $text->text !!}
+	@endif
 	
 @stop

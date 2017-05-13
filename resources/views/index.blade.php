@@ -6,7 +6,9 @@
 	</div>
 	<div class="panel-body">
 
-	{!! $text->text !!}
+	@if(isset($text->text))
+		{!! $text->text !!}
+	@endif
 
 	<div class="panel-header">
 		<p style="color:black; margin-top: 25px;"><h4>Recent toegevoegd:</h4></p>

@@ -13,15 +13,27 @@
 					{!! Form::open(['class' => 'form-horizontal', 'id' => 'form', 'action' => ['PagesController@updatePagesText']]) !!}
 						<div class="form-group">
 							{!! Form::label('Home pagina', null, ['class' => 'control-label']) !!}
-							{!! Form::textarea('home', $text['home']->text, ['class' => 'form-control', 'id' => 'textarea-home']) !!}
+							@if(isset($text['home']->text))
+								{!! Form::textarea('home', $text['home']->text, ['class' => 'form-control', 'id' => 'textarea-home']) !!}
+							@else
+								{!! Form::textarea('home', '', ['class' => 'form-control', 'id' => 'textarea-home']) !!}
+							@endif
 						</div>
 						<div class="form-group">
 							{!! Form::label('Over Da Vinci Galleria', null, ['class' => 'control-label']) !!}
-							{!! Form::textarea('about', $text['about']->text, ['class' => 'form-control', 'id' => 'textarea-about']) !!}
+							@if(isset($text['about']->text))
+								{!! Form::textarea('about', $text['about']->text, ['class' => 'form-control', 'id' => 'textarea-about']) !!}
+							@else
+								{!! Form::textarea('about', '', ['class' => 'form-control', 'id' => 'textarea-about']) !!}
+							@endif
 						</div>
 						<div class="form-group">
 							{!! Form::label('Uitleenvoorwaarden', null, ['class' => 'control-label']) !!}
-							{!! Form::textarea('conditions', $text['conditions']->text, ['class' => 'form-control', 'id' => 'textarea-conditions']) !!}
+							@if(isset($text['conditions']->text))
+								{!! Form::textarea('conditions', $text['conditions']->text, ['class' => 'form-control', 'id' => 'textarea-conditions']) !!}
+							@else
+								{!! Form::textarea('conditions', '', ['class' => 'form-control', 'id' => 'textarea-conditions']) !!}
+							@endif
 						</div>
 						<div class="form-group">
 							{!! Form::submit('Aanpassen', ['class' => 'btn btn-success form-control', 'id' => 'btn-send', 'style' => 'width:150px;float:left;']) !!}

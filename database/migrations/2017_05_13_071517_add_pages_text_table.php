@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFilterData extends Migration {
+class AddPagesTextTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,11 @@ class AddFilterData extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('filters', function(Blueprint $table)
+		Schema::create('pages_text', function(Blueprint $table)
 		{
-			//
+			$table->increments('id');
+			$table->string('page');
+			$table->text('text');
 		});
 	}
 
@@ -25,10 +27,7 @@ class AddFilterData extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('filters', function(Blueprint $table)
-		{
-			//
-		});
+		Schema::drop('pages_text');
 	}
 
 }

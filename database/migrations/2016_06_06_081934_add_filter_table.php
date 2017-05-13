@@ -26,7 +26,7 @@ class AddFilterTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('filter');
+		Schema::drop('filters');
 	}
 
 }
