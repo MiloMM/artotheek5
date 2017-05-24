@@ -1,0 +1,15 @@
+This document is made by Sidney for personal use and doesn't add anything to the application.
+
+to do:
+- create table arists
+- make these fields: 'artist.id (auto-increment)', 'artist.user_id -> users.id (can be null)', 'artist.name'
+- 'artwork.artist' belongs to 'artist.id'
+- all connections between artworks and users must be destroyed EXCEPT 'artworks.user_id -> users.id'
+- get all filters from artist names from artist.name (instead of filter_opties.name)
+- delete * from filter_opties where filter_opties.filter_id == 1
+- make this connection 'artworks.artist -> artists.id'.
+- privelege 1 can reserve artworks
+- privelege 2 can upload pictures to the archive.
+- privelege 3 can change priveleges for every user
+- artists shows all artists from the table artists.name
+- artworks on the page have artist.name if exists, else '-'. if (artist.profile == 1){ go to the artists profile} else {make a page with: "deze kunstenaar heeft geen profiel" }

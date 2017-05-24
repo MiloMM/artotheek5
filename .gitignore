@@ -1,0 +1,8 @@
+/vendor
+/node_modules
+.env
+composer.lock
+*.jpeg
+composer.lock
+*.lock
+*.jpeg
