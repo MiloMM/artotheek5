@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 <div class="panel">
-	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+	@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) 
 		<a href="{{ action('ArtistController@create') }}" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Voeg toe</a>
 		<hr>
 	@endif
