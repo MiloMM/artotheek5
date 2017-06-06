@@ -128,7 +128,7 @@ class UserController extends Controller {
 	{
 		$user = User::where('slug',$slug)->first();
 		$input = Input::all();
-		//dd(Input::all());
+		//var_dump(Input::all());
 		$user->name = Input::get('name');
 		if (!empty(Input::get('e-mail')) && !filter_var(Input::get('e-mail'), FILTER_VALIDATE_EMAIL) === false) {
 			$user->email = Input::get('e-mail');
@@ -146,11 +146,11 @@ class UserController extends Controller {
 		
 		$user->slug = $slug;
 		$user->biography = Input::get('biography');
-		//dd($_FILES);
+		//var_dump($_FILES);
 		if (!empty($_FILES['fileToUpload']['name'])) {
-			if (!empty($user->profile_picture)) {
+			/*if (!empty($user->profile_picture)) {
 				unlink(substr($user->profile_picture, 1));
-			}
+			}*/
 			$target_dir = "images/users/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			

@@ -50,7 +50,7 @@ Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
 
-Route::get('/reservation/create/{id}', 'ReservationController@create');
+Route::get('reservation/create/{id?}', 'ReservationController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

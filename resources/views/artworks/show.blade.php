@@ -21,6 +21,9 @@
 		
 		<div class="artworkTitleBar panel-heading">
 			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
+			@if (Auth::check())
+        		<a href="/reservation/create/{{$artwork->id}}" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Maak reservering</a>
+    		@endif
 			@if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 				<div class="artworkOptions">
 					<a href="/artworks/{{ $artwork->slug }}/edit" title="Kunstwerk wijzigen">

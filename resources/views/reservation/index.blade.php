@@ -6,9 +6,12 @@
 <div class="panel panel-default">
   <div class="panel-heading">Reserveringen</div>
 
+
         
   <table class="table">
+
   <thead>
+
     <tr>
         <th width="16%">Reservering nr. <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
     	<th width="16%">Kunstwerk <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
@@ -76,9 +79,9 @@ function createEvents(){
 }
 
 
-$('#calendar').fullCalendar({
+/*$('#calendar').fullCalendar({
     events: createEvents()
-});
+});*/
 </script>
 @stop
 
