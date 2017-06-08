@@ -37,7 +37,9 @@
     	<td>{{ $date }}</td>
     	<td>{{ $date2 }}</td>
         <td>{{ $reservation->delivery_adress }}</td>
-		<td></td>
+		<td><a href="reservation/show/{{ $reservation->reservationId }}" title="Inzien"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <a href="reservation/destroy/{{ $reservation->reservationId }}" title="Verwijder"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
 
 
     </tr>
