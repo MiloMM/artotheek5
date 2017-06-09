@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Privelege;
 use App\News;
+use App\filter;
+use App\filter_optie;
 
 class DatabaseSeeder extends Seeder {
 
@@ -28,7 +30,15 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('NewsSeeder');
 		$this->command->info('News added!');
-
+		
+		$this->call('FilterSeeder');
+		$this->command->info('Filters added!');
+		
+		$this->call('FilterOptieSeeder');
+		$this->command->info('Filter opties added!');
+		
+		$this->call('PagesTextSeeder');
+		$this->command->info('Pages text added!');
 	}
 
 }
@@ -40,18 +50,11 @@ class UserTableSeeder extends Seeder {
         DB::table('users')->delete();
 
         User::create([
-        	'name' => 'Dennis Kievits',
-        	'email' => 'denkievits@gmail.com',
-        	'password' => Hash::make('qwerty12'),
-        	'slug' => 'dennis-kievits'
+        	'name' => 'Admin account',
+        	'email' => 'admin@artotheek.nl',
+        	'password' => Hash::make('admin'),
+        	'slug' => 'admin-account'
         ]);  
-
-        User::create([
-        	'name' => 'Vincent van Wijk',
-        	'email' => 'vincentvanwijk@hotmail.nl',
-        	'password' => Hash::make('qwerty12'),
-        	'slug' => 'vincent-van-wijk'
-        ]);
 
         User::create([
         	'name' => 'Dummy Student',
@@ -108,18 +111,8 @@ class UserPrivelegePivotTableSeeder extends Seeder {
 		DB::table('user_privelege')->delete();
 
 		// Dennis Kievits
-		$user = User::where('name', 'Dennis Kievits')->first();
+		$user = User::where('name', 'Admin Account')->first();
 		$id = Privelege::where('name', 'Administrator')->first()->id;
-        if (!$id) {
-        	$this->command->info('Administrator privelege can\'t be found.');
-        } else {
-        	$user->priveleges()->attach($id);
-        }
-
-        // Vincent van Wijk
-        $user = User::where('name', 'Vincent van Wijk')->first();
-        $id = Privelege::where('name', 'Administrator')->first()->id;
-
         if (!$id) {
         	$this->command->info('Administrator privelege can\'t be found.');
         } else {
@@ -177,6 +170,71 @@ class NewsSeeder extends Seeder {
 			'content' => '<span style="color: red;">Dit artikel</span> maakt gebruikt van <h3>tags.</h3>',
 			'slug' => 'test-artikel2'
 		]);
+	}
+
+}
+
+class FilterSeeder extends Seeder {
+
+	public function run()
+	{
+		DB::table('filters')->delete();
+		filter::create([
+			'naam' => 'categorie',
+		]);
+		filter::create([
+			'naam' => 'genre',
+		]);
+		filter::create([
+			'naam' => 'techniek',
+		]);
+		filter::create([
+			'naam' => 'materiaal',
+		]);
+		filter::create([
+			'naam' => 'kleur',
+		]);
+	}
+
+}
+
+class FilterOptieSeeder extends Seeder {
+
+	public function run()
+	{
+		DB::table('filter_opties')->delete();
+		filter_optie::create([
+			'filter_id' => 1,
+			'naam' => 'Alle Categorieën'
+		]);
+		filter_optie::create([
+			'filter_id' => 2,
+			'naam' => 'Alle Genres'
+		]);
+		filter_optie::create([
+			'filter_id' => 3,
+			'naam' => 'Alle Technieken'
+		]);
+		filter_optie::create([
+			'filter_id' => 4,
+			'naam' => 'Alle Materialen'
+		]);
+		filter_optie::create([
+			'filter_id' => 5,
+			'naam' => 'Alle Kleuren'
+		]);
+	}
+
+}
+
+class PagesTextSeeder extends Seeder {
+
+	public function run()
+	{
+		DB::table('pages_text')->delete();
+		DB::insert('insert into pages_text (page, text) values (?, ?)', ['home', 'Home page text. Dit is als administrator aan te passen door in het menu naar \'Teksten aanpassen\' de gaan.']);
+		DB::insert('insert into pages_text (page, text) values (?, ?)', ['about', 'Over text. Dit is als administrator aan te passen door in het menu naar \'Teksten aanpassen\' de gaan.']);
+		DB::insert('insert into pages_text (page, text) values (?, ?)', ['conditions', 'Uitleenvoorwaarden text. Dit is als administrator aan te passen door in het menu naar \'Teksten aanpassen\' de gaan.']);
 	}
 
 }

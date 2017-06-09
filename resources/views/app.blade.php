@@ -42,7 +42,7 @@
 		<li><a href="/conditions">Uitleenvoorwaarden</a></li>
 		<li><a href="/about">Over Da Vinci Galleria</a></li>
 		@if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
-		 <li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>
+			<li class="menuItemAdmin"><a href="/reservations">Reserveringen</a></li>
 			<li class="menuItemAdmin"><a href="/filters">Filters Aanpassen</a></li>
 			<li class="menuItemAdmin"><a href="/users">Accountbeheer</a></li>
 			<li class="menuItemAdmin"><a href="/pagestext">Teksten aanpassen</a></li>

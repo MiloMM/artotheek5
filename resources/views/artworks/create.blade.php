@@ -245,17 +245,16 @@
 				if (xhr.status == 200 || xhr.status == 0) {
 					var progressbar = $('#progressbar-upload');
 					progressbar.html('Voltooid! U wordt doorgestuurd naar de galerij.');
-
+					
 					setTimeout(function() {
 						window.location.href = "/gallery";
 					}, 1500);
-
+					
 					functions.showSuccessBanner(msg, 5000);
 
 				} else {
 
 					response = JSON.parse(xhr.response);
-					console.warn(xhr.responseText);
 					var msg = "<ul>";
 					$(response).each(function (k, v) {
 						msg += "<li>" + v + "</li>";

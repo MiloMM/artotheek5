@@ -57,7 +57,7 @@ class ReservationController extends Controller {
 	 */
 	public function create($id)
 	{
-		if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+		if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator', 'Student'])) 
 		{
 			$artwork = Artwork::findOrFail($id);
 			return View::make('reservation/create', compact('artwork'));
@@ -78,6 +78,8 @@ class ReservationController extends Controller {
 		$reservation = new Reservation();
 
 		$reservation->user_id = Auth::user()->id;
+		$reservation->client = Input::get('client'); 
+    	$reservation->company = Input::get('company'); 
 		$reservation->artwork_id = Input::get('artwork-id');
 		$reservation->from_date = Input::get('from-date');
 		$reservation->to_date = Input::get('to-date');

@@ -69,7 +69,7 @@ class UserController extends Controller {
 				// Check if the user is linked to an artist and get the artworks
 				$user = User::where('slug',$slug)->first();
 				$artist = Artist::where('user_id', $user->id)->first();
-
+				
 				if ($artist != null) {
 					if ($artist->user_id != 0) {
 						$artworks = Artwork::where('artist', $artist->id)->get();
@@ -81,13 +81,13 @@ class UserController extends Controller {
 				else {
 					$artworks = [];
 				}
-
+				
 				// Am i this user?
 				if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id)
 				{
 					return View::make('users/showself',compact('user', 'artworks'));
 				}
-				else {
+				else {			
 					return View::make('users/show', compact('user', 'artworks'));
 				}
 			}
@@ -107,10 +107,10 @@ class UserController extends Controller {
 	{
 		if (Auth::check() && User::where('slug', $slug)->first()->id == Auth::user()->id || Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
 			$user = User::where('slug',$slug)->first();
-
+			
 			$privelege = DB::table('user_privelege')->where('user_id', $user->id)->first();
 			$user->privelege = ($privelege !== null) ? $privelege->privelege_id : 0;
-
+			
 			return View::make('users/edit',compact('user'));
 		}
 		else {
@@ -128,7 +128,7 @@ class UserController extends Controller {
 	{
 		$user = User::where('slug',$slug)->first();
 		$input = Input::all();
-		//dd(Input::all());
+		//var_dump(Input::all());
 		$user->name = Input::get('name');
 		if (!empty(Input::get('e-mail')) && !filter_var(Input::get('e-mail'), FILTER_VALIDATE_EMAIL) === false) {
 			$user->email = Input::get('e-mail');
@@ -138,28 +138,28 @@ class UserController extends Controller {
 		$user->school_year = Input::get('school_year');
 		$user->delivery_address = Input::get('delivery_address');
 		$user->zip = Input::get('zip');
-
+		
 		$slug = strtolower(implode('-', explode(' ', Input::get('name'))));
 		$slug = str_replace('?','', $slug);
 		$slug = str_replace('/','',$slug );
 		$slug = str_replace('\\','',$slug );
-
+		
 		$user->slug = $slug;
 		$user->biography = Input::get('biography');
-		//dd($_FILES);
+		//var_dump($_FILES);
 		if (!empty($_FILES['fileToUpload']['name'])) {
 			/*if (!empty($user->profile_picture)) {
 				unlink(substr($user->profile_picture, 1));
 			}*/
 			$target_dir = "images/users/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
+			
 			$uploadOk = 1;
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 			// Check if image file is a actual image or fake image
 			if(isset($_POST["submit"])) {
 				$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-				if($check) {
+				if($check !== false) {
 					echo "File is an image - " . $check["mime"] . ".";
 					$uploadOk = 1;
 				} else {
@@ -194,7 +194,7 @@ class UserController extends Controller {
 					echo "Sorry, there was an error uploading your file.";
 				}
 			}
-
+			
 			$user->profile_picture = '/' . $target_file;
 		}
 		$user->update();

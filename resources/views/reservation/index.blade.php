@@ -7,8 +7,11 @@
   <div class="panel-heading">Reserveringen</div>
 
 
+        
   <table class="table">
+
   <thead>
+
     <tr>
         <th width="16%">Reservering nr. <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
     	<th width="16%">Kunstwerk <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></th>
@@ -34,11 +37,13 @@
     	<td>{{ $date }}</td>
     	<td>{{ $date2 }}</td>
         <td>{{ $reservation->delivery_adress }}</td>
-		<td></td>
+		<td><a href="reservation/show/{{ $reservation->reservationId }}" title="Inzien"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <a href="reservation/destroy/{{ $reservation->reservationId }}" title="Verwijder"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
 
 
     </tr>
-    @endforeach
+    @endforeach    
     </tbody>
     </table>
     </div>
@@ -51,10 +56,10 @@
 </div>
 
 <script>
-$(document).ready(function()
-    {
-        $(".table").tablesorter();
-    }
+$(document).ready(function() 
+    { 
+        $(".table").tablesorter(); 
+    } 
 );
 
 reservations =  <?php echo json_encode($reservations); ?>;
@@ -76,8 +81,13 @@ function createEvents(){
 }
 
 
-$('#calendar').fullCalendar({
+/*$('#calendar').fullCalendar({
     events: createEvents()
-});
+});*/
 </script>
 @stop
+
+
+
+
+
