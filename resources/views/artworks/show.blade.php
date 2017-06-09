@@ -18,7 +18,7 @@
 <div class="col-md-8 col-md-offset-2 artworkPage">
 <a href="/gallery" class="btn btn-primary">Galerij</a><br><br>
 <div class="panel-default">
-		
+
 		<div class="artworkTitleBar panel-heading">
 			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
 			@if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
@@ -41,11 +41,31 @@
 				</div>
 			@endif
 		</div>
-		
+
 		<div class="col-md-4" style="padding: 0; margin-top: 10px;">
 			<img class="artworkImage" src="/{{ $artwork->file }}" alt="">
 			<i>Klik op de afbeelding om te vergroten.</i>
 		</div>
+
+    @if (!empty($reservations[0]->from_date))
+    <div>Begin datum reservering: {{ $reservations[0]->from_date }}.</div>
+    <br>
+    @else
+    <p> Geen reservering op het moment.</p>
+    @endif
+
+    @if (!empty($reservations[0]->to_date))
+    <div>Eind datum reservering: {{ $reservations[0]->to_date }}.</div>
+    <br>
+
+    @endif
+
+    @if (!empty($reservations[0]->delivery_adress))
+    <div>Locatie: {{ $reservations[0]->delivery_adress }}.</div>
+    <br>
+    @else
+    <p> Geen locatie opgegeven</p>
+    @endif 
 
 		<div class="col-md-8 artworkInfo" style="margin-top: 10px;">
 			<div class="col-md-12 artworkDescription">{!! $artwork->description !!}</div>
@@ -75,7 +95,7 @@
 			<!--
 				<div class="col-md-3 col-sm-3 col-xs-3"><b>Formaat</b></div>
 				<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->size !!}</div>
-			
+
 				<div class="col-md-3 col-sm-3 col-xs-3"><b>Kleur</b></div>
 				<div class="col-md-9 col-sm-9 col-xs-9">{!! $artwork->colour !!}</div>
 			-->
@@ -134,11 +154,11 @@
 		    events: createEvents()
 		});
 	});
-	
+
 	$('.artworkImage').click(function() {
 		$('#imagePopup').toggle();
 	});
-	
+
 	window.addEventListener('mouseup', function(event){
 		var viewer = document.getElementById("imagePopupImage");
 		if(event.target != viewer && event.target.parentNode != viewer) {
