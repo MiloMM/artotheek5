@@ -139,7 +139,20 @@ class ReservationController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator'])) {
+			$reservation =	DB::table('reservations')
+				->join('artworks', function($join)
+				{
+					$join->on('reservations.artwork_id', '=', 'artworks.id');
+				})
+				->join('artists', function($join)
+				{
+					$join->on('artworks.artist', '=', 'artists.id');
+				})
+				->first();
+		}
+		dump($reservation);
+		return View::make('reservation/show', compact('reservation'));
 	}
 
 	/**
