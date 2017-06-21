@@ -22,6 +22,14 @@
 				</div>
 			@endforeach
 		</div>
+		<div class="newsItems-container">
+			@foreach($news as $newsItem)
+				<div class="newsItem col-md-6">
+						<h4>{{ $newsItem->title }}</h4>
+						{{ $newsItem->content }}
+				</div>
+			@endforeach
+		</div>
 	</div>
 </div>
 @stop

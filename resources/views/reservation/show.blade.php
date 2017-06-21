@@ -10,6 +10,13 @@
 	<div class="panel-default">
 		<div class="artworkTitleBar panel-heading">
 			<h2 class="artworkTitle">{{ $reservation->title }}</h2>
+			<div class="artworkOptions">
+				@if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
+					<a href="/reservation/edit/{{ $reservation->id }}" title="Kunstwerk wijzigen">
+						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+					</a>
+				@endif
+			</div>
 		</div>
 		<div class="col-md-4" style="padding: 0; margin-top: 10px;">
 			<img class="artworkImage" src="/{{ $reservation->file }}" alt="">
@@ -31,7 +38,20 @@
 					<div class="col-md-9" style="height: 20px;">{{ $reservation->description }}</div>
 					<div class="col-md-3"><b>Techniek</b></div>
 					<div class="col-md-9" style="height: 20px;">{{ $reservation->technique }}</div>
+					<div class="col-md-3"><b>Categorie</b></div>
+					<div class="col-md-9" style="height: 20px;">{{ $reservation->category }}</div>
+					<div class="col-md-3"><b>Grootte</b></div>
+					<div class="col-md-9" style="height: 20px;">{{ $reservation->size }}</div>
+					<div class="col-md-3"><b>Prijs</b></div>
+					<div class="col-md-9" style="height: 20px;">{{ $reservation->price }}</div>
+					<div class="col-md-3"><b>Kleur</b></div>
+					<div class="col-md-9" style="height: 20px;">{{ $reservation->colour }}</div>
+					<div class="col-md-3"><b>Materiaal</b></div>
+					<div class="col-md-9" style="height: 20px;">{{ $reservation->material }}</div>
+					<div class="col-md-3"><b>Genre</b></div>
+					<div class="col-md-9" style="height: 20px;">{{ $reservation->genre }}</div>
 			</div>
+		</div>
 	</div>
 </div>
 @stop

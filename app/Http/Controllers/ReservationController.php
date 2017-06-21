@@ -150,9 +150,11 @@ class ReservationController extends Controller {
 					$join->on('artworks.artist', '=', 'artists.id');
 				})
 				->first();
-		}
-		dump($reservation);
 		return View::make('reservation/show', compact('reservation'));
+		}   else 
+			{
+				return View::make('errors/' . HttpCode::Unauthorized);
+			}
 	}
 
 	/**

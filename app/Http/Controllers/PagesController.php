@@ -23,7 +23,9 @@ class PagesController extends Controller {
 		$artCount = Artwork::where('state', 0)->count();
 		TagsHelper::addTagsToCollection($artworks);
 		$text = DB::table('pages_text')->where('page', 'home')->first();
-		return View::make('index', compact('artworks', 'artCount', 'text'));
+		$news = DB::table('news')->orderBy('id', 'desc')->take(5)->get();
+
+		return View::make('index', compact('artworks', 'artCount', 'text','news'));
 	}
 
 	public function myprofile()
