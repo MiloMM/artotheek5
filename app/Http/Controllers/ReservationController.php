@@ -43,7 +43,7 @@ class ReservationController extends Controller {
 							   DB::raw('reservations.id as reservationId')])
 				->get();
 
-			return View::make('reservation/index')->with('reservations', $reservations);
+			return View::make('reservation/index', compact('reservations'));
 		}
 		else {
 			return View::make('errors/' . HttpCode::Unauthorized);
@@ -165,7 +165,20 @@ class ReservationController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$authID = Auth::id();
+
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']) || $authID == $id) //Je moet admin of de user zijn die de reservatie heeft gemaakt.
+		{
+			$reservation = DB::table('reservations')->where('id', $id)->first();
+
+			dump($reservation);
+
+			if($reservation)
+			{
+				return View::make('reservation/edit', compact('reservation'));
+			}
+
+		}
 	}
 
 	/**
@@ -176,7 +189,30 @@ class ReservationController extends Controller {
 	 */
 	public function update($id)
 	{
+		$from_date = input::get('from_date');
+		$to_date = input::get('to_date');
+		$delivery_adress = input::get('delivery_adress');
 
+		$reservationUpdate = DB::table('reservations')
+		->where('id', $id)
+		->update(['from_date' => $from_date],
+				 ['to_date' => $to_date],
+				 ['delivery_adress' => $delivery_adress]);
+
+		$reservation =	DB::table('reservations')
+		->where('id', $id);
+				->join('artworks', function($join)
+				{
+					$join->on('reservations.artwork_id', '=', 'artworks.id');
+				})
+				->join('artists', function($join)
+				{
+					$join->on('artworks.artist', '=', 'artists.id');
+				})
+				->first();
+
+		//dump($reservation);
+		return View::make('reservation/show', compact('reservation'));
 	}
 
 	/**
