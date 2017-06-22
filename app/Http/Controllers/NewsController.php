@@ -32,11 +32,11 @@ class NewsController extends Controller {
 	 */
 	public function create()
 	{
-		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			return View::make('news/create');
-		} 
-		else 
+		}
+		else
 		{
 			return View::make('errors/401');
 		}
@@ -56,7 +56,7 @@ class NewsController extends Controller {
 		$slug = str_replace('/','',$slug );
 		$slug = str_replace('\\','',$slug );
 
-		if (News::where('slug', $slug)->first()) 
+		if (News::where('slug', $slug)->first())
 		{
 			return Response::json([0 => 'Deze titel is al gebruikt bij een ander artikel.'], HttpCode::Conflict);
 		}
@@ -66,17 +66,17 @@ class NewsController extends Controller {
 		$input['content'] = str_replace("\r", '', $input['content']); // remove line endings
 
 		$article = News::create($input);
-		
-		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			$article->state = Input::get('publish') == "true" ? 1 : 0;
-		} 
+		}
 		else
 		{
 			$article->state = 1;
 		}
 
-		foreach ($tags as $tag) 
+		foreach ($tags as $tag)
 		{
 			$article->tag($tag);
 		}
@@ -102,11 +102,11 @@ class NewsController extends Controller {
 
 		$tagArray = $article->tagNames();
 
-		if ($article) 
+		if ($article)
 		{
 			return View::make('news/show', compact('article','tagArray'));
-		} 
-		else 
+		}
+		else
 		{
 			throw new \Exception('Artikel is niet gevonden in de database.');
 		}
@@ -121,11 +121,11 @@ class NewsController extends Controller {
 	public function edit($slug)
 	{
 		$article = News::where('slug', $slug)->first();
-		if ($article) 
+		if ($article)
 		{
 			return View::make('news/edit', compact('article'));
-		} 
-		else 
+		}
+		else
 		{
 			throw new \Exception('Artikel is niet gevonden in de database.');
 		}
@@ -150,27 +150,27 @@ class NewsController extends Controller {
 		$slug = str_replace('/','',$slug );
 		$slug = str_replace('\\','',$slug );
 		$input['slug'] = $slug;
-		
+
 		$article = News::findOrFail($id);
 
-		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator'])) 
+		if (Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 		{
 			$article->state = Input::get('publish') == "true" ? 0 : 1;
-		} 
-		else 
+		}
+		else
 		{
 			$article->state = 1;
 		}
 
 		$article->untag();
 		$tags = explode(',', $input['tags']);
-		foreach ($tags as $tag) 
+		foreach ($tags as $tag)
 		{
 			$article->tag($tag);
 		}
 
 		$article->update(Input::all());
-	
+
 		return Response::json(['Artikel gewijzigd. klik <a href="/news">hier</a> om terug te keren naar het overzicht'], HttpCode::Ok); // 200 = OK
 	}
 
