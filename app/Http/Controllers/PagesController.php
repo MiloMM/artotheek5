@@ -180,4 +180,6 @@ class PagesController extends Controller {
 			return View::make('errors/' . HttpCode::NotFound);
 		}
 	}
+
+
 }

@@ -33,6 +33,10 @@ Route::get('filters/{filter}/{id}/delete', 'FilterController@delete');
 Route::get('filters/{filter}/{id}/edit', 'FilterController@edit');
 Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
 
+
+Route::get('offers/{id}', 'ArtworkController@offers');
+Route::get('offers/createOffers', 'ArtworkController@createOffers');
+
 Route::resource('filters', 'FilterController');
 Route::resource('artists', 'ArtistController');
 Route::resource('users', 'UserController');

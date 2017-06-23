@@ -104,6 +104,12 @@
 			@if ($artwork->price != 0)
 				<div class="col-md-3"><b>Prijs</b></div>
 				<div class="col-md-9" style="height: 20px;">€{!! $artwork->price !!}</div>
+				<form method="get" action="../offers">
+					<input type="hidden" name="id" value="{{{ $artwork->id }}}" />
+					<button type="submit" class="btn btn-info">Bieden</button>
+				</form>
+				<button type="submit" class="btn btn-success">Kopen</button>
+				
 			@endif
 			@if (!empty($tagArray))
 				<div class="tagsDiv">

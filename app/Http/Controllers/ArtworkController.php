@@ -423,4 +423,29 @@ class ArtworkController extends Controller {
 			return View::make('errors/' . HttpCode::NotFound);
 		}
 	}
+
+		public function offers($id)
+	{
+			$artworks = DB::table('artworks')->where('id', $id)->first();
+			$offers = DB::table('offers')->where('artworks_id', $id)->get();
+
+			$userOffer = Auth::user()->name;
+
+
+			return view('offers/index', compact('text'), ['artworks' => $artworks, 'offers' => $offers, 'userOffer' => $userOffer]);
+
+	}
+
+	public function createOffers()
+	{
+		if (Auth::check() && Auth::user()->hasOnePrivelege(['student', 'Moderator', 'Administrator']))
+		{
+		DB::table('offers')->insert(
+    	['offers' => $_GET["offer"], 'name' => $_GET["name"], 'artworks_id' => $_GET["artworkId"]]
+	);
+	}
+	header("Location: /");
+	die();
+		
+	}
 }
