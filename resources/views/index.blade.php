@@ -25,8 +25,10 @@
 		<div class="newsItems-container">
 			@foreach($news as $newsItem)
 				<div class="newsItem col-md-6">
-						<h4>{{ $newsItem->title }}</h4>
-						{{ $newsItem->content }}
+					<div class="newsItem-header">
+						<a class="newsItem-title" href="/news/article{{$newsItem->id}}"><h4>{{ $newsItem->title }}</h4></a>
+					</div>	
+						{!! $newsItem->content !!}
 				</div>
 			@endforeach
 		</div>

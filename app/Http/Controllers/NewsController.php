@@ -83,9 +83,12 @@ class NewsController extends Controller {
 
 		$article->save();
 
+		$articles = News::where('state', 0);
+		return View::make('news/index', compact('articles'));
+		/*
 		return Response::json([
 			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
-		], HttpCode::Ok);
+		], HttpCode::Ok);*/
 	}
 
 	/**
@@ -100,7 +103,7 @@ class NewsController extends Controller {
 
 		$article = News::where('slug', $slug)->first();
 
-		$tagArray = $article->tagNames();
+		//$tagArray = $article->tagNames();
 
 		if ($article) 
 		{

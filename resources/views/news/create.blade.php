@@ -17,7 +17,7 @@
 						<div class="form-group">
 							{!! Form::label('Inhoud', null, ['class' => 'control-label col-md-1']) !!}
 							<div class="col-md-12">
-								{!! Form::textarea('content', null, ['class' => 'form-control', 'id' => 'textarea-content']) !!}
+								{!! Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -46,7 +46,7 @@
 </div>
 <script>
 	$(function () {
-		var editor = CKEDITOR.replace('textarea-content');
+		//var editor = CKEDITOR.replace('textarea-content');
 		$('#form').submit(function (event) { 
 			event.preventDefault(); 
 			
@@ -54,7 +54,7 @@
 				_method: 'POST',
 				_token: '{{ csrf_token() }}',
 				title: $('#tbx-title').val(),
-				content: editor.getData(),
+				content: $('#content').val(),//editor.getData(),
 				tags: $('#tbx-tags').val(),
 				state:$('#publish').val()
 			});
