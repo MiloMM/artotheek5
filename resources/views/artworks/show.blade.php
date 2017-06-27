@@ -108,8 +108,7 @@
 					<input type="hidden" name="id" value="{{{ $artwork->id }}}" />
 					<button type="submit" class="btn btn-info">Bieden</button>
 				</form>
-				<button type="submit" class="btn btn-success">Kopen</button>
-				
+			
 			@endif
 			@if (!empty($tagArray))
 				<div class="tagsDiv">

@@ -4,7 +4,8 @@
 
 <img src="/{{ $artworks->file }}" alt="" id="imagePopupImage">
 
-<div>Voorgestelde prijs door kunstenaar: {!! $artworks->price !!}</div>
+<div class="buy">Voorgestelde prijs door kunstenaar: {!! $artworks->price !!}. Als u contact opneemt met de kunstenaar kunt u dit kunstwerk voor deze prijs kopen anders kunt u hier onder op het kunstwerk bieden.</div>
+<br>
 <div>Geboden prijzen:</div>
 
 @foreach ($offers as $offer)

@@ -440,10 +440,17 @@ class ArtworkController extends Controller {
 	{
 		if (Auth::check() && Auth::user()->hasOnePrivelege(['student', 'Moderator', 'Administrator']))
 		{
+			$offerCheck = DB::table('offers')->where('artworks_id', $_GET['artworkId'])->get();
+				
+			}
+
+
+						
 		DB::table('offers')->insert(
     	['offers' => $_GET["offer"], 'name' => $_GET["name"], 'artworks_id' => $_GET["artworkId"]]
 	);
-	}
+	
+
 	header("Location: /");
 	die();
 		
