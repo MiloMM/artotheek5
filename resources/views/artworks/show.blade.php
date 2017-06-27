@@ -21,6 +21,9 @@
 		
 		<div class="artworkTitleBar panel-heading">
 			<h2 class="artworkTitle">{{ $artwork->title }}</h2>
+			@if (Auth::check())
+        		<a href="/reservation/create/{{$artwork->id}}" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Maak reservering</a>
+    		@endif
 			@if(Auth::check() && Auth::user()->hasOnePrivelege(['Administrator']))
 				<div class="artworkOptions">
 					<a href="/artworks/{{ $artwork->slug }}/edit" title="Kunstwerk wijzigen">
@@ -31,7 +34,7 @@
 							<i class="fa fa-archive fa-2x" aria-hidden="true"></i>
 						</a>
 					@else
-						<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet u zeker dat u dit kunstwerk wilt uit het archief wil halen en weer in de galerij wil tonen?')" title="Uit het archief halen en terug zetten in de galerij">
+						<a href="/artworks/{{ $artwork->id }}/archive" onclick="return confirm('Weet u zeker dat u dit kunstwerk uit het archief wil halen en weer in de galerij wil tonen?')" title="Uit het archief halen en terug zetten in de galerij">
 							<i class="fa fa-archive fa-2x" aria-hidden="true"></i>
 						</a>
 						<a href="/artworks/{{ $artwork->id }}/destroy" onclick="return confirm('Als u verder gaat, wordt het kunstwerk definitief van de website verwijderd. Weet u dit zeker?')" title="Verwijderen">
@@ -46,7 +49,26 @@
 			<img class="artworkImage" src="/{{ $artwork->file }}" alt="">
 			<i>Klik op de afbeelding om te vergroten.</i>
 		</div>
+	
+		@if (!empty($reservations[0]->from_date))
+		<div>Begin datum reservering: {{ $reservations[0]->from_date }}.</div>
+		<br>
+		@else
+		<p> Geen reservering op het moment.</p>
+		@endif
 
+		@if (!empty($reservations[0]->to_date))
+		<div>Eind datum reservering: {{ $reservations[0]->to_date }}.</div>
+		<br>
+
+		@endif
+
+		@if (!empty($reservations[0]->delivery_adress))
+		<div>Locatie: {{ $reservations[0]->delivery_adress }}.</div>
+		<br>
+		@else
+		<p> Geen locatie opgegeven</p>
+		@endif
 		<div class="col-md-8 artworkInfo" style="margin-top: 10px;">
 			<div class="col-md-12 artworkDescription">{!! $artwork->description !!}</div>
 			<div class="artworkInfoTable">
@@ -82,6 +104,11 @@
 			@if ($artwork->price != 0)
 				<div class="col-md-3"><b>Prijs</b></div>
 				<div class="col-md-9" style="height: 20px;">€{!! $artwork->price !!}</div>
+				<form method="get" action="../offers">
+					<input type="hidden" name="id" value="{{{ $artwork->id }}}" />
+					<button type="submit" class="btn btn-info">Bieden</button>
+				</form>
+			
 			@endif
 			@if (!empty($tagArray))
 				<div class="tagsDiv">

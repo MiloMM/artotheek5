@@ -33,6 +33,10 @@ Route::get('filters/{filter}/{id}/delete', 'FilterController@delete');
 Route::get('filters/{filter}/{id}/edit', 'FilterController@edit');
 Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
 
+
+Route::get('offers', 'ArtworkController@offers');
+Route::get('offers/createOffers', 'ArtworkController@createOffers');
+
 Route::resource('filters', 'FilterController');
 Route::resource('artists', 'ArtistController');
 Route::resource('users', 'UserController');
@@ -50,7 +54,7 @@ Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
 
-Route::get('/reservation/create/{id}', 'ReservationController@create');
+Route::get('reservation/create/{id?}', 'ReservationController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

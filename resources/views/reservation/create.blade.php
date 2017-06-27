@@ -98,9 +98,4 @@
 			xhr.send(form);
 		});
 </script>
-
-
-
-
-
 @stop
