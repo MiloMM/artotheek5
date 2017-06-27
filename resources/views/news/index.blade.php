@@ -6,16 +6,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Nieuws Artikelen</div>
 				<div class="panel-body" ng-controller="newsController">
+				<input type="text" class="form-control" placeholder="Zoek..." ng-model="newsQuery">
 					@if (Auth::check() && Auth::user()->hasOnePrivelege(['Moderator', 'Administrator']))
 						<a href="{{ action('NewsController@create') }}" style="margin: 10px;" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw Artikel</a>
 						<hr>
 					@endif
-					<input type="text" class="form-control" placeholder="Zoek..." ng-model="newsQuery">
-					<hr>
-					<div class="panel panel-default" ng-repeat="article in articles | filter:newsQuery">
-						<div class="panel-heading" style="font-size: 24px;">@{{ article.title }}</div>
-						<div class="panel-body" ng-bind-html="article.content"></div>
-						<a href="/news/@{{ article.slug }}" style="margin: 10px;" class="btn btn-success">Volledig Artikel</a>
+					<div class="panel panel-default" {{--ng-repeat="article in articles | filter:newsQuery"--}}>
+					@foreach($articles as $article)
+						<div class="panel-heading" style="font-size: 24px;">{{$article->title}} </div>
+						<div class="panel-body" ng-bind-html="article.content">{{$article->content}}</div>
+						<a href="/news/article/{{$article->slug}}" style="margin: 10px;" class="btn btn-success">Volledig Artikel</a>
+					@endforeach
 					</div>
 				</div>
 			</div>

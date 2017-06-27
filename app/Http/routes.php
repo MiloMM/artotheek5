@@ -50,7 +50,9 @@ Route::get('json/news', 'JsonController@news');
 Route::get('json/artworks', 'JsonController@artworks');
 Route::get('json/archivedArtworks', 'JsonController@archivedArtworks');
 Route::get('news/index', 'NewsController@index');
-Route::get('news/show/{id}', 'NewsController@show');
+Route::get('news/create', 'NewsController@create');
+Route::get('news/{slug}/edit', 'NewsController@index');
+Route::get('news/article/{slug}', 'NewsController@show');
 
 Route::get('reservation/create/{id}', 'ReservationController@create');
 Route::get('reservation/show/{id}', 'ReservationController@show');

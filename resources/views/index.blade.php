@@ -26,7 +26,7 @@
 			@foreach($news as $newsItem)
 				<div class="newsItem col-md-6">
 					<div class="newsItem-header">
-						<a class="newsItem-title" href="/news/article{{$newsItem->id}}"><h4>{{ $newsItem->title }}</h4></a>
+						<a class="newsItem-title" href="/news/article/{{$newsItem->slug}}"><h4>{{ $newsItem->title }}</h4></a>
 					</div>	
 						{!! $newsItem->content !!}
 				</div>

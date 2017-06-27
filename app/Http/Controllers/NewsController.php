@@ -21,7 +21,7 @@ class NewsController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = News::where('state', 0);
+		$articles = News::where('state', 0)->get();
 		return View::make('news/index', compact('articles'));
 	}
 
@@ -83,12 +83,8 @@ class NewsController extends Controller {
 
 		$article->save();
 
-		$articles = News::where('state', 0);
-		return View::make('news/index', compact('articles'));
-		/*
-		return Response::json([
-			0 => 'Nieuws artikel aangemaakt, klik <a href="/news/' . $slug . '">hier</a> om het te bekijken.'
-		], HttpCode::Ok);*/
+		return Response::json([], HttpCode::Ok);
+		return Redirect()->action('NewsController@index');
 	}
 
 	/**
@@ -103,7 +99,7 @@ class NewsController extends Controller {
 
 		$article = News::where('slug', $slug)->first();
 
-		//$tagArray = $article->tagNames();
+		$tagArray = $article->tagNames();
 
 		if ($article) 
 		{
@@ -188,5 +184,6 @@ class NewsController extends Controller {
 		$article = News::findOrFail($id);
 		$article->delete();
 		return Response::json([], HttpCode::Ok);
+		return Redirect()->action('NewsController@index');
 	}
 }
