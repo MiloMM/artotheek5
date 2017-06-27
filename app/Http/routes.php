@@ -34,7 +34,7 @@ Route::get('filters/{filter}/{id}/edit', 'FilterController@edit');
 Route::get('filters/{id}', ['as' => 'filterIndex', 'uses' => 'FilterController@index']);
 
 
-Route::get('offers/{id}', 'ArtworkController@offers');
+Route::get('offers', 'ArtworkController@offers');
 Route::get('offers/createOffers', 'ArtworkController@createOffers');
 
 Route::resource('filters', 'FilterController');

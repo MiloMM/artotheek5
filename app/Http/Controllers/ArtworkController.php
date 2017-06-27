@@ -424,10 +424,10 @@ class ArtworkController extends Controller {
 		}
 	}
 
-		public function offers($id)
+		public function offers()
 	{
-			$artworks = DB::table('artworks')->where('id', $id)->first();
-			$offers = DB::table('offers')->where('artworks_id', $id)->get();
+			$artworks = DB::table('artworks')->where('id', $_GET['id'])->first();
+			$offers = DB::table('offers')->where('artworks_id', $_GET['id'])->get();
 
 			$userOffer = Auth::user()->name;
 
